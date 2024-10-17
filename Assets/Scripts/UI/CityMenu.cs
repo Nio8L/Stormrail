@@ -32,6 +32,7 @@ public class CityMenu : MonoBehaviour
         }
 
         currentCity = cityToOpen;
+        EventManager.OpenCity?.Invoke(currentCity);
 
         // Setup city menu
         instance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cityToOpen.cityName;
@@ -44,7 +45,7 @@ public class CityMenu : MonoBehaviour
         //(This is here to prevent the menu from closing when clicking to open another city while the menu is open)
         ignoreClose = true;
 
-        EventManager.OpeneCity?.Invoke(currentCity);
+        
     }
 
     public void CloseMenu(){

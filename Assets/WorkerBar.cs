@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public Industry industry;
+    public IndustryWindow industryWindow;
     bool pointerIn = false;
     public int workers = 0;
     public Image[] workerIcons;
@@ -32,29 +34,7 @@ public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
                 if (workers < 0) workers = 0;
 
-                int workersPerIcon = GetLimit(5)/5;
-                // Make the worker indicators the correct color
-                
-                for (int i = 0; i < 5; i++){
-                    workerIcons[i].color = new Color(0, 0, 0, 0);
-                    workerIconsNumbers[i].color = new Color(0, 0, 0, 0);
-                }
-
-                // Find out how many of the icons should be visible
-                int iconsToShow = Mathf.CeilToInt((float)workers/workersPerIcon);
-
-                for (int i = 0; i < iconsToShow; i++){
-                    workerIcons[i].color = Color.white;
-                    workerIconsNumbers[i].color = Color.black;
-                }
-
-                // Update the worker text
-                
-                for (int i = 0; i < iconsToShow; i++){
-                    if (i != iconsToShow - 1 || workers % workersPerIcon == 0) workerIconsNumbers[i].text = workersPerIcon.ToString();
-                    else if (workers <= 5)    workerIconsNumbers[i].text = (workers%workersPerIcon + 1).ToString();
-                    else                      workerIconsNumbers[i].text = (workers%workersPerIcon).ToString();
-                }
+                UpdateVisuals();
             }
         }
     }
@@ -62,5 +42,40 @@ public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     int GetLimit(int limit){
         if (workers > limit) return GetLimit(limit * 5);
         return limit;
+    }
+
+    public void Initialize(IndustryWindow newIndustryWindow){
+        industryWindow = newIndustryWindow;
+        industry = industryWindow.industry;
+        workers = CityMenu.instance.currentCity.workersPerIndustry[industry];
+        UpdateVisuals();
+    }
+
+    public void UpdateVisuals(){
+        int workersPerIcon = GetLimit(5)/5;
+        industryWindow.workerTextBox.text = workers.ToString();
+
+        // Make the worker indicators the correct color
+        
+        for (int i = 0; i < 5; i++){
+            workerIcons[i].color = new Color(0, 0, 0, 0);
+            workerIconsNumbers[i].color = new Color(0, 0, 0, 0);
+        }
+
+        // Find out how many of the icons should be visible
+        int iconsToShow = Mathf.CeilToInt((float)workers/workersPerIcon);
+
+        for (int i = 0; i < iconsToShow; i++){
+            workerIcons[i].color = Color.white;
+            workerIconsNumbers[i].color = Color.black;
+        }
+
+        // Update the worker text
+        
+        for (int i = 0; i < iconsToShow; i++){
+            if (i != iconsToShow - 1 || workers % workersPerIcon == 0) workerIconsNumbers[i].text = workersPerIcon.ToString();
+            else if (workers <= 5)    workerIconsNumbers[i].text = (workers%workersPerIcon + 1).ToString();
+            else                      workerIconsNumbers[i].text = (workers%workersPerIcon).ToString();
+        }
     }
 }
