@@ -5007,9 +5007,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coordinates: {x: 0, y: 0}
-  fogged: 1
+  fogged: 0
   hexStructure: {fileID: 1520276586783198287}
   cloudParticles: {fileID: 7517973006219813235}
+  type: 0
 --- !u!64 &7987587386279440747
 MeshCollider:
   m_ObjectHideFlags: 0

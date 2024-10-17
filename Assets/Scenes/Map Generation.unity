@@ -247,6 +247,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {x: 20, y: 20}
   hexPrefab: {fileID: 4232830378493009381, guid: cd2433e01e018cb4bad1818ab988aee7, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 7f9525d46e2310941b0c45f0a0d2b6db, type: 2}
+  - {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
+  - {fileID: 2100000, guid: 9678dad406490bf4c9c96f1fb92d3276, type: 2}
+  - {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
+  rules:
+  - coordinates: {x: 5, y: 5}
+    type: 3
+  - coordinates: {x: 0, y: 0}
+    type: 3
+  - coordinates: {x: 2, y: 2}
+    type: 1
+  - coordinates: {x: 2, y: 3}
+    type: 1
+  - coordinates: {x: 5, y: 6}
+    type: 2
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0
