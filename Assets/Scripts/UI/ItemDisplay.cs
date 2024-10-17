@@ -22,4 +22,17 @@ public class ItemDisplay : MonoBehaviour, IPointerClickHandler
             Destroy(extraInfoMenu);
         }
     }
+
+    private void OnEnable() {
+        EventManager.CloseCity += SwitchingCity;
+    }
+
+    private void OnDisable() {
+        EventManager.CloseCity -= SwitchingCity;
+    }
+
+    public void SwitchingCity(City currentCity){
+        if(extraInfoMenu == null) return;
+        Destroy(extraInfoMenu);
+    }
 }

@@ -43,15 +43,19 @@ public class CityMenu : MonoBehaviour
         // Makes it so the menu can't be closed on the frame its opened 
         //(This is here to prevent the menu from closing when clicking to open another city while the menu is open)
         ignoreClose = true;
+
+        EventManager.OpeneCity?.Invoke(currentCity);
     }
 
     public void CloseMenu(){
         // Close the menu
-        instance.gameObject.SetActive(false);
-        
         CloseCurrentCity();
+
+        instance.gameObject.SetActive(false);
     }
     void CloseCurrentCity(){
+        EventManager.CloseCity?.Invoke(currentCity);
+
         // Save the last open tab
         currentCity.lastOpenTab = currentTabIndex;
         // Remove currentCity
@@ -77,7 +81,7 @@ public class CityMenu : MonoBehaviour
     }
 
     void Update(){
-        if (!ignoreClose && Input.GetMouseButtonDown(0) && Input.mousePosition.x > 256f){
+        if (!ignoreClose && Input.GetMouseButtonDown(0) && Input.mousePosition.x > 320f){
              CloseMenu();
         }else{
             ignoreClose = false;

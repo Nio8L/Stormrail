@@ -7,14 +7,7 @@ public class HexGridLayout : MonoBehaviour
 {
     [Header("Grid Settings")]
     public Vector2Int gridSize;
-
-    [Header("Hex Settings")]
-    public Material material;
-
-    public float innerSize = 0;
-    public float outerSize = 1;
-    public float height = 0.25f;
-    public bool isFlatTopped;
+    public GameObject hexPrefab;
 
     private List<GameObject> tiles = new();
 
@@ -38,17 +31,11 @@ public class HexGridLayout : MonoBehaviour
         
         for(int x = 0; x < gridSize.x; x++){
             for(int y = 0; y < gridSize.y; y++){
-                GameObject hex = new GameObject($"Hex {x},{y}", typeof(HexRenderer));
+                GameObject hex = Instantiate(hexPrefab, transform.position, Quaternion.identity);
                 hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
+                hex.transform.rotation = Quaternion.Euler(-90, -90, 0);
+                hex.GetComponent<HexTile>().Initialize(new Vector2Int(x, y));
                 tiles.Add(hex);
-
-                HexRenderer hexRenderer = hex.GetComponent<HexRenderer>();
-                hexRenderer.isFlatTopped = isFlatTopped;
-                hexRenderer.outerSize = outerSize;
-                hexRenderer.innerSize = innerSize;
-                hexRenderer.height = height;
-                hexRenderer.SetMaterial(material);
-                hexRenderer.DrawMesh();
 
                 hex.transform.SetParent(transform, true);
             }
@@ -67,33 +54,18 @@ public class HexGridLayout : MonoBehaviour
         float horizontalDistance;
         float verticalDistance;
         float offset;
-        float size = outerSize;
 
-        if(!isFlatTopped){
-            shouldOffset = row % 2 == 0;
-            width = Mathf.Sqrt(3) * size;
-            height = 2f * size;
-
-            horizontalDistance = width;
-            verticalDistance = height * (3f / 4f);
-
-            offset = shouldOffset ? width / 2 : 0;
-
-            xPosition = column * horizontalDistance + offset;
-            yPosition = row * verticalDistance;
-        }else{
-            shouldOffset = column % 2 == 0;
-            width = 2f * size;
-            height = Mathf.Sqrt(3) * size;
-
-            horizontalDistance = width * (3f / 4f);
-            verticalDistance = height;
-
-            offset = shouldOffset ? height / 2 : 0;
-            xPosition = column * horizontalDistance;
-            yPosition = row * verticalDistance - offset;
-        }
         
-        return new Vector3(xPosition, 0, -yPosition);
+        shouldOffset = column % 2 == 0;
+        width = 2f;
+        height = Mathf.Sqrt(3);
+        horizontalDistance = width * (3f / 4f);
+        verticalDistance = height;
+        offset = shouldOffset ? height / 2 : 0;
+        xPosition = column * horizontalDistance;
+        yPosition = row * verticalDistance - offset;
+        
+        
+        return new Vector3(xPosition, 0, yPosition);
     }
 }
