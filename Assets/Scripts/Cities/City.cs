@@ -7,6 +7,7 @@ public class City : MonoBehaviour
 {
     public string cityName;
     public int population;
+    public int workers;
     public int lastOpenTab = 0;
     public Dictionary<Item, int> inventory = new Dictionary<Item, int>();
     public List<Item> allItems = new List<Item>();

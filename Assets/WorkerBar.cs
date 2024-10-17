@@ -30,11 +30,17 @@ public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (scroll != 0){
                 // Multiply the scroll so 1 drag up or down is 1 worker
                 scroll *= 10f;
-                workers += Mathf.RoundToInt(scroll);
+                if (CityMenu.instance.currentCity.workers + Mathf.RoundToInt(scroll) <= CityMenu.instance.currentCity.population){
+                    workers += Mathf.RoundToInt(scroll);
 
-                if (workers < 0) workers = 0;
+                    int leftover = 0;
+                    if (workers < 0){leftover = Mathf.Abs(workers); workers = 0;}
 
-                UpdateVisuals();
+                    CityMenu.instance.currentCity.workersPerIndustry[industry] = workers;
+                    CityMenu.instance.currentCity.workers += Mathf.RoundToInt(scroll) + leftover;
+
+                    UpdateVisuals();
+                }
             }
         }
     }

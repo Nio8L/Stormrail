@@ -11,11 +11,12 @@ public class CityMenu : MonoBehaviour
 {
     public static CityMenu instance;
     public City currentCity;
-
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
     int currentTabIndex;
     public List<GameObject> tabs;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI populationText;
 
     bool ignoreClose = false;
 
@@ -35,7 +36,9 @@ public class CityMenu : MonoBehaviour
         EventManager.OpenCity?.Invoke(currentCity);
 
         // Setup city menu
-        instance.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cityToOpen.cityName;
+        nameText.text = cityToOpen.cityName;
+        populationText.text = cityToOpen.population.ToString();
+        
         instance.gameObject.SetActive(true);
         
         // Open the overview tab by default

@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775a338994f1ad14c997c9c5e6742e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  industry: {fileID: 0}
+  industryWindow: {fileID: 0}
   workers: 0
   workerIcons:
   - {fileID: 4954588650755064584}
@@ -124,8 +126,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
+  m_ChildAlignment: 4
+  m_Spacing: 4
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
