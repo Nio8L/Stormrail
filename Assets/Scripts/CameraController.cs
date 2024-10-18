@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, ISavable
 {
     public Transform cameraTransform;
 
@@ -116,5 +116,31 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+
+    public void LoadData(GameData data)
+    {
+        Vector3 cameraRigPosition = new(data.camera.cameraRigTransform.position.x, data.camera.cameraRigTransform.position.y, data.camera.cameraRigTransform.position.z);
+
+        Vector3 cameraTransformPosition = new(data.camera.cameraTransform.position.x, data.camera.cameraTransform.position.y, data.camera.cameraTransform.position.z);
+
+        transform.position = cameraRigPosition;
+        transform.rotation = Quaternion.Euler(data.camera.cameraRigTransform.rotation.x, data.camera.cameraRigTransform.rotation.y, data.camera.cameraRigTransform.rotation.z);
+    
+        cameraTransform.localPosition = cameraTransformPosition;
+        cameraTransform.rotation = Quaternion.Euler(data.camera.cameraTransform.rotation.x, data.camera.cameraTransform.rotation.y, data.camera.cameraTransform.rotation.z);
+    
+        newPosition = transform.position;
+        newRotation = transform.rotation;
+        newZoom = cameraTransform.localPosition;
+    }
+
+    public void SaveData(GameData data)
+    {
+        TransformSerialized cameraTransformSerialized = new(cameraTransform.localPosition.x, cameraTransform.localPosition.y, cameraTransform.localPosition.z, 
+                                                            cameraTransform.eulerAngles.x, cameraTransform.eulerAngles.y, cameraTransform.eulerAngles.z);
+        TransformSerialized cameraRigTransformSerialized = new(transform.position.x, transform.position.y, transform.position.z,
+                                                                transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+        data.camera = new(cameraTransformSerialized, cameraRigTransformSerialized);
     }
 }

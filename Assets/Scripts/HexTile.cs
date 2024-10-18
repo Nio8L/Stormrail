@@ -31,8 +31,19 @@ public class HexTile : MonoBehaviour
         }else{
             Reveal();
         }
+    }
 
+    public void Initialize(Vector2Int coordinates, Type type){
+        this.coordinates = coordinates;
+        SetType(type);
+
+        hexStructure.SetActive(false);
         
+        if(fogged){
+            cloudParticles.Play();
+        }else{
+            Reveal();
+        }
     }
 
     public void Reveal(){
@@ -42,16 +53,22 @@ public class HexTile : MonoBehaviour
         hexStructure.SetActive(true);
     }
 
-    public void SetType(Type newType, Material material){
+    public void SetType(Type newType){
         type = newType;
 
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
-        meshRenderer.material = material;
+        meshRenderer.material = MapManager.instance.materials[(int)type];
     }
 
     private void OnMouseDown() {
         Debug.Log(coordinates);
-        Reveal();
+        //Reveal();
+
+        if(type == Type.City){
+            SetType(Type.Empty);
+        }else{
+            SetType(type + 1);
+        }
     }
 }
