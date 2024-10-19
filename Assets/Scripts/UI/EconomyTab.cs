@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,28 +14,41 @@ public class EconomyTab : MonoBehaviour
     public static EconomyTab instance;
     public GameObject content;
     public List<ItemDisplay> itemDisplays;
-    City currentCity;
+    public City currentCity;
     void Awake(){
         instance = this;
     }
-    void OnEnable(){
-        currentCity = CityMenu.instance.currentCity;
+
+    private void OnEnable() {
+        EventManager.OpenCity += SwitchingCity;
+
+        SwitchingCity(CityMenu.instance.currentCity);
+    }
+
+    private void OnDisable() {
+        EventManager.OpenCity -= SwitchingCity;
+    }
+
+    public void SwitchingCity(City newCity){
+        currentCity = newCity;
 
         for (int i = 0; i < currentCity.inventory.Count; i++){
-            KeyValuePair<Item, int> pair = currentCity.inventory.ElementAt(i);
+            KeyValuePair<Item, float> pair = currentCity.inventory.ElementAt(i);
             // Set the sprite of the display
             itemDisplays[i].iconObject.sprite = pair.Key.itemIcon;
             // Set the name of the display
             itemDisplays[i].nameTextBox.text = pair.Key.itemName;
             // Set the amount of the display
-            itemDisplays[i].amountTextBox.text = pair.Value.ToString() + "kg";
+            itemDisplays[i].amountTextBox.text = Mathf.RoundToInt(pair.Value) + "kg";
         }
     }
+
     void Update(){
-         for (int i = 0; i < currentCity.inventory.Count; i++){
-            KeyValuePair<Item, int> pair = currentCity.inventory.ElementAt(i);
+        if (currentCity == null) return;
+        for (int i = 0; i < currentCity.inventory.Count; i++){
+            KeyValuePair<Item, float> pair = currentCity.inventory.ElementAt(i);
             // Set the amount of the display
-            itemDisplays[i].amountTextBox.text = pair.Value.ToString() + "kg";
+            itemDisplays[i].amountTextBox.text = Mathf.RoundToInt(pair.Value) + "kg";
         }
     }
 }

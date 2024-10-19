@@ -13,3 +13,19 @@ MonoBehaviour:
   m_Name: Refinement
   m_EditorClassIdentifier: 
   industryName: Resource refinement
+  level: 0
+  levelMultiplier:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 6
+  items:
+  - {fileID: 11400000, guid: ac15366747f49fc4db478def7d135186, type: 2}
+  - {fileID: 11400000, guid: cddfeb764f38c454fb066d46fa65fd36, type: 2}
+  - {fileID: 11400000, guid: 9b49326f4a0913848910d0ca054a8687, type: 2}
+  perWorker:
+  - 4
+  - 1
+  - 3

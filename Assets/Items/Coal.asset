@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   itemName: Coal
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: e943fe7d61024f44fa1c9a211fecc929, type: 3}

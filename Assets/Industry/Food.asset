@@ -13,3 +13,15 @@ MonoBehaviour:
   m_Name: Food
   m_EditorClassIdentifier: 
   industryName: Food production
+  level: 0
+  levelMultiplier:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 6
+  items:
+  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+  perWorker:
+  - 5

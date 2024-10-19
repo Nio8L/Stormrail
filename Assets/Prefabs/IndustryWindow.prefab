@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6738902145539431652}
   - component: {fileID: 7347160774022376677}
   - component: {fileID: 9053419715407110127}
+  - component: {fileID: 113394983876112225}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -75,6 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &113394983876112225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008525184761647661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f683f1518753405459f73ef69a30c921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1334816291529830325
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +663,9 @@ MonoBehaviour:
   nameTextBox: {fileID: 5755490890494576877}
   workerTextBox: {fileID: 1006045232863515798}
   workerBar: {fileID: 6910779948385884297}
+  upgradeButton: {fileID: 113394983876112225}
+  levelText: {fileID: 9161243258640623790}
+  levelBar: {fileID: 8088270773170699839}
 --- !u!1 &5820547571106553943
 GameObject:
   m_ObjectHideFlags: 0

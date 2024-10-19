@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 
 public class City : MonoBehaviour
@@ -9,7 +10,7 @@ public class City : MonoBehaviour
     public int population;
     public int workers;
     public int lastOpenTab = 0;
-    public Dictionary<Item, int> inventory = new Dictionary<Item, int>();
+    public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
     public List<Item> allItems = new List<Item>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
     public List<Industry> allIndustries = new List<Industry>();
@@ -21,10 +22,31 @@ public class City : MonoBehaviour
         for (int i = 0; i < allIndustries.Count; i++){
             allIndustries[i] = Instantiate(allIndustries[i]);
             workersPerIndustry.Add(allIndustries[i], 0);
+            allIndustries[i].Initialize();
         }
     }
 
     void Update(){
-        inventory[allItems[7]]++;
+        GainResources();
+    }
+
+    void GainResources(){
+        for (int i = 0; i < workersPerIndustry.Count; i++){
+            // Get every industry in this city
+            KeyValuePair<Industry, int> industryPair = workersPerIndustry.ElementAt(i);
+
+            if (industryPair.Key.level == 0) continue;
+
+            for (int product = 0; product < industryPair.Key.itemOutputPerWorker.Count; product++){
+                // Get every product of that industry
+                KeyValuePair<Item, float> itemPair = industryPair.Key.itemOutputPerWorker.ElementAt(product);
+                // Get the level multiplayer
+                float multiplier = industryPair.Key.levelMultiplier[industryPair.Key.level];
+
+                // Add the product to the inventory of the city
+                float amountToGain = itemPair.Value * multiplier * industryPair.Value * Time.deltaTime;
+                inventory[itemPair.Key] += amountToGain;
+            }
+        }
     }
 }
