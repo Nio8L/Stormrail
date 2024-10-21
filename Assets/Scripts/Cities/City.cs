@@ -11,18 +11,15 @@ public class City : MonoBehaviour
     public int workers;
     public int lastOpenTab = 0;
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
-    public List<Item> allItems = new List<Item>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
-    public List<Industry> allIndustries = new List<Industry>();
-    
     void Start(){
-        for (int i = 0; i < allItems.Count; i++){
-            //inventory.Add(allItems[i], 0);
+        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
+            //inventory.Add(DataBase.instance.allItems[i], 0);
         }
-        for (int i = 0; i < allIndustries.Count; i++){
-           //allIndustries[i] = Instantiate(allIndustries[i]);
-           //workersPerIndustry.Add(allIndustries[i], 0);
-           //allIndustries[i].Initialize(this);
+        for (int i = 0; i < DataBase.instance.allIndustries.Count; i++){
+            // Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i])
+            // newIndustry.Initialize.Initialize(this)
+            // workersPerIndustry.Add(newIndustry, 0);
         }
 
         //CityManager.instance.cities.Add(this);

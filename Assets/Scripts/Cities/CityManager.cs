@@ -29,28 +29,31 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.population = city.population;
             newCity.workers = city.workers;
 
-            for(int i = 0; i < newCity.allItems.Count; i++){
-                newCity.inventory.Add(newCity.allItems[i], city.itemAmount[i]);
+            for(int i = 0; i < DataBase.instance.allItems.Count; i++){
+                newCity.inventory.Add(DataBase.instance.allItems[i], city.itemAmount[i]);
             }
 
             for(int i = 0; i < city.industries.Count; i++){
+                // Industries
                 IndustrySerialized currentIndustry = city.industries[i];
                 Industry industry = new();
                 industry.industryName = currentIndustry.industryName;
                 industry.level = currentIndustry.level;
                 industry.levelMultiplier = currentIndustry.levelMultipliers;
+                
+                industry.Initialize(newCity);
 
-                Item item = newCity.allItems[i];
-                for(int j = 0; j < currentIndustry.outputPerWorker.Count; j++){
-                    industry.itemOutputPerWorker[item] = currentIndustry.outputPerWorker[j];
+                for(int j = 0; j < DataBase.instance.allItems.Count; j++){
+                    industry.itemOutputPerWorker[DataBase.instance.allItems[j]] = currentIndustry.outputPerWorker[j];
                 }
-                newCity.workersPerIndustry.Add(industry, city.workerAmount[i]);
-                cities.Add(newCity);
+                
+                newCity.workersPerIndustry.Add(industry, city.workerAmount[i]); 
             }
+            cities.Add(newCity);
         }
         foreach (City city in cities)
         {
-            Debug.Log(city.workersPerIndustry);
+            Debug.Log(city.workersPerIndustry.ElementAt(0));
         }
     }
 
