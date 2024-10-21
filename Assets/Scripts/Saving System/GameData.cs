@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class ArrayWrapper{
@@ -108,13 +109,70 @@ public class CameraData{
 }
 
 [Serializable]
+public class IndustrySerialized{
+    public string industryName;
+    public int level;
+
+    public float[] levelMultipliers;
+
+    public List<string> itemName;
+    public List<float> outputPerWorker;
+
+    public IndustrySerialized(){
+        level = 0;
+        itemName = new();
+        outputPerWorker = new();
+    }
+
+    public IndustrySerialized(string industryName, int level, float[] levelMultipliers, List<string> itemName, List<float> outputPerWorker){
+        this.industryName = industryName;
+        this.level = level;
+        this.levelMultipliers = levelMultipliers;
+        this.itemName = itemName;
+        this.outputPerWorker = outputPerWorker;
+    } 
+}
+
+[Serializable]
+public class CitySerialized{
+    public string cityName;
+    public int population;
+    public int workers;
+
+    public Vector3Serialized cityPosition;
+
+    public List<string> itemName;
+    public List<float> itemAmount;
+
+    public List<IndustrySerialized> industries;
+    public List<int> workerAmount;
+
+    public CitySerialized(){
+        cityName = "New Sofia Default";
+        population = 0;
+        workers = 0;
+
+        cityPosition = new(0, 0, 0);
+
+        itemName = new();
+        itemAmount = new();
+
+        industries = new();
+        workerAmount = new();
+    }
+}
+
+[Serializable]
 public class GameData
 { 
     public CameraData camera;
     public Map map;
 
+    public List<CitySerialized> cities;
+
     public GameData(){
         camera = new();
         map = new(0);
+        cities = new();
     }
 }
