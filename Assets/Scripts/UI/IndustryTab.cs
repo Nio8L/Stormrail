@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class IndustryTab : MonoBehaviour
@@ -19,7 +20,7 @@ public class IndustryTab : MonoBehaviour
     public void SwitchingCity(City currentCity){
         for (int i = 0; i < industryWindows.Count; i++){
             IndustryWindow window = industryWindows[i];
-            window.UpdateIndustry(currentCity.allIndustries[i]);
+            window.UpdateIndustry(currentCity.workersPerIndustry.ElementAt(i).Key);
         }
     }
 }

@@ -17,13 +17,15 @@ public class City : MonoBehaviour
     
     void Start(){
         for (int i = 0; i < allItems.Count; i++){
-            inventory.Add(allItems[i], 0);
+            //inventory.Add(allItems[i], 0);
         }
         for (int i = 0; i < allIndustries.Count; i++){
-            allIndustries[i] = Instantiate(allIndustries[i]);
-            workersPerIndustry.Add(allIndustries[i], 0);
-            allIndustries[i].Initialize();
+           //allIndustries[i] = Instantiate(allIndustries[i]);
+           //workersPerIndustry.Add(allIndustries[i], 0);
+           //allIndustries[i].Initialize(this);
         }
+
+        //CityManager.instance.cities.Add(this);
     }
 
     void Update(){

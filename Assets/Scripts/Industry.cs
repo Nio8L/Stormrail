@@ -14,9 +14,12 @@ public class Industry : ScriptableObject
     public List<Item> items;
     public List<float> perWorker;
 
-    public void Initialize(){
+    public void Initialize(City city){
+        for (int i = 0; i < city.allItems.Count; i++){
+            itemOutputPerWorker.Add(city.allItems[i], 0);
+        }
         for (int i = 0; i < items.Count; i++){
-            itemOutputPerWorker.Add(items[i], perWorker[i]);
+            itemOutputPerWorker[items[i]] = perWorker[i];
         }
     }
     public void LevelUp(){

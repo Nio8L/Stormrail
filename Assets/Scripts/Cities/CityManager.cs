@@ -1,0 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class CityManager : MonoBehaviour, ISavable
+{
+    public static CityManager instance;
+    public List<City> cities;
+
+    public GameObject cityPrefab;
+
+    private void Awake() {
+        instance = this;
+    }
+
+    private void Start() {
+        
+    }
+    public void LoadData(GameData data)
+    {
+        foreach (CitySerialized city in data.cities)
+        {
+            GameObject newCityObject = Instantiate(cityPrefab, new Vector3(city.cityPosition.x, city.cityPosition.y, city.cityPosition.z), Quaternion.identity);
+            
+            City newCity = newCityObject.GetComponent<City>();
+
+            newCity.cityName = city.cityName;
+            newCity.population = city.population;
+            newCity.workers = city.workers;
+
+            for(int i = 0; i < newCity.allItems.Count; i++){
+                newCity.inventory.Add(newCity.allItems[i], city.itemAmount[i]);
+            }
+
+            for(int i = 0; i < city.industries.Count; i++){
+                IndustrySerialized currentIndustry = city.industries[i];
+                Industry industry = new();
+                industry.industryName = currentIndustry.industryName;
+                industry.level = currentIndustry.level;
+                industry.levelMultiplier = currentIndustry.levelMultipliers;
+
+                Item item = newCity.allItems[i];
+                for(int j = 0; j < currentIndustry.outputPerWorker.Count; j++){
+                    industry.itemOutputPerWorker[item] = currentIndustry.outputPerWorker[j];
+                }
+                newCity.workersPerIndustry.Add(industry, city.workerAmount[i]);
+                cities.Add(newCity);
+            }
+        }
+        foreach (City city in cities)
+        {
+            Debug.Log(city.workersPerIndustry);
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.cities = new();
+
+        foreach (City city in cities)
+        {   
+            CitySerialized newCity = new();
+            newCity.cityName = city.cityName;
+            newCity.population = city.population;
+            newCity.workers = city.workers;
+
+            newCity.cityPosition = new(city.transform.position.x, city.transform.position.y, city.transform.position.z);
+
+            foreach (Item item in city.inventory.Keys)
+            {
+                newCity.itemName.Add(item.itemName);
+                newCity.itemAmount.Add(city.inventory[item]);
+            }
+
+            foreach (Industry industry in city.workersPerIndustry.Keys)
+            {
+                List<string> itemNames = new();
+                List<float> outputPerWorker = new();
+                foreach (Item item in industry.itemOutputPerWorker.Keys)
+                {
+                    itemNames.Add(item.itemName);
+                    outputPerWorker.Add(industry.itemOutputPerWorker[item]);
+                }
+                IndustrySerialized newIndustry = new(industry.industryName, industry.level, industry.levelMultiplier, itemNames, outputPerWorker);
+                newCity.industries.Add(newIndustry);
+                newCity.workerAmount.Add(city.workersPerIndustry[industry]);
+            }
+            data.cities.Add(newCity);
+        }
+    }
+}
