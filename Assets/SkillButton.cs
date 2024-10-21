@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class SkillButton : MonoBehaviour
+public class SkillButton : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public Skill thisSkill;
+    public SkillButton prerequisite;
+    public bool unlocked = false;
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        SkillTreeMenu.instance.SelectSkill(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }
