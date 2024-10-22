@@ -12,17 +12,26 @@ public class City : MonoBehaviour
     public int lastOpenTab = 0;
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
+    public Vector2Int coordinates;
     void Start(){
+        transform.position = MapManager.instance.tiles[coordinates.x, coordinates.y].transform.position;
+        transform.position += new Vector3(0, 0.75f, 0);
+        MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.City);
+    }
+
+    public void Initialize(Vector2Int coordinates, string cityName, int population){
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
-            //inventory.Add(DataBase.instance.allItems[i], 0);
+            inventory.Add(DataBase.instance.allItems[i], 0);
         }
         for (int i = 0; i < DataBase.instance.allIndustries.Count; i++){
-            // Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i])
-            // newIndustry.Initialize.Initialize(this)
-            // workersPerIndustry.Add(newIndustry, 0);
+            Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i]);
+            newIndustry.Initialize(this);
+            workersPerIndustry.Add(newIndustry, 0);
         }
-
-        //CityManager.instance.cities.Add(this);
+        
+        this.coordinates = coordinates;
+        this.cityName = cityName;
+        this.population = population;
     }
 
     void Update(){
@@ -47,5 +56,10 @@ public class City : MonoBehaviour
                 inventory[itemPair.Key] += amountToGain;
             }
         }
+    }
+
+    public void DestroyCity(){
+        CityManager.instance.cities.Remove(this);
+        Destroy(gameObject);
     }
 }

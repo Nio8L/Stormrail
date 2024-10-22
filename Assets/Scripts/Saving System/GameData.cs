@@ -92,7 +92,7 @@ public class CameraData{
     public TransformSerialized cameraRigTransform;
 
     private Vector3Serialized cameraStartPositon = new(0, 50, -50);
-    private Vector3Serialized cameraStartRotation = new(45, 0, 0);
+    private Vector3Serialized cameraStartRotation = new(45, 45, 0);
 
     private Vector3Serialized cameraRigStartPositon = new(3, 0, -10);
     private Vector3Serialized cameraRigStartRotation = new(0, 45, 0);
@@ -139,7 +139,7 @@ public class CitySerialized{
     public int population;
     public int workers;
 
-    public Vector3Serialized cityPosition;
+    public Vector2Serialized coordinates;
 
     public List<string> itemName;
     public List<float> itemAmount;
@@ -152,7 +152,7 @@ public class CitySerialized{
         population = 0;
         workers = 0;
 
-        cityPosition = new(0, 0, 0);
+        coordinates = new(0, 0);
 
         itemName = new();
         itemAmount = new();
