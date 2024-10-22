@@ -15,19 +15,20 @@ public class CityManager : MonoBehaviour, ISavable
     }
 
     private void Start() {
-        
+
     }
     public void LoadData(GameData data)
     {
         foreach (CitySerialized city in data.cities)
         {
-            GameObject newCityObject = Instantiate(cityPrefab, new Vector3(city.cityPosition.x, city.cityPosition.y, city.cityPosition.z), Quaternion.identity);
+            GameObject newCityObject = Instantiate(cityPrefab, Vector3.zero, Quaternion.identity);
             
             City newCity = newCityObject.GetComponent<City>();
 
             newCity.cityName = city.cityName;
             newCity.population = city.population;
             newCity.workers = city.workers;
+            newCity.coordinates = new Vector2Int(city.coordinates.x, city.coordinates.y);
 
             for(int i = 0; i < DataBase.instance.allItems.Count; i++){
                 newCity.inventory.Add(DataBase.instance.allItems[i], city.itemAmount[i]);
@@ -67,7 +68,7 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.population = city.population;
             newCity.workers = city.workers;
 
-            newCity.cityPosition = new(city.transform.position.x, city.transform.position.y, city.transform.position.z);
+            newCity.coordinates = new(city.coordinates.x, city.coordinates.y);
 
             foreach (Item item in city.inventory.Keys)
             {

@@ -13,6 +13,8 @@ public class HexTile : MonoBehaviour
     public GameObject hexStructure;
     public ParticleSystem cloudParticles;
 
+    public GameObject decorations;
+
     public enum Type{
         Empty,
         Forest,
@@ -61,14 +63,31 @@ public class HexTile : MonoBehaviour
         meshRenderer.material = MapManager.instance.materials[(int)type];
     }
 
+    public void SetTypeDecoration(Type newType){
+        type = newType;
+
+        MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+
+        meshRenderer.material = MapManager.instance.materials[(int)type];
+
+        if(newType == Type.City){
+            decorations = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
+            CityManager.instance.cities.Add(decorations.GetComponent<City>());
+            CityManager.instance.cities[^1].Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
+        }else if(decorations != null && decorations.GetComponent<City>() != null){
+            decorations.GetComponent<City>().DestroyCity();
+            decorations = null;
+        }
+    }
+
     private void OnMouseDown() {
         Debug.Log(coordinates);
         //Reveal();
 
         if(type == Type.City){
-            SetType(Type.Empty);
+            SetTypeDecoration(Type.Empty);
         }else{
-            SetType(type + 1);
+            SetTypeDecoration(type + 1);
         }
     }
 }
