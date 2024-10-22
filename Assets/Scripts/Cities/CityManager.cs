@@ -39,9 +39,8 @@ public class CityManager : MonoBehaviour, ISavable
                 Industry industry = new();
                 industry.industryName = currentIndustry.industryName;
                 industry.level = currentIndustry.level;
-                industry.levelMultiplier = currentIndustry.levelMultipliers;
                 
-                industry.Initialize(newCity);
+                industry.Initialize();
 
                 for(int j = 0; j < DataBase.instance.allItems.Count; j++){
                     industry.itemOutputPerWorker[DataBase.instance.allItems[j]] = currentIndustry.outputPerWorker[j];
@@ -85,7 +84,7 @@ public class CityManager : MonoBehaviour, ISavable
                     itemNames.Add(item.itemName);
                     outputPerWorker.Add(industry.itemOutputPerWorker[item]);
                 }
-                IndustrySerialized newIndustry = new(industry.industryName, industry.level, industry.levelMultiplier, itemNames, outputPerWorker);
+                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker);
                 newCity.industries.Add(newIndustry);
                 newCity.workerAmount.Add(city.workersPerIndustry[industry]);
             }

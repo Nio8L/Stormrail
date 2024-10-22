@@ -14,12 +14,12 @@ public class City : MonoBehaviour
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
     void Start(){
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
-            //inventory.Add(DataBase.instance.allItems[i], 0);
+            inventory.Add(DataBase.instance.allItems[i], 0);
         }
         for (int i = 0; i < DataBase.instance.allIndustries.Count; i++){
-            // Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i])
-            // newIndustry.Initialize.Initialize(this)
-            // workersPerIndustry.Add(newIndustry, 0);
+            Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i]);
+            newIndustry.Initialize();
+            workersPerIndustry.Add(newIndustry, 0);
         }
 
         //CityManager.instance.cities.Add(this);
@@ -39,11 +39,9 @@ public class City : MonoBehaviour
             for (int product = 0; product < industryPair.Key.itemOutputPerWorker.Count; product++){
                 // Get every product of that industry
                 KeyValuePair<Item, float> itemPair = industryPair.Key.itemOutputPerWorker.ElementAt(product);
-                // Get the level multiplayer
-                float multiplier = industryPair.Key.levelMultiplier[industryPair.Key.level];
 
                 // Add the product to the inventory of the city
-                float amountToGain = itemPair.Value * multiplier * industryPair.Value * Time.deltaTime;
+                float amountToGain = itemPair.Value * industryPair.Value * Time.deltaTime;
                 inventory[itemPair.Key] += amountToGain;
             }
         }

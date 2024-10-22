@@ -113,8 +113,6 @@ public class IndustrySerialized{
     public string industryName;
     public int level;
 
-    public float[] levelMultipliers;
-
     public List<string> itemName;
     public List<float> outputPerWorker;
 
@@ -124,10 +122,9 @@ public class IndustrySerialized{
         outputPerWorker = new();
     }
 
-    public IndustrySerialized(string industryName, int level, float[] levelMultipliers, List<string> itemName, List<float> outputPerWorker){
+    public IndustrySerialized(string industryName, int level, List<string> itemName, List<float> outputPerWorker){
         this.industryName = industryName;
         this.level = level;
-        this.levelMultipliers = levelMultipliers;
         this.itemName = itemName;
         this.outputPerWorker = outputPerWorker;
     } 

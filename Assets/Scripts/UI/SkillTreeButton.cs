@@ -5,13 +5,10 @@ using UnityEngine.EventSystems;
 
 public class SkillTreeButton : MonoBehaviour, IPointerClickHandler
 {
-    GameObject skillTreeMenu;
-
-    void Start(){
-        skillTreeMenu = GameObject.Find("SkillTreeMenu");
-    }
+    public IndustryWindow industryWindow;
     public void OnPointerClick(PointerEventData eventData)
     {
-        skillTreeMenu.SetActive(true);
+        SkillTreeMenu.instance.gameObject.SetActive(true);
+        SkillTreeMenu.instance.SelectIndustry(industryWindow.industry);
     }
 }

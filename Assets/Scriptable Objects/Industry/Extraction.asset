@@ -14,20 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   industryName: Extraction industry
   level: 0
-  levelMultiplier:
-  - 0
-  - 1
-  - 2
-  - 3
-  - 4
-  - 6
-  items:
-  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
-  - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
-  - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
-  - {fileID: 11400000, guid: c764a9833ce7b994690e5afc271c3bbf, type: 2}
-  perWorker:
-  - 6
-  - 3
-  - 1
-  - 2
+  skillTree: {fileID: 943767580168244703, guid: 47711a0a603668e44a5d7786c5aa80b0, type: 3}
+  unlockedSkills: []

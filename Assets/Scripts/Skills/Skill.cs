@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class Skill
+[CreateAssetMenu(menuName = "Skill")]
+public class Skill: ScriptableObject
 {
     public string skillName;
     public string skillDescription;
@@ -13,6 +13,6 @@ public class Skill
 
     }
     public virtual void OnUpdate(Industry industry){
-        
+
     }
 }
