@@ -109,6 +109,32 @@ public class CameraData{
 }
 
 [Serializable]
+public class SkillSerilaized{
+    public string skillPath;
+
+    public SkillSerilaized(){
+        skillPath = "";
+    }
+
+    public SkillSerilaized(string path){
+        skillPath = path;
+    }
+}
+
+[Serializable]
+public class SkillTreeSerialized{
+    public string skillTreePath;
+
+    public SkillTreeSerialized(){
+        skillTreePath = "";
+    }
+
+    public SkillTreeSerialized(string path){
+        skillTreePath = path;
+    }
+}
+
+[Serializable]
 public class IndustrySerialized{
     public string industryName;
     public int level;
@@ -116,17 +142,34 @@ public class IndustrySerialized{
     public List<string> itemName;
     public List<float> outputPerWorker;
 
+    public SkillTreeSerialized skillTree;
+    public List<SkillSerilaized> skills;
+
+    public int skillPoints;
+
     public IndustrySerialized(){
         level = 0;
         itemName = new();
         outputPerWorker = new();
+        skillTree = new();
+        skills = new();
+        skillPoints = 0;
     }
 
-    public IndustrySerialized(string industryName, int level, List<string> itemName, List<float> outputPerWorker){
+    public IndustrySerialized(string industryName, int level, List<string> itemName, List<float> outputPerWorker, string skillTreePath, List<string> skillPaths, int skillPoints){
         this.industryName = industryName;
         this.level = level;
         this.itemName = itemName;
         this.outputPerWorker = outputPerWorker;
+
+        skillTree = new(skillTreePath);
+        skills = new();
+        foreach (string skillPath in skillPaths)
+        {
+            SkillSerilaized newSkill = new(skillPath);
+            skills.Add(newSkill);
+        }
+        this.skillPoints = skillPoints;
     } 
 }
 

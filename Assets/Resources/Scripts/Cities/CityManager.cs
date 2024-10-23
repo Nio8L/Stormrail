@@ -41,6 +41,14 @@ public class CityManager : MonoBehaviour, ISavable
                 industry.industryName = currentIndustry.industryName;
                 industry.level = currentIndustry.level;
                 
+                industry.skillTree = Resources.Load<GameObject>(currentIndustry.skillTree.skillTreePath);
+
+                foreach(SkillSerilaized skill in currentIndustry.skills){
+                    Skill newSkill = Resources.Load<Skill>(skill.skillPath);
+                    industry.unlockedSkills.Add(newSkill);
+                }
+                industry.skillPoints = currentIndustry.skillPoints;
+
                 industry.Initialize();
 
                 for(int j = 0; j < DataBase.instance.allItems.Count; j++){
@@ -85,7 +93,15 @@ public class CityManager : MonoBehaviour, ISavable
                     itemNames.Add(item.itemName);
                     outputPerWorker.Add(industry.itemOutputPerWorker[item]);
                 }
-                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker);
+                
+                List<string> skillPaths = new();
+                foreach (Skill skill in industry.unlockedSkills)
+                {
+                    skillPaths.Add("Scriptable Objects/Skills/" + skill.name);
+                }
+                
+                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker, "Prefabs/SkillTrees/" + industry.skillTree.name, skillPaths, industry.skillPoints);
+
                 newCity.industries.Add(newIndustry);
                 newCity.workerAmount.Add(city.workersPerIndustry[industry]);
             }

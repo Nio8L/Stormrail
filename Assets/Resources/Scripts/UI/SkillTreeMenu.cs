@@ -19,9 +19,7 @@ public class SkillTreeMenu : MonoBehaviour
     public Skill selectedSkill;
     public SkillButton currentSkillButton;
     public Industry currentIndustry;
-
-
-    public Skill[] skills;
+    
     void Awake(){
         instance = this;
         gameObject.SetActive(false);
