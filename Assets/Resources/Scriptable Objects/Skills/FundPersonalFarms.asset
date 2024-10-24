@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
+  m_Name: FundPersonalFarms
+  m_EditorClassIdentifier: 
+  skillName: Fund Personal Gardens
+  skillDescription: Allows your citizen to open up their own gardens, increasing
+    the production of food per worker.
+  skillIcon: {fileID: 21300000, guid: 05888ed344e22f94cb304f6a5e1dafb7, type: 3}
+  items:
+  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+  perWorker:
+  - 1.5
+  setTo: 0

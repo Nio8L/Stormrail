@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6022050559442631435}
   - component: {fileID: 6866019180478911945}
   m_Layer: 5
-  m_Name: SkillTreeExtraction
+  m_Name: SkillTreeFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ PrefabInstance:
     - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: thisSkill
       value: 
-      objectReference: {fileID: 11400000, guid: dfe182cad96a6a2418d516bc87be9d57, type: 2}
+      objectReference: {fileID: 11400000, guid: 83cfbeed95babdf46a9a6f8a955bc670, type: 2}
     - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: thisSkill.skillIcon
       value: 
@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: thisSkill
       value: 
-      objectReference: {fileID: 11400000, guid: a91a277e4e9ab084783cb0e8eed3a03b, type: 2}
+      objectReference: {fileID: 11400000, guid: b7dd887ab99f27744b81c1c402dc0a9e, type: 2}
     - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: prerequisite
       value: 

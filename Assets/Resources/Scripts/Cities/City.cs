@@ -15,6 +15,14 @@ public class City : MonoBehaviour
     public Vector2Int coordinates;
     public List<HappinessSource> happinessSources = new List<HappinessSource>();
     public float overallHappiness;
+    float lockedHappiness;
+    public float hungerDrainModifier = 1;
+    float hungerTimer;
+    HappinessSource starvingSource;
+    bool starvation = false;
+    
+
+
     void Start(){
         transform.position = MapManager.instance.tiles[coordinates.x, coordinates.y].transform.position;
         transform.position += new Vector3(0, 0.75f, 0);
@@ -40,7 +48,12 @@ public class City : MonoBehaviour
     }
 
     void Update(){
+        lockedHappiness = overallHappiness;
+             if (lockedHappiness < 0f) lockedHappiness = 0f;
+        else if (lockedHappiness > 1f) lockedHappiness = 1f;
+
         GainResources();
+        HungerDrain();
         UpdateHappinessSourceTimers();
     }
 
@@ -49,6 +62,9 @@ public class City : MonoBehaviour
             // Get every industry in this city
             KeyValuePair<Industry, int> industryPair = workersPerIndustry.ElementAt(i);
 
+            float modifier = lockedHappiness;
+            if (modifier < 0.1f) modifier = 0.1f;
+
             if (industryPair.Key.level == 0) continue;
 
             for (int product = 0; product < industryPair.Key.itemOutputPerWorker.Count; product++){
@@ -56,7 +72,7 @@ public class City : MonoBehaviour
                 KeyValuePair<Item, float> itemPair = industryPair.Key.itemOutputPerWorker.ElementAt(product);
 
                 // Add the product to the inventory of the city
-                float amountToGain = itemPair.Value * industryPair.Value * Time.deltaTime * overallHappiness;
+                float amountToGain = itemPair.Value * industryPair.Value * Time.deltaTime * modifier;
                 inventory[itemPair.Key] += amountToGain;
             }
         }
@@ -74,6 +90,7 @@ public class City : MonoBehaviour
     }
     public void RemoveHappinessSource(HappinessSource newSource){
         // Removes a happiness source as well as it's modifier
+        Debug.Log("Removing");
         happinessSources.Remove(newSource);
         overallHappiness -= newSource.happinessModifier;
     }
@@ -94,6 +111,30 @@ public class City : MonoBehaviour
     }
 
     public void HungerDrain(){
-        
+        float hungerDrain = DataBase.instance.baseFoodConsumedPerDayPerPerson * population * hungerDrainModifier / DataBase.instance.dayLenghtInSeconds * Time.deltaTime;
+        if (inventory[DataBase.instance.allItems[0]] < hungerDrain){
+            // No food
+            hungerTimer += Time.deltaTime;
+        }else{
+            // Some food
+            inventory[DataBase.instance.allItems[0]] -= hungerDrain;
+            if (hungerTimer > 0f){
+                hungerTimer -= Time.deltaTime/2;
+            }
+        }
+
+        // Add or remove happiness modifier
+        if (hungerTimer > 15f){
+            if (!starvation){
+                starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
+                AddHappinessSource(starvingSource);
+                starvation = true;
+            }
+        }else if (hungerTimer <= 0f){
+            if (starvation){
+                RemoveHappinessSource(starvingSource);
+                starvation = false;
+            }
+        }
     }
 }
