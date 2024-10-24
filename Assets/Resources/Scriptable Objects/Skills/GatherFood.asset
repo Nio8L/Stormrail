@@ -19,4 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
   perWorker:
   - 1
+  hungerDrainModifier: 1
   setTo: 1

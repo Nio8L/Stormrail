@@ -38,7 +38,7 @@ public class City : MonoBehaviour
         }
         for (int i = 0; i < DataBase.instance.allIndustries.Count; i++){
             Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i]);
-            newIndustry.Initialize();
+            newIndustry.Initialize(this);
             workersPerIndustry.Add(newIndustry, 0);
         }
         

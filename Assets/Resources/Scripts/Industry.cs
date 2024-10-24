@@ -11,10 +11,12 @@ public class Industry : ScriptableObject
     public Dictionary<Item, float> itemOutputPerWorker = new Dictionary<Item, float>();
     public GameObject skillTree;
     public int skillPoints = 0;
+    public City city;
 
     public List<Skill> unlockedSkills = new List<Skill>();
 
-    public void Initialize(){
+    public void Initialize(City _city){
+        city = _city;
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
             itemOutputPerWorker.Add(DataBase.instance.allItems[i], 0);
         }

@@ -9,10 +9,11 @@ public class Skill: ScriptableObject
     public string skillName;
     public string skillDescription;
     public Sprite skillIcon;
-    public virtual void OnUnlock(Industry industry){
-
+    protected Industry industry;
+    public virtual void OnUnlock(Industry _industry){
+        industry = _industry;
     }
-    public virtual void OnUpdate(Industry industry){
+    public virtual void OnUpdate(){
 
     }
 }

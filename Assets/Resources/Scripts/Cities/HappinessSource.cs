@@ -17,4 +17,8 @@ public class HappinessSource
         timeLeft = _timeLeft;
         infiniteDuration = _infiniteDuration;
     }
+
+    public HappinessSource Copy(){
+        return new HappinessSource(sourceName, happinessModifier, timeLeft, infiniteDuration);
+    }
 }
