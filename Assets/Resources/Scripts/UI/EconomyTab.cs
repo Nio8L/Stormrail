@@ -34,12 +34,7 @@ public class EconomyTab : MonoBehaviour
 
         for (int i = 0; i < currentCity.inventory.Count; i++){
             KeyValuePair<Item, float> pair = currentCity.inventory.ElementAt(i);
-            // Set the sprite of the display
-            itemDisplays[i].iconObject.sprite = pair.Key.itemIcon;
-            // Set the name of the display
-            itemDisplays[i].nameTextBox.text = pair.Key.itemName;
-            // Set the amount of the display
-            itemDisplays[i].amountTextBox.text = Mathf.RoundToInt(pair.Value) + "kg";
+            itemDisplays[i].Initialize(pair.Key);
         }
     }
 

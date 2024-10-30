@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class HappinessSource
 {
     public string sourceName;
@@ -14,5 +16,9 @@ public class HappinessSource
         happinessModifier = _happinessModifier;
         timeLeft = _timeLeft;
         infiniteDuration = _infiniteDuration;
+    }
+
+    public HappinessSource Copy(){
+        return new HappinessSource(sourceName, happinessModifier, timeLeft, infiniteDuration);
     }
 }

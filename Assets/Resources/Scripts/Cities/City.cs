@@ -11,10 +11,19 @@ public class City : MonoBehaviour
     public int workers;
     public int lastOpenTab = 0;
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
+    public Dictionary<Item, float> consumingThisFrame = new Dictionary<Item, float>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
     public Vector2Int coordinates;
     public List<HappinessSource> happinessSources = new List<HappinessSource>();
     public float overallHappiness;
+    public float lockedHappiness;
+    public float hungerDrainModifier = 1;
+    float hungerTimer;
+    HappinessSource starvingSource;
+    bool starvation = false;
+    
+
+
     void Start(){
         transform.position = MapManager.instance.tiles[coordinates.x, coordinates.y].transform.position;
         transform.position += new Vector3(0, 0.75f, 0);
@@ -22,6 +31,10 @@ public class City : MonoBehaviour
 
         HappinessSource baseHappiness = new HappinessSource("Base city happiness", 0.15f, 1000f, true);
         AddHappinessSource(baseHappiness);
+
+        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
+            consumingThisFrame.Add(DataBase.instance.allItems[i], 0);
+        }
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -30,7 +43,7 @@ public class City : MonoBehaviour
         }
         for (int i = 0; i < DataBase.instance.allIndustries.Count; i++){
             Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i]);
-            newIndustry.Initialize();
+            newIndustry.Initialize(this);
             workersPerIndustry.Add(newIndustry, 0);
         }
         
@@ -40,26 +53,71 @@ public class City : MonoBehaviour
     }
 
     void Update(){
+        lockedHappiness = overallHappiness;
+             if (lockedHappiness < 0f) lockedHappiness = 0f;
+        else if (lockedHappiness > 1f) lockedHappiness = 1f;
+
+        
+        ConsumeResources();
         GainResources();
+        UpdateSkills();
+        HungerDrain();
         UpdateHappinessSourceTimers();
     }
 
-    void GainResources(){
-        for (int i = 0; i < workersPerIndustry.Count; i++){
-            // Get every industry in this city
-            KeyValuePair<Industry, int> industryPair = workersPerIndustry.ElementAt(i);
-
-            if (industryPair.Key.level == 0) continue;
-
-            for (int product = 0; product < industryPair.Key.itemOutputPerWorker.Count; product++){
-                // Get every product of that industry
-                KeyValuePair<Item, float> itemPair = industryPair.Key.itemOutputPerWorker.ElementAt(product);
-
-                // Add the product to the inventory of the city
-                float amountToGain = itemPair.Value * industryPair.Value * Time.deltaTime * overallHappiness;
-                inventory[itemPair.Key] += amountToGain;
+    void ConsumeResources(){
+        // Consumes all resources in consumingThisFrame
+        for (int i = 0; i < consumingThisFrame.Count; i++){
+            KeyValuePair<Item, float> itemPair = consumingThisFrame.ElementAt(i);
+            if (itemPair.Value <= 0) continue;
+            inventory[itemPair.Key] -= itemPair.Value;
+            Debug.Log("Consuming " + itemPair.Key.itemName + ": " + itemPair.Value);
+            if (inventory[itemPair.Key] < 0){
+                inventory[itemPair.Key] = 0;
             }
+
+            consumingThisFrame[itemPair.Key] = 0;
         }
+    }
+
+    void GainResources(){
+        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
+            // Get every industry in this city
+            Item itemToCheck = DataBase.instance.allItems[i];
+            float amountToGain = CalculateProduction(itemToCheck) * Time.deltaTime;
+            inventory[itemToCheck] += amountToGain;
+        }
+    }
+
+    public float CalculateProduction(Item itemToCheck){
+        // Calculates 1 seconds worth of production for a certain item
+        float productionThisSecond = 0;
+
+        for (int i = 0; i < workersPerIndustry.Count; i++){
+            Industry industry = workersPerIndustry.ElementAt(i).Key;
+            
+            // If the current industry is unupgraded continue
+            if (industry.level == 0) continue;
+
+            productionThisSecond += industry.itemOutputPerWorker[itemToCheck] * workersPerIndustry[industry];
+        }
+
+        // Calculate the happiness modifier
+        float modifier = 0.8f + 2*lockedHappiness/5;
+
+        // Calculate the final production
+        productionThisSecond *= modifier/DataBase.instance.dayLenghtInSeconds;
+        
+        return productionThisSecond;
+    }
+
+    public float CalculateConsumption(float amountPerSecond, float workers){
+        // Calculates consumption per second
+
+        // Calculate the happiness modifier
+        float modifier = 0.8f + 2*lockedHappiness/5;
+
+        return amountPerSecond * modifier * workers / DataBase.instance.dayLenghtInSeconds;
     }
 
     public void DestroyCity(){
@@ -74,6 +132,7 @@ public class City : MonoBehaviour
     }
     public void RemoveHappinessSource(HappinessSource newSource){
         // Removes a happiness source as well as it's modifier
+        Debug.Log("Removing");
         happinessSources.Remove(newSource);
         overallHappiness -= newSource.happinessModifier;
     }
@@ -93,8 +152,45 @@ public class City : MonoBehaviour
         }
     }
 
+    public void UpdateSkills(){
+        // Loop though all industries and call update on their skills
+        for (int i = 0; i < workersPerIndustry.Count; i++){
+            Industry currentIndustry = workersPerIndustry.ElementAt(i).Key;
+            foreach (Skill skill in currentIndustry.unlockedSkills){
+                skill.OnUpdate();
+            }
+        }
+    }
+
     public void HungerDrain(){
-        
+        // Calculate hunger drain per frame
+        float hungerDrain = DataBase.instance.baseFoodConsumedPerDayPerPerson * population * hungerDrainModifier / DataBase.instance.dayLenghtInSeconds * Time.deltaTime;
+        // Consume food
+        consumingThisFrame[DataBase.instance.allItems[0]] += hungerDrain;
+
+        if (inventory[DataBase.instance.allItems[0]] < hungerDrain){
+            // No food
+            hungerTimer += Time.deltaTime;
+        }else{
+            // Some food
+            if (hungerTimer > 0f){
+                hungerTimer -= Time.deltaTime/2;
+            }
+        }
+
+        // Add or remove happiness modifier
+        if (hungerTimer > 15f){
+            if (!starvation){
+                starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
+                AddHappinessSource(starvingSource);
+                starvation = true;
+            }
+        }else if (hungerTimer <= 0f){
+            if (starvation){
+                RemoveHappinessSource(starvingSource);
+                starvation = false;
+            }
+        }
     }
 
     private void OnMouseUp() {

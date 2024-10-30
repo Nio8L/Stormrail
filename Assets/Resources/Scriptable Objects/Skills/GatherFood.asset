@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
-  m_Name: GatherWood
+  m_Name: GatherFood
   m_EditorClassIdentifier: 
-  skillName: Gather Wood
-  skillDescription: Gives workers the ability to chop trees in the vicinity of the
-    city, thus providing a small amount of wood.
-  skillIcon: {fileID: 21300000, guid: 01813f5629d95564c8c3ac7a2934ee3c, type: 3}
+  skillName: Fund small farms
+  skillDescription: Allows you citizen to produce food by working in the food industry.
+  skillIcon: {fileID: 21300000, guid: 11d31cdf41899ec4aaf11541ca5322c1, type: 3}
   items:
-  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
+  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
   perWorker:
-  - 3
+  - 4
   hungerDrainModifier: 1
   setTo: 1

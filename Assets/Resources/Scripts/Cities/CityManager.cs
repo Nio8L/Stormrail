@@ -49,7 +49,7 @@ public class CityManager : MonoBehaviour, ISavable
                 }
                 industry.skillPoints = currentIndustry.skillPoints;
 
-                industry.Initialize();
+                industry.Initialize(newCity);
 
                 for(int j = 0; j < DataBase.instance.allItems.Count; j++){
                     industry.itemOutputPerWorker[DataBase.instance.allItems[j]] = currentIndustry.outputPerWorker[j];
