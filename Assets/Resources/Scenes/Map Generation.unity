@@ -802,6 +802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1969212213}
   - component: {fileID: 1969212212}
+  - component: {fileID: 1969212214}
   m_Layer: 0
   m_Name: HexGrid
   m_TagString: Untagged
@@ -843,6 +844,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969212214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969212211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1656164cdc55c4c9db71a0a291db67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile1: {fileID: 0}
+  tile2: {fileID: 0}
 --- !u!1001 &2463028388245263049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -893,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866190419236667102, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: fileName
-      value: mapData.json
+      value: pathTest.json
       objectReference: {fileID: 0}
     - target: {fileID: 7822709328555277821, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: m_Name

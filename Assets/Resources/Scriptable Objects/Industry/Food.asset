@@ -14,14 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   industryName: Food production
   level: 0
-  levelMultiplier:
-  - 0
-  - 1
-  - 2
-  - 3
-  - 4
-  - 6
-  items:
-  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
-  perWorker:
-  - 5
+  skillTree: {fileID: 943767580168244703, guid: 47711a0a603668e44a5d7786c5aa80b0, type: 3}
+  skillPoints: 0
+  unlockedSkills: []
