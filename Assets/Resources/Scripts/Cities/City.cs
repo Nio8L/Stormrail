@@ -11,11 +11,12 @@ public class City : MonoBehaviour
     public int workers;
     public int lastOpenTab = 0;
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
+    public Dictionary<Item, float> consumingThisFrame = new Dictionary<Item, float>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
     public Vector2Int coordinates;
     public List<HappinessSource> happinessSources = new List<HappinessSource>();
     public float overallHappiness;
-    float lockedHappiness;
+    public float lockedHappiness;
     public float hungerDrainModifier = 1;
     float hungerTimer;
     HappinessSource starvingSource;
@@ -30,6 +31,10 @@ public class City : MonoBehaviour
 
         HappinessSource baseHappiness = new HappinessSource("Base city happiness", 0.15f, 1000f, true);
         AddHappinessSource(baseHappiness);
+
+        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
+            consumingThisFrame.Add(DataBase.instance.allItems[i], 0);
+        }
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -52,30 +57,56 @@ public class City : MonoBehaviour
              if (lockedHappiness < 0f) lockedHappiness = 0f;
         else if (lockedHappiness > 1f) lockedHappiness = 1f;
 
+        ConsumeResources();
         GainResources();
         HungerDrain();
         UpdateHappinessSourceTimers();
     }
 
-    void GainResources(){
-        for (int i = 0; i < workersPerIndustry.Count; i++){
-            // Get every industry in this city
-            KeyValuePair<Industry, int> industryPair = workersPerIndustry.ElementAt(i);
+    void ConsumeResources(){
+        // Consumes all resources in consumingThisFrame
+        for (int i = 0; i < consumingThisFrame.Count; i++){
+            KeyValuePair<Item, float> itemPair = consumingThisFrame.ElementAt(i);
+            if (itemPair.Value <= 0) continue;
+            inventory[itemPair.Key] -= itemPair.Value;
 
-            float modifier = lockedHappiness;
-            if (modifier < 0.1f) modifier = 0.1f;
-
-            if (industryPair.Key.level == 0) continue;
-
-            for (int product = 0; product < industryPair.Key.itemOutputPerWorker.Count; product++){
-                // Get every product of that industry
-                KeyValuePair<Item, float> itemPair = industryPair.Key.itemOutputPerWorker.ElementAt(product);
-
-                // Add the product to the inventory of the city
-                float amountToGain = itemPair.Value * industryPair.Value * Time.deltaTime * modifier;
-                inventory[itemPair.Key] += amountToGain;
+            if (inventory[itemPair.Key] < 0){
+                inventory[itemPair.Key] = 0;
             }
+
+            consumingThisFrame[itemPair.Key] = 0;
         }
+    }
+
+    void GainResources(){
+        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
+            // Get every industry in this city
+            Item itemToCheck = DataBase.instance.allItems[i];
+            float amountToGain = CalculateProduction(itemToCheck) * Time.deltaTime;
+            inventory[itemToCheck] += amountToGain;
+        }
+    }
+
+    public float CalculateProduction(Item itemToCheck){
+        // Calculates 1 seconds worth of production for a certain item
+        float productionThisSecond = 0;
+
+        for (int i = 0; i < workersPerIndustry.Count; i++){
+            Industry industry = workersPerIndustry.ElementAt(i).Key;
+            
+            // If the current industry is unupgraded continue
+            if (industry.level == 0) continue;
+
+            productionThisSecond += industry.itemOutputPerWorker[itemToCheck] * workersPerIndustry[industry];
+        }
+
+        // Calculate the happiness modifier
+        float modifier = 0.8f + 2*lockedHappiness/5;
+
+        // Calculate the final production
+        productionThisSecond *= modifier/DataBase.instance.dayLenghtInSeconds;
+        
+        return productionThisSecond;
     }
 
     public void DestroyCity(){
@@ -112,12 +143,14 @@ public class City : MonoBehaviour
 
     public void HungerDrain(){
         float hungerDrain = DataBase.instance.baseFoodConsumedPerDayPerPerson * population * hungerDrainModifier / DataBase.instance.dayLenghtInSeconds * Time.deltaTime;
+        Debug.Log(hungerDrain);
+        consumingThisFrame[DataBase.instance.allItems[0]] += hungerDrain;
+
         if (inventory[DataBase.instance.allItems[0]] < hungerDrain){
             // No food
             hungerTimer += Time.deltaTime;
         }else{
             // Some food
-            inventory[DataBase.instance.allItems[0]] -= hungerDrain;
             if (hungerTimer > 0f){
                 hungerTimer -= Time.deltaTime/2;
             }

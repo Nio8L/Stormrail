@@ -13,7 +13,7 @@ public class OverviewTab : MonoBehaviour
     public List<string> sourceNames;
 
     void Update(){
-        int happiness = Mathf.RoundToInt(CityMenu.instance.currentCity.overallHappiness * 100);
+        int happiness = Mathf.RoundToInt(CityMenu.instance.currentCity.lockedHappiness * 100);
         happinessText.text = happiness.ToString() + "%";
 
         if (sourceHolder.transform.childCount < CityMenu.instance.currentCity.happinessSources.Count){

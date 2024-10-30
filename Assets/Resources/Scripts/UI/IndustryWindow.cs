@@ -27,6 +27,5 @@ public class IndustryWindow : MonoBehaviour
         levelText.text = industry.level + "/5";
         float barWidth = 40f * industry.level;
         levelBar.sizeDelta = new Vector2(barWidth, levelBar.sizeDelta.y);
-
     }
 }

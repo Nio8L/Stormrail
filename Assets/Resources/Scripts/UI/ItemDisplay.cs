@@ -12,15 +12,27 @@ public class ItemDisplay : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI nameTextBox;
     public TextMeshProUGUI amountTextBox;
     public Image iconObject;
+    public Item itemToTrack;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (extraInfoMenu == null){
             extraInfoMenu = Instantiate(extraInfoMenuPrefab, EconomyTab.instance.content.transform);
             extraInfoMenu.transform.SetSiblingIndex(transform.GetSiblingIndex()+1);
+            extraInfoMenu.GetComponent<EconomyDropDown>().Initialize(itemToTrack);
         }else{
             Destroy(extraInfoMenu);
         }
+    }
+
+    public void Initialize(Item _item){
+        itemToTrack = _item;
+        // Set the sprite of the display
+        iconObject.sprite = itemToTrack.itemIcon;
+        // Set the name of the display
+        nameTextBox.text = itemToTrack.itemName;
+        // Set the amount of the display
+        amountTextBox.text = Mathf.RoundToInt(CityMenu.instance.currentCity.inventory[itemToTrack]) + "kg";
     }
 
     private void OnEnable() {
