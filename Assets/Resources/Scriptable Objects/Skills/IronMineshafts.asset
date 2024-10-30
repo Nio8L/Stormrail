@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a74c7f031ce48488e7be732c87eb12, type: 3}
+  m_Name: IronMineshafts
+  m_EditorClassIdentifier: 
+  skillName: Iron Mineshafts
+  skillDescription: Allows your workers to create mineshafts using wood to extract
+    additional iron
+  skillIcon: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
+  perWorker:
+  - 3
+  hungerDrainModifier: 1
+  setTo: 0
+  itemsToConsume:
+  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
+  consumptionPerWorker:
+  - 1.5

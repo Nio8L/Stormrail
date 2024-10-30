@@ -57,8 +57,10 @@ public class City : MonoBehaviour
              if (lockedHappiness < 0f) lockedHappiness = 0f;
         else if (lockedHappiness > 1f) lockedHappiness = 1f;
 
+        
         ConsumeResources();
         GainResources();
+        UpdateSkills();
         HungerDrain();
         UpdateHappinessSourceTimers();
     }
@@ -69,7 +71,7 @@ public class City : MonoBehaviour
             KeyValuePair<Item, float> itemPair = consumingThisFrame.ElementAt(i);
             if (itemPair.Value <= 0) continue;
             inventory[itemPair.Key] -= itemPair.Value;
-
+            Debug.Log("Consuming " + itemPair.Key.itemName + ": " + itemPair.Value);
             if (inventory[itemPair.Key] < 0){
                 inventory[itemPair.Key] = 0;
             }
@@ -109,6 +111,15 @@ public class City : MonoBehaviour
         return productionThisSecond;
     }
 
+    public float CalculateConsumption(float amountPerSecond, float workers){
+        // Calculates consumption per second
+
+        // Calculate the happiness modifier
+        float modifier = 0.8f + 2*lockedHappiness/5;
+
+        return amountPerSecond * modifier * workers / DataBase.instance.dayLenghtInSeconds;
+    }
+
     public void DestroyCity(){
         CityManager.instance.cities.Remove(this);
         Destroy(gameObject);
@@ -141,9 +152,20 @@ public class City : MonoBehaviour
         }
     }
 
+    public void UpdateSkills(){
+        // Loop though all industries and call update on their skills
+        for (int i = 0; i < workersPerIndustry.Count; i++){
+            Industry currentIndustry = workersPerIndustry.ElementAt(i).Key;
+            foreach (Skill skill in currentIndustry.unlockedSkills){
+                skill.OnUpdate();
+            }
+        }
+    }
+
     public void HungerDrain(){
+        // Calculate hunger drain per frame
         float hungerDrain = DataBase.instance.baseFoodConsumedPerDayPerPerson * population * hungerDrainModifier / DataBase.instance.dayLenghtInSeconds * Time.deltaTime;
-        Debug.Log(hungerDrain);
+        // Consume food
         consumingThisFrame[DataBase.instance.allItems[0]] += hungerDrain;
 
         if (inventory[DataBase.instance.allItems[0]] < hungerDrain){

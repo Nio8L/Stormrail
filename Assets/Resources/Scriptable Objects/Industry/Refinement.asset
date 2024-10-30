@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   industryName: Resource refinement
   level: 0
-  skillTree: {fileID: 943767580168244703, guid: 47711a0a603668e44a5d7786c5aa80b0, type: 3}
+  skillTree: {fileID: 943767580168244703, guid: 80f08e33db68c0d42ad8ca1268b9cc20, type: 3}
   skillPoints: 0
+  city: {fileID: 0}
   unlockedSkills: []
