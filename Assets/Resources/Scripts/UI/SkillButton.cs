@@ -16,6 +16,14 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler
             unlocked = true;
         }
     }
+
+    void Update(){
+         if (prerequisite != null && !prerequisite.unlocked){
+            GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+         }else{
+             GetComponent<Image>().color = Color.white;
+         }
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         SkillTreeMenu.instance.SelectSkill(this);
