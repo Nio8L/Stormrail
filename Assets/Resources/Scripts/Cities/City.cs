@@ -192,4 +192,15 @@ public class City : MonoBehaviour
             }
         }
     }
+
+    private void OnMouseUp() {
+        if(Pathfinder.instance.tile1 == null){
+            Pathfinder.instance.tile1 = MapManager.instance.tiles[coordinates.x, coordinates.y];
+        }else{
+            Pathfinder.instance.tile2 = MapManager.instance.tiles[coordinates.x, coordinates.y];
+            Pathfinder.instance.FindPath(Pathfinder.instance.tile1, Pathfinder.instance.tile2);
+            Pathfinder.instance.tile1 = null;
+            Pathfinder.instance.tile2 = null;
+        }
+    }
 }

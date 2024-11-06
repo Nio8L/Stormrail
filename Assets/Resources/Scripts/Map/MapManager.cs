@@ -43,7 +43,7 @@ public class MapManager : MonoBehaviour, ISavable
         for(int x = 0; x < gridSize.x; x++){
             for(int y = 0; y < gridSize.y; y++){
                 GameObject hex = Instantiate(hexPrefab, transform.position, Quaternion.identity);
-                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
+                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, -y));
                 hex.transform.rotation = Quaternion.Euler(-90, -90, 0);
                 tileObjects.Add(hex);
                 
@@ -68,7 +68,7 @@ public class MapManager : MonoBehaviour, ISavable
         for(int x = 0; x < gridSize.x; x++){
             for(int y = 0; y < gridSize.y; y++){
                 GameObject hex = Instantiate(hexPrefab, transform.position, Quaternion.identity);
-                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, y));
+                hex.transform.position = GetPositionForHexFromCoordinate(new Vector2Int(x, -y));
                 hex.transform.rotation = Quaternion.Euler(-90, -90, 0);
                 tileObjects.Add(hex);
                 
@@ -77,6 +77,11 @@ public class MapManager : MonoBehaviour, ISavable
                 
                 hex.transform.SetParent(transform, true);
             }
+        }
+
+        foreach (HexTile tile in tiles)
+        {
+            tile.GetNeighbors();
         }
     }
 
