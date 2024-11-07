@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,61 +12,40 @@ public class Pathfinder : MonoBehaviour
     private void Awake() {
         instance = this;
     }
+    
+    public void Pathfind(HexTile start, HexTile end){
+        Queue<HexTile> frontier = new();
+        frontier.Enqueue(start);
 
-    public void FindPath(HexTile startTile, HexTile endTile) {
-        List<HexTile> toSearch =  new() {startTile};
-        List<HexTile> proccesed = new();
+        Dictionary<HexTile, HexTile> cameFrom = new();
+        cameFrom.Add(start, null);
+        int loops = 0;
+        while (frontier.Any())
+        {
+            loops++;
+            HexTile current = frontier.Dequeue();
 
-        while(toSearch.Any()){
-            HexTile currentTile = toSearch[0];
-
-            foreach (HexTile tile in toSearch)
-            {   
-                if(tile.fCost < currentTile.fCost || tile.fCost == currentTile.fCost && tile.hCost < currentTile.hCost){
-                    currentTile = tile;
-                }
-            }
-
-            proccesed.Add(currentTile);
-            toSearch.Remove(currentTile);
-
-            //Start tracing back
-            if(currentTile == endTile){
-                HexTile currentPathTile = endTile;
+            if(current == end){
                 List<HexTile> path = new();
-                
-                while(currentPathTile != startTile){
-                    path.Add(currentPathTile);
-                    currentPathTile = currentPathTile.Connection;
+                while (current != start)
+                {
+                    path.Add(current);
+                    current = cameFrom[current];
                 }
-
                 foreach (HexTile tile in path) tile.SetType(HexTile.Type.City);
-                
+                path.Add(start);
                 path.Reverse();
-                //return path;
-                Debug.Log("yes path");
-                return;
+                break;
             }
 
-            foreach (HexTile neighbor in currentTile.Neighbors.Where(tile => tile.walkable && !proccesed.Contains(tile)))
+            foreach (HexTile neighbor in current.Neighbors)
             {
-                bool inSearch = proccesed.Contains(neighbor);
-
-                float costToNeighbor = currentTile.gCost + currentTile.GetDistance(neighbor);
-
-                if (!inSearch || costToNeighbor < neighbor.gCost) {
-                    neighbor.gCost = costToNeighbor;
-                    neighbor.Connection = currentTile;
-
-                    if (!inSearch) {
-                        neighbor.hCost = neighbor.GetDistance(endTile);
-                        toSearch.Add(neighbor);
-                    }
+                if(!cameFrom.ContainsKey(neighbor) && neighbor.walkable){
+                    frontier.Enqueue(neighbor);
+                    cameFrom[neighbor] = current;
                 }
             }
         }
-        //return null;
-        Debug.Log("no path");
-        return;
+        Debug.Log(loops);
     }
 }

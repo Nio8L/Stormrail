@@ -71,7 +71,7 @@ public class City : MonoBehaviour
             KeyValuePair<Item, float> itemPair = consumingThisFrame.ElementAt(i);
             if (itemPair.Value <= 0) continue;
             inventory[itemPair.Key] -= itemPair.Value;
-            Debug.Log("Consuming " + itemPair.Key.itemName + ": " + itemPair.Value);
+            //Debug.Log("Consuming " + itemPair.Key.itemName + ": " + itemPair.Value);
             if (inventory[itemPair.Key] < 0){
                 inventory[itemPair.Key] = 0;
             }
@@ -198,7 +198,7 @@ public class City : MonoBehaviour
             Pathfinder.instance.tile1 = MapManager.instance.tiles[coordinates.x, coordinates.y];
         }else{
             Pathfinder.instance.tile2 = MapManager.instance.tiles[coordinates.x, coordinates.y];
-            Pathfinder.instance.FindPath(Pathfinder.instance.tile1, Pathfinder.instance.tile2);
+            Pathfinder.instance.Pathfind(Pathfinder.instance.tile1, Pathfinder.instance.tile2);
             Pathfinder.instance.tile1 = null;
             Pathfinder.instance.tile2 = null;
         }

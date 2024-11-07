@@ -115,7 +115,7 @@ public class HexTile : MonoBehaviour
             SetTypeDecoration(type + 1);
         }
 
-        Debug.Log(walkable);
+        //Debug.Log(walkable);
 
         //GetNeighbors();
     }
