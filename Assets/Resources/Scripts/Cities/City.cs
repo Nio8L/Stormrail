@@ -18,19 +18,17 @@ public class City : MonoBehaviour
     public float overallHappiness;
     public float lockedHappiness;
     public float hungerDrainModifier = 1;
-    float hungerTimer;
+    public float hungerTimer;
     HappinessSource starvingSource;
-    bool starvation = false;
+    public bool starvation = false;
     
 
 
     void Start(){
+        Debug.Log("statr");
         transform.position = MapManager.instance.tiles[coordinates.x, coordinates.y].transform.position;
         transform.position += new Vector3(0, 0.75f, 0);
         MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.City);
-
-        HappinessSource baseHappiness = new HappinessSource("Base city happiness", 0.15f, 1000f, true);
-        AddHappinessSource(baseHappiness);
 
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
             consumingThisFrame.Add(DataBase.instance.allItems[i], 0);
@@ -50,6 +48,9 @@ public class City : MonoBehaviour
         this.coordinates = coordinates;
         this.cityName = cityName;
         this.population = population;
+
+        HappinessSource baseHappiness = new HappinessSource("Base city happiness", 0.15f, 1000f, true);
+        AddHappinessSource(baseHappiness);
     }
 
     void Update(){

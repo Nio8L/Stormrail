@@ -28,7 +28,16 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.cityName = city.cityName;
             newCity.population = city.population;
             newCity.workers = city.workers;
+            newCity.starvation = city.starving;
+            newCity.hungerTimer = city.hungerTimer;
+            newCity.hungerDrainModifier = city.hungerDrainModifier;
+
             newCity.coordinates = new Vector2Int(city.coordinates.x, city.coordinates.y);
+
+            foreach (HappinessSource source in city.happinessSources)
+            {
+                newCity.AddHappinessSource(source);
+            }
 
             for(int i = 0; i < DataBase.instance.allItems.Count; i++){
                 newCity.inventory.Add(DataBase.instance.allItems[i], city.itemAmount[i]);
@@ -46,6 +55,7 @@ public class CityManager : MonoBehaviour, ISavable
                 foreach(SkillSerilaized skill in currentIndustry.skills){
                     Skill newSkill = Resources.Load<Skill>(skill.skillPath);
                     industry.unlockedSkills.Add(newSkill);
+                    newSkill.OnLoad(industry);
                 }
                 industry.skillPoints = currentIndustry.skillPoints;
 
@@ -75,8 +85,16 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.cityName = city.cityName;
             newCity.population = city.population;
             newCity.workers = city.workers;
+            newCity.starving = city.starvation;
+            newCity.hungerTimer = city.hungerTimer;
+            newCity.hungerDrainModifier = city.hungerDrainModifier;
 
             newCity.coordinates = new(city.coordinates.x, city.coordinates.y);
+
+            foreach (HappinessSource source in city.happinessSources)
+            {
+                newCity.happinessSources.Add(source);
+            }
 
             foreach (Item item in city.inventory.Keys)
             {

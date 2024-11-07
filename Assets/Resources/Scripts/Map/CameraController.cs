@@ -22,6 +22,8 @@ public class CameraController : MonoBehaviour, ISavable
 
     public Vector3 rotateStartPosition;
     public Vector3 rotateCurrentPosition;
+    bool hasDragStartPosition = false;
+    bool hasRotationStartPosition = false;
 
     private void Start() {
         newPosition = transform.position;
@@ -35,6 +37,15 @@ public class CameraController : MonoBehaviour, ISavable
     }
 
     public void HandleMouseInput(){
+        if (Input.GetMouseButtonUp(0)){
+            hasDragStartPosition = false;
+        }
+        if (Input.GetMouseButtonUp(1)){
+            hasRotationStartPosition = false;
+        }
+
+        if (RaycastChecker.Check()) return;
+
         if(Input.mouseScrollDelta.y != 0){
             newZoom += Input.mouseScrollDelta.y * zoomAmount;
         }
@@ -48,10 +59,11 @@ public class CameraController : MonoBehaviour, ISavable
 
             if(plane.Raycast(ray, out entry)){
                 dragStartPosition = ray.GetPoint(entry);
+                hasDragStartPosition = true;
             }
         }
 
-        if(Input.GetMouseButton(0)){
+        if(Input.GetMouseButton(0) && hasDragStartPosition){
             Plane plane = new Plane(Vector3.up, Vector3.zero);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -66,10 +78,11 @@ public class CameraController : MonoBehaviour, ISavable
         }
 
         if(Input.GetMouseButtonDown(1)){
+            hasRotationStartPosition = true;
             rotateStartPosition = Input.mousePosition;
         }
 
-        if(Input.GetMouseButton(1)){
+        if(Input.GetMouseButton(1) && hasRotationStartPosition){
             rotateCurrentPosition = Input.mousePosition;
 
             Vector3 difference = rotateStartPosition - rotateCurrentPosition;

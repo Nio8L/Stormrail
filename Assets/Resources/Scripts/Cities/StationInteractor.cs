@@ -9,7 +9,7 @@ public class StationInteractor : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)){
             // Return of the mouse is click on top of the city menu ui
-            if (cityMenu.currentCity != null && Input.mousePosition.x < 320f) return;
+            if (RaycastChecker.Check()) return;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);

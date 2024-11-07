@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [Serializable]
 public class ArrayWrapper{
@@ -184,8 +185,14 @@ public class CitySerialized{
     public List<string> itemName;
     public List<float> itemAmount;
 
+    public List<HappinessSource> happinessSources;
+
     public List<IndustrySerialized> industries;
     public List<int> workerAmount;
+
+    public float hungerDrainModifier;
+    public float hungerTimer;
+    public bool starving;
 
     public CitySerialized(){
         cityName = "New Sofia Default";
@@ -199,6 +206,12 @@ public class CitySerialized{
 
         industries = new();
         workerAmount = new();
+
+        happinessSources = new();
+        
+        hungerDrainModifier = 1;
+        hungerTimer = 0;
+        starving = false;
     }
 }
 

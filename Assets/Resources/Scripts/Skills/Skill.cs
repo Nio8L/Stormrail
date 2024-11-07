@@ -11,9 +11,13 @@ public class Skill: ScriptableObject
     public Sprite skillIcon;
     protected Industry industry;
     public virtual void OnUnlock(Industry _industry){
-        industry = _industry;
+        OnLoad(_industry);
     }
     public virtual void OnUpdate(){
 
+    }
+
+    public void OnLoad(Industry _industry){
+        industry = _industry;
     }
 }

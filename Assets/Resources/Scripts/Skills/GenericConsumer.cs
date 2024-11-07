@@ -44,7 +44,6 @@ public class GenericConsumer : GenericStatAugmentor
             // Consume items
             for (int i = 0; i < amountOfItemsToConsume.Count; i++){
                 KeyValuePair<Item, float> item = amountOfItemsToConsume.ElementAt(i);
-                Debug.Log("consumption: " + item.Value);
                 industry.city.consumingThisFrame[item.Key] += item.Value;
             }
         }else if (producing){

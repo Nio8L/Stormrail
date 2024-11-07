@@ -108,6 +108,7 @@ public class HexTile : MonoBehaviour
     private void OnMouseDown() {
         //Debug.Log(coordinates);
         //Reveal();
+        if (RaycastChecker.Check()) return;
 
         if(type == Type.City){
             SetTypeDecoration(Type.Empty);

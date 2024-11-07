@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class CityMenu : MonoBehaviour
 {
@@ -91,28 +89,4 @@ public class CityMenu : MonoBehaviour
             ignoreClose = false;
         }
     }
-
-
-    /*
-        UI RAYCAST
-        
-        if (Input.GetMouseButtonUp(0)){
-            // Raycast on left click
-            PointerEventData eventData = new PointerEventData(eventSystem);
-            eventData.position = Input.mousePosition;
-            eventData.position = new Vector3(eventData.position.x, eventData.position.y, 10);
-
-            List<RaycastResult> results = new List<RaycastResult>();
-            raycaster.Raycast(eventData, results);
-
-            foreach (RaycastResult hit in results){
-                // If a tabButton is hit use it
-                CityMenuTabButton buttonScript = hit.gameObject.GetComponent<CityMenuTabButton>();
-                if (buttonScript != null){
-                    
-                }
-            }
-        }
-        
-    */
 }

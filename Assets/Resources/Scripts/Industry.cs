@@ -12,7 +12,6 @@ public class Industry : ScriptableObject
     public GameObject skillTree;
     public int skillPoints = 0;
     public City city;
-
     public List<Skill> unlockedSkills = new List<Skill>();
 
     public void Initialize(City _city){
