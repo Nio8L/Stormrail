@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a74c7f031ce48488e7be732c87eb12, type: 3}
   m_Name: IronMineshafts
   m_EditorClassIdentifier: 
-  skillName: Iron Mineshafts
+  skillName: Iron ore mineshafts
   skillDescription: Allows your workers to create mineshafts using wood to extract
     additional iron
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: 7774c37c9d24bab49ae2887cd58448a7, type: 3}
   items:
   - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
   perWorker:
-  - 3
+  - 4
   hungerDrainModifier: 1
   setTo: 0
   itemsToConsume:
