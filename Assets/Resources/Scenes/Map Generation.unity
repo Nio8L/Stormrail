@@ -182,6 +182,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7946841531256381835, guid: f56831ca2a7a67b489dfce776aa77e2f, type: 3}
+      propertyPath: coord2.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946841531256381835, guid: f56831ca2a7a67b489dfce776aa77e2f, type: 3}
+      propertyPath: coord2.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946841531256381835, guid: f56831ca2a7a67b489dfce776aa77e2f, type: 3}
+      propertyPath: railPrefab
+      value: 
+      objectReference: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

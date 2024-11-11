@@ -54,6 +54,11 @@ public class MapManager : MonoBehaviour, ISavable
                 hex.transform.SetParent(transform, true);
             }
         }
+        
+        foreach (HexTile tile in tiles)
+        {
+            tile.GetNeighbors();
+        }
     }
 
     public void GenerateMap(HexTile[,] hexTiles){

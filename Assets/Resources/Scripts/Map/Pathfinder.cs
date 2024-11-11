@@ -13,7 +13,7 @@ public class Pathfinder : MonoBehaviour
         instance = this;
     }
     
-    public void Pathfind(HexTile start, HexTile end){
+    public List<HexTile> Pathfind(HexTile start, HexTile end){
         Queue<HexTile> frontier = new();
         frontier.Enqueue(start);
 
@@ -32,10 +32,9 @@ public class Pathfinder : MonoBehaviour
                     path.Add(current);
                     current = cameFrom[current];
                 }
-                foreach (HexTile tile in path) tile.SetType(HexTile.Type.City);
                 path.Add(start);
                 path.Reverse();
-                break;
+                return path;
             }
 
             foreach (HexTile neighbor in current.Neighbors)
@@ -47,5 +46,6 @@ public class Pathfinder : MonoBehaviour
             }
         }
         Debug.Log(loops);
+        return null;
     }
 }

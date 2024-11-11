@@ -21,11 +21,11 @@ public class City : MonoBehaviour
     public float hungerTimer;
     HappinessSource starvingSource;
     public bool starvation = false;
+    public List<City> connections = new();
     
 
 
     void Start(){
-        Debug.Log("statr");
         transform.position = MapManager.instance.tiles[coordinates.x, coordinates.y].transform.position;
         transform.position += new Vector3(0, 0.75f, 0);
         MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.City);
@@ -33,6 +33,11 @@ public class City : MonoBehaviour
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
             consumingThisFrame.Add(DataBase.instance.allItems[i], 0);
         }
+
+        foreach (City connection in connections)
+            {
+                CityManager.instance.BuildRailConnection(this, connection);
+            }
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -199,7 +204,7 @@ public class City : MonoBehaviour
             Pathfinder.instance.tile1 = MapManager.instance.tiles[coordinates.x, coordinates.y];
         }else{
             Pathfinder.instance.tile2 = MapManager.instance.tiles[coordinates.x, coordinates.y];
-            Pathfinder.instance.Pathfind(Pathfinder.instance.tile1, Pathfinder.instance.tile2);
+            CityManager.instance.ConnectCities(Pathfinder.instance.tile1, Pathfinder.instance.tile2);
             Pathfinder.instance.tile1 = null;
             Pathfinder.instance.tile2 = null;
         }

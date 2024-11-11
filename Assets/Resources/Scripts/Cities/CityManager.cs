@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,14 +8,15 @@ public class CityManager : MonoBehaviour, ISavable
     public List<City> cities;
 
     public GameObject cityPrefab;
+    public GameObject railPrefab;
+
+    public Vector2Int coord1;
+    public Vector2Int coord2;
 
     private void Awake() {
         instance = this;
     }
 
-    private void Start() {
-
-    }
     public void LoadData(GameData data)
     {
         foreach (CitySerialized city in data.cities)
@@ -67,11 +67,20 @@ public class CityManager : MonoBehaviour, ISavable
                 
                 newCity.workersPerIndustry.Add(industry, city.workerAmount[i]); 
             }
+
             cities.Add(newCity);
         }
+
+        for(int i = 0; i < data.cities.Count; i++){
+            foreach(string cityName in data.cities[i].connections){
+                cities[i].connections.Add(GetCityByName(cityName));
+            }
+        }
+
         foreach (City city in cities)
         {
             Debug.Log(city.workersPerIndustry.ElementAt(0));
+            
         }
     }
 
@@ -123,7 +132,61 @@ public class CityManager : MonoBehaviour, ISavable
                 newCity.industries.Add(newIndustry);
                 newCity.workerAmount.Add(city.workersPerIndustry[industry]);
             }
+
+            foreach (City connectedCity in city.connections)
+            {
+                newCity.connections.Add(connectedCity.cityName);
+            }
             data.cities.Add(newCity);
         }
+    }
+
+    public City GetCityByTile(HexTile tile){
+        foreach (City city in cities)
+        {
+            if(city.coordinates == tile.coordinates){
+                return city;
+            }
+        }
+        return null;
+    }
+
+    public City GetCityByName(string name){
+        foreach (City city in cities)
+        {
+            if(city.cityName == name){
+                return city;
+            }
+        }
+        return null;
+    }
+
+    public void ConnectCities(HexTile tile1, HexTile tile2){
+        GetCityByTile(tile1).connections.Add(GetCityByTile(tile2));
+        GetCityByTile(tile2).connections.Add(GetCityByTile(tile1));
+        BuildRailConnection(tile1, tile2);
+    }
+
+    public void BuildRailConnection(HexTile tile1, HexTile tile2){
+        List<HexTile> path = Pathfinder.instance.Pathfind(tile1, tile2);
+        for(int i = 0; i < path.Count - 1; i++){
+            BuildRail(path[i], path[i + 1]);
+        }
+    }
+
+    public void BuildRailConnection(City city1, City city2){
+        HexTile tile1 = MapManager.instance.tiles[city1.coordinates.x, city1.coordinates.y];
+        HexTile tile2 = MapManager.instance.tiles[city2.coordinates.x, city2.coordinates.y];
+
+        BuildRailConnection(tile1, tile2);
+    }
+
+    public void BuildRail(HexTile tile1, HexTile tile2){
+        Vector2 reference = Vector2.up;
+        Vector2 newVector = new Vector2(tile2.transform.position.x - tile1.transform.position.x, tile2.transform.position.z - tile1.transform.position.z);
+        float angle = -Vector2.SignedAngle(reference, newVector);
+        int offset = 180;
+        Instantiate(railPrefab, tile1.transform.position, Quaternion.Euler(0, angle - offset, 0));
+        Instantiate(railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle - 180 - offset, 0));
     }
 }

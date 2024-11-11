@@ -25,13 +25,6 @@ public class HexTile : MonoBehaviour
     public Type type;
 
     [Header("Pathfinding")]
-
-    public float gCost = 0;
-    public float hCost = 0;
-    public float fCost => gCost + hCost;
-
-    public HexTile Connection;
-
     public List<HexTile> Neighbors;
     public bool walkable = true;
     

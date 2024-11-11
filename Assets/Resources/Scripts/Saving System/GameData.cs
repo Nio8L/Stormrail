@@ -194,6 +194,8 @@ public class CitySerialized{
     public float hungerTimer;
     public bool starving;
 
+    public List<string> connections;
+
     public CitySerialized(){
         cityName = "New Sofia Default";
         population = 0;
@@ -212,6 +214,8 @@ public class CitySerialized{
         hungerDrainModifier = 1;
         hungerTimer = 0;
         starving = false;
+
+        connections = new();
     }
 }
 
