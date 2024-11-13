@@ -493,9 +493,17 @@ PrefabInstance:
       value: gh
       objectReference: {fileID: 0}
     - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
+      propertyPath: prerequisites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: thisSkill.skillDescription
       value: Skill description
       objectReference: {fileID: 0}
+    - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
+      propertyPath: prerequisites.Array.data[0]
+      value: 
+      objectReference: {fileID: 672639339268486579}
     - target: {fileID: 3739880470377856194, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -619,9 +627,17 @@ PrefabInstance:
       value: asd
       objectReference: {fileID: 0}
     - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
+      propertyPath: prerequisites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: thisSkill.skillDescription
       value: gfgdf
       objectReference: {fileID: 0}
+    - target: {fileID: 1825079638748510931, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
+      propertyPath: prerequisites.Array.data[0]
+      value: 
+      objectReference: {fileID: 1934666540983581619}
     - target: {fileID: 3739880470377856194, guid: 08efe2824b5fa4c47ab23996379d9b54, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -25,6 +25,9 @@ public class SkillTreeMenu : MonoBehaviour
         gameObject.SetActive(false);
         descriptionPanel.SetActive(false);
     }
+    void OnEnable(){
+        descriptionPanel.SetActive(false);
+    }
     public void SelectIndustry(Industry industry){
         currentIndustry = industry;
 
@@ -41,6 +44,7 @@ public class SkillTreeMenu : MonoBehaviour
     }
 
     public void UnlockSkill(){
+        if (currentIndustry.skillPoints == 0 || !SkillUnlockable()) return;
         currentIndustry.skillPoints--;
 
         currentIndustry.unlockedSkills.Add(selectedSkill);
@@ -73,17 +77,37 @@ public class SkillTreeMenu : MonoBehaviour
     }
 
     public bool SkillUnlockable(){
-        // If there is no skill selected, or if the skill is unlocked or if the prerequisite of the skill is not unlocked return false
-        if (selectedSkill == null || currentSkillButton.unlocked) return false;
-        //|| (currentSkillButton.prerequisite != null && !currentSkillButton.prerequisite.unlocked)) ;
-        int unlockedPrerequisites = 0;
-        foreach(SkillButton button in currentSkillButton.prerequisites){
-            if (button.unlocked) unlockedPrerequisites++;
+        // Default case
+        return SkillUnlockable(currentSkillButton);
+    }
+    public bool SkillUnlockable(SkillButton skillToCheck){
+        // If the skill is unlocked return false
+        if (skillToCheck.unlocked) return false;
+
+        // Find how many prerequisites are unlcoked
+        if (skillToCheck.prerequisites.Count != 0){
+            int unlockedPrerequisites = 0;
+            foreach(SkillButton button in skillToCheck.prerequisites){
+                if (button.unlocked) unlockedPrerequisites++;
+            }
+            // Check prerequisite cases
+            if (skillToCheck.requireAllPrerequisites){ 
+                if (unlockedPrerequisites != skillToCheck.prerequisites.Count) return false;
+            }
+            else if(unlockedPrerequisites == 0) return false;
         }
-        if (currentSkillButton.requireAllPrerequisites){ 
-            if (unlockedPrerequisites != currentSkillButton.prerequisites.Count) return false;
+
+        // Find how many branches are unlocked
+        if (skillToCheck.branches.Count != 0){
+            int unlockedBranches = 0;
+            foreach(SkillButton button in skillToCheck.branches){
+                if (button.unlocked) unlockedBranches++;
+            }
+            // Check branch cases
+            if (unlockedBranches != 0) return false;
         }
-        else if(unlockedPrerequisites == 0){ return false;}
+
+        // All checks passed
         return true;
     }
 }

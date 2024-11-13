@@ -12,8 +12,6 @@ public class UnlockSkillButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (skillTreeMenu.currentIndustry.skillPoints > 0 && SkillTreeMenu.instance.SkillUnlockable()){
-            skillTreeMenu.UnlockSkill();
-        }
+        skillTreeMenu.UnlockSkill();
     }
 }
