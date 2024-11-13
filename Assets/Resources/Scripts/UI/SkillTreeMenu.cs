@@ -71,4 +71,19 @@ public class SkillTreeMenu : MonoBehaviour
         Destroy(transform.GetChild(2).gameObject);
         gameObject.SetActive(false);
     }
+
+    public bool SkillUnlockable(){
+        // If there is no skill selected, or if the skill is unlocked or if the prerequisite of the skill is not unlocked return false
+        if (selectedSkill == null || currentSkillButton.unlocked) return false;
+        //|| (currentSkillButton.prerequisite != null && !currentSkillButton.prerequisite.unlocked)) ;
+        int unlockedPrerequisites = 0;
+        foreach(SkillButton button in currentSkillButton.prerequisites){
+            if (button.unlocked) unlockedPrerequisites++;
+        }
+        if (currentSkillButton.requireAllPrerequisites){ 
+            if (unlockedPrerequisites != currentSkillButton.prerequisites.Count) return false;
+        }
+        else if(unlockedPrerequisites == 0){ return false;}
+        return true;
+    }
 }

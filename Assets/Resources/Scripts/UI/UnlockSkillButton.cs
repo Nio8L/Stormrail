@@ -12,16 +12,8 @@ public class UnlockSkillButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (skillTreeMenu.currentIndustry.skillPoints > 0 && SkillUnlockable()){
+        if (skillTreeMenu.currentIndustry.skillPoints > 0 && SkillTreeMenu.instance.SkillUnlockable()){
             skillTreeMenu.UnlockSkill();
         }
-    }
-
-    bool SkillUnlockable(){
-        // If there is no skill selected, or if the skill is unlocked or if the prerequisite of the skill is not unlocked return false
-        if (skillTreeMenu.selectedSkill == null || skillTreeMenu.currentSkillButton.unlocked 
-        || (skillTreeMenu.currentSkillButton.prerequisite != null && !skillTreeMenu.currentSkillButton.prerequisite.unlocked)) return false;
-
-        return true;
     }
 }
