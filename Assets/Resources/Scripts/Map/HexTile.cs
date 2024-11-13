@@ -27,6 +27,7 @@ public class HexTile : MonoBehaviour
     [Header("Pathfinding")]
     public List<HexTile> Neighbors;
     public bool walkable = true;
+    public List<int> angles = new();
     
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;

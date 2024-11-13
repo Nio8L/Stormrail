@@ -184,9 +184,17 @@ public class CityManager : MonoBehaviour, ISavable
     public void BuildRail(HexTile tile1, HexTile tile2){
         Vector2 reference = Vector2.up;
         Vector2 newVector = new Vector2(tile2.transform.position.x - tile1.transform.position.x, tile2.transform.position.z - tile1.transform.position.z);
-        float angle = -Vector2.SignedAngle(reference, newVector);
+        int angle = Mathf.RoundToInt(-Vector2.SignedAngle(reference, newVector));
         int offset = 180;
+        if(tile1.angles.Contains(angle - offset)){
+            return;
+        }
+        if(tile2.angles.Contains(angle)){
+            return;
+        }
         Instantiate(railPrefab, tile1.transform.position, Quaternion.Euler(0, angle - offset, 0));
-        Instantiate(railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle - 180 - offset, 0));
+        Instantiate(railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
+        tile1.angles.Add(angle - offset);
+        tile2.angles.Add(angle);
     }
 }
