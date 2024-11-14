@@ -89,5 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisSkill: {fileID: 0}
-  prerequisite: {fileID: 0}
+  prerequisites: []
+  requireAllPrerequisites: 0
+  branches: []
   unlocked: 0

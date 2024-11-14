@@ -76,12 +76,6 @@ public class CityManager : MonoBehaviour, ISavable
                 cities[i].connections.Add(GetCityByName(cityName));
             }
         }
-
-        foreach (City city in cities)
-        {
-            Debug.Log(city.workersPerIndustry.ElementAt(0));
-            
-        }
     }
 
     public void SaveData(GameData data)

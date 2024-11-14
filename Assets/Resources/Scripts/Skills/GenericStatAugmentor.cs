@@ -26,4 +26,16 @@ public class GenericStatAugmentor : Skill
     {
         
     }
+
+    public override void ReverseEffect()
+    {
+        base.ReverseEffect();
+        for (int i = 0; i < items.Count; i++){
+            if (!setTo){
+                industry.itemOutputPerWorker[items[i]] -= perWorker[i];
+            }else{
+                industry.itemOutputPerWorker[items[i]] = 0;
+            }
+        }
+    }
 }
