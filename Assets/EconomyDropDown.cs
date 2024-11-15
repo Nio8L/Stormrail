@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ public class EconomyDropDown : MonoBehaviour
 
     void LateUpdate(){
         float productionThisSecond = CityMenu.instance.currentCity.CalculateProduction(itemToTrack);
-        produceText.text = productionThisSecond.ToString();
+        produceText.text = string.Format("{0:0.##}", productionThisSecond);
 
         float consumingThisSecond = CityMenu.instance.currentCity.consumingThisFrame[itemToTrack]/Time.deltaTime;
-        consumeText.text = consumingThisSecond.ToString();
+        consumeText.text = string.Format("{0:0.##}", consumingThisSecond);
     }
 }
