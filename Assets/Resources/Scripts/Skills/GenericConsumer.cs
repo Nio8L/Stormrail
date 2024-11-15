@@ -48,9 +48,21 @@ public class GenericConsumer : GenericStatAugmentor
             }
         }else if (producing){
             // Stop production
-            producing = false;
-            for (int i = 0; i < items.Count; i++){
+            ReverseEffect();
+        }
+    }
+
+    public override void ReverseEffect()
+    {
+        base.ReverseEffect();
+        if (!producing) return;
+        producing = false;
+
+        for (int i = 0; i < items.Count; i++){
+            if (!setTo){
                 industry.itemOutputPerWorker[items[i]] -= perWorker[i];
+            }else{
+                industry.itemOutputPerWorker[items[i]] = 0;
             }
         }
     }
