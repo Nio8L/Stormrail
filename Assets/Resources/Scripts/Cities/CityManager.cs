@@ -121,7 +121,7 @@ public class CityManager : MonoBehaviour, ISavable
                     skillPaths.Add("Scriptable Objects/Skills/" + skill.name);
                 }
                 
-                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker, "Prefabs/SkillTrees/" + industry.skillTree.name, skillPaths, industry.skillPoints);
+                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker, "Prefabs/Skills/SkillTrees/" + industry.skillTree.name, skillPaths, industry.skillPoints);
 
                 newCity.industries.Add(newIndustry);
                 newCity.workerAmount.Add(city.workersPerIndustry[industry]);

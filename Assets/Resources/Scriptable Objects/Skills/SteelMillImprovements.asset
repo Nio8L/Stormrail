@@ -16,6 +16,7 @@ MonoBehaviour:
   skillDescription: Improvements upon the previously constructed steel mills increases
     their output without increasing production costs.
   skillIcon: {fileID: 21300000, guid: de9c2c4ecb449d24198e7c51c8c0c8ee, type: 3}
+  upgradesFrom: {fileID: 11400000, guid: 3d930e97bc1ea654894a5a924650564e, type: 2}
   items:
   - {fileID: 11400000, guid: ac15366747f49fc4db478def7d135186, type: 2}
   perWorker:

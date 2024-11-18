@@ -16,6 +16,7 @@ MonoBehaviour:
   skillDescription: Open steelmills that consume iron ore and coal to produce a steady
     amount of steel.
   skillIcon: {fileID: 21300000, guid: de9c2c4ecb449d24198e7c51c8c0c8ee, type: 3}
+  upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: ac15366747f49fc4db478def7d135186, type: 2}
   perWorker:
