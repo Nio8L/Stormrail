@@ -138,6 +138,7 @@ public class City : MonoBehaviour
     }
     public void RemoveHappinessSource(HappinessSource newSource){
         // Removes a happiness source as well as it's modifier
+        if (newSource == null) return;
         Debug.Log("Removing");
         happinessSources.Remove(newSource);
         overallHappiness -= newSource.happinessModifier;
@@ -174,7 +175,7 @@ public class City : MonoBehaviour
         // Consume food
         consumingThisFrame[DataBase.instance.allItems[0]] += hungerDrain;
 
-        if (inventory[DataBase.instance.allItems[0]] < hungerDrain){
+        if (inventory[DataBase.instance.allItems[0]] < hungerDrain && hungerTimer < 20f){
             // No food
             hungerTimer += Time.deltaTime;
         }else{
