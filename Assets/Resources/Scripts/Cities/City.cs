@@ -201,13 +201,19 @@ public class City : MonoBehaviour
     }
 
     private void OnMouseUp() {
-        if(Pathfinder.instance.tile1 == null){
-            Pathfinder.instance.tile1 = MapManager.instance.tiles[coordinates.x, coordinates.y];
-        }else{
-            Pathfinder.instance.tile2 = MapManager.instance.tiles[coordinates.x, coordinates.y];
-            CityManager.instance.ConnectCities(Pathfinder.instance.tile1, Pathfinder.instance.tile2);
-            Pathfinder.instance.tile1 = null;
-            Pathfinder.instance.tile2 = null;
+        if (TrainManager.instance.buildMode)
+        {
+            if(TrainManager.instance.citiesToConnect[0] == null){
+                //Pathfinder.instance.tile1 = MapManager.instance.tiles[coordinates.x, coordinates.y];
+                TrainManager.instance.citiesToConnect[0] = this;
+            }else{
+                //Pathfinder.instance.tile2 = MapManager.instance.tiles[coordinates.x, coordinates.y];
+                TrainManager.instance.citiesToConnect[1] = this;
+                CityManager.instance.ConnectCities(TrainManager.instance.citiesToConnect[0], TrainManager.instance.citiesToConnect[1]);
+                
+                TrainManager.instance.citiesToConnect[0] = null;
+                TrainManager.instance.citiesToConnect[1] = null;
+            }
         }
     }
 }

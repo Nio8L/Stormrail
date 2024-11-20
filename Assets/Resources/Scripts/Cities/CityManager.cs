@@ -161,6 +161,12 @@ public class CityManager : MonoBehaviour, ISavable
         BuildRailConnection(tile1, tile2);
     }
 
+    public void ConnectCities(City city1, City city2){
+        city1.connections.Add(city2);
+        city2.connections.Add(city1);
+        BuildRailConnection(city1, city2);
+    }
+
     public void BuildRailConnection(HexTile tile1, HexTile tile2){
         List<HexTile> path = Pathfinder.instance.Pathfind(tile1, tile2);
         for(int i = 0; i < path.Count - 1; i++){

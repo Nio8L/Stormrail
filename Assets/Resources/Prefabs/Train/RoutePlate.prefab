@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5140763052727042996}
+  - component: {fileID: 4487432805719169208}
   - component: {fileID: -5572885653381702767}
   m_Layer: 5
   m_Name: RoutePlate
@@ -38,6 +39,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4487432805719169208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3932863518101735759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d755c4782190f4a80d900923121e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routeName: {fileID: 2934917716476899463}
 --- !u!114 &-5572885653381702767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,9 +69,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 602179056665483070, guid: f7c8d78a1923eac43afd4d6607f0465a, type: 3}
-          m_TargetAssemblyTypeName: TrainMenu, Assembly-CSharp
-          m_MethodName: OpenMenu
+        - m_Target: {fileID: 4487432805719169208}
+          m_TargetAssemblyTypeName: RoutePlateUI, Assembly-CSharp
+          m_MethodName: SelectRoute
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

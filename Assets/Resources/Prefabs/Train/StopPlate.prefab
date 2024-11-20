@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8316475324410621071}
+  - component: {fileID: -3460475130420335500}
   m_Layer: 5
   m_Name: StopPlate
   m_TagString: Untagged
@@ -39,6 +40,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &-3460475130420335500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808585755710976373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e3df5dc2ede8d44acb4ccddda53b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopName: {fileID: 8927545535352100676}
+  conditionObject: {fileID: 2857714653033127865, guid: 88d2bd435e3ce1f4e85ab347ac957654, type: 3}
+  conditionHolder: {fileID: 3961991235331805303}
 --- !u!1 &3137950858133058905
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +275,7 @@ GameObject:
   - component: {fileID: 9018984102741905211}
   - component: {fileID: 5689473430811582491}
   - component: {fileID: 4711948138241119901}
+  - component: {fileID: 6313845690500895189}
   m_Layer: 5
   m_Name: AddCondition
   m_TagString: Untagged
@@ -323,6 +340,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6313845690500895189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3830504783470374232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -3460475130420335500}
+          m_TargetAssemblyTypeName: StopPlateUI, Assembly-CSharp
+          m_MethodName: AddCondition
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3961991235331805303
 GameObject:
   m_ObjectHideFlags: 0
