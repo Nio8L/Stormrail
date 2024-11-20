@@ -14,6 +14,8 @@ public class IndustryWindow : MonoBehaviour
     public TextMeshProUGUI levelText;
     public RectTransform levelBar;
 
+    public RectTransform levelBarBox;
+
     public void UpdateIndustry(Industry newIndustry){
         industry = newIndustry;
         nameTextBox.text = industry.industryName;
@@ -25,7 +27,7 @@ public class IndustryWindow : MonoBehaviour
 
     public void LoadIndustryLevel(){
         levelText.text = industry.level + "/5";
-        float barWidth = 40f * industry.level;
+        float barWidth = levelBarBox.rect.width/5 * industry.level;
         levelBar.sizeDelta = new Vector2(barWidth, levelBar.sizeDelta.y);
     }
 }
