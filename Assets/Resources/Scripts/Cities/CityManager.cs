@@ -52,9 +52,16 @@ public class CityManager : MonoBehaviour, ISavable
                 
                 industry.skillTree = Resources.Load<GameObject>(currentIndustry.skillTree.skillTreePath);
 
-                foreach(SkillSerilaized skill in currentIndustry.skills){
+                // Load all unlocked skills
+                foreach(SkillSerilaized skill in currentIndustry.unlockedSkills){
                     Skill newSkill = Resources.Load<Skill>(skill.skillPath);
                     industry.unlockedSkills.Add(newSkill);
+                    newSkill.OnLoad(industry);
+                }
+                // Load all active skills
+                foreach(SkillSerilaized skill in currentIndustry.activeSkills){
+                    Skill newSkill = Resources.Load<Skill>(skill.skillPath);
+                    industry.activeSkills.Add(newSkill);
                     newSkill.OnLoad(industry);
                 }
                 industry.skillPoints = currentIndustry.skillPoints;
@@ -115,13 +122,18 @@ public class CityManager : MonoBehaviour, ISavable
                     outputPerWorker.Add(industry.itemOutputPerWorker[item]);
                 }
                 
-                List<string> skillPaths = new();
+                List<string> unlockedSkillPaths = new();
                 foreach (Skill skill in industry.unlockedSkills)
                 {
-                    skillPaths.Add("Scriptable Objects/Skills/" + skill.name);
+                    unlockedSkillPaths.Add("Scriptable Objects/Skills/" + skill.name);
+                }
+                List<string> activeSkillPaths = new();
+                foreach (Skill skill in industry.activeSkills)
+                {
+                    activeSkillPaths.Add("Scriptable Objects/Skills/" + skill.name);
                 }
                 
-                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker, "Prefabs/Skills/SkillTrees/" + industry.skillTree.name, skillPaths, industry.skillPoints);
+                IndustrySerialized newIndustry = new(industry.industryName, industry.level, itemNames, outputPerWorker, "Prefabs/Skills/SkillTrees/" + industry.skillTree.name, unlockedSkillPaths, activeSkillPaths, industry.skillPoints);
 
                 newCity.industries.Add(newIndustry);
                 newCity.workerAmount.Add(city.workersPerIndustry[industry]);

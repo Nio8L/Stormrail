@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62a74c7f031ce48488e7be732c87eb12, type: 3}
-  m_Name: SawDustSupplements
+  m_Name: BrickProduction
   m_EditorClassIdentifier: 
-  skillName: Saw dust supplements
-  skillDescription: Increases food production by adding a small amount of saw dust
-    to each portion.
-  skillIcon: {fileID: 21300000, guid: 01813f5629d95564c8c3ac7a2934ee3c, type: 3}
+  skillName: Brick Production
+  skillDescription: Your workers will begin making bricks out of stone.
+  skillIcon: {fileID: 21300000, guid: 6f49300fe5ebdc649a9c2f2327ea3b93, type: 3}
   upgradesFrom: {fileID: 0}
   items:
-  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+  - {fileID: 11400000, guid: 9b49326f4a0913848910d0ca054a8687, type: 2}
   perWorker:
-  - 6
+  - 2.5
   hungerDrainModifier: 1
   setTo: 0
   itemsToConsume:
-  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
+  - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
   consumptionPerWorker:
-  - 2.5
+  - 15

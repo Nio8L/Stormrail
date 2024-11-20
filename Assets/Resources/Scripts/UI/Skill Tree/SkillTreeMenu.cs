@@ -19,6 +19,7 @@ public class SkillTreeMenu : MonoBehaviour
     public Skill selectedSkill;
     public SkillButton currentSkillButton;
     public Industry currentIndustry;
+    public List<SkillButton> allSkillButtons = new List<SkillButton>();
     
     void Awake(){
         instance = this;
@@ -31,7 +32,10 @@ public class SkillTreeMenu : MonoBehaviour
     public void SelectIndustry(Industry industry){
         currentIndustry = industry;
 
-        Instantiate(industry.skillTree, transform);
+        GameObject industrySkillTree = Instantiate(industry.skillTree, transform);
+        industrySkillTree.transform.SetAsFirstSibling();
+
+        allSkillButtons.Clear();
 
         industryNameBox.text = currentIndustry.industryName;
         skillPointsAmountBox.text = currentIndustry.skillPoints.ToString();
@@ -48,6 +52,8 @@ public class SkillTreeMenu : MonoBehaviour
         currentIndustry.skillPoints--;
 
         currentIndustry.unlockedSkills.Add(selectedSkill);
+        currentIndustry.activeSkills.Add(selectedSkill);
+
         currentSkillButton.unlocked = true;
 
         selectedSkill.OnUnlock(currentIndustry);
@@ -55,6 +61,8 @@ public class SkillTreeMenu : MonoBehaviour
         skillPointsAmountBox.text = currentIndustry.skillPoints.ToString();
         
         UpdateVisuals();
+
+        UpdateSkillVisuals();
     }
 
     void UpdateVisuals(){
@@ -71,8 +79,14 @@ public class SkillTreeMenu : MonoBehaviour
         }
     }
 
+    void UpdateSkillVisuals(){
+        foreach (SkillButton button in allSkillButtons){
+            button.CheckUnlockableState();
+        }
+    }
+
     public void CloseMenu(){
-        Destroy(transform.GetChild(2).gameObject);
+        Destroy(transform.GetChild(0).gameObject);
         gameObject.SetActive(false);
     }
 

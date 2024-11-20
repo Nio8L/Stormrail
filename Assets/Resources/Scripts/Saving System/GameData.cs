@@ -144,8 +144,8 @@ public class IndustrySerialized{
     public List<float> outputPerWorker;
 
     public SkillTreeSerialized skillTree;
-    public List<SkillSerilaized> skills;
-
+    public List<SkillSerilaized> unlockedSkills;
+    public List<SkillSerilaized> activeSkills;
     public int skillPoints;
 
     public IndustrySerialized(){
@@ -153,22 +153,29 @@ public class IndustrySerialized{
         itemName = new();
         outputPerWorker = new();
         skillTree = new();
-        skills = new();
+        unlockedSkills = new();
+        activeSkills = new();
         skillPoints = 0;
     }
 
-    public IndustrySerialized(string industryName, int level, List<string> itemName, List<float> outputPerWorker, string skillTreePath, List<string> skillPaths, int skillPoints){
+    public IndustrySerialized(string industryName, int level, List<string> itemName, List<float> outputPerWorker, string skillTreePath, List<string> unlockedSkillPaths, List<string> activeSkillPaths, int skillPoints){
         this.industryName = industryName;
         this.level = level;
         this.itemName = itemName;
         this.outputPerWorker = outputPerWorker;
 
         skillTree = new(skillTreePath);
-        skills = new();
-        foreach (string skillPath in skillPaths)
+        unlockedSkills = new();
+        foreach (string skillPath in unlockedSkillPaths)
         {
             SkillSerilaized newSkill = new(skillPath);
-            skills.Add(newSkill);
+            unlockedSkills.Add(newSkill);
+        }
+        activeSkills = new();
+        foreach (string skillPath in activeSkillPaths)
+        {
+            SkillSerilaized newSkill = new(skillPath);
+            activeSkills.Add(newSkill);
         }
         this.skillPoints = skillPoints;
     } 

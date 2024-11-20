@@ -13,6 +13,7 @@ public class Industry : ScriptableObject
     public int skillPoints = 0;
     public City city;
     public List<Skill> unlockedSkills = new List<Skill>();
+    public List<Skill> activeSkills = new List<Skill>();
 
     public void Initialize(City _city){
         city = _city;

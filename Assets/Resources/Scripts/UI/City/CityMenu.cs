@@ -83,7 +83,7 @@ public class CityMenu : MonoBehaviour
     }
 
     void Update(){
-        if (!ignoreClose && Input.GetMouseButtonDown(0) && Input.mousePosition.x > 320f){
+        if (!ignoreClose && Input.GetMouseButtonDown(0) && !RaycastChecker.Check()){
              CloseMenu();
         }else{
             ignoreClose = false;

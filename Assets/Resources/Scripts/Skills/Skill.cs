@@ -16,11 +16,11 @@ public class Skill: ScriptableObject
 
         // If this skill is an uprade find and remove the old upgrade
         if (upgradesFrom != null){
-            for (int i = 0; i < industry.unlockedSkills.Count; i++){
-                Skill skill = industry.unlockedSkills[i];
+            for (int i = 0; i < industry.activeSkills.Count; i++){
+                Skill skill = industry.activeSkills[i];
                 if (skill.skillName == upgradesFrom.skillName){
                     skill.ReverseEffect();
-                    industry.unlockedSkills.Remove(skill);
+                    industry.activeSkills.Remove(skill);
                     break;
                 }
             }

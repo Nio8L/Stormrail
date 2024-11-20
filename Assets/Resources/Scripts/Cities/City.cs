@@ -35,9 +35,11 @@ public class City : MonoBehaviour
         }
 
         foreach (City connection in connections)
-            {
-                CityManager.instance.BuildRailConnection(this, connection);
-            }
+        {
+            CityManager.instance.BuildRailConnection(this, connection);
+        }
+
+        starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -136,12 +138,15 @@ public class City : MonoBehaviour
         happinessSources.Add(newSource);
         overallHappiness += newSource.happinessModifier;
     }
-    public void RemoveHappinessSource(HappinessSource newSource){
+    public void RemoveHappinessSource(HappinessSource sourceToRemove){
         // Removes a happiness source as well as it's modifier
-        if (newSource == null) return;
-        Debug.Log("Removing");
-        happinessSources.Remove(newSource);
-        overallHappiness -= newSource.happinessModifier;
+        for (int i = 0; i < happinessSources.Count; i++){
+            if (happinessSources[i].sourceName == sourceToRemove.sourceName){
+                happinessSources.RemoveAt(i);
+                overallHappiness -= sourceToRemove.happinessModifier;
+                break;
+            }
+        }
     }
 
     public void UpdateHappinessSourceTimers(){
@@ -163,7 +168,7 @@ public class City : MonoBehaviour
         // Loop though all industries and call update on their skills
         for (int i = 0; i < workersPerIndustry.Count; i++){
             Industry currentIndustry = workersPerIndustry.ElementAt(i).Key;
-            foreach (Skill skill in currentIndustry.unlockedSkills){
+            foreach (Skill skill in currentIndustry.activeSkills){
                 skill.OnUpdate();
             }
         }
@@ -188,7 +193,6 @@ public class City : MonoBehaviour
         // Add or remove happiness modifier
         if (hungerTimer > 15f){
             if (!starvation){
-                starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
                 AddHappinessSource(starvingSource);
                 starvation = true;
             }

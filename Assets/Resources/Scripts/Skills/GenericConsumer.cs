@@ -35,9 +35,15 @@ public class GenericConsumer : GenericStatAugmentor
         if (canProduce){
             // Continue production
             if (!producing){
+                // Restore production
+                Debug.Log("We are back in business");
                 producing = true;
                 for (int i = 0; i < items.Count; i++){
-                    industry.itemOutputPerWorker[items[i]] += perWorker[i];
+                    if (!setTo){
+                        industry.itemOutputPerWorker[items[i]] += perWorker[i];
+                    }else{
+                        industry.itemOutputPerWorker[items[i]] = perWorker[i];
+                    }
                 }
             }
 
@@ -48,15 +54,17 @@ public class GenericConsumer : GenericStatAugmentor
             }
         }else if (producing){
             // Stop production
+            Debug.Log("Oh shit oh fuck");
             ReverseEffect();
         }
     }
 
     public override void ReverseEffect()
     {
-        base.ReverseEffect();
         if (!producing) return;
         producing = false;
+
+        base.ReverseEffect();
 
         for (int i = 0; i < items.Count; i++){
             if (!setTo){
