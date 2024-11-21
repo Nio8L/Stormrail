@@ -40,6 +40,7 @@ public class TrainMenu : MonoBehaviour
     }
 
     public void AddStop(){
+        if(selectedRoute.name == "") return;
         GameObject newStop = Instantiate(stopObject, stopHolder.transform);
         newStop.GetComponent<StopPlateUI>().Initialize(selectedRoute.stops.Count + 1 + "");
         selectedRoute.stops.Add(new(selectedRoute.stops.Count + 1 + ""));
@@ -51,14 +52,23 @@ public class TrainMenu : MonoBehaviour
         }
     }
 
+    public void DeleteStop(StopPlateUI stopToDelete){
+        for(int i = 0; i < stopHolder.transform.childCount; i++){
+            if(stopHolder.transform.GetChild(i).GetComponent<StopPlateUI>() == stopToDelete){
+                selectedRoute.stops.Remove(TrainManager.instance.GetStop(selectedRoute, stopHolder.transform.GetChild(i).GetComponent<StopPlateUI>().stopName.text));
+                Destroy(stopHolder.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
     public void AddStops(){
         for(int i = 0; i < selectedRoute.stops.Count; i++){
             GameObject newStop = Instantiate(stopObject, stopHolder.transform);
             StopPlateUI stopScript = newStop.GetComponent<StopPlateUI>();
-            stopScript.Initialize(i + 1 + "");
+            stopScript.Initialize(selectedRoute.stops[i].name);
             
             for(int j = 0; j < selectedRoute.stops[i].conditions.Count; j++){
-                stopScript.CreateConditionObject();
+                stopScript.CreateConditionObject(selectedRoute.stops[i].conditions[j]);
             }
         }
     }

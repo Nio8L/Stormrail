@@ -8,7 +8,7 @@ public class Route{
     public List<Stop> stops;
 
     public Route(){
-        name = "New Route";
+        name = "";
         stops = new();
     }
 
