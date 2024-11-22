@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class ConditionPlateUI : MonoBehaviour
@@ -9,6 +10,8 @@ public class ConditionPlateUI : MonoBehaviour
 
     public Item item;
     public TextMeshProUGUI action;
+    public TMP_InputField amount;
+    public TMP_Dropdown dropdown;
 
     public void Initialize(StopPlateUI newStop){
         stop = newStop;
@@ -21,6 +24,9 @@ public class ConditionPlateUI : MonoBehaviour
         }else{
             action.text = "GIVE";
         }
+        amount.text = condition.amount + "";
+        dropdown.value = DataBase.instance.allItems.IndexOf(condition.item);
+       
     }
 
     public void DeleteCondition(){
@@ -35,5 +41,17 @@ public class ConditionPlateUI : MonoBehaviour
             action.text = "TAKE";
             stop.ChangeAction(this, true);
         }
+    }
+
+    public void ChangeAmount(){
+        if (int.TryParse(amount.text, out int a))
+        {
+            stop.ChangeAmount(this, a);
+        }
+    }
+
+    public void ChangeItem(){
+        stop.ChangeItem(this, DataBase.instance.allItems[dropdown.value]);
+        Debug.Log(DataBase.instance.allItems[dropdown.value].itemName);
     }
 }

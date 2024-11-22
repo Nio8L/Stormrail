@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TrainMenu : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class TrainMenu : MonoBehaviour
 
     [Header("Route Window")]
     public Route selectedRoute;
-    public TextMeshProUGUI routeName;
+    public TMP_InputField routeName;
 
     [Header("Instantiables")]
     public GameObject routeObject;
@@ -34,9 +36,31 @@ public class TrainMenu : MonoBehaviour
 
     public void AddRoute(){
         GameObject newRoute = Instantiate(routeObject);
-        newRoute.GetComponent<RoutePlateUI>().Initialize(TrainManager.instance.routes.Count + 1 + "");
         newRoute.transform.SetParent(routeHolder.transform);
-        TrainManager.instance.CreateRoute(TrainManager.instance.routes.Count + 1 + "");
+        TrainManager.instance.CreateRoute("New Route");
+        newRoute.GetComponent<RoutePlateUI>().Initialize(TrainManager.instance.routes[^1].name);
+    }
+
+    public void DeleteRoute(RoutePlateUI routeToDelete){
+        for(int i = 0; i < routeHolder.transform.childCount; i++){
+            if(routeHolder.transform.GetChild(i).GetComponent<RoutePlateUI>() == routeToDelete){
+                if(routeToDelete.routeName.text == selectedRoute.name){
+                    if(i == 0){
+                        if(routeHolder.transform.childCount == 1){
+                            DeleteStops();
+                            routeName.text = "NO ROUTE CHOSEN";
+                            selectedRoute = new();
+                        }else{
+                            routeHolder.transform.GetChild(1).GetComponent<RoutePlateUI>().SelectRoute();
+                        }
+                    }else{
+                        routeHolder.transform.GetChild(i - 1).GetComponent<RoutePlateUI>().SelectRoute();
+                    }
+                }
+                Destroy(routeHolder.transform.GetChild(i).gameObject);
+                TrainManager.instance.routes.Remove(TrainManager.instance.GetRoute(routeToDelete.routeName.text));
+            }
+        }
     }
 
     public void AddStop(){
@@ -71,6 +95,22 @@ public class TrainMenu : MonoBehaviour
                 stopScript.CreateConditionObject(selectedRoute.stops[i].conditions[j]);
             }
         }
+    }
+
+    public void EditRouteName(){
+        if(routeName.text == ""){
+            routeName.text = selectedRoute.name;
+            return;
+        } 
+            
+        
+        for(int i = 0; i < routeHolder.transform.childCount; i++){
+            if(routeHolder.transform.GetChild(i).GetComponent<RoutePlateUI>().routeName.text == selectedRoute.name){
+                routeHolder.transform.GetChild(i).GetComponent<RoutePlateUI>().routeName.text = routeName.text;
+            }
+        }
+        
+        selectedRoute.name = routeName.text;
     }
 
     public void BuildMode(){

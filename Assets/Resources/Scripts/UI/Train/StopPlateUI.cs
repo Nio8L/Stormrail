@@ -50,4 +50,20 @@ public class StopPlateUI : MonoBehaviour
             }
         }
     }
+
+    public void ChangeAmount(ConditionPlateUI condition, int newAmount){
+        for(int i = 0; i < conditionHolder.transform.childCount; i++){
+            if(conditionHolder.transform.GetChild(i).GetComponent<ConditionPlateUI>() == condition){
+                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text).conditions[i].amount = newAmount;
+            }
+        }
+    }
+
+    public void ChangeItem(ConditionPlateUI condition, Item newItem){
+        for(int i = 0; i < conditionHolder.transform.childCount; i++){
+            if(conditionHolder.transform.GetChild(i).GetComponent<ConditionPlateUI>() == condition){
+                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text).conditions[i].item = newItem;
+            }
+        }
+    }
 }

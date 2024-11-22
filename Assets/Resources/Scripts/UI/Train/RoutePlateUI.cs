@@ -17,4 +17,8 @@ public class RoutePlateUI : MonoBehaviour
         TrainMenu.instance.selectedRoute = TrainManager.instance.GetRoute(routeName.text);
         TrainMenu.instance.AddStops();
     }
+
+    public void DeleteRoute(){
+        TrainMenu.instance.DeleteRoute(this);
+    }
 }
