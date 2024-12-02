@@ -92,17 +92,6 @@ public class TrainManager : MonoBehaviour
         return null;
     }
 
-    public int GetRouteDuplicates(string routeName){
-        int counter = 0;
-        foreach (Route route in routes)
-        {
-            if(route.name == routeName){
-                counter++;
-            }
-        }
-        return counter;
-    }
-
     public Stop GetStop(Route route, string stopName){
         foreach (Stop stop in route.stops)
         {

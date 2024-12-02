@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class TrainMenu : MonoBehaviour
 {
@@ -65,35 +61,36 @@ public class TrainMenu : MonoBehaviour
 
     public void AddStop(){
         if(selectedRoute.name == "") return;
+        selectedRoute.stops.Add(new("No City"));
         GameObject newStop = Instantiate(stopObject, stopHolder.transform);
-        newStop.GetComponent<StopPlateUI>().Initialize(selectedRoute.stops.Count + 1 + "");
-        selectedRoute.stops.Add(new(selectedRoute.stops.Count + 1 + ""));
-    }
-
-    public void DeleteStops(){
-        for(int i = 0; i < stopHolder.transform.childCount; i++){
-            Destroy(stopHolder.transform.GetChild(i).gameObject);
-        }
-    }
-
-    public void DeleteStop(StopPlateUI stopToDelete){
-        for(int i = 0; i < stopHolder.transform.childCount; i++){
-            if(stopHolder.transform.GetChild(i).GetComponent<StopPlateUI>() == stopToDelete){
-                selectedRoute.stops.Remove(TrainManager.instance.GetStop(selectedRoute, stopHolder.transform.GetChild(i).GetComponent<StopPlateUI>().stopName.text));
-                Destroy(stopHolder.transform.GetChild(i).gameObject);
-            }
-        }
+        newStop.GetComponent<StopPlateUI>().Initialize(stopHolder.transform.childCount - 1);
     }
 
     public void AddStops(){
         for(int i = 0; i < selectedRoute.stops.Count; i++){
             GameObject newStop = Instantiate(stopObject, stopHolder.transform);
             StopPlateUI stopScript = newStop.GetComponent<StopPlateUI>();
-            stopScript.Initialize(selectedRoute.stops[i].name);
-            
+            stopScript.Initialize(i);
             for(int j = 0; j < selectedRoute.stops[i].conditions.Count; j++){
                 stopScript.CreateConditionObject(selectedRoute.stops[i].conditions[j]);
             }
+        }
+    }
+
+    public void DeleteStop(StopPlateUI stopToDelete){
+        for(int i = 0; i < stopHolder.transform.childCount; i++){
+            if(stopHolder.transform.GetChild(i).GetComponent<StopPlateUI>() == stopToDelete){
+                StopPlateUI stopPlate = stopHolder.transform.GetChild(i).GetComponent<StopPlateUI>();
+                string stopName = stopPlate.cityList.options[stopPlate.cityList.value].text;
+                selectedRoute.stops.Remove(TrainManager.instance.GetStop(selectedRoute, stopName));
+                Destroy(stopHolder.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
+    public void DeleteStops(){
+        for(int i = 0; i < stopHolder.transform.childCount; i++){
+            Destroy(stopHolder.transform.GetChild(i).gameObject);
         }
     }
 
@@ -106,6 +103,13 @@ public class TrainMenu : MonoBehaviour
         
         for(int i = 0; i < routeHolder.transform.childCount; i++){
             if(routeHolder.transform.GetChild(i).GetComponent<RoutePlateUI>().routeName.text == selectedRoute.name){
+                string checker = routeName.text;
+                int counter = 0;
+                while(TrainManager.instance.GetRoute(checker) != null){
+                    counter++;
+                    checker = routeName.text + "_" + counter;
+                }
+                routeName.text = checker;
                 routeHolder.transform.GetChild(i).GetComponent<RoutePlateUI>().routeName.text = routeName.text;
             }
         }

@@ -1,17 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class StopPlateUI : MonoBehaviour
 {
-    public TextMeshProUGUI stopName;
+    public int index;
+    public TMP_Dropdown cityList; 
+    public string cityName;
 
     public GameObject conditionObject;
     public GameObject conditionHolder;
 
-    public void Initialize(string newName){
-        stopName.text = newName;
+    public void Initialize(int newIndex){
+        index = newIndex;
+        cityName = TrainMenu.instance.selectedRoute.stops[index].name;
+        List<string> options = new()
+        {
+            "No City"
+        };
+        int cityIndex = 0;
+
+        for(int i = 0; i < CityManager.instance.cities.Count; i++){
+            options.Add(CityManager.instance.cities[i].cityName);
+            if(CityManager.instance.cities[i].cityName == cityName){
+                cityIndex = i + 1;
+            }
+        }
+
+        cityList.AddOptions(options);
+        cityList.value = cityIndex;
+        cityName = cityList.options[cityList.value].text;
+
+        
+        
     }
 
     public void CreateConditionObject(){
@@ -26,7 +47,7 @@ public class StopPlateUI : MonoBehaviour
 
     public void AddCondition(){
         CreateConditionObject();
-        Stop stop = TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text);
+        Stop stop = TrainMenu.instance.selectedRoute.stops[index];
         stop.conditions.Add(new());
     }
 
@@ -38,7 +59,16 @@ public class StopPlateUI : MonoBehaviour
         for(int i = 0; i < conditionHolder.transform.childCount; i++){
             if(conditionHolder.transform.GetChild(i).GetComponent<ConditionPlateUI>() == conditionToDelete){
                 Destroy(conditionHolder.transform.GetChild(i).gameObject);
-                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text).conditions.RemoveAt(i);
+                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, cityName).conditions.RemoveAt(i);
+            }
+        }
+    }
+
+    public void ChangeStop(){
+        for(int i = 0; i < TrainMenu.instance.selectedRoute.stops.Count; i++){
+            if(i == index){
+                TrainMenu.instance.selectedRoute.stops[i].name = cityList.options[cityList.value].text;
+                cityName = cityList.options[cityList.value].text;
             }
         }
     }
@@ -46,7 +76,7 @@ public class StopPlateUI : MonoBehaviour
     public void ChangeAction(ConditionPlateUI condition, bool newAction){
         for(int i = 0; i < conditionHolder.transform.childCount; i++){
             if(conditionHolder.transform.GetChild(i).GetComponent<ConditionPlateUI>() == condition){
-                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text).conditions[i].load = newAction;
+                TrainMenu.instance.selectedRoute.stops[index].conditions[i].load = newAction;
             }
         }
     }
@@ -54,7 +84,7 @@ public class StopPlateUI : MonoBehaviour
     public void ChangeAmount(ConditionPlateUI condition, int newAmount){
         for(int i = 0; i < conditionHolder.transform.childCount; i++){
             if(conditionHolder.transform.GetChild(i).GetComponent<ConditionPlateUI>() == condition){
-                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text).conditions[i].amount = newAmount;
+                TrainMenu.instance.selectedRoute.stops[index].conditions[i].amount = newAmount;
             }
         }
     }
@@ -62,7 +92,7 @@ public class StopPlateUI : MonoBehaviour
     public void ChangeItem(ConditionPlateUI condition, Item newItem){
         for(int i = 0; i < conditionHolder.transform.childCount; i++){
             if(conditionHolder.transform.GetChild(i).GetComponent<ConditionPlateUI>() == condition){
-                TrainManager.instance.GetStop(TrainMenu.instance.selectedRoute, stopName.text).conditions[i].item = newItem;
+                TrainMenu.instance.selectedRoute.stops[index].conditions[i].item = newItem;
             }
         }
     }
