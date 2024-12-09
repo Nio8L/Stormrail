@@ -46,7 +46,7 @@ public class Condition{
     public Condition(){
         load = true;
         item = DataBase.instance.allItems[0];
-        amount = 1;
+        amount = 0;
     }
 }
 
@@ -72,8 +72,14 @@ public class TrainManager : MonoBehaviour
     }
 
     public void CreateRoute(string routeName){
-        if(GetRoute(routeName) != null) return;
-        routes.Add(new Route(routeName));
+        string checker = routeName;
+        int counter = 0;
+        while(GetRoute(checker) != null){
+            counter++;
+            checker = routeName + "_" + counter;
+        }
+        
+        routes.Add(new Route(checker));
     }
 
     public Route GetRoute(string routeName){

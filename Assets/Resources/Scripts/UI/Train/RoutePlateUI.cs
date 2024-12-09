@@ -12,9 +12,17 @@ public class RoutePlateUI : MonoBehaviour
     }
 
     public void SelectRoute(){
+        if(TrainMenu.instance.routeName.text == routeName.text){
+            return;
+        }
+        
         TrainMenu.instance.DeleteStops();
         TrainMenu.instance.routeName.text = routeName.text;
         TrainMenu.instance.selectedRoute = TrainManager.instance.GetRoute(routeName.text);
         TrainMenu.instance.AddStops();
+    }
+
+    public void DeleteRoute(){
+        TrainMenu.instance.DeleteRoute(this);
     }
 }
