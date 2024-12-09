@@ -17,7 +17,11 @@ public class StationInteractor : MonoBehaviour
                 if (hit.collider.CompareTag("CityTag")){
                     CityMenu.instance.OpenMenu(hit.collider.GetComponent<CityTag>().cityToFollow);
                 }else if (hit.collider.CompareTag("EventBubble")){
-                    DecisionMenu.OpenMenu(hit.collider.GetComponent<DecisionBubble>().decision);
+                    DecisionBubble bubble = hit.collider.GetComponent<DecisionBubble>();
+
+                    DecisionMenu.instance.currentCity = bubble.linkedCity;
+                    DecisionMenu.OpenMenu(bubble.decision);
+                    
                     Destroy(hit.collider.gameObject);
                     break;
                 }

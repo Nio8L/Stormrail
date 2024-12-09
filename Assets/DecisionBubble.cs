@@ -5,6 +5,7 @@ using UnityEngine;
 public class DecisionBubble : MonoBehaviour
 {
     GameObject objectToLookAt;
+    public City linkedCity;
     public SpriteRenderer eventIcon;
     public Decision decision;
 

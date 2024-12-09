@@ -8,17 +8,17 @@ public class HappinessSource
 {
     public string sourceName;
     public float happinessModifier;
-    public float timeLeft;
+    public float daysLeft;
     public bool infiniteDuration;
 
     public HappinessSource(string _sourceName, float _happinessModifier, float _timeLeft, bool _infiniteDuration){
         sourceName = _sourceName;
         happinessModifier = _happinessModifier;
-        timeLeft = _timeLeft;
+        daysLeft = _timeLeft;
         infiniteDuration = _infiniteDuration;
     }
 
     public HappinessSource Copy(){
-        return new HappinessSource(sourceName, happinessModifier, timeLeft, infiniteDuration);
+        return new HappinessSource(sourceName, happinessModifier, daysLeft, infiniteDuration);
     }
 }

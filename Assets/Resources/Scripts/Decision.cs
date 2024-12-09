@@ -16,4 +16,5 @@ public class Decision : ScriptableObject
 public class Option{
     public string optionName;
     public string optionDescription;
+    public HappinessSource happinessSourceToAdd;
 }

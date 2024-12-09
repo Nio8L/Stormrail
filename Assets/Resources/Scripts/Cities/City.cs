@@ -134,7 +134,9 @@ public class City : MonoBehaviour
     }
 
     public void AddHappinessSource(HappinessSource newSource){
-        // Removes a happiness source and updates the cities overall happiness
+        // Adds a happiness source and updates the cities overall happiness
+        newSource = newSource.Copy();
+
         happinessSources.Add(newSource);
         overallHappiness += newSource.happinessModifier;
     }
@@ -155,8 +157,8 @@ public class City : MonoBehaviour
             HappinessSource source = happinessSources[i];
             // If the happiness source has infinite duration turned on don't do anything
             if (!source.infiniteDuration){
-                source.timeLeft -= Time.deltaTime;
-                if (source.timeLeft < 0){
+                source.daysLeft -= Time.deltaTime / DataBase.instance.dayLenghtInSeconds;
+                if (source.daysLeft < 0){
                     RemoveHappinessSource(source);
                     i--;
                 }
@@ -205,6 +207,7 @@ public class City : MonoBehaviour
     }
 
     private void OnMouseUp() {
+        // Rail building
         if (TrainManager.instance.buildMode)
         {
             if(TrainManager.instance.citiesToConnect[0] == null){
@@ -219,5 +222,13 @@ public class City : MonoBehaviour
                 TrainManager.instance.citiesToConnect[1] = null;
             }
         }
+    }
+
+    public void RandomEvent(){
+        // Pick a random event based on the city's happiness
+        //SpawnEvent(eventToSpawn);
+    }
+    public void SpawnEvent(Decision eventToSpawn){
+        // Spawn a certain event ot top of the city
     }
 }
