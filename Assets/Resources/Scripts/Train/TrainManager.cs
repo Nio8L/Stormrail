@@ -3,6 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class Train{
+    public Route currentRoute;
+    public Stop currentStop;
+    public float speed;
+
+    public Train(){
+        currentRoute = new();
+        speed = 1;
+        currentStop = new Stop();
+    }
+
+    public Train(Route newRoute){
+        currentRoute = newRoute;
+        speed = 1;
+        currentStop = currentRoute.stops[0];
+    }
+
+    public void SetRoute(Route newRoute){
+        currentRoute = newRoute;
+        currentStop = currentRoute.stops[0];
+    }
+}
+
+[System.Serializable]
 public class Route{
     public string name;
     public List<Stop> stops;
@@ -15,6 +39,14 @@ public class Route{
     public Route(string routeName){
         name = routeName;
         stops = new();
+    }
+
+    public Stop NextStop(Stop currentStop){
+        int index = stops.IndexOf(currentStop);
+        if(index + 1 < stops.Count){
+            return stops[index + 1];
+        }
+        return null;
     }
 }
 

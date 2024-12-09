@@ -6,13 +6,16 @@ public class Pathfinder : MonoBehaviour
 {
     public static Pathfinder instance;
 
-    public HexTile tile1;
-    public HexTile tile2;
-
     private void Awake() {
         instance = this;
     }
     
+    public List<HexTile> Pathfind(City city1, City city2){
+        HexTile start = MapManager.instance.tiles[city1.coordinates.x, city1.coordinates.y];
+        HexTile end = MapManager.instance.tiles[city2.coordinates.x, city2.coordinates.y];
+        return Pathfind(start, end);
+    }
+
     public List<HexTile> Pathfind(HexTile start, HexTile end){
         Queue<HexTile> frontier = new();
         frontier.Enqueue(start);

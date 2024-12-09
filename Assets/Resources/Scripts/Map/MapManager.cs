@@ -117,6 +117,20 @@ public class MapManager : MonoBehaviour, ISavable
         return new Vector3(xPosition, 0, yPosition);
     }
 
+    public int GetAngle(HexTile tile1, HexTile tile2){
+        Vector2 reference = Vector2.up;
+        Vector2 vector = new Vector2(tile2.transform.position.x - tile1.transform.position.x, tile2.transform.position.z - tile1.transform.position.z);
+        int angle = Mathf.RoundToInt(-Vector2.SignedAngle(reference, vector));
+        return angle;
+    }
+
+    public int GetAngle(Vector3 vector1, Vector3 vector2){
+        Vector2 reference = Vector2.up;
+        Vector2 vector = new Vector2(vector2.x - vector1.x, vector2.z - vector1.z);
+        int angle = Mathf.RoundToInt(-Vector2.SignedAngle(reference, vector));
+        return angle;
+    }
+
     public void LoadData(GameData data)
     {
         if(data.map.mapSize.x == 0){
