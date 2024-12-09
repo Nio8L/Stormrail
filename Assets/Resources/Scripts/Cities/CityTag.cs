@@ -9,15 +9,11 @@ public class CityTag : MonoBehaviour
     GameObject objectToLookAt;
     public TextMeshPro cityNameBox;
 
-    public bool updateRotation;
-
     void Start(){
         cityNameBox.text = cityToFollow.cityName;
         objectToLookAt = Camera.main.gameObject;
     }
     void Update(){
-        if (!updateRotation) return;
-
         Vector3 newPosition = new Vector3(cityToFollow.transform.position.x, cityToFollow.transform.position.y + 1f, cityToFollow.transform.position.z);
         transform.position = newPosition;
 
