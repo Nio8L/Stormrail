@@ -7,21 +7,30 @@ using UnityEngine;
 public class City : MonoBehaviour
 {
     public string cityName;
-    public int population;
-    public int workers;
     public int lastOpenTab = 0;
+    [Header("Inventory and industry")]
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
     public Dictionary<Item, float> consumingThisFrame = new Dictionary<Item, float>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
     public Vector2Int coordinates;
+    [Header("Happiness sources")]
     public List<HappinessSource> happinessSources = new List<HappinessSource>();
+    HappinessSource starvingSource;
+    [Header("Stats")]
+    public int population;
+    public int workers;
     public float overallHappiness;
     public float lockedHappiness;
     public float hungerDrainModifier = 1;
     public float hungerTimer;
-    HappinessSource starvingSource;
+    public float eventTimer;
     public bool starvation = false;
     public List<City> connections = new();
+    [Header("Event pools")]
+    public EventPool eventPoolLowHappiness;
+    public EventPool eventPoolHighHappiness;
+    [Header("Prefabs")]
+    public GameObject prefabEventBubble;
     
 
 
@@ -40,6 +49,7 @@ public class City : MonoBehaviour
         }
 
         starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
+        eventTimer = Random.Range(0f, 60f) + 120f;
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -61,40 +71,62 @@ public class City : MonoBehaviour
     }
 
     void Update(){
-        lockedHappiness = overallHappiness;
-             if (lockedHappiness < 0f) lockedHappiness = 0f;
-        else if (lockedHappiness > 1f) lockedHappiness = 1f;
-
+        // Calculate happiness locked in a range between 0 and 1
+        lockedHappiness = Mathf.Clamp01(overallHappiness);
         
-        ConsumeResources();
-        GainResources();
+        ConsumeResourcesFromIndustries();
+        GainResourcesFromIndustries();
         UpdateSkills();
         HungerDrain();
         UpdateHappinessSourceTimers();
+        SpawnRandomEventTimer();
     }
 
-    void ConsumeResources(){
+    void ConsumeResourcesFromIndustries(){
         // Consumes all resources in consumingThisFrame
         for (int i = 0; i < consumingThisFrame.Count; i++){
             KeyValuePair<Item, float> itemPair = consumingThisFrame.ElementAt(i);
             if (itemPair.Value <= 0) continue;
-            inventory[itemPair.Key] -= itemPair.Value;
-            //Debug.Log("Consuming " + itemPair.Key.itemName + ": " + itemPair.Value);
-            if (inventory[itemPair.Key] < 0){
-                inventory[itemPair.Key] = 0;
-            }
 
+            ConsumeResource(itemPair.Key, itemPair.Value);
             consumingThisFrame[itemPair.Key] = 0;
         }
     }
+    public void ConsumeResource(Item itemToConsume, float amount){
+        // Consume a given resource
+        inventory[itemToConsume] -= amount;
+        if (inventory[itemToConsume] < 0) inventory[itemToConsume] = 0; 
+    }
+    public bool CheckInventoryFor(List<Item> itemsToCheck, List<float> neededAmounts){
+        // Check if there is enough of a list of items
+        bool enoughResources = true;
+        for (int i = 0; i < itemsToCheck.Count; i++){
+            if (inventory[itemsToCheck[i]] < neededAmounts[i]){
+                enoughResources = false;
+            }
+        }
+        return enoughResources;
+                
+    }
+    public bool CheckInventoryFor(Item itemToCheck, float neededAmount){
+        // Check if there is enough of a single item
+        List<Item> itemsToCheck = new List<Item>(){itemToCheck};
+        List<float> neededAmounts = new List<float>(){neededAmount};
+        return CheckInventoryFor(itemsToCheck, neededAmounts);
+    }
 
-    void GainResources(){
+    void GainResourcesFromIndustries(){
+        // Check all industries and find which resources and in what amount should be gained this turn
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
-            // Get every industry in this city
+            // Check every item type
             Item itemToCheck = DataBase.instance.allItems[i];
             float amountToGain = CalculateProduction(itemToCheck) * Time.deltaTime;
-            inventory[itemToCheck] += amountToGain;
+            GainResource(itemToCheck, amountToGain);
         }
+    }
+    public void GainResource(Item itemToGain, float amount){
+        // Gain a single resource
+        inventory[itemToGain] += amount;
     }
 
     public float CalculateProduction(Item itemToCheck){
@@ -150,7 +182,6 @@ public class City : MonoBehaviour
             }
         }
     }
-
     public void UpdateHappinessSourceTimers(){
         // Loop through all happiness sources and check if they should be removed
         for (int i = 0; i < happinessSources.Count; i++){
@@ -165,7 +196,6 @@ public class City : MonoBehaviour
             }
         }
     }
-
     public void UpdateSkills(){
         // Loop though all industries and call update on their skills
         for (int i = 0; i < workersPerIndustry.Count; i++){
@@ -173,6 +203,15 @@ public class City : MonoBehaviour
             foreach (Skill skill in currentIndustry.activeSkills){
                 skill.OnUpdate();
             }
+        }
+    }
+
+    public void SpawnRandomEventTimer(){
+        // Count down and spawn a random event once in a while
+        eventTimer-= Time.deltaTime;
+        if (eventTimer <= 0f){
+            RandomEvent();
+            eventTimer = Random.Range(0, 60f) + 120f;
         }
     }
 
@@ -226,9 +265,21 @@ public class City : MonoBehaviour
 
     public void RandomEvent(){
         // Pick a random event based on the city's happiness
-        //SpawnEvent(eventToSpawn);
+        Decision eventToSpawn = null;
+        if (lockedHappiness <= 0.25f){
+            eventToSpawn = eventPoolLowHappiness.events[Random.Range(0, eventPoolLowHappiness.events.Count)];
+        }else{
+            eventToSpawn = eventPoolHighHappiness.events[Random.Range(0, eventPoolHighHappiness.events.Count)];
+        }
+        SpawnEvent(eventToSpawn);
     }
     public void SpawnEvent(Decision eventToSpawn){
         // Spawn a certain event ot top of the city
+        eventToSpawn = Instantiate(eventToSpawn);
+
+        Vector3 bubblePosition = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        DecisionBubble decisionBubble = Instantiate(prefabEventBubble, bubblePosition, Quaternion.identity).GetComponent<DecisionBubble>();
+        decisionBubble.decision = eventToSpawn;
+        decisionBubble.linkedCity = this;
     }
 }

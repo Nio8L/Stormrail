@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a91d014cae17241b2ab3c07a9bb2c8, type: 3}
+  m_Name: LHRiots
+  m_EditorClassIdentifier: 
+  eventName: Riots in the streets
+  eventDescription: Your people have gone to the streets to protest your handling
+    of the city's resources. They demand compensation and improved conditions.
+  options:
+  - optionName: Give them what they want
+    optionDescription: Give them 1kg of food per person
+    happinessSourceToAdd:
+      sourceName: Food rations
+      happinessModifier: 0.025
+      daysLeft: 3
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume:
+    - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+    amountToConsume:
+    - 1
+    amountMultipliedByPopulation: 1
+  - optionName: Ignore their demands
+    optionDescription: The people will continue rioting.
+    happinessSourceToAdd:
+      sourceName: Demands ignored
+      happinessModifier: -0.05
+      daysLeft: 3
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume: []
+    amountToConsume: []
+    amountMultipliedByPopulation: 0

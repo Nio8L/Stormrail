@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b3e3ba0fe2db445a89cf6c82db95fe, type: 3}
+  m_Name: Low happiness
+  m_EditorClassIdentifier: 
+  events:
+  - {fileID: 11400000, guid: 03d6ca6c638af8c449329fb2a378b7fa, type: 2}
+  - {fileID: 11400000, guid: 9d97a55df7ed01d4ab6d65e554519148, type: 2}
+  - {fileID: 11400000, guid: 808ad6a11d707e04aafb03f172ccd277, type: 2}

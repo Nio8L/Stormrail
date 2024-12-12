@@ -26,6 +26,7 @@ public class DecisionMenu : MonoBehaviour
         instance.optionDescriptionBox.text = newDescription;
     }
     public static void OpenMenu(Decision eventToOpen){
+        // Set up the menu
         instance.currentEvent = eventToOpen;
         instance.gameObject.SetActive(true);
         instance.nameBox.text = eventToOpen.eventName;
@@ -38,20 +39,25 @@ public class DecisionMenu : MonoBehaviour
 
         // Create new options
         for (int i = 0; i < eventToOpen.options.Count; i++){
+            // Check if this option is takeable
+            bool takeable = eventToOpen.options[i].CheckResourceRequirements(instance.currentCity);
+
+            // Spawn the button and set it up
             Transform button = Instantiate(instance.decisionButton, instance.buttonHolder).transform;
             EventOptionButton eventOptionButton = button.GetComponent<EventOptionButton>();
             eventOptionButton.description = eventToOpen.options[i].optionDescription;
             eventOptionButton.index = i;
             button.GetChild(0).GetComponent<TextMeshProUGUI>().text = eventToOpen.options[i].optionName;
+            
+            // Dissable the button if the option is untakeable
+            if (!takeable) button.GetComponent<Button>().interactable = false;
         }
 
         ChangeOptionDescription("");
     }
 
     public static void SelectOption(int index){
-        if (instance.currentEvent.options[index].happinessSourceToAdd.sourceName != ""){
-            instance.currentCity.AddHappinessSource(instance.currentEvent.options[index].happinessSourceToAdd);
-        }
+        instance.currentEvent.options[index].TakeOption(instance.currentCity);
         CloseMenu();
     }
 

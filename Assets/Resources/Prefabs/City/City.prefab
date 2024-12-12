@@ -291,17 +291,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cityName: City
-  population: 0
-  workers: 0
   lastOpenTab: 0
   coordinates: {x: 0, y: 0}
   happinessSources: []
+  population: 0
+  workers: 0
   overallHappiness: 0
   lockedHappiness: 0
   hungerDrainModifier: 1
   hungerTimer: 0
+  eventTimer: 0
   starvation: 0
   connections: []
+  eventPoolLowHappiness: {fileID: 11400000, guid: 88ae23ba8bf186c45a74a86591730d64, type: 2}
+  eventPoolHighHappiness: {fileID: 11400000, guid: 1ee198fc077cf744aa11564f38ed72c9, type: 2}
+  prefabEventBubble: {fileID: 624890835831090984, guid: 2fc8ad07d82e50542a5f0dc30ca66bf7, type: 3}
 --- !u!1 &7880963014501944620
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,4 +428,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cityToFollow: {fileID: 2707575410025525009}
   cityNameBox: {fileID: 852684731909762406}
-  updateRotation: 1
