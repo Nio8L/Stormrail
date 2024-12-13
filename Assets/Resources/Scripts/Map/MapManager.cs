@@ -90,7 +90,7 @@ public class MapManager : MonoBehaviour, ISavable
         }
     }
 
-    private Vector3 GetPositionForHexFromCoordinate(Vector2Int coordinates)
+    public Vector3 GetPositionForHexFromCoordinate(Vector2Int coordinates)
     {
         int column = coordinates.x;
         int row = coordinates.y;
@@ -115,6 +115,30 @@ public class MapManager : MonoBehaviour, ISavable
         
         
         return new Vector3(xPosition, 0, yPosition);
+    }
+
+    public int GetAngle(HexTile tile1, HexTile tile2){
+        Vector2 reference = Vector2.up;
+        Vector2 vector = new Vector2(tile2.transform.position.x - tile1.transform.position.x, tile2.transform.position.z - tile1.transform.position.z);
+        int angle = Mathf.RoundToInt(-Vector2.SignedAngle(reference, vector));
+        return FixAngle(angle);
+    }
+
+    public int GetAngle(Vector3 vector1, Vector3 vector2){
+        Vector2 reference = Vector2.up;
+        Vector2 vector = new Vector2(vector2.x - vector1.x, vector2.z - vector1.z);
+        int angle = Mathf.RoundToInt(-Vector2.SignedAngle(reference, vector));
+        return FixAngle(angle);
+    }
+
+    public static int FixAngle(int angle){
+        if (angle <= -180) angle += 360;
+        else if (angle > 180) angle -= 360;
+        return angle;
+    }
+
+    public HexTile CityToTile(City city){
+        return tiles[city.coordinates.x, city.coordinates.y];
     }
 
     public void LoadData(GameData data)

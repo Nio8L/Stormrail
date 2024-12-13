@@ -25,6 +25,10 @@ public class TrainMenu : MonoBehaviour
         CloseMenu();
     }
 
+    private void Start() {
+        LoadRoutes();
+    }
+    
     public void OpenMenu(){
         baseMenuObject.SetActive(true);
         OpenRouteTab();
@@ -34,6 +38,16 @@ public class TrainMenu : MonoBehaviour
         baseMenuObject.SetActive(false);
         routeMenuObject.SetActive(false);
         trainMenuObject.SetActive(false);
+    }
+
+
+    public void LoadRoutes(){
+        foreach (Route route in TrainManager.instance.routes)
+        {
+            GameObject newRoute = Instantiate(routeObject);
+            newRoute.transform.SetParent(routeHolder.transform);
+            newRoute.GetComponent<RoutePlateUI>().Initialize(route.name);
+        }
     }
 
     public void AddRoute(){

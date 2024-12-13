@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 [Serializable]
 public class ArrayWrapper{
@@ -227,16 +226,112 @@ public class CitySerialized{
 }
 
 [Serializable]
+public class TrainSerialized{
+    public string route;
+    public string stop;
+    public float speed;
+
+    public int currentIndex;
+    public Vector2Serialized cameFrom;
+    public Vector2Serialized goingTo;
+
+    public TrainSerialized(){
+        route = "";
+        stop = "";
+        speed = 1;
+        currentIndex = 0;
+    }
+
+    public TrainSerialized(Train train){
+        route = train.currentRoute.name;
+        stop = train.currentStop.name;
+        speed = train.speed;
+        
+        currentIndex = train.currentIndex;
+        cameFrom = new(train.cameFrom.coordinates.x, train.cameFrom.coordinates.y);
+        goingTo = new(train.goingTo.coordinates.x, train.goingTo.coordinates.y);
+    }
+}
+
+[Serializable]
+public class RouteSerialized{
+    public string name;
+    public List<StopSerialized> stops;
+
+    public RouteSerialized(){
+        name = "";
+        stops = new();
+    }
+    
+    public RouteSerialized(Route route){
+        name = route.name;
+        stops = new();
+        foreach (Stop stop in route.stops)
+        {
+            StopSerialized stopToSerialize = new(stop);
+            stops.Add(stopToSerialize);
+        }
+    }
+}
+
+[Serializable]
+public class StopSerialized{
+    public string city;
+    public string name;
+    public List<ConditionSerialized> conditions;
+
+    public StopSerialized(){
+        city = "";
+        name = "";
+        conditions = new();
+    }
+
+    public StopSerialized(Stop stop){
+        city = stop.city.cityName;
+        name = stop.name;
+        conditions = new();
+        foreach (Condition condition in stop.conditions)
+        {
+            ConditionSerialized conditionToSerialize = new(condition);
+            conditions.Add(conditionToSerialize);
+        }
+    }
+}
+
+[Serializable]
+public class ConditionSerialized{
+    public bool load;
+    public string item;
+    public int amount;
+
+    public ConditionSerialized(){
+        load = false;
+        item = "Food";
+        amount = 0;
+    }
+
+    public ConditionSerialized(Condition condition){
+        load = condition.load;
+        item = condition.item.itemName;
+        amount = condition.amount;
+    }
+}
+
+[Serializable]
 public class GameData
 { 
     public CameraData camera;
     public Map map;
 
     public List<CitySerialized> cities;
+    public List<RouteSerialized> routes;
+    public List<TrainSerialized> trains;
 
     public GameData(){
         camera = new();
         map = new(0);
         cities = new();
+        routes = new();
+        trains = new();
     }
 }

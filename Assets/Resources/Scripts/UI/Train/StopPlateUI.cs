@@ -30,9 +30,6 @@ public class StopPlateUI : MonoBehaviour
         cityList.AddOptions(options);
         cityList.value = cityIndex;
         cityName = cityList.options[cityList.value].text;
-
-        
-        
     }
 
     public void CreateConditionObject(){
@@ -69,6 +66,7 @@ public class StopPlateUI : MonoBehaviour
             if(i == index){
                 TrainMenu.instance.selectedRoute.stops[i].name = cityList.options[cityList.value].text;
                 cityName = cityList.options[cityList.value].text;
+                TrainMenu.instance.selectedRoute.stops[i].city = CityManager.instance.GetCityByName(cityName);
             }
         }
     }

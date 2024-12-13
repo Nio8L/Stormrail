@@ -14,4 +14,14 @@ public class DataBase : MonoBehaviour
     void Awake(){
         instance = this;
     }
+
+    public Item GetItem(string itemName){
+        foreach (Item item in allItems)
+        {
+            if(item.itemName == itemName){
+                return item;
+            }
+        }
+        return null;
+    }
 }
