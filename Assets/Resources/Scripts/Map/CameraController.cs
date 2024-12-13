@@ -21,6 +21,14 @@ public class CameraController : MonoBehaviour, ISavable
     bool hasDragStartPosition = false;
     bool hasRotationStartPosition = false;
 
+    public int maxZoom;
+    public int minZoom;
+
+    bool lockedOn = false;
+    bool continuous = false;
+    GameObject lockedOnTarget;
+    Vector3 lockedOnZoom;
+
     private void Start() {
         newPosition = transform.position;
         newRotation = transform.rotation;
@@ -28,8 +36,37 @@ public class CameraController : MonoBehaviour, ISavable
     }
 
     private void Update() {
+        HandleLockOn();
+        
+        if(lockedOn) return;
+
         HandleMovementInput();
         HandleMouseInput();
+    }
+
+    public void HandleLockOn(){
+        if(lockedOn){
+            transform.position = Vector3.Lerp(transform.position, lockedOnTarget.transform.position, Time.deltaTime * movementTime);
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, lockedOnZoom, Time.deltaTime * movementTime);
+        
+            if(Vector3.Distance(transform.position, lockedOnTarget.transform.position) < 0.1 && Vector3.Distance(cameraTransform.localPosition, lockedOnZoom) < 0.1){
+                newPosition = transform.position;
+                newZoom = cameraTransform.localPosition;
+                
+                if(!continuous){
+                    lockedOn = false;
+                }else {
+                    if(Input.GetMouseButton(0) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
+                        lockedOn = false;
+                    }
+                    
+                    HandleMouseInput();
+                    HandleMovementInput();
+                    
+                }
+            }
+        }
+
     }
 
     public void HandleMouseInput(){
@@ -44,6 +81,16 @@ public class CameraController : MonoBehaviour, ISavable
 
         if(Input.mouseScrollDelta.y != 0){
             newZoom += Input.mouseScrollDelta.y * zoomAmount;
+
+            if(newZoom.y > maxZoom){
+                newZoom.y = maxZoom;
+                newZoom.z = -maxZoom;
+            }
+
+            if(newZoom.y < minZoom){
+                newZoom.y = minZoom;
+                newZoom.z = -minZoom;
+            }
         }
         
         if(Input.GetMouseButtonDown(0)){
@@ -116,15 +163,32 @@ public class CameraController : MonoBehaviour, ISavable
 
         if(Input.GetKey(KeyCode.R)){
             newZoom += zoomAmount;
+            
+            if(newZoom.y < minZoom){
+                newZoom.y = minZoom;
+                newZoom.z = -minZoom;
+            }
         }
 
         if(Input.GetKey(KeyCode.F)){
             newZoom -= zoomAmount;
+
+            if(newZoom.y > maxZoom){
+                newZoom.y = maxZoom;
+                newZoom.z = -maxZoom;
+            }
         }
 
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+
+    public void LockOn(Followable followable){
+        lockedOn = true;
+        lockedOnTarget = followable.gameObject;
+        lockedOnZoom = followable.zoom;
+        continuous = followable.continuous;
     }
 
     public void LoadData(GameData data)

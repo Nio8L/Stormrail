@@ -52,7 +52,6 @@ public class Locomotive : MonoBehaviour
     }
 
     private void Update() {
-        //Debug.Log(currentIndex + 1 >= currentPath.Count);
         if(getRoute){
             train.SetRoute(TrainManager.instance.routes[routeIndex]);
             getRoute = false;
@@ -60,7 +59,7 @@ public class Locomotive : MonoBehaviour
         }
 
         if(!move) return;
-        Debug.Log(train.inventory[DataBase.instance.allItems[0]]);
+
         if(Vector3.Distance(trainObject.transform.position, target) < 0.01){
             if(currentPath == null || currentPath.Count == 0){
                 NextStop();

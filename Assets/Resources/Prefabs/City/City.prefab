@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 1209852298158916348}
   - component: {fileID: 3068726923955385239}
   - component: {fileID: 2707575410025525009}
+  - component: {fileID: 3150826664548313572}
   m_Layer: 0
   m_Name: City
   m_TagString: Untagged
@@ -306,6 +307,19 @@ MonoBehaviour:
   eventPoolLowHappiness: {fileID: 11400000, guid: 88ae23ba8bf186c45a74a86591730d64, type: 2}
   eventPoolHighHappiness: {fileID: 11400000, guid: 1ee198fc077cf744aa11564f38ed72c9, type: 2}
   prefabEventBubble: {fileID: 624890835831090984, guid: 2fc8ad07d82e50542a5f0dc30ca66bf7, type: 3}
+--- !u!114 &3150826664548313572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246544388105287251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3228c3e2ba2e65c448b3ad6e189d1254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoom: {x: 0, y: 25, z: -25}
 --- !u!1 &7880963014501944620
 GameObject:
   m_ObjectHideFlags: 0

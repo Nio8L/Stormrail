@@ -82,6 +82,32 @@ public class CityMenu : MonoBehaviour
         
     }
 
+    public void PreviousCity(){
+        int index = CityManager.instance.cities.IndexOf(currentCity);
+
+        if(index == 0){
+            index = CityManager.instance.cities.Count - 1;
+        }else{
+            index--;
+        }
+
+        OpenMenu(CityManager.instance.cities[index]);
+        CityManager.instance.cities[index].transform.GetComponent<Followable>().LockOn();
+    }
+
+    public void NextCity(){
+        int index = CityManager.instance.cities.IndexOf(currentCity);
+
+        if(index == CityManager.instance.cities.Count - 1){
+            index = 0;
+        }else{
+            index++;
+        }
+
+        OpenMenu(CityManager.instance.cities[index]);
+        CityManager.instance.cities[index].transform.GetComponent<Followable>().LockOn();
+    }
+
     void Update(){
         if (!ignoreClose && Input.GetMouseButtonDown(0) && !RaycastChecker.Check()){
              CloseMenu();
