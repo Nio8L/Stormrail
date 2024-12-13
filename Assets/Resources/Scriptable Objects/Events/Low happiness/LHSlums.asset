@@ -46,7 +46,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
     amountToConsume:
     - 1.5
-    amountMultipliedByPopulation: 0
+    amountMultipliedByPopulation: 1
   - optionName: Ignore their demands
     optionDescription: Your people will be mad.
     happinessSourceToAdd:
@@ -56,8 +56,6 @@ MonoBehaviour:
       infiniteDuration: 1
     itemReward: []
     amountToGain: []
-    itemsToConsume:
-    - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
-    amountToConsume:
-    - 1.5
+    itemsToConsume: []
+    amountToConsume: []
     amountMultipliedByPopulation: 0

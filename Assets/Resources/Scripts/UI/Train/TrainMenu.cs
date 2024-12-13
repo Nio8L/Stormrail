@@ -6,6 +6,8 @@ public class TrainMenu : MonoBehaviour
     public static TrainMenu instance;
 
     [Header("Objects and Holders")]
+    public GameObject baseMenuObject;
+    public GameObject routeMenuObject;
     public GameObject trainMenuObject;
     public GameObject routeHolder;
     public GameObject stopHolder;
@@ -20,6 +22,7 @@ public class TrainMenu : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        CloseMenu();
     }
 
     private void Start() {
@@ -27,10 +30,13 @@ public class TrainMenu : MonoBehaviour
     }
     
     public void OpenMenu(){
-        trainMenuObject.SetActive(true);
+        baseMenuObject.SetActive(true);
+        OpenRouteTab();
     }
 
     public void CloseMenu(){
+        baseMenuObject.SetActive(false);
+        routeMenuObject.SetActive(false);
         trainMenuObject.SetActive(false);
     }
 
@@ -133,5 +139,15 @@ public class TrainMenu : MonoBehaviour
 
     public void BuildMode(){
         TrainManager.instance.buildMode = true;
+    }
+
+    public void OpenRouteTab(){
+        routeMenuObject.SetActive(true);
+        trainMenuObject.SetActive(false);
+    }
+
+    public void OpenTrainTab(){
+        routeMenuObject.SetActive(false);
+        trainMenuObject.SetActive(true);
     }
 }

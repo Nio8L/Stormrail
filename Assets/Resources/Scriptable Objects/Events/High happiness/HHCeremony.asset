@@ -17,24 +17,26 @@ MonoBehaviour:
     of the people lost to the Great storm. They want you to support them in any way
     you can.
   options:
-  - optionName: 
-    optionDescription: 
+  - optionName: Donation
+    optionDescription: Give 100kg of food to the people
     happinessSourceToAdd:
-      sourceName: 
-      happinessModifier: 0
-      daysLeft: 0
+      sourceName: Ceremony
+      happinessModifier: 0.1
+      daysLeft: 7
       infiniteDuration: 0
     itemReward: []
     amountToGain: []
-    itemsToConsume: []
-    amountToConsume: []
+    itemsToConsume:
+    - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+    amountToConsume:
+    - 100
     amountMultipliedByPopulation: 0
   - optionName: Give a speech
-    optionDescription: 
+    optionDescription: Give your people a small happiness boost
     happinessSourceToAdd:
-      sourceName: 
-      happinessModifier: 0
-      daysLeft: 0
+      sourceName: Speech
+      happinessModifier: 0.025
+      daysLeft: 7
       infiniteDuration: 0
     itemReward: []
     amountToGain: []

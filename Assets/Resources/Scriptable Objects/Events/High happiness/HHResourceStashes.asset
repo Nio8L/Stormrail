@@ -12,6 +12,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a91d014cae17241b2ab3c07a9bb2c8, type: 3}
   m_Name: HHResourceStashes
   m_EditorClassIdentifier: 
-  eventName: 
-  eventDescription: 
-  options: []
+  eventName: Resource stashes
+  eventDescription: Your citizen have found hidden resource stashes in old warehouses
+    and have decided to give a part of what they found back to the people.
+  options:
+  - optionName: Take precise machanisms
+    optionDescription: Gain 1 precise mechanism
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward:
+    - {fileID: 11400000, guid: cddfeb764f38c454fb066d46fa65fd36, type: 2}
+    amountToGain:
+    - 1
+    itemsToConsume: []
+    amountToConsume: []
+    amountMultipliedByPopulation: 0
+  - optionName: Take steel and bricks
+    optionDescription: Gain 90 steel and 75 bricks
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward:
+    - {fileID: 11400000, guid: ac15366747f49fc4db478def7d135186, type: 2}
+    - {fileID: 11400000, guid: 9b49326f4a0913848910d0ca054a8687, type: 2}
+    amountToGain:
+    - 90
+    - 75
+    itemsToConsume: []
+    amountToConsume: []
+    amountMultipliedByPopulation: 0
+  - optionName: Take raw resources
+    optionDescription: Gain 115 wood, 90 coal, 80 iron ore and 50 stone.
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward:
+    - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
+    - {fileID: 11400000, guid: c764a9833ce7b994690e5afc271c3bbf, type: 2}
+    - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
+    - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
+    amountToGain:
+    - 115
+    - 90
+    - 80
+    - 50
+    itemsToConsume: []
+    amountToConsume: []
+    amountMultipliedByPopulation: 0

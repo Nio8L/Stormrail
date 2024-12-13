@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b3e3ba0fe2db445a89cf6c82db95fe, type: 3}
   m_Name: High happiness
   m_EditorClassIdentifier: 
-  events: []
+  events:
+  - {fileID: 11400000, guid: a037c30741d38384aa4520addedc16a6, type: 2}
+  - {fileID: 11400000, guid: 02b64af8c690aa14fbcc43a4c39506f8, type: 2}
