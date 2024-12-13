@@ -235,6 +235,9 @@ public class TrainSerialized{
     public Vector2Serialized cameFrom;
     public Vector2Serialized goingTo;
 
+    public List<string> items = new();
+    public List<float> amounts = new();
+
     public TrainSerialized(){
         route = "";
         stop = "";
@@ -250,6 +253,14 @@ public class TrainSerialized{
         currentIndex = train.currentIndex;
         cameFrom = new(train.cameFrom.coordinates.x, train.cameFrom.coordinates.y);
         goingTo = new(train.goingTo.coordinates.x, train.goingTo.coordinates.y);
+
+        items = new();
+        amounts = new();
+        foreach (Item item in train.inventory.Keys)
+        {
+            items.Add(item.itemName);
+            amounts.Add(train.inventory[item]);
+        }
     }
 }
 

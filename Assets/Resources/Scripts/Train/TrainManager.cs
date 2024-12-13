@@ -12,6 +12,8 @@ public class Train{
     public HexTile cameFrom = new();
     public HexTile goingTo = new();
 
+    public Dictionary<Item, float> inventory = new();
+
     public Train(){
         currentRoute = new();
         speed = 1;
@@ -26,6 +28,11 @@ public class Train{
         currentStop = currentRoute.stops[0];
         
         currentIndex = 0;   
+
+        foreach (Item item in DataBase.instance.allItems)
+        {
+            inventory.Add(item, 0);
+        } 
     }
 
     public void SetRoute(Route newRoute){
@@ -33,6 +40,33 @@ public class Train{
         currentStop = currentRoute.stops[0];
         
         currentIndex = 0;
+    }
+
+    public void CompleteCondition(City city, Condition condition){ 
+        if(condition.load){
+            if(city.inventory[condition.item] < condition.amount){         
+                inventory[condition.item] += city.inventory[condition.item];
+                city.inventory[condition.item] -= city.inventory[condition.item];
+            }else{
+                inventory[condition.item] += condition.amount;
+                city.inventory[condition.item] -= condition.amount;
+            }
+        }else{
+            if(inventory[condition.item] < condition.amount){
+                city.inventory[condition.item] += inventory[condition.item];
+                inventory[condition.item] -= inventory[condition.item];
+            }else{
+                city.inventory[condition.item] += condition.amount;
+                inventory[condition.item] -= condition.amount;
+            }
+        }
+    }
+
+    public void CompleteAllConditions(City city, Stop stop){
+        foreach (Condition condition in stop.conditions)
+        {
+            CompleteCondition(city, condition);
+        }
     }
 }
 

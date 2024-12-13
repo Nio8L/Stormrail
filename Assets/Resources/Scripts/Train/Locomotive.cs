@@ -44,6 +44,11 @@ public class Locomotive : MonoBehaviour
     
         start = MapManager.instance.GetPositionForHexFromCoordinate(startCoordinates);
         target = MapManager.instance.GetPositionForHexFromCoordinate(targetCoordinates);
+
+        for(int i = 0; i < trainSerialized.items.Count; i++){
+            Item item = DataBase.instance.GetItem(trainSerialized.items[i]);
+            train.inventory[item] = trainSerialized.amounts[i];
+        }
     }
 
     private void Update() {
@@ -55,21 +60,24 @@ public class Locomotive : MonoBehaviour
         }
 
         if(!move) return;
-
+        Debug.Log(train.inventory[DataBase.instance.allItems[0]]);
         if(Vector3.Distance(trainObject.transform.position, target) < 0.01){
             if(currentPath == null || currentPath.Count == 0){
                 NextStop();
             }else if(train.currentIndex + 1 >= currentPath.Count){
                 train.currentStop = train.currentRoute.NextStop(train.currentStop);
+                train.CompleteAllConditions(train.currentStop.city, train.currentStop);
                 NextStop();
             }else{
                 train.cameFrom = currentPath[train.currentIndex];
                 train.goingTo = currentPath[train.currentIndex + 1];
 
                 train.currentIndex++;
+                
                 start = target;
                 target = currentPath[train.currentIndex].transform.position;
                 target.y = 0.5f;
+
                 moveTimer = 0;
                 trainObject.transform.rotation = Quaternion.Euler(0, MapManager.instance.GetAngle(start, target) - 180, 0);
             }
