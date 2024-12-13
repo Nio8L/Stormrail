@@ -22,12 +22,26 @@ public class TrainMenu : MonoBehaviour
         instance = this;
     }
 
+    private void Start() {
+        LoadRoutes();
+    }
+    
     public void OpenMenu(){
         trainMenuObject.SetActive(true);
     }
 
     public void CloseMenu(){
         trainMenuObject.SetActive(false);
+    }
+
+
+    public void LoadRoutes(){
+        foreach (Route route in TrainManager.instance.routes)
+        {
+            GameObject newRoute = Instantiate(routeObject);
+            newRoute.transform.SetParent(routeHolder.transform);
+            newRoute.GetComponent<RoutePlateUI>().Initialize(route.name);
+        }
     }
 
     public void AddRoute(){
