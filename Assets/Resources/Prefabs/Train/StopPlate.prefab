@@ -180,7 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e3df5dc2ede8d44acb4ccddda53b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   cityList: {fileID: 8197576258928724086}
+  cityName: 
   conditionObject: {fileID: 2857714653033127865, guid: 88d2bd435e3ce1f4e85ab347ac957654, type: 3}
   conditionHolder: {fileID: 3961991235331805303}
 --- !u!1 &2839277481559204140
