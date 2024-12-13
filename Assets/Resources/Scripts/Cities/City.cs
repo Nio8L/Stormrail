@@ -103,6 +103,7 @@ public class City : MonoBehaviour
         for (int i = 0; i < itemsToCheck.Count; i++){
             if (inventory[itemsToCheck[i]] < neededAmounts[i]){
                 enoughResources = false;
+                break;
             }
         }
         return enoughResources;
@@ -168,9 +169,16 @@ public class City : MonoBehaviour
     public void AddHappinessSource(HappinessSource newSource){
         // Adds a happiness source and updates the cities overall happiness
         newSource = newSource.Copy();
-
+        foreach (HappinessSource happinessSource in happinessSources){
+            if (happinessSource.sourceName == newSource.sourceName){
+                happinessSource.daysLeft = newSource.daysLeft;
+                return;
+            }
+        }
         happinessSources.Add(newSource);
         overallHappiness += newSource.happinessModifier;
+
+        CityMenu.instance.tabs[0].GetComponent<OverviewTab>().UpdateInformation();
     }
     public void RemoveHappinessSource(HappinessSource sourceToRemove){
         // Removes a happiness source as well as it's modifier
@@ -181,6 +189,8 @@ public class City : MonoBehaviour
                 break;
             }
         }
+
+        CityMenu.instance.tabs[0].GetComponent<OverviewTab>().UpdateInformation();
     }
     public void UpdateHappinessSourceTimers(){
         // Loop through all happiness sources and check if they should be removed
@@ -211,7 +221,7 @@ public class City : MonoBehaviour
         eventTimer-= Time.deltaTime;
         if (eventTimer <= 0f){
             RandomEvent();
-            eventTimer = Random.Range(0, 60f) + 120f;
+            eventTimer = 10f;//Random.Range(0, 60f) + 120f;
         }
     }
 

@@ -41,12 +41,12 @@ public class CityMenu : MonoBehaviour
         
         // Open the overview tab by default
         OpenTab(tabs[cityToOpen.lastOpenTab]);
+        // Update overview information
+        tabs[0].GetComponent<OverviewTab>().UpdateInformation();
 
         // Makes it so the menu can't be closed on the frame its opened 
         //(This is here to prevent the menu from closing when clicking to open another city while the menu is open)
         ignoreClose = true;
-
-        
     }
 
     public void CloseMenu(){
@@ -79,7 +79,7 @@ public class CityMenu : MonoBehaviour
             tab.SetActive(false);
         }
 
-        
+        if (tabs[0].activeSelf) tabs[0].GetComponent<OverviewTab>().UpdateInformation();
     }
 
     public void PreviousCity(){

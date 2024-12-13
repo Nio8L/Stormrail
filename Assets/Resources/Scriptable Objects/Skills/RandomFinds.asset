@@ -24,6 +24,6 @@ MonoBehaviour:
   perWorker:
   - 0.75
   - 0.75
-  - 1.5
+  - 2.5
   hungerDrainModifier: 1
   setTo: 0
