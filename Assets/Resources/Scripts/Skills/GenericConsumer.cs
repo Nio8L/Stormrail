@@ -24,7 +24,7 @@ public class GenericConsumer : GenericStatAugmentor
         for (int i = 0; i < itemsToConsume.Count; i++){
             float consumption = industry.city.CalculateConsumption(consumptionPerWorker[i], industry.city.workersPerIndustry[industry]) * Time.deltaTime;
             // If there aren't enough items shut off production and stop calculating
-            if (industry.city.inventory[itemsToConsume[i]] < consumption){
+            if (!industry.city.CheckInventoryFor(itemsToConsume[i], consumption)){
                 canProduce = false;
                 break; 
             }
@@ -36,7 +36,6 @@ public class GenericConsumer : GenericStatAugmentor
             // Continue production
             if (!producing){
                 // Restore production
-                Debug.Log("We are back in business");
                 producing = true;
                 for (int i = 0; i < items.Count; i++){
                     if (!setTo){
@@ -54,7 +53,6 @@ public class GenericConsumer : GenericStatAugmentor
             }
         }else if (producing){
             // Stop production
-            Debug.Log("Oh shit oh fuck");
             ReverseEffect();
         }
     }

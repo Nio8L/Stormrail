@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a91d014cae17241b2ab3c07a9bb2c8, type: 3}
+  m_Name: HHCeremony
+  m_EditorClassIdentifier: 
+  eventName: Ceremony
+  eventDescription: Your people have decided that they are holding an event in honor
+    of the people lost to the Great storm. They want you to support them in any way
+    you can.
+  options:
+  - optionName: 
+    optionDescription: 
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume: []
+    amountToConsume: []
+    amountMultipliedByPopulation: 0
+  - optionName: Give a speech
+    optionDescription: 
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume: []
+    amountToConsume: []
+    amountMultipliedByPopulation: 0
