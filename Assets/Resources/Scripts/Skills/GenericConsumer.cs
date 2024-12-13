@@ -10,6 +10,7 @@ public class GenericConsumer : GenericStatAugmentor
     public List<Item> itemsToConsume;
     public List<float> consumptionPerWorker;
     bool producing;
+    Dictionary<Item, float> amountOfItemsToConsume = new Dictionary<Item, float>();
     public override void OnUnlock(Industry _industry)
     {
         base.OnUnlock(_industry);
@@ -19,7 +20,7 @@ public class GenericConsumer : GenericStatAugmentor
     public override void OnUpdate()
     {
         // Find all and calculate all items that need to be consumed
-        Dictionary<Item, float> amountOfItemsToConsume = new Dictionary<Item, float>();
+        amountOfItemsToConsume.Clear();
         bool canProduce = true;
         for (int i = 0; i < itemsToConsume.Count; i++){
             float consumption = industry.city.CalculateConsumption(consumptionPerWorker[i], industry.city.workersPerIndustry[industry]) * Time.deltaTime;
@@ -45,7 +46,7 @@ public class GenericConsumer : GenericStatAugmentor
                     }
                 }
             }
-
+            
             // Consume items
             for (int i = 0; i < amountOfItemsToConsume.Count; i++){
                 KeyValuePair<Item, float> item = amountOfItemsToConsume.ElementAt(i);

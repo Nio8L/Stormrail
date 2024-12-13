@@ -25,4 +25,4 @@ MonoBehaviour:
   itemsToConsume:
   - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
   consumptionPerWorker:
-  - 15
+  - 7.5

@@ -11,6 +11,7 @@ public class TrainMenu : MonoBehaviour
     public GameObject trainMenuObject;
     public GameObject routeHolder;
     public GameObject stopHolder;
+    public TrainOverview trainOverview;
 
     [Header("Route Window")]
     public Route selectedRoute;
@@ -149,5 +150,7 @@ public class TrainMenu : MonoBehaviour
     public void OpenTrainTab(){
         routeMenuObject.SetActive(false);
         trainMenuObject.SetActive(true);
+
+        trainOverview.Initialize();
     }
 }

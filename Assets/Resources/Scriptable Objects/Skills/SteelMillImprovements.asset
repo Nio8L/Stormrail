@@ -20,7 +20,7 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: ac15366747f49fc4db478def7d135186, type: 2}
   perWorker:
-  - 1.75
+  - 2
   hungerDrainModifier: 1
   setTo: 0
   itemsToConsume:
