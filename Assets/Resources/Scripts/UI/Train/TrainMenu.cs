@@ -20,14 +20,20 @@ public class TrainMenu : MonoBehaviour
     [Header("Instantiables")]
     public GameObject routeObject;
     public GameObject stopObject;
+    bool loadedInformation;
 
     private void Awake() {
         instance = this;
         CloseMenu();
     }
 
-    private void Start() {
-        LoadRoutes();
+    void Update() {
+        if (!loadedInformation){
+            loadedInformation = true;
+            routeMenuObject.SetActive(true);
+            LoadRoutes();
+            CloseMenu();
+        }
     }
     
     public void OpenMenu(){
@@ -43,10 +49,10 @@ public class TrainMenu : MonoBehaviour
 
 
     public void LoadRoutes(){
+        Debug.Log(TrainManager.instance.routes.Count);
         foreach (Route route in TrainManager.instance.routes)
         {
-            GameObject newRoute = Instantiate(routeObject);
-            newRoute.transform.SetParent(routeHolder.transform);
+            GameObject newRoute = Instantiate(routeObject, routeHolder.transform);
             newRoute.GetComponent<RoutePlateUI>().Initialize(route.name);
         }
     }

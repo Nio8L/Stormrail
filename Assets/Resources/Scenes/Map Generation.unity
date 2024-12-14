@@ -935,7 +935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826891483831708179, guid: f7c8d78a1923eac43afd4d6607f0465a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -46.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7373128174483331718, guid: f7c8d78a1923eac43afd4d6607f0465a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2307,6 +2307,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 6082741218008509016, guid: 52c7b702ab71a3b49913bc2c296f2bf2, type: 3}
+      propertyPath: maxZoom
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082741218008509016, guid: 52c7b702ab71a3b49913bc2c296f2bf2, type: 3}
+      propertyPath: minZoom
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8162656745075227116, guid: 52c7b702ab71a3b49913bc2c296f2bf2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -2363,7 +2371,7 @@ SceneRoots:
   - {fileID: 641705249}
   - {fileID: 1766243745}
   - {fileID: 1618215796}
-  - {fileID: 982610736}
   - {fileID: 2014366414885222437}
+  - {fileID: 982610736}
   - {fileID: 2076538805036567271}
   - {fileID: 1861657310}

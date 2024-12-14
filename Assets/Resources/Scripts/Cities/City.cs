@@ -178,7 +178,8 @@ public class City : MonoBehaviour
         happinessSources.Add(newSource);
         overallHappiness += newSource.happinessModifier;
 
-        CityMenu.instance.tabs[0].GetComponent<OverviewTab>().UpdateInformation();
+        if (CityMenu.instance != null && CityMenu.instance.currentCity != null)
+            CityMenu.instance.tabs[0].GetComponent<OverviewTab>().UpdateInformation();
     }
     public void RemoveHappinessSource(HappinessSource sourceToRemove){
         // Removes a happiness source as well as it's modifier
@@ -190,7 +191,8 @@ public class City : MonoBehaviour
             }
         }
 
-        CityMenu.instance.tabs[0].GetComponent<OverviewTab>().UpdateInformation();
+        if (CityMenu.instance != null && CityMenu.instance.currentCity != null)
+            CityMenu.instance.tabs[0].GetComponent<OverviewTab>().UpdateInformation();
     }
     public void UpdateHappinessSourceTimers(){
         // Loop through all happiness sources and check if they should be removed
