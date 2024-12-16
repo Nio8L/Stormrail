@@ -205,6 +205,9 @@ public class CitySerialized{
 
     public List<string> connections;
 
+    public float eventTimer;
+    public bool eventActive;
+
     public CitySerialized(){
         cityName = "New Sofia Default";
         population = 0;
@@ -225,6 +228,9 @@ public class CitySerialized{
         starving = false;
 
         connections = new();
+
+        eventTimer = 0;
+        eventActive = false;
     }
 }
 
