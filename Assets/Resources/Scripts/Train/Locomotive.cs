@@ -15,6 +15,11 @@ public class Locomotive : MonoBehaviour
     public bool move = false;
     public bool getRoute = false;
     public int routeIndex = 0;
+
+    private void Start() {
+        FirstMove();
+    }
+
     public void FirstMove(){
         if (train.currentRoute.name == "") return;
         train.currentStop = train.currentRoute.stops[0];
