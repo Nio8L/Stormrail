@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour, ISavable
     bool continuous = false;
     GameObject lockedOnTarget;
     Vector3 lockedOnZoom;
+    bool reachedLockOn = false;
 
     private void Start() {
         newPosition = transform.position;
@@ -49,15 +50,18 @@ public class CameraController : MonoBehaviour, ISavable
             transform.position = Vector3.Lerp(transform.position, lockedOnTarget.transform.position, Time.deltaTime * movementTime);
             cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, lockedOnZoom, Time.deltaTime * movementTime);
         
-            if(Vector3.Distance(transform.position, lockedOnTarget.transform.position) < 0.1 && Vector3.Distance(cameraTransform.localPosition, lockedOnZoom) < 0.1){
+            if(reachedLockOn || (Vector3.Distance(transform.position, lockedOnTarget.transform.position) < 0.1 && Vector3.Distance(cameraTransform.localPosition, lockedOnZoom) < 0.1)){
+                reachedLockOn = true;
                 newPosition = transform.position;
                 newZoom = cameraTransform.localPosition;
                 
                 if(!continuous){
                     lockedOn = false;
+                    reachedLockOn = false;
                 }else {
                     if(Input.GetMouseButton(0) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
                         lockedOn = false;
+                        reachedLockOn = false;
                     }
                     
                     HandleMouseInput();
