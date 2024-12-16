@@ -32,6 +32,10 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.hungerTimer = city.hungerTimer;
             newCity.hungerDrainModifier = city.hungerDrainModifier;
 
+            // Event Saving
+            newCity.eventTimer = city.eventTimer;
+            newCity.eventActive = city.eventActive;
+
             newCity.coordinates = new Vector2Int(city.coordinates.x, city.coordinates.y);
 
             foreach (HappinessSource source in city.happinessSources)
@@ -98,6 +102,10 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.starving = city.starvation;
             newCity.hungerTimer = city.hungerTimer;
             newCity.hungerDrainModifier = city.hungerDrainModifier;
+
+            // Event Saving
+            newCity.eventTimer = city.eventTimer;
+            newCity.eventActive = city.eventActive;
 
             newCity.coordinates = new(city.coordinates.x, city.coordinates.y);
 

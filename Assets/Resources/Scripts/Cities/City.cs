@@ -29,8 +29,11 @@ public class City : MonoBehaviour
     [Header("Event pools")]
     public EventPool eventPoolLowHappiness;
     public EventPool eventPoolHighHappiness;
+    [Header("Events")]
+    public bool eventActive;
     [Header("Prefabs")]
     public GameObject prefabEventBubble;
+    
     
 
 
@@ -49,7 +52,6 @@ public class City : MonoBehaviour
         }
 
         starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
-        eventTimer = Random.Range(0f, 60f) + 120f;
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -73,6 +75,8 @@ public class City : MonoBehaviour
     public void OnFirstCreate(){
         Train newTrain = new Train(cityName + " train");
         TrainManager.instance.InstantiateTrain(new(newTrain));
+
+        eventTimer = Random.Range(0f, 60f) + 120f;
     }
 
     void Update(){
@@ -225,10 +229,12 @@ public class City : MonoBehaviour
 
     public void SpawnRandomEventTimer(){
         // Count down and spawn a random event once in a while
+        if (eventActive) return;
+
         eventTimer-= Time.deltaTime;
         if (eventTimer <= 0f){
             RandomEvent();
-            eventTimer = 10f;//Random.Range(0, 60f) + 120f;
+            eventTimer = Random.Range(0f, 60f) + 120f;
         }
     }
 
@@ -293,6 +299,7 @@ public class City : MonoBehaviour
     public void SpawnEvent(Decision eventToSpawn){
         // Spawn a certain event ot top of the city
         eventToSpawn = Instantiate(eventToSpawn);
+        eventActive = true;
 
         Vector3 bubblePosition = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         DecisionBubble decisionBubble = Instantiate(prefabEventBubble, bubblePosition, Quaternion.identity).GetComponent<DecisionBubble>();

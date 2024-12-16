@@ -57,6 +57,7 @@ public class DecisionMenu : MonoBehaviour
     }
 
     public static void SelectOption(int index){
+        instance.currentCity.eventActive = false;
         instance.currentEvent.options[index].TakeOption(instance.currentCity);
         CloseMenu();
     }
