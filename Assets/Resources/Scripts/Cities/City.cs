@@ -25,7 +25,7 @@ public class City : MonoBehaviour
     public float hungerTimer;
     public float eventTimer;
     public bool starvation = false;
-    public List<City> connections = new();
+    
     [Header("Event pools")]
     public EventPool eventPoolLowHappiness;
     public EventPool eventPoolHighHappiness;
@@ -43,10 +43,10 @@ public class City : MonoBehaviour
             consumingThisFrame.Add(DataBase.instance.allItems[i], 0);
         }
 
-        foreach (City connection in connections)
+        /*foreach (City connection in connections)
         {
             CityManager.instance.BuildRailConnection(this, connection);
-        }
+        }*/
 
         starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
         eventTimer = Random.Range(0f, 60f) + 120f;

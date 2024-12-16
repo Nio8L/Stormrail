@@ -9,7 +9,7 @@ public class OptionColorer : MonoBehaviour
     int index;
 
     public void Initialize(int newIndex){
-        index = newIndex;
+        /*index = newIndex;
 
         cityName = transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
 
@@ -19,7 +19,7 @@ public class OptionColorer : MonoBehaviour
             if(myCity.connections.Contains(previousCity)){
                 transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.red;
             }
-        }
+        }*/
     }
 
     private void Start() {

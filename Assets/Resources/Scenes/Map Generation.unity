@@ -1826,6 +1826,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
   - {fileID: 2100000, guid: 9678dad406490bf4c9c96f1fb92d3276, type: 2}
   - {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
+  railPrefab: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0
@@ -1964,7 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866190419236667102, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: fileName
-      value: trainLoading1.json
+      value: railTest.json
       objectReference: {fileID: 0}
     - target: {fileID: 7822709328555277821, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: m_Name

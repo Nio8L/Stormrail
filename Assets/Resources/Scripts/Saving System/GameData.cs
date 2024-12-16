@@ -59,15 +59,18 @@ public class TransformSerialized{
 public class Tile{
     public Vector2Serialized coordinates;
     public HexTile.Type type;
+    public List<int> angles;
 
     public Tile(){
         coordinates = new Vector2Serialized(0, 0);
         type = HexTile.Type.Empty;
+        angles = new();
     }
 
     public Tile(HexTile hexTile){
         coordinates = new Vector2Serialized(hexTile.coordinates.x, hexTile.coordinates.y);
         type = hexTile.type;
+        angles = hexTile.angles;
     }
 }
 

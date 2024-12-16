@@ -8,7 +8,6 @@ public class CityManager : MonoBehaviour, ISavable
     public List<City> cities;
 
     public GameObject cityPrefab;
-    public GameObject railPrefab;
 
     public Vector2Int coord1;
     public Vector2Int coord2;
@@ -77,12 +76,6 @@ public class CityManager : MonoBehaviour, ISavable
 
             cities.Add(newCity);
         }
-
-        for(int i = 0; i < data.cities.Count; i++){
-            foreach(string cityName in data.cities[i].connections){
-                cities[i].connections.Add(GetCityByName(cityName));
-            }
-        }
     }
 
     public void SaveData(GameData data)
@@ -138,11 +131,6 @@ public class CityManager : MonoBehaviour, ISavable
                 newCity.industries.Add(newIndustry);
                 newCity.workerAmount.Add(city.workersPerIndustry[industry]);
             }
-
-            foreach (City connectedCity in city.connections)
-            {
-                newCity.connections.Add(connectedCity.cityName);
-            }
             data.cities.Add(newCity);
         }
     }
@@ -167,15 +155,7 @@ public class CityManager : MonoBehaviour, ISavable
         return null;
     }
 
-    public void ConnectCities(HexTile tile1, HexTile tile2){
-        GetCityByTile(tile1).connections.Add(GetCityByTile(tile2));
-        GetCityByTile(tile2).connections.Add(GetCityByTile(tile1));
-        BuildRailConnection(tile1, tile2);
-    }
-
     public void ConnectCities(City city1, City city2){
-        city1.connections.Add(city2);
-        city2.connections.Add(city1);
         BuildRailConnection(city1, city2);
     }
 
@@ -196,15 +176,15 @@ public class CityManager : MonoBehaviour, ISavable
     public void BuildRail(HexTile tile1, HexTile tile2){
         int angle = MapManager.instance.GetAngle(tile1, tile2);
         int opposite = MapManager.FixAngle(angle - 180);
-        if(tile1.angles.Contains(angle)){
+        if(tile1.angles.Contains(opposite)){
             return;
         }
-        if(tile2.angles.Contains(opposite)){
+        if(tile2.angles.Contains(angle)){
             return;
         }
-        Instantiate(railPrefab, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
-        Instantiate(railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
-        tile1.angles.Add(angle);
-        tile2.angles.Add(opposite);
+        Instantiate(MapManager.instance.railPrefab, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
+        Instantiate(MapManager.instance.railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
+        tile1.angles.Add(opposite);
+        tile2.angles.Add(angle);
     }
 }

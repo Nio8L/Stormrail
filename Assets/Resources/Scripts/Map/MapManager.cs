@@ -17,6 +17,9 @@ public class MapManager : MonoBehaviour, ISavable
     public HexTile[,] tiles;
     public List<Material> materials;
 
+    [Header("Other")]
+    public GameObject railPrefab;
+
     private void Awake() {
         if(instance != null){
             Debug.LogError("More than one Map Manager found!");
@@ -78,7 +81,7 @@ public class MapManager : MonoBehaviour, ISavable
                 tileObjects.Add(hex);
                 
                 tiles[x, y] = hex.GetComponent<HexTile>();
-                tiles[x, y].Initialize(new Vector2Int(x, y), hexTiles[x, y].type);
+                tiles[x, y].Initialize(new Vector2Int(x, y), hexTiles[x, y].type, hexTiles[x, y].angles);
                 
                 hex.transform.SetParent(transform, true);
             }
@@ -155,6 +158,16 @@ public class MapManager : MonoBehaviour, ISavable
                 hexTiles[x, y] = new();
                 hexTiles[x, y].coordinates = new Vector2Int(x, y);
                 hexTiles[x, y].type = data.map.tiles[x].array[y].type;
+                
+                //Placing rails
+                Vector2Int usedCoordinates = new(hexTiles[x, y].coordinates.x, -hexTiles[x, y].coordinates.y);
+                foreach (int angle in data.map.tiles[x].array[y].angles)
+                {
+                    Debug.Log(x + ", " + y + " - " + angle);
+                    hexTiles[x, y].angles.Add(angle);
+                    Debug.Log(hexTiles[x, y].angles.Count);
+                    Instantiate(railPrefab, GetPositionForHexFromCoordinate(usedCoordinates), Quaternion.Euler(0, angle, 0));
+                }
             }
         }
 

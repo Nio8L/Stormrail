@@ -41,8 +41,9 @@ public class HexTile : MonoBehaviour
         }
     }
 
-    public void Initialize(Vector2Int coordinates, Type type){
+    public void Initialize(Vector2Int coordinates, Type type, List<int> angles){
         this.coordinates = coordinates;
+        this.angles = angles;
         SetType(type);
 
         hexStructure.SetActive(false);
