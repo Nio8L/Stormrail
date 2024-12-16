@@ -93,6 +93,7 @@ public class HexTile : MonoBehaviour
             decorations = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
             CityManager.instance.cities.Add(decorations.GetComponent<City>());
             CityManager.instance.cities[^1].Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
+            decorations.GetComponent<City>().OnFirstCreate();
         }else if(decorations != null && decorations.GetComponent<City>() != null){
             decorations.GetComponent<City>().DestroyCity();
             decorations = null;

@@ -15,23 +15,25 @@ public class Locomotive : MonoBehaviour
     public bool move = false;
     public bool getRoute = false;
     public int routeIndex = 0;
-
-    private void Start() {
-        Invoke("FirstMove", 0.01f);
-    }
-
     public void FirstMove(){
+        if (train.currentRoute.name == "") return;
         currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.city, train.currentRoute.NextStop(train.currentStop).city);
     
         if(currentPath != null && currentPath.Count > 1){
             trainObject.transform.position = currentPath[train.currentIndex].transform.position;
             move = true;
         }
-        
-        TrainManager.instance.trains.Add(train);
     }
-
     public void LoadTrain(TrainSerialized trainSerialized){
+        TrainManager.instance.trains.Add(train);
+        train.name = trainSerialized.name;
+        for(int i = 0; i < trainSerialized.items.Count; i++){
+            Item item = DataBase.instance.GetItem(trainSerialized.items[i]);
+            train.inventory[item] = trainSerialized.amounts[i];
+        }
+
+        if(TrainManager.instance.GetRoute(trainSerialized.route) == null) return;
+        
         //train = new(TrainManager.instance.GetRoute(trainSerialized.route));
         train.currentRoute = TrainManager.instance.GetRoute(trainSerialized.route);
         train.currentStop = TrainManager.instance.GetStop(train.currentRoute, trainSerialized.stop);
@@ -44,11 +46,6 @@ public class Locomotive : MonoBehaviour
     
         start = MapManager.instance.GetPositionForHexFromCoordinate(startCoordinates);
         target = MapManager.instance.GetPositionForHexFromCoordinate(targetCoordinates);
-
-        for(int i = 0; i < trainSerialized.items.Count; i++){
-            Item item = DataBase.instance.GetItem(trainSerialized.items[i]);
-            train.inventory[item] = trainSerialized.amounts[i];
-        }
     }
 
     private void Update() {
@@ -68,8 +65,10 @@ public class Locomotive : MonoBehaviour
                 train.CompleteAllConditions(train.currentStop.city, train.currentStop);
                 NextStop();
             }else{
-                train.cameFrom = currentPath[train.currentIndex];
-                train.goingTo = currentPath[train.currentIndex + 1];
+                train.cameFrom.x = currentPath[train.currentIndex].coordinates.x;
+                train.cameFrom.y = currentPath[train.currentIndex].coordinates.y;
+                train.goingTo.x = currentPath[train.currentIndex + 1].coordinates.x;
+                train.goingTo.y = currentPath[train.currentIndex + 1].coordinates.y;
 
                 train.currentIndex++;
                 
@@ -93,8 +92,10 @@ public class Locomotive : MonoBehaviour
         start = trainObject.transform.position;
         target = currentPath[train.currentIndex].transform.position;
 
-        train.cameFrom = currentPath[0];
-        train.goingTo = currentPath[1];
+        train.cameFrom.x = currentPath[0].coordinates.x;
+        train.cameFrom.y = currentPath[0].coordinates.y;
+        train.goingTo.x = currentPath[1].coordinates.x;
+        train.goingTo.y = currentPath[1].coordinates.y;
     }
 
     public void Move(){

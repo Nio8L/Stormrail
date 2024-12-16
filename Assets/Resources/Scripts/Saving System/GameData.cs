@@ -227,6 +227,7 @@ public class CitySerialized{
 
 [Serializable]
 public class TrainSerialized{
+    public string name;
     public string route;
     public string stop;
     public float speed;
@@ -239,6 +240,7 @@ public class TrainSerialized{
     public List<float> amounts = new();
 
     public TrainSerialized(){
+        name = "";
         route = "";
         stop = "";
         speed = 1;
@@ -246,13 +248,14 @@ public class TrainSerialized{
     }
 
     public TrainSerialized(Train train){
+        name = train.name;
         route = train.currentRoute.name;
         stop = train.currentStop.name;
         speed = train.speed;
         
         currentIndex = train.currentIndex;
-        cameFrom = new(train.cameFrom.coordinates.x, train.cameFrom.coordinates.y);
-        goingTo = new(train.goingTo.coordinates.x, train.goingTo.coordinates.y);
+        cameFrom = new(train.cameFrom.x, train.cameFrom.y);
+        goingTo = new(train.goingTo.x, train.goingTo.y);
 
         items = new();
         amounts = new();

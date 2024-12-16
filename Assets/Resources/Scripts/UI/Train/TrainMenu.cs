@@ -5,6 +5,8 @@ public class TrainMenu : MonoBehaviour
 {
     public static TrainMenu instance;
 
+    
+    [Header("ROUTES")]
     [Header("Objects and Holders")]
     public GameObject baseMenuObject;
     public GameObject routeMenuObject;
@@ -12,6 +14,7 @@ public class TrainMenu : MonoBehaviour
     public GameObject routeHolder;
     public GameObject stopHolder;
     public TrainOverview trainOverview;
+    public GameObject trainNotSelectedWindow;
 
     [Header("Route Window")]
     public Route selectedRoute;
@@ -21,6 +24,13 @@ public class TrainMenu : MonoBehaviour
     public GameObject routeObject;
     public GameObject stopObject;
     bool loadedInformation;
+
+    [Header("TRAINS")]
+    [Header("Objects and Holders")]
+    public GameObject trainHolder;
+    
+    [Header("Instantiables")]
+    public GameObject trainObject;
 
     private void Awake() {
         instance = this;
@@ -49,7 +59,6 @@ public class TrainMenu : MonoBehaviour
 
 
     public void LoadRoutes(){
-        Debug.Log(TrainManager.instance.routes.Count);
         foreach (Route route in TrainManager.instance.routes)
         {
             GameObject newRoute = Instantiate(routeObject, routeHolder.transform);
@@ -157,6 +166,21 @@ public class TrainMenu : MonoBehaviour
         routeMenuObject.SetActive(false);
         trainMenuObject.SetActive(true);
 
-        trainOverview.Initialize();
+        DestroyTrain();
+        LoadTrains();
+    }
+
+    public void LoadTrains(){
+        foreach (Train train in TrainManager.instance.trains)
+        {
+            GameObject newTrain = Instantiate(trainObject, trainHolder.transform);
+            newTrain.GetComponent<TrainPlateUI>().Initialize(train.name);
+        }
+    }
+
+    public void DestroyTrain(){
+        for (int i = trainHolder.transform.childCount; i > 0; i--){
+            DestroyImmediate(trainHolder.transform.GetChild(i-1).gameObject);
+        }
     }
 }

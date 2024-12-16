@@ -4,17 +4,28 @@ using UnityEngine;
 
 [System.Serializable]
 public class Train{
+    public string name;
     public Route currentRoute;
     public Stop currentStop;
     public float speed;
     public int currentIndex;
 
-    public HexTile cameFrom = new();
-    public HexTile goingTo = new();
+    public Vector2Int cameFrom;
+    public Vector2Int goingTo;
 
     public Dictionary<Item, float> inventory = new();
 
     public Train(){
+        name = "";
+        currentRoute = new();
+        speed = 1;
+        currentStop = new Stop();
+        
+        currentIndex = 0;   
+    }
+
+    public Train(string _name){
+        name = _name;
         currentRoute = new();
         speed = 1;
         currentStop = new Stop();
@@ -23,6 +34,7 @@ public class Train{
     }
 
     public Train(Route newRoute){
+        name = "";
         currentRoute = newRoute;
         speed = 1;
         currentStop = currentRoute.stops[0];
@@ -137,6 +149,7 @@ public class TrainManager : MonoBehaviour, ISavable
 
     public List<Route> routes = new();
     public List<Train> trains = new();
+    public List<Locomotive> locomotives = new();
 
     private void Update() {
         if(Input.GetMouseButton(1)) buildMode = false;
@@ -169,6 +182,16 @@ public class TrainManager : MonoBehaviour, ISavable
         }
         
         routes.Add(new Route(checker));
+    }
+
+    public Train GetTrain(string trainName){
+        foreach (Train train in trains)
+        {
+            if(train.name == trainName){
+                return train;
+            }
+        }
+        return null;
     }
 
     public Route GetRoute(string routeName){
@@ -228,11 +251,16 @@ public class TrainManager : MonoBehaviour, ISavable
         }
         
         for(int i = 0; i < data.trains.Count; i++){
-            GameObject newTrain = Instantiate(trainPrefab);
-            Locomotive locomotive = newTrain.GetComponent<Locomotive>();
-            locomotive.trainObject = newTrain;
-            locomotive.LoadTrain(data.trains[i]);
+            InstantiateTrain(data.trains[i]);
         }
+    }
+
+    public void InstantiateTrain(TrainSerialized train){
+        GameObject newTrain = Instantiate(trainPrefab);
+        Locomotive locomotive = newTrain.GetComponent<Locomotive>();
+        locomotive.trainObject = newTrain;
+        locomotive.LoadTrain(train);
+        locomotives.Add(locomotive);
     }
 
     public void SaveData(GameData data)

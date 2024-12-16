@@ -70,6 +70,10 @@ public class City : MonoBehaviour
         AddHappinessSource(baseHappiness);
     }
 
+    public void OnFirstCreate(){
+        TrainManager.instance.InstantiateTrain(new(new(cityName + " train")));
+    }
+
     void Update(){
         // Calculate happiness locked in a range between 0 and 1
         lockedHappiness = Mathf.Clamp01(overallHappiness);
