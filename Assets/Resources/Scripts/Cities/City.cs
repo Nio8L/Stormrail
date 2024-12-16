@@ -71,7 +71,8 @@ public class City : MonoBehaviour
     }
 
     public void OnFirstCreate(){
-        TrainManager.instance.InstantiateTrain(new(new(cityName + " train")));
+        Train newTrain = new Train(cityName + " train");
+        TrainManager.instance.InstantiateTrain(new(newTrain));
     }
 
     void Update(){

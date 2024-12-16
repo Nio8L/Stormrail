@@ -52,6 +52,5 @@ public class ConditionPlateUI : MonoBehaviour
 
     public void ChangeItem(){
         stop.ChangeItem(this, DataBase.instance.allItems[dropdown.value]);
-        Debug.Log(DataBase.instance.allItems[dropdown.value].itemName);
     }
 }

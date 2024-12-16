@@ -9,6 +9,7 @@ public class TrainOverview : MonoBehaviour
     public TMP_Dropdown routeDropdown;
     public TMP_InputField nameInput;
     public TextMeshProUGUI nextStopText;
+    public List<TextMeshProUGUI> inventoryAmounts = new List<TextMeshProUGUI>();
     Train selectedTrain;
     public void Initialize(){
         routeDropdown.ClearOptions();
@@ -35,6 +36,8 @@ public class TrainOverview : MonoBehaviour
             }else{
                 nextStopText.text = "No stop selected";
             }
+            // Update the train's inventory
+            UpdateInventory();
         }
     }
 
@@ -61,6 +64,9 @@ public class TrainOverview : MonoBehaviour
             }
             routeDropdown.value = index;
         }
+
+        // Update the train's inventory
+        UpdateInventory();
     }
 
     public void ChangeTrainName(){
@@ -91,5 +97,12 @@ public class TrainOverview : MonoBehaviour
         selectedTrain.currentRoute = TrainManager.instance.GetRoute(newRouteName);
         int index = TrainManager.instance.trains.IndexOf(selectedTrain);
         TrainManager.instance.locomotives[index].FirstMove();
+    }
+
+    void UpdateInventory(){
+        for (int i = 0; i < selectedTrain.inventory.Count; i++){
+            float amount = selectedTrain.inventory[DataBase.instance.allItems[i]];
+            inventoryAmounts[i].text = amount + "kg";
+        }
     }
 }

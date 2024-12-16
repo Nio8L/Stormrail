@@ -17,6 +17,7 @@ public class Locomotive : MonoBehaviour
     public int routeIndex = 0;
     public void FirstMove(){
         if (train.currentRoute.name == "") return;
+        train.currentStop = train.currentRoute.stops[0];
         currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.city, train.currentRoute.NextStop(train.currentStop).city);
     
         if(currentPath != null && currentPath.Count > 1){
