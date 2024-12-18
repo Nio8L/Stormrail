@@ -23,6 +23,7 @@ public class Option{
     public List<float> amountToGain;
     public List<Item> itemsToConsume;
     public List<float> amountToConsume;
+    public List<string> happinessSourcesToRemove = new();
 
     public bool amountMultipliedByPopulation;
     public bool CheckResourceRequirements(City affectedCity){
@@ -55,10 +56,13 @@ public class Option{
         }
         // Remove items
         for (int i = 0; i < itemsToConsume.Count; i++){
-            Debug.Log("Removing " + amountToConsume[i] * multiplier + " kg of " + itemsToConsume[i].itemName);
             affectedCity.ConsumeResource(itemsToConsume[i], amountToConsume[i] * multiplier);
         }
-
+        // Remove sources
+        for (int i = 0; i < happinessSourcesToRemove.Count; i++){
+            HappinessSource happinessSource = new HappinessSource(happinessSourcesToRemove[i], 0, 0, false);
+            affectedCity.RemoveHappinessSource(happinessSource);
+        }
     }
 }
 

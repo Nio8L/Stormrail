@@ -13,7 +13,6 @@ public class TrainPlateUI : MonoBehaviour
     public void SelectTrain(){
         TrainMenu.instance.trainNotSelectedWindow.SetActive(false);
         TrainMenu.instance.trainOverview.gameObject.SetActive(true);
-        TrainMenu.instance.trainOverview.Initialize();
         TrainMenu.instance.trainOverview.SelectTrain(TrainManager.instance.GetTrain(trainName.text));
     }
 }

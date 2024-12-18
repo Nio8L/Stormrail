@@ -168,6 +168,9 @@ public class TrainMenu : MonoBehaviour
 
         DestroyTrain();
         LoadTrains();
+
+        trainOverview.Initialize();
+        trainOverview.gameObject.SetActive(false);
     }
 
     public void LoadTrains(){

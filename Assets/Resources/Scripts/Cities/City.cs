@@ -77,6 +77,9 @@ public class City : MonoBehaviour
         TrainManager.instance.InstantiateTrain(new(newTrain));
 
         eventTimer = Random.Range(0f, 60f) + 120f;
+
+        inventory[DataBase.instance.allItems[4]] = 20;
+        inventory[DataBase.instance.allItems[0]] = 10;
     }
 
     void Update(){

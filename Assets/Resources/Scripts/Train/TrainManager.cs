@@ -12,7 +12,6 @@ public class Train{
 
     public Vector2Int cameFrom;
     public Vector2Int goingTo;
-
     public Dictionary<Item, float> inventory = new();
 
     public Train(){
@@ -21,7 +20,7 @@ public class Train{
         speed = 1;
         currentStop = new Stop();
         
-        currentIndex = 0;   
+        currentIndex = 0;  
     }
 
     public Train(string _name){
@@ -40,11 +39,6 @@ public class Train{
         currentStop = currentRoute.stops[0];
         
         currentIndex = 0;   
-
-        foreach (Item item in DataBase.instance.allItems)
-        {
-            inventory.Add(item, 0);
-        } 
     }
 
     public void SetRoute(Route newRoute){
@@ -58,17 +52,18 @@ public class Train{
         if(condition.load){
             if(city.inventory[condition.item] < condition.amount){         
                 inventory[condition.item] += city.inventory[condition.item];
-                city.inventory[condition.item] -= city.inventory[condition.item];
+                city.ConsumeResource(condition.item, city.inventory[condition.item]);
             }else{
                 inventory[condition.item] += condition.amount;
                 city.inventory[condition.item] -= condition.amount;
+                city.ConsumeResource(condition.item, condition.amount);
             }
         }else{
             if(inventory[condition.item] < condition.amount){
-                city.inventory[condition.item] += inventory[condition.item];
+                city.GainResource(condition.item, inventory[condition.item]);
                 inventory[condition.item] -= inventory[condition.item];
             }else{
-                city.inventory[condition.item] += condition.amount;
+                city.GainResource(condition.item, condition.amount);
                 inventory[condition.item] -= condition.amount;
             }
         }

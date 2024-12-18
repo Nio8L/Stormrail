@@ -8,6 +8,7 @@ public class DataBase : MonoBehaviour
     public static DataBase instance;
     public List<Item> allItems = new List<Item>();
     public List<Industry> allIndustries = new List<Industry>();
+    public List<IndustryLevelArray> industryLevelCosts;
     public float dayLenghtInSeconds;
     public float baseFoodConsumedPerDayPerPerson;
 

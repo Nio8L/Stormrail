@@ -18,6 +18,12 @@ public class Locomotive : MonoBehaviour
 
     private void Start() {
         FirstMove();
+        if (train.inventory.Count != 0) return;
+        
+        foreach (Item item in DataBase.instance.allItems)
+        {
+            train.inventory.Add(item, 0);
+        } 
     }
 
     public void FirstMove(){
