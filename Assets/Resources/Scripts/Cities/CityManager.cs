@@ -162,37 +162,4 @@ public class CityManager : MonoBehaviour, ISavable
         }
         return null;
     }
-
-    public void ConnectCities(City city1, City city2){
-        BuildRailConnection(city1, city2);
-    }
-
-    public void BuildRailConnection(HexTile tile1, HexTile tile2){
-        List<HexTile> path = Pathfinder.instance.Pathfind(tile1, tile2);
-        for(int i = 0; i < path.Count - 1; i++){
-            BuildRail(path[i], path[i + 1]);
-        }
-    }
-
-    public void BuildRailConnection(City city1, City city2){
-        HexTile tile1 = MapManager.instance.tiles[city1.coordinates.x, city1.coordinates.y];
-        HexTile tile2 = MapManager.instance.tiles[city2.coordinates.x, city2.coordinates.y];
-
-        BuildRailConnection(tile1, tile2);
-    }
-
-    public void BuildRail(HexTile tile1, HexTile tile2){
-        int angle = MapManager.instance.GetAngle(tile1, tile2);
-        int opposite = MapManager.FixAngle(angle - 180);
-        if(tile1.angles.Contains(opposite)){
-            return;
-        }
-        if(tile2.angles.Contains(angle)){
-            return;
-        }
-        Instantiate(MapManager.instance.railPrefab, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
-        Instantiate(MapManager.instance.railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
-        tile1.angles.Add(opposite);
-        tile2.angles.Add(angle);
-    }
 }

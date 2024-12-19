@@ -154,7 +154,7 @@ public class TrainMenu : MonoBehaviour
     }
 
     public void BuildMode(){
-        TrainManager.instance.buildMode = true;
+        MapManager.instance.buildMode = true;
     }
 
     public void OpenRouteTab(){

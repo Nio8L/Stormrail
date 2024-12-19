@@ -271,24 +271,6 @@ public class City : MonoBehaviour
         }
     }
 
-    private void OnMouseUp() {
-        // Rail building
-        if (TrainManager.instance.buildMode)
-        {
-            if(TrainManager.instance.citiesToConnect[0] == null){
-                //Pathfinder.instance.tile1 = MapManager.instance.tiles[coordinates.x, coordinates.y];
-                TrainManager.instance.citiesToConnect[0] = this;
-            }else{
-                //Pathfinder.instance.tile2 = MapManager.instance.tiles[coordinates.x, coordinates.y];
-                TrainManager.instance.citiesToConnect[1] = this;
-                CityManager.instance.ConnectCities(TrainManager.instance.citiesToConnect[0], TrainManager.instance.citiesToConnect[1]);
-                
-                TrainManager.instance.citiesToConnect[0] = null;
-                TrainManager.instance.citiesToConnect[1] = null;
-            }
-        }
-    }
-
     public void RandomEvent(){
         // Pick a random event based on the city's happiness
         Decision eventToSpawn = null;

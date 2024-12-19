@@ -2081,12 +2081,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {x: 10, y: 10}
   hexPrefab: {fileID: 4232830378493009381, guid: cd2433e01e018cb4bad1818ab988aee7, type: 3}
+  hoveredTile: {fileID: 0}
   materials:
   - {fileID: 2100000, guid: 7f9525d46e2310941b0c45f0a0d2b6db, type: 2}
   - {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
   - {fileID: 2100000, guid: 9678dad406490bf4c9c96f1fb92d3276, type: 2}
   - {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
   railPrefab: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
+  railPreview: {fileID: 2977944447383639479, guid: 27dc216fdba976d41a43c4396f1fc46c, type: 3}
+  buildMode: 0
+  previewRails: []
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0
@@ -2114,6 +2118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1656164cdc55c4c9db71a0a291db67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tile1: {fileID: 0}
+  tile2: {fileID: 0}
 --- !u!1001 &2014366414885222437
 PrefabInstance:
   m_ObjectHideFlags: 0

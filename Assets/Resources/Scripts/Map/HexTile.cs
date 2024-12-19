@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class HexTile : MonoBehaviour
 {
@@ -106,10 +103,14 @@ public class HexTile : MonoBehaviour
         //Reveal();
         if (RaycastChecker.Check()) return;
 
-        if(type == Type.City){
-            SetTypeDecoration(Type.Empty);
+        if(!MapManager.instance.buildMode){ 
+            if(type == Type.City){
+                SetTypeDecoration(Type.Empty);
+            }else{
+                SetTypeDecoration(type + 1);
+            }
         }else{
-            SetTypeDecoration(type + 1);
+            Pathfinder.instance.TryToConnect(this);
         }
 
         //Debug.Log(walkable);
@@ -149,4 +150,8 @@ public class HexTile : MonoBehaviour
         return new Vector2Int(q, r);
     }
 
+    private void OnMouseEnter() {
+        MapManager.instance.hoveredTile = this;
+        MapManager.instance.UpdatePreview();
+    }
 }

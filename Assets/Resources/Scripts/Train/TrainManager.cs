@@ -139,16 +139,9 @@ public class TrainManager : MonoBehaviour, ISavable
 
     public GameObject trainPrefab;
 
-    public bool buildMode = false;
-    public City[] citiesToConnect = new City[2];
-
     public List<Route> routes = new();
     public List<Train> trains = new();
     public List<Locomotive> locomotives = new();
-
-    private void Update() {
-        if(Input.GetMouseButton(1)) buildMode = false;
-    }
 
     private void Start() {
         foreach (Route route in routes)

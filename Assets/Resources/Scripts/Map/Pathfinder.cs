@@ -5,15 +5,28 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     public static Pathfinder instance;
+    public HexTile tile1;
+    public HexTile tile2;
 
     private void Awake() {
         instance = this;
     }
-    
-    public List<HexTile> Pathfind(City city1, City city2){
-        HexTile start = MapManager.instance.CityToTile(city1);
-        HexTile end = MapManager.instance.CityToTile(city2);
-        return Pathfind(start, end);
+
+    public void TryToConnect(HexTile tile){
+        if(tile1 == null){
+            tile1 = tile;
+        }else{
+            tile2 = tile;
+            
+            MapManager.instance.BuildRailConnection(tile1, tile2);
+            
+            ResetTiles();
+        }
+    }
+
+    public void ResetTiles(){
+        tile1 = null;
+        tile2 = null;
     }
 
     public List<HexTile> Pathfind(HexTile start, HexTile end){
