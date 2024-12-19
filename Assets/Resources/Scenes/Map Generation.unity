@@ -2085,12 +2085,16 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 7f9525d46e2310941b0c45f0a0d2b6db, type: 2}
   - {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
-  - {fileID: 2100000, guid: 9678dad406490bf4c9c96f1fb92d3276, type: 2}
+  - {fileID: 2100000, guid: 839edeb2248562643a671d3e39f9f603, type: 2}
   - {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
   railPrefab: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
   railPreview: {fileID: 2977944447383639479, guid: 27dc216fdba976d41a43c4396f1fc46c, type: 3}
   buildMode: 0
   previewRails: []
+  decorationsMountain:
+  - {fileID: 738523665447896018, guid: f9023f3eacca93141a39b0440551480a, type: 3}
+  - {fileID: 4767041036268794418, guid: 206c55c7bbc34d848be6f7ff61a5979d, type: 3}
+  - {fileID: 7166508955324613045, guid: 069fd91e19e37a7468e065a1ab93eae7, type: 3}
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0

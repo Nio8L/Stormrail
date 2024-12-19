@@ -87,15 +87,25 @@ public class HexTile : MonoBehaviour
 
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
+        if (decorations != null){
+            if (decorations.GetComponent<City>() != null){
+                decorations.GetComponent<City>().DestroyCity();
+                decorations = null;
+            }else{
+                Destroy(decorations);
+            }
+        }
+
         if(newType == Type.City){
             decorations = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
             CityManager.instance.cities.Add(decorations.GetComponent<City>());
             CityManager.instance.cities[^1].Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
             decorations.GetComponent<City>().OnFirstCreate();
-        }else if(decorations != null && decorations.GetComponent<City>() != null){
-            decorations.GetComponent<City>().DestroyCity();
-            decorations = null;
+        }else if (newType == Type.Mountain){
+            GameObject prefabMountain = MapManager.instance.decorationsMountain[UnityEngine.Random.Range(0, MapManager.instance.decorationsMountain.Count)];
+            decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
         }
+        
     }
 
     private void OnMouseDown() {

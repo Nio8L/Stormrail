@@ -24,6 +24,9 @@ public class MapManager : MonoBehaviour, ISavable
     public bool buildMode = false;
     public List<GameObject> previewRails;
 
+    [Header("Other")]
+    public List<GameObject> decorationsMountain;
+
     private void Awake() {
         if(instance != null){
             Debug.LogError("More than one Map Manager found!");
