@@ -47,8 +47,8 @@ public class CameraController : MonoBehaviour, ISavable
 
     public void HandleLockOn(){
         if(lockedOn){
-            transform.position = Vector3.Lerp(transform.position, lockedOnTarget.transform.position, Time.deltaTime * movementTime);
-            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, lockedOnZoom, Time.deltaTime * movementTime);
+            transform.position = Vector3.Lerp(transform.position, lockedOnTarget.transform.position, Time.unscaledDeltaTime * movementTime);
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, lockedOnZoom, Time.unscaledDeltaTime * movementTime);
         
             if(reachedLockOn || (Vector3.Distance(transform.position, lockedOnTarget.transform.position) < 0.1 && Vector3.Distance(cameraTransform.localPosition, lockedOnZoom) < 0.1)){
                 reachedLockOn = true;
@@ -183,9 +183,9 @@ public class CameraController : MonoBehaviour, ISavable
             }
         }
 
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        transform.position = Vector3.Lerp(transform.position, newPosition, Time.unscaledDeltaTime * movementTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.unscaledDeltaTime * movementTime);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.unscaledDeltaTime * movementTime);
     }
 
     public void LockOn(Followable followable){
