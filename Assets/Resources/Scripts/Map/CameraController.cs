@@ -220,4 +220,9 @@ public class CameraController : MonoBehaviour, ISavable
                                                                 transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
         data.camera = new(cameraTransformSerialized, cameraRigTransformSerialized);
     }
+
+    public int GetPriority()
+    {
+        return 0;
+    }
 }

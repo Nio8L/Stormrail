@@ -3224,6 +3224,8 @@ MonoBehaviour:
   - {fileID: 738523665447896018, guid: f9023f3eacca93141a39b0440551480a, type: 3}
   - {fileID: 4767041036268794418, guid: 206c55c7bbc34d848be6f7ff61a5979d, type: 3}
   - {fileID: 7166508955324613045, guid: 069fd91e19e37a7468e065a1ab93eae7, type: 3}
+  decorationsForest:
+  - {fileID: 5226707672330125733, guid: 9a6d3ba63a3325c4c981a0d9e8cfca04, type: 3}
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0
@@ -3364,7 +3366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866190419236667102, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: fileName
-      value: 
+      value: TerrainTestings
       objectReference: {fileID: 0}
     - target: {fileID: 7822709328555277821, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: m_Name

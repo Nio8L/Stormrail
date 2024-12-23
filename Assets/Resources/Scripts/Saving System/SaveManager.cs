@@ -62,7 +62,18 @@ public class SaveManager : MonoBehaviour
     private List<ISavable> FindAllSavableObjects()
     {
         IEnumerable<ISavable> savableObjects = FindObjectsOfType<MonoBehaviour>().OfType<ISavable>();
+        List<ISavable> savablesList = new List<ISavable>(savableObjects);
 
-        return new List<ISavable>(savableObjects);
+        for (int select = 0; select < savablesList.Count-1; select++){
+            int prio1 = savablesList[select].GetPriority();
+            for (int look = select+1; look < savablesList.Count; look++){
+                float prio2 = savablesList[look].GetPriority();
+                if (prio1 > prio2){
+                    (savablesList[look], savablesList[select]) = (savablesList[select], savablesList[look]);
+                }
+            }
+        }
+
+        return savablesList;
     }
 }

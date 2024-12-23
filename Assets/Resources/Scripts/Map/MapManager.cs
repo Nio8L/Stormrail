@@ -26,6 +26,7 @@ public class MapManager : MonoBehaviour, ISavable
 
     [Header("Other")]
     public List<GameObject> decorationsMountain;
+    public List<GameObject> decorationsForest;
 
     private void Awake() {
         if(instance != null){
@@ -254,5 +255,10 @@ public class MapManager : MonoBehaviour, ISavable
                 data.map.tiles[x].array[y] = new(tiles[x, y]);
             }
         }
+    }
+
+    public int GetPriority()
+    {
+        return 0;
     }
 }

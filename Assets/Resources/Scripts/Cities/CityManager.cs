@@ -162,4 +162,9 @@ public class CityManager : MonoBehaviour, ISavable
         }
         return null;
     }
+
+    public int GetPriority()
+    {
+        return 1;
+    }
 }

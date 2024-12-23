@@ -142,17 +142,6 @@ public class TrainManager : MonoBehaviour, ISavable
     public List<Route> routes = new();
     public List<Train> trains = new();
     public List<Locomotive> locomotives = new();
-
-    private void Start() {
-        foreach (Route route in routes)
-        {
-            foreach (Stop stop in route.stops)
-            {
-                stop.city = CityManager.instance.GetCityByName(stop.name);
-            }
-        }
-    }
-
     private void Awake() {
         instance = this;
     }
@@ -214,7 +203,7 @@ public class TrainManager : MonoBehaviour, ISavable
             for(int j = 0; j < routeSerialized.stops.Count; j++){
                 StopSerialized stopSerialized = routeSerialized.stops[j];
                 Stop stopToLoad = new();
-                //stopToLoad.city = CityManager.instance.GetCityByName(stopSerialized.city);
+                stopToLoad.city = CityManager.instance.GetCityByName(stopSerialized.city);
                 stopToLoad.name = stopSerialized.name;
                 
                 List<Condition> conditionsToLoad = new();
@@ -266,5 +255,10 @@ public class TrainManager : MonoBehaviour, ISavable
             TrainSerialized trainToSave = new(trains[i]);
             data.trains.Add(trainToSave);
         }
+    }
+
+    public int GetPriority()
+    {
+        return 2;
     }
 }
