@@ -64,14 +64,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6568728518362152609, guid: 1dab3be30fb552447bd00d50c992b358, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 591169dfa9b6f8f4ab304649906bc130, type: 2}
     - target: {fileID: -2497406581712245667, guid: 1dab3be30fb552447bd00d50c992b358, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
     - target: {fileID: 919132149155446097, guid: 1dab3be30fb552447bd00d50c992b358, type: 3}
       propertyPath: m_Name
-      value: RailPrefab 1
+      value: RailPreview
       objectReference: {fileID: 0}
+    - target: {fileID: 5696494855991954268, guid: 1dab3be30fb552447bd00d50c992b358, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68e62e9154461a8409cae9a6fd73a378, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
