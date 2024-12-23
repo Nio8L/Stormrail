@@ -7,6 +7,7 @@ public class HexTile : MonoBehaviour
     public Vector2Int coordinates;
 
     public bool revealed = false;
+    public Material hiddenMaterial;
 
     public GameObject hexStructure;
 
@@ -28,13 +29,23 @@ public class HexTile : MonoBehaviour
     
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;
+
+        if(!revealed){
+            MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+
+            meshRenderer.material = hiddenMaterial;
+        }
+
+        SpawnDecoration(type);
+        
     }
 
-    public void Initialize(Vector2Int coordinates, Type type, List<int> angles, int decorationIndex){
-        this.coordinates = coordinates;
-        this.angles = angles;
-        this.decorationIndex = decorationIndex;
-        SetType(type);
+    public void Initialize(HexTile hex){
+        coordinates = hex.coordinates;
+        angles = hex.angles;
+        decorationIndex = hex.decorationIndex;
+        revealed = hex.revealed;
+        SetType(hex.type);
         
         if(type == Type.Mountain){
             GameObject prefabMountain = MapManager.instance.decorationsMountain[decorationIndex];
@@ -43,10 +54,22 @@ public class HexTile : MonoBehaviour
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
             decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         }
+
+        if(!revealed){
+            MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+
+            meshRenderer.material = hiddenMaterial;
+            decorations.SetActive(false);
+        }
     }
 
     public void Reveal(){
+        revealed = true;
 
+        MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+        meshRenderer.material = MapManager.instance.materials[(int)type];
+
+        decorations.SetActive(true);
     }
 
     public void SetType(Type newType){
@@ -86,6 +109,11 @@ public class HexTile : MonoBehaviour
             }
         }
 
+        SpawnDecoration(newType);
+        
+    }
+
+    public void SpawnDecoration(Type newType){
         if(newType == Type.City){
             decorations = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
             CityManager.instance.cities.Add(decorations.GetComponent<City>());
@@ -100,7 +128,10 @@ public class HexTile : MonoBehaviour
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
             decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         }
-        
+
+        if(!revealed){
+            decorations.SetActive(false);
+        }
     }
 
     private void OnMouseDown() {
@@ -109,10 +140,15 @@ public class HexTile : MonoBehaviour
         if (RaycastChecker.Check()) return;
 
         if(!MapManager.instance.buildMode){ 
-            if(type == Type.City){
-                SetTypeDecoration(Type.Empty);
+            if (revealed)
+            {
+                if(type == Type.City){
+                    SetTypeDecoration(Type.Empty);
+                }else{
+                    SetTypeDecoration(type + 1);
+                }
             }else{
-                SetTypeDecoration(type + 1);
+                Reveal();
             }
         }else{
             Pathfinder.instance.TryToConnect(this);
