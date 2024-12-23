@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coordinates: {x: 0, y: 0}
-  fogged: 0
+  revealed: 0
   hexStructure: {fileID: 1520276586783198287}
   decorations: {fileID: 0}
   decorationIndex: 0

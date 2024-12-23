@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8719454951683086028, guid: ba41d0f046f04e741b2dff620e612c35, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
+      objectReference: {fileID: 2100000, guid: 17aed5439f60f8d4c904bf570908f74c, type: 2}
     - target: {fileID: -8679921383154817045, guid: ba41d0f046f04e741b2dff620e612c35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -55,11 +55,11 @@ PrefabInstance:
     - target: {fileID: -7364549167570426774, guid: ba41d0f046f04e741b2dff620e612c35, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
+      objectReference: {fileID: 2100000, guid: 839edeb2248562643a671d3e39f9f603, type: 2}
     - target: {fileID: -6652725513331149018, guid: ba41d0f046f04e741b2dff620e612c35, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7f9525d46e2310941b0c45f0a0d2b6db, type: 2}
+      objectReference: {fileID: 2100000, guid: 48c20e91d9613dc4e888c8b810b32805, type: 2}
     - target: {fileID: 919132149155446097, guid: ba41d0f046f04e741b2dff620e612c35, type: 3}
       propertyPath: m_Name
       value: Train
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   train:
+    name: 
     currentRoute:
       name: 
       stops: []
@@ -105,8 +106,8 @@ MonoBehaviour:
       conditions: []
     speed: 1
     currentIndex: 0
-    cameFrom: {fileID: 0}
-    goingTo: {fileID: 0}
+    cameFrom: {x: 0, y: 0}
+    goingTo: {x: 0, y: 0}
   trainObject: {fileID: 1338167289464354352}
   currentPath: []
   target: {x: 0, y: 0, z: 0}

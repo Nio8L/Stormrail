@@ -41,7 +41,7 @@ public class HexTile : MonoBehaviour
             decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
         }else if(type == Type.Forest){
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
-            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0.24f, 0.3f), Quaternion.Euler(0, 0, 0));
+            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         }
     }
 
