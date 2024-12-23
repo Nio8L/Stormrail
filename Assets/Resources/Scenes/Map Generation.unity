@@ -3213,7 +3213,7 @@ MonoBehaviour:
   hoveredTile: {fileID: 0}
   materials:
   - {fileID: 2100000, guid: 7f9525d46e2310941b0c45f0a0d2b6db, type: 2}
-  - {fileID: 2100000, guid: ba5bcadb519898c46a1d3c93f2f31ede, type: 2}
+  - {fileID: 2100000, guid: 591169dfa9b6f8f4ab304649906bc130, type: 2}
   - {fileID: 2100000, guid: 839edeb2248562643a671d3e39f9f603, type: 2}
   - {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
   railPrefab: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
@@ -3226,6 +3226,7 @@ MonoBehaviour:
   - {fileID: 7166508955324613045, guid: 069fd91e19e37a7468e065a1ab93eae7, type: 3}
   decorationsForest:
   - {fileID: 5226707672330125733, guid: 9a6d3ba63a3325c4c981a0d9e8cfca04, type: 3}
+  - {fileID: 2905584363075838803, guid: 164f039d7d608804aa89958b70505264, type: 3}
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0
@@ -3366,7 +3367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866190419236667102, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: fileName
-      value: TerrainTestings
+      value: TerrainTestings.json
       objectReference: {fileID: 0}
     - target: {fileID: 7822709328555277821, guid: a33f442436e40f24385caa10e77fe4e4, type: 3}
       propertyPath: m_Name
