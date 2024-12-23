@@ -92,7 +92,7 @@ public class Pathfinder : MonoBehaviour
             {
                 if(!cameFrom.ContainsKey(neighbor)){
                     int angle = MapManager.instance.GetAngle(current, neighbor);
-                    if((current.angles.Contains(angle) && neighbor.angles.Contains(MapManager.FixAngle(angle - 180))) || (current.angles.Contains(MapManager.FixAngle(angle - 180)) && neighbor.angles.Contains(angle))){
+                    if((current.angles.Contains(MapManager.FixAngle(angle - 180)) && neighbor.angles.Contains(angle))){
                         frontier.Enqueue(neighbor);
                         cameFrom[neighbor] = current;
                     }
