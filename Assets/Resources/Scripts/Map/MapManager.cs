@@ -101,7 +101,7 @@ public class MapManager : MonoBehaviour, ISavable
                 tileObjects.Add(hex);
                 
                 tiles[x, y] = hex.GetComponent<HexTile>();
-                tiles[x, y].Initialize(new Vector2Int(x, y), hexTiles[x, y].type, hexTiles[x, y].angles);
+                tiles[x, y].Initialize(new Vector2Int(x, y), hexTiles[x, y].type, hexTiles[x, y].angles, hexTiles[x, y].decorationIndex);
                 
                 hex.transform.SetParent(transform, true);
             }
@@ -232,6 +232,7 @@ public class MapManager : MonoBehaviour, ISavable
                 hexTiles[x, y] = new();
                 hexTiles[x, y].coordinates = new Vector2Int(x, y);
                 hexTiles[x, y].type = data.map.tiles[x].array[y].type;
+                hexTiles[x, y].decorationIndex = data.map.tiles[x].array[y].decorationIndex;
                 
                 //Placing rails
                 Vector2Int usedCoordinates = new(hexTiles[x, y].coordinates.x, -hexTiles[x, y].coordinates.y);

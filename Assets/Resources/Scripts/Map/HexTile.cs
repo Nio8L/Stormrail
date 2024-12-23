@@ -6,12 +6,12 @@ public class HexTile : MonoBehaviour
 {
     public Vector2Int coordinates;
 
-    public bool fogged = false;
+    public bool revealed = false;
 
     public GameObject hexStructure;
-    public ParticleSystem cloudParticles;
 
     public GameObject decorations;
+    public int decorationIndex;
 
     public enum Type{
         Empty,
@@ -28,35 +28,25 @@ public class HexTile : MonoBehaviour
     
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;
-        
-        hexStructure.SetActive(false);
-        
-        if(fogged){
-            cloudParticles.Play();
-        }else{
-            Reveal();
-        }
     }
 
-    public void Initialize(Vector2Int coordinates, Type type, List<int> angles){
+    public void Initialize(Vector2Int coordinates, Type type, List<int> angles, int decorationIndex){
         this.coordinates = coordinates;
         this.angles = angles;
+        this.decorationIndex = decorationIndex;
         SetType(type);
-
-        hexStructure.SetActive(false);
         
-        if(fogged){
-            cloudParticles.Play();
-        }else{
-            Reveal();
+        if(type == Type.Mountain){
+            GameObject prefabMountain = MapManager.instance.decorationsMountain[decorationIndex];
+            decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
+        }else if(type == Type.Forest){
+            GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
+            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0.24f, 0.3f), Quaternion.Euler(0, 0, 0));
         }
     }
 
     public void Reveal(){
-        fogged = false;
-        cloudParticles.Stop();
-        cloudParticles.gameObject.SetActive(false);
-        hexStructure.SetActive(true);
+
     }
 
     public void SetType(Type newType){
@@ -102,10 +92,12 @@ public class HexTile : MonoBehaviour
             CityManager.instance.cities[^1].Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
             decorations.GetComponent<City>().OnFirstCreate();
         }else if (newType == Type.Mountain){
-            GameObject prefabMountain = MapManager.instance.decorationsMountain[UnityEngine.Random.Range(0, MapManager.instance.decorationsMountain.Count)];
+            decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsMountain.Count);
+            GameObject prefabMountain = MapManager.instance.decorationsMountain[decorationIndex];
             decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
         }else if (newType == Type.Forest){
-            GameObject prefabForest = MapManager.instance.decorationsForest[UnityEngine.Random.Range(0, MapManager.instance.decorationsForest.Count)];
+            decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsForest.Count);
+            GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
             decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         }
         

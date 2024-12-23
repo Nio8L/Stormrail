@@ -60,17 +60,20 @@ public class Tile{
     public Vector2Serialized coordinates;
     public HexTile.Type type;
     public List<int> angles;
+    public int decorationIndex;
 
     public Tile(){
         coordinates = new Vector2Serialized(0, 0);
         type = HexTile.Type.Empty;
         angles = new();
+        decorationIndex = 0;
     }
 
     public Tile(HexTile hexTile){
         coordinates = new Vector2Serialized(hexTile.coordinates.x, hexTile.coordinates.y);
         type = hexTile.type;
         angles = hexTile.angles;
+        decorationIndex = hexTile.decorationIndex;
     }
 }
 
