@@ -61,12 +61,14 @@ public class Tile{
     public HexTile.Type type;
     public List<int> angles;
     public int decorationIndex;
+    public bool revealed;
 
     public Tile(){
         coordinates = new Vector2Serialized(0, 0);
-        type = HexTile.Type.Empty;
+        type = HexTile.Type.Forest;
         angles = new();
         decorationIndex = 0;
+        revealed = false;
     }
 
     public Tile(HexTile hexTile){
@@ -74,6 +76,7 @@ public class Tile{
         type = hexTile.type;
         angles = hexTile.angles;
         decorationIndex = hexTile.decorationIndex;
+        revealed = hexTile.revealed;
     }
 }
 

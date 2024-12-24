@@ -7,6 +7,7 @@ public class HexTile : MonoBehaviour
     public Vector2Int coordinates;
 
     public bool revealed = false;
+    public Material hiddenMaterial;
 
     public GameObject hexStructure;
 
@@ -30,13 +31,23 @@ public class HexTile : MonoBehaviour
     
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;
+
+        if(!revealed){
+            MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+
+            meshRenderer.material = hiddenMaterial;
+        }
+
+        SpawnDecoration(type);
+        
     }
 
-    public void Initialize(Vector2Int coordinates, Type type, List<int> angles, int decorationIndex){
-        this.coordinates = coordinates;
-        this.angles = angles;
-        this.decorationIndex = decorationIndex;
-        SetType(type);
+    public void Initialize(HexTile hex){
+        coordinates = hex.coordinates;
+        angles = hex.angles;
+        decorationIndex = hex.decorationIndex;
+        revealed = hex.revealed;
+        SetType(hex.type);
         
         if(type == Type.Mountain){
             GameObject prefabMountain = MapManager.instance.decorationsMountain[decorationIndex];
@@ -48,10 +59,22 @@ public class HexTile : MonoBehaviour
             GameObject prefabCity = MapManager.instance.decorationsCity[decorationIndex];
             decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
         }
+
+        if(!revealed){
+            MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+
+            meshRenderer.material = hiddenMaterial;
+            decorations.SetActive(false);
+        }
     }
 
     public void Reveal(){
+        revealed = true;
 
+        MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
+        meshRenderer.material = MapManager.instance.materials[(int)type];
+
+        decorations.SetActive(true);
     }
 
     public void SetType(Type newType){
@@ -89,7 +112,23 @@ public class HexTile : MonoBehaviour
             }
         }
 
-        if (newType == Type.Mountain){
+        SpawnDecoration(newType);
+        
+    }
+
+    public void SpawnDecoration(Type newType){
+        if(newType == Type.City){
+            city = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<City>();
+            CityManager.instance.cities.Add(city);
+            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
+            city.OnFirstCreate();
+
+            // Decorations
+            decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsCity.Count);
+            GameObject prefabCity = MapManager.instance.decorationsCity[decorationIndex];
+            decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
+
+        }else if (newType == Type.Mountain){
             decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsMountain.Count);
             GameObject prefabMountain = MapManager.instance.decorationsMountain[decorationIndex];
             decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
@@ -109,7 +148,10 @@ public class HexTile : MonoBehaviour
             decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
 
         }
-        
+
+        if(!revealed){
+            decorations.SetActive(false);
+        }
     }
 
     private void OnMouseDown() {
@@ -118,10 +160,15 @@ public class HexTile : MonoBehaviour
         if (RaycastChecker.Check()) return;
 
         if(!MapManager.instance.buildMode){ 
-            if(type == Type.City){
-                SetTypeDecoration(Type.Empty);
+            if (revealed)
+            {
+                if(type == Type.City){
+                    SetTypeDecoration(Type.Empty);
+                }else{
+                    SetTypeDecoration(type + 1);
+                }
             }else{
-                SetTypeDecoration(type + 1);
+                Reveal();
             }
         }else{
             Pathfinder.instance.TryToConnect(this);
