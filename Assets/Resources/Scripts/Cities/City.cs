@@ -31,6 +31,7 @@ public class City : MonoBehaviour
     public EventPool eventPoolHighHappiness;
     [Header("Events")]
     public bool eventActive;
+    public Decision starvationEvent;
     [Header("Prefabs")]
     public GameObject prefabEventBubble;
     
@@ -73,10 +74,7 @@ public class City : MonoBehaviour
     }
 
     public void OnFirstCreate(){
-        Train newTrain = new Train(cityName + " train");
-        TrainManager.instance.InstantiateTrain(new(newTrain));
-
-        eventTimer = Random.Range(0f, 60f) + 120f;
+        eventTimer = Random.Range(0f, 60f) + 180f;
 
         inventory[DataBase.instance.allItems[4]] = 20;
         inventory[DataBase.instance.allItems[0]] = 10;
@@ -237,7 +235,7 @@ public class City : MonoBehaviour
         eventTimer-= Time.deltaTime;
         if (eventTimer <= 0f){
             RandomEvent();
-            eventTimer = Random.Range(0f, 60f) + 120f;
+            eventTimer = Random.Range(0f, 60f) + 180f;
         }
     }
 
@@ -247,7 +245,7 @@ public class City : MonoBehaviour
         // Consume food
         consumingThisFrame[DataBase.instance.allItems[0]] += hungerDrain;
 
-        if (inventory[DataBase.instance.allItems[0]] < hungerDrain && hungerTimer < 20f){
+        if (inventory[DataBase.instance.allItems[0]] < hungerDrain && hungerTimer < DataBase.instance.dayLenghtInSeconds * 2){
             // No food
             hungerTimer += Time.deltaTime;
         }else{
@@ -258,8 +256,9 @@ public class City : MonoBehaviour
         }
 
         // Add or remove happiness modifier
-        if (hungerTimer > 15f){
+        if (hungerTimer > DataBase.instance.dayLenghtInSeconds * 2){
             if (!starvation){
+                SpawnEvent(starvationEvent);
                 AddHappinessSource(starvingSource);
                 starvation = true;
             }

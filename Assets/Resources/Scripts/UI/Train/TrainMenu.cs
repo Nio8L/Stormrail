@@ -171,6 +171,8 @@ public class TrainMenu : MonoBehaviour
 
         trainOverview.Initialize();
         trainOverview.gameObject.SetActive(false);
+
+        trainNotSelectedWindow.SetActive(true);
     }
 
     public void LoadTrains(){

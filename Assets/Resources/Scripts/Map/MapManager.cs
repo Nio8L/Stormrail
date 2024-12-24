@@ -25,8 +25,9 @@ public class MapManager : MonoBehaviour, ISavable
     public List<GameObject> previewRails;
 
     [Header("Other")]
-    public List<GameObject> decorationsMountain;
     public List<GameObject> decorationsForest;
+    public List<GameObject> decorationsMountain;
+    public List<GameObject> decorationsCity;
 
     private void Awake() {
         if(instance != null){

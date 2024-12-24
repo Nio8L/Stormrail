@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a91d014cae17241b2ab3c07a9bb2c8, type: 3}
+  m_Name: Starvation
+  m_EditorClassIdentifier: 
+  eventName: Starvation
+  eventDescription: 'The people of this city are starving. Improve this cities production
+    or deliver food from another city.
+
+'
+  options:
+  - optionName: Something must be done
+    optionDescription: This city will have decreased happiness until you have food
+      in your stockpiles for 2 days
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume: []
+    amountToConsume: []
+    happinessSourcesToRemove: []
+    amountMultipliedByPopulation: 0

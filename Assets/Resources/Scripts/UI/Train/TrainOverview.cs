@@ -23,7 +23,6 @@ public class TrainOverview : MonoBehaviour
         }
 
         routeDropdown.AddOptions(options);
-        //routeDropdown.value = cityIndex;
 
         selectedTrain = new();
     }
@@ -63,6 +62,8 @@ public class TrainOverview : MonoBehaviour
                 }
             }
             routeDropdown.value = index;
+        }else{
+            routeDropdown.value = 0;
         }
 
         // Update the train's inventory
@@ -94,6 +95,7 @@ public class TrainOverview : MonoBehaviour
 
     public void ChangeRoute(){
         string newRouteName = routeDropdown.options[routeDropdown.value].text;
+        if (newRouteName == "No Route") return;
         selectedTrain.currentRoute = TrainManager.instance.GetRoute(newRouteName);
         int index = TrainManager.instance.trains.IndexOf(selectedTrain);
         TrainManager.instance.locomotives[index].FirstMove();

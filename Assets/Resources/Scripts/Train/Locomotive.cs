@@ -86,7 +86,7 @@ public class Locomotive : MonoBehaviour
                 
                 start = target;
                 target = currentPath[train.currentIndex].transform.position;
-                target.y = 0.5f;
+                target.y = 0.3f;
 
                 moveTimer = 0;
                 trainObject.transform.rotation = Quaternion.Euler(0, MapManager.instance.GetAngle(start, target) - 180, 0);
@@ -101,8 +101,16 @@ public class Locomotive : MonoBehaviour
         currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.city, train.currentRoute.NextStop(train.currentStop).city);
 
         train.currentIndex = 0;
+        if (train.currentStop.city == train.currentRoute.NextStop(train.currentStop).city){
+            train.currentStop = train.currentRoute.NextStop(train.currentStop);
+            train.CompleteAllConditions(train.currentStop.city, train.currentStop);
+            NextStop();
+            return;
+        }
+
         start = trainObject.transform.position;
         target = currentPath[train.currentIndex].transform.position;
+        target.y = 0.3f;
 
         train.cameFrom.x = currentPath[0].coordinates.x;
         train.cameFrom.y = currentPath[0].coordinates.y;

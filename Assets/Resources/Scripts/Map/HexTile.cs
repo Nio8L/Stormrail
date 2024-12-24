@@ -13,6 +13,8 @@ public class HexTile : MonoBehaviour
     public GameObject decorations;
     public int decorationIndex;
 
+    public City city;
+
     public enum Type{
         Empty,
         Forest,
@@ -41,7 +43,10 @@ public class HexTile : MonoBehaviour
             decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
         }else if(type == Type.Forest){
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
-            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
+        }else if(type == Type.City){
+            GameObject prefabCity = MapManager.instance.decorationsCity[decorationIndex];
+            decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
         }
     }
 
@@ -78,27 +83,31 @@ public class HexTile : MonoBehaviour
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
         if (decorations != null){
-            if (decorations.GetComponent<City>() != null){
-                decorations.GetComponent<City>().DestroyCity();
-                decorations = null;
-            }else{
-                Destroy(decorations);
+            Destroy(decorations);
+            if (city != null){
+                city.DestroyCity();
             }
         }
 
-        if(newType == Type.City){
-            decorations = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
-            CityManager.instance.cities.Add(decorations.GetComponent<City>());
-            CityManager.instance.cities[^1].Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
-            decorations.GetComponent<City>().OnFirstCreate();
-        }else if (newType == Type.Mountain){
+        if (newType == Type.Mountain){
             decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsMountain.Count);
             GameObject prefabMountain = MapManager.instance.decorationsMountain[decorationIndex];
             decorations = Instantiate(prefabMountain, transform.position + new Vector3(0, 0.24f, 0), Quaternion.Euler(-90, 0, 0));
         }else if (newType == Type.Forest){
             decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsForest.Count);
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
-            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+            decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
+        }else if(newType == Type.City){
+            city = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<City>();
+            CityManager.instance.cities.Add(city);
+            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
+            city.OnFirstCreate();
+
+            // Decorations
+            decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsCity.Count);
+            GameObject prefabCity = MapManager.instance.decorationsCity[decorationIndex];
+            decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
+
         }
         
     }
