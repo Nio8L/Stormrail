@@ -33,7 +33,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler
         if (unlocked){
             thisImage.color = Color.white;
         }else{
-            if (!SkillTreeMenu.instance.SkillUnlockable(this)){
+            if (!SkillTreeMenu.instance.SkillUnlockable(this) || SkillTreeMenu.instance.currentIndustry.skillPoints == 0){
                 thisImage.color = new Color(0.6f, 0.1f, 0.1f, 1f);
             }else{
                 thisImage.color = new Color(0.5f, 0.5f, 0.5f, 1f);

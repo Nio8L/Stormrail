@@ -23,9 +23,10 @@ public class MapManager : MonoBehaviour, ISavable
     public GameObject railPreview;
     public List<GameObject> previewRails;
 
-    [Header("Decorations")]
-    public List<GameObject> decorationsMountain;
+    [Header("Other")]
     public List<GameObject> decorationsForest;
+    public List<GameObject> decorationsMountain;
+    public List<GameObject> decorationsCity;
 
     [Header("Mode")]
     public Mode mode = Mode.None;
