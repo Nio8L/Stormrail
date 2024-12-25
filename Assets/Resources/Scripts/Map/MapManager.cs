@@ -18,15 +18,26 @@ public class MapManager : MonoBehaviour, ISavable
     public HexTile hoveredTile;
     public List<Material> materials;
 
-    [Header("Other")]
+    [Header("Rails")]
     public GameObject railPrefab;
     public GameObject railPreview;
-    public bool buildMode = false;
     public List<GameObject> previewRails;
 
-    [Header("Other")]
+    [Header("Decorations")]
     public List<GameObject> decorationsMountain;
     public List<GameObject> decorationsForest;
+
+    [Header("Mode")]
+    public Mode mode = Mode.None;
+
+    [Header("Exploration")]
+    public Explorer selectedExplorer;
+
+    public enum Mode{
+        None,
+        Build,
+        Explore
+    }
 
     private void Awake() {
         if(instance != null){
@@ -44,12 +55,12 @@ public class MapManager : MonoBehaviour, ISavable
 
     private void Update() {
         if(Input.GetMouseButton(1)){
-            buildMode = false;
+            mode = Mode.None;
             Pathfinder.instance.ResetTiles();
             UpdatePreview();
         }
 
-        if(buildMode && Pathfinder.instance.tile1 != null){
+        if(mode == Mode.Build && Pathfinder.instance.tile1 != null){
             BuildPreviewConnection(Pathfinder.instance.tile1);
         }
     }
@@ -162,6 +173,10 @@ public class MapManager : MonoBehaviour, ISavable
 
     public HexTile CityToTile(City city){
         return tiles[city.coordinates.x, city.coordinates.y];
+    }
+
+    public HexTile CoordinatesToTile(Vector2Int coordinates){
+        return tiles[coordinates.x, coordinates.y];
     }
 
     public void BuildRailConnection(HexTile tile1, HexTile tile2){

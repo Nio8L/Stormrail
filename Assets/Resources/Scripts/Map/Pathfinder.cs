@@ -114,5 +114,38 @@ public class Pathfinder : MonoBehaviour
         return PathfindOnRails(start, end);
     }
 
-    
+    public List<HexTile> PathfindAll(HexTile start, HexTile end){
+        Queue<HexTile> frontier = new();
+        frontier.Enqueue(start);
+
+        Dictionary<HexTile, HexTile> cameFrom = new();
+        cameFrom.Add(start, null);
+        int loops = 0;
+        while (frontier.Any())
+        {
+            loops++;
+            HexTile current = frontier.Dequeue();
+
+            if(current == end){
+                List<HexTile> path = new();
+                while (current != start)
+                {
+                    path.Add(current);
+                    current = cameFrom[current];
+                }
+                path.Add(start);
+                path.Reverse();
+                return path;
+            }
+
+            foreach (HexTile neighbor in current.Neighbors)
+            {
+                if(!cameFrom.ContainsKey(neighbor)){
+                    frontier.Enqueue(neighbor);
+                    cameFrom[neighbor] = current;
+                }
+            }
+        }
+        return null;
+    }
 }
