@@ -97,6 +97,8 @@ public class ExplorerManager : MonoBehaviour, ISavable
 
             SpawnExplorer(startTile);
             explorers[^1].coordinates = startTile.coordinates;
+            explorers[^1].speed = explorerSerialized.speed;
+            explorers[^1].revealRadius = explorerSerialized.revealRadius;
             explorers[^1].NewPath(targetTile);
         }
     }
