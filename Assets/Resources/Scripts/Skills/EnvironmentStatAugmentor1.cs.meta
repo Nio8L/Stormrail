@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 6d9e4c1a66d7f144b90f4857e77cd9ae
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - skillIcon: {instanceID: 0}
+  - wood: {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

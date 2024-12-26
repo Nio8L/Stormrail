@@ -9,16 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
-  m_Name: GatherWood
+  m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
+  m_Name: Extr - Lumber industry
   m_EditorClassIdentifier: 
-  skillName: Gather Wood
-  skillDescription: Gives workers the ability to chop trees in the vicinity of the
-    city, thus providing a small amount of wood.
+  skillName: Lumber industry
+  skillDescription: Your people will go into surrounding forest and will gather wood
+    without a risk to the environment. The more forest that are around your city
+    the more wood your people will be able to harvest.
   skillIcon: {fileID: 21300000, guid: 01813f5629d95564c8c3ac7a2934ee3c, type: 3}
+  upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
   perWorker:
   - 3
   hungerDrainModifier: 1
-  setTo: 1
+  setTo: 0
+  boostedByTiles: 0100000002000000
+  boostAmount:
+  - 1
+  - 0.1
+  lookRadius: 1

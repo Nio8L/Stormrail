@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
+  m_Name: Extr - Iron minings
+  m_EditorClassIdentifier: 
+  skillName: Iron mining
+  skillDescription: This city will setup iron mines which produce a small amount
+    of iron ore. Works better in cities surrounded by mountains
+  skillIcon: {fileID: 0}
+  upgradesFrom: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
+  perWorker:
+  - 2
+  hungerDrainModifier: 1
+  setTo: 0
+  boostedByTiles: 02000000
+  boostAmount:
+  - 1
+  lookRadius: 1

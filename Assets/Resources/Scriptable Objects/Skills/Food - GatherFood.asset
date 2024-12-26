@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
-  m_Name: IronMining
+  m_Name: Food - GatherFood
   m_EditorClassIdentifier: 
-  skillName: Iron mines
-  skillDescription: Establish iron mines on nearby deposits allowing for the gathering
-    of iron ore.
-  skillIcon: {fileID: 21300000, guid: 7774c37c9d24bab49ae2887cd58448a7, type: 3}
+  skillName: Fund small farms
+  skillDescription: Allows you citizen to produce food by working in the food industry.
+  skillIcon: {fileID: 21300000, guid: 11d31cdf41899ec4aaf11541ca5322c1, type: 3}
   items:
-  - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
+  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
   perWorker:
-  - 2
+  - 4
   hungerDrainModifier: 1
   setTo: 1

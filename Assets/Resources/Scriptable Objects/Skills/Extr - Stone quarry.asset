@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
-  m_Name: StoneQuaries
+  m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
+  m_Name: Extr - Stone quarry
   m_EditorClassIdentifier: 
-  skillName: Stone quaries
-  skillDescription: Your workers will setup stone quaries to gather minimal amounts
-    of stone per day.
-  skillIcon: {fileID: 21300000, guid: ef9640b3eff2b8e40b40d0909b01f584, type: 3}
+  skillName: Stone quarries
+  skillDescription: Your people will start extracting blocks of stone. Works better
+    in cities surrounded by mountains.
+  skillIcon: {fileID: 0}
   upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
@@ -23,3 +23,7 @@ MonoBehaviour:
   - 4
   hungerDrainModifier: 1
   setTo: 0
+  boostedByTiles: 02000000
+  boostAmount:
+  - 1.5
+  lookRadius: 1

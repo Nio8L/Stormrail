@@ -9,21 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a74c7f031ce48488e7be732c87eb12, type: 3}
-  m_Name: SawDustSupplements
+  m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
+  m_Name: Extr - Deforestation
   m_EditorClassIdentifier: 
-  skillName: Saw dust supplements
-  skillDescription: Increases food production by adding a small amount of saw dust
-    to each portion.
+  skillName: Deforestation
+  skillDescription: Your people will start harvesting huge amounts of lumber from
+    surrounding forest. This may result in the destruction of forests.
   skillIcon: {fileID: 21300000, guid: 01813f5629d95564c8c3ac7a2934ee3c, type: 3}
   upgradesFrom: {fileID: 0}
   items:
-  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
   perWorker:
-  - 6
+  - 7
   hungerDrainModifier: 1
   setTo: 0
-  itemsToConsume:
-  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
-  consumptionPerWorker:
-  - 2.5
+  boostedByTiles: 0100000002000000
+  boostAmount:
+  - 1
+  - 0.1
+  lookRadius: 1

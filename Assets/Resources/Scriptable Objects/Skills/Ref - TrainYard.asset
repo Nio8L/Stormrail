@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5ea781301f4d90409241eaaf74b4c1d, type: 3}
-  m_Name: TrainYard
+  m_Name: Ref - TrainYard
   m_EditorClassIdentifier: 
   skillName: Train yard
   skillDescription: This city will construct a train yard giving you a train which

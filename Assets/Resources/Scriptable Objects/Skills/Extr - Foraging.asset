@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
+  m_Name: Extr - Foraging
+  m_EditorClassIdentifier: 
+  skillName: Foraging
+  skillDescription: Your people will go into the surrounding forest to gather food,
+    wood and stone in small amounts.
+  skillIcon: {fileID: 21300000, guid: a9d3774d454da5d499df24fd5615f582, type: 3}
+  upgradesFrom: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
+  - {fileID: 11400000, guid: c219b464f9e38ed489fa98e16129a732, type: 2}
+  - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
+  perWorker:
+  - 0.1
+  - 0.5
+  - 0.2
+  hungerDrainModifier: 1
+  setTo: 0
+  boostedByTiles: 000000000100000002000000
+  boostAmount:
+  - 0.1
+  - 0.5
+  - 0.25
+  lookRadius: 1

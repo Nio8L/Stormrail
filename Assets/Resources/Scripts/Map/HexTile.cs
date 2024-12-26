@@ -120,7 +120,7 @@ public class HexTile : MonoBehaviour
         if(newType == Type.City){
             city = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<City>();
             CityManager.instance.cities.Add(city);
-            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
+            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, (coordinates.x + coordinates.y) * 10);
             city.OnFirstCreate();
 
             // Decorations
@@ -199,6 +199,17 @@ public class HexTile : MonoBehaviour
         }
 
         return neighbors;
+    }
+
+    public List<HexTile.Type> GetNeighborsType(int radius){
+        List<HexTile.Type> types = new ();
+        List<HexTile> neighbors = GetNeighbors(radius);
+
+        foreach(HexTile tile in neighbors){
+            types.Add(tile.type);
+        }
+
+        return types;
     }
 
     public float AxialDistance(Vector2Int tile1, Vector2Int tile2){

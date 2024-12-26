@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb79dcc20c9f7874c83c83bcbd2223e0, type: 3}
-  m_Name: BetterFood
+  m_Name: Food - BetterFood
   m_EditorClassIdentifier: 
   skillName: Better food
   skillDescription: The people of this city will make more filling meals, increasing
