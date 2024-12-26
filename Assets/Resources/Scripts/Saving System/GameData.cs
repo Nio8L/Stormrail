@@ -385,22 +385,53 @@ public class ExplorerSerialized{
 }
 
 [Serializable]
+public class TimeSerialized{
+    public enum Speed{
+        Slow,
+        Normal,
+        Fast
+    }
+
+    public float speed;
+    public int day;
+    public float time;
+
+    public TimeSerialized(){
+        speed = 1;
+        day = 0;
+        time = 0;
+    }
+
+    public TimeSerialized(TimeControl timeControl){
+        speed = Time.timeScale;
+        day = timeControl.day;
+        time = timeControl.time;
+    }
+}
+
+[Serializable]
 public class GameData
 { 
     public CameraData camera;
     public Map map;
+    public TimeSerialized time;
 
     public List<CitySerialized> cities;
+    public List<ExplorerSerialized> explorers;
+
     public List<RouteSerialized> routes;
     public List<TrainSerialized> trains;
-    public List<ExplorerSerialized> explorers;
+
 
     public GameData(){
         camera = new();
         map = new(0);
+        time = new();
+
         cities = new();
+        explorers = new();
+        
         routes = new();
         trains = new();
-        explorers = new();
     }
 }
