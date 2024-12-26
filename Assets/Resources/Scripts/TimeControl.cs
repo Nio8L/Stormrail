@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,13 @@ public class TimeControl : MonoBehaviour
     public Color unselectedColor;
     public Color selectedColor;
 
+    [Header("Date")]
+    public int day;
+    public float time;
+    [Header("Time Bar")]
+    public RectTransform timeBar;
+    public TextMeshProUGUI dateText;
+
     float lastTime;
     
     private void Start() {
@@ -25,6 +33,7 @@ public class TimeControl : MonoBehaviour
     }
 
     private void Update() {
+        time += Time.deltaTime;
         if(Input.GetKeyUp(KeyCode.Tab)){
             NextTime();
         }
@@ -41,6 +50,15 @@ public class TimeControl : MonoBehaviour
             }else{
                 PauseTime();
             }
+        }
+
+        float barWidth = Mathf.Lerp(0, 1, time/DataBase.instance.dayLenghtInSeconds);
+        timeBar.localScale = new Vector3(barWidth, 1, 1);
+
+        if (time > DataBase.instance.dayLenghtInSeconds){
+            day++;
+            time = 0;
+            dateText.text = day.ToString();
         }
     }
 
