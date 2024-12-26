@@ -159,7 +159,7 @@ public class HexTile : MonoBehaviour
         //Reveal();
         if (RaycastChecker.Check()) return;
 
-        if(!MapManager.instance.buildMode){ 
+        if(MapManager.instance.mode != MapManager.Mode.Build){ 
             if (revealed)
             {
                 if(type == Type.City){
@@ -186,11 +186,19 @@ public class HexTile : MonoBehaviour
                 Neighbors.Add(tile);
             }
         }
+    }
 
-       /* foreach (HexTile tile in Neighbors)
+    public List<HexTile> GetNeighbors(int radius){
+        List<HexTile> neighbors = new();
+        
+        foreach (HexTile tile in MapManager.instance.tiles)
         {
-            tile.SetType(Type.Mountain);
-        }*/
+            if(GetDistance(tile) <= radius){
+                neighbors.Add(tile);
+            }
+        }
+
+        return neighbors;
     }
 
     public float AxialDistance(Vector2Int tile1, Vector2Int tile2){
@@ -214,5 +222,9 @@ public class HexTile : MonoBehaviour
     private void OnMouseEnter() {
         MapManager.instance.hoveredTile = this;
         MapManager.instance.UpdatePreview();
+
+        if(ExplorerManager.instance.selectedExplorer != null){
+            ExplorerManager.instance.UpdatePreview();
+        }
     }
 }
