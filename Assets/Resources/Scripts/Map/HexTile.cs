@@ -38,6 +38,12 @@ public class HexTile : MonoBehaviour
             meshRenderer.material = hiddenMaterial;
         }
 
+        if(type != Type.Empty && type != Type.City){
+            walkable = false;
+        }else{
+            walkable = true;
+        }
+
         if(type != Type.Empty){
             SpawnDecoration(type);
         }
