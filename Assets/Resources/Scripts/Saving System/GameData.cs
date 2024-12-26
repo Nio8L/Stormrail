@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class ArrayWrapper{
@@ -18,6 +19,16 @@ public class Vector2Serialized{
     public Vector2Serialized(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public Vector2Serialized(HexTile hexTile){
+        x = hexTile.coordinates.x;
+        y = hexTile.coordinates.y;
+    }
+
+    public Vector2Serialized(Vector2Int coordinates){
+        x = coordinates.x;
+        y = coordinates.y;
     }
 }
 
@@ -347,6 +358,33 @@ public class ConditionSerialized{
 }
 
 [Serializable]
+public class ExplorerSerialized{
+    public int revealRadius;
+    public int speed;
+    public Vector2Serialized cameFrom;
+    public Vector2Serialized goingTo;
+
+    public ExplorerSerialized(){
+        revealRadius = 0;
+        speed = 1;
+    }
+
+    public ExplorerSerialized(Explorer explorer){
+        revealRadius = explorer.revealRadius;
+        speed = explorer.speed;
+
+        if(explorer.currentPath.Count == 0){
+            cameFrom = new(explorer.coordinates);
+            goingTo = new(explorer.coordinates);
+        }else{
+            cameFrom = new(explorer.currentPath[explorer.currentIndex]);
+            goingTo = new(explorer.currentPath[^1]);
+        }
+
+    }
+}
+
+[Serializable]
 public class GameData
 { 
     public CameraData camera;
@@ -355,6 +393,7 @@ public class GameData
     public List<CitySerialized> cities;
     public List<RouteSerialized> routes;
     public List<TrainSerialized> trains;
+    public List<ExplorerSerialized> explorers;
 
     public GameData(){
         camera = new();
@@ -362,5 +401,6 @@ public class GameData
         cities = new();
         routes = new();
         trains = new();
+        explorers = new();
     }
 }

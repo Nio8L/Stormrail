@@ -31,9 +31,6 @@ public class MapManager : MonoBehaviour, ISavable
     [Header("Mode")]
     public Mode mode = Mode.None;
 
-    [Header("Exploration")]
-    public Explorer selectedExplorer;
-
     public enum Mode{
         None,
         Build,

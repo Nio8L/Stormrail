@@ -223,8 +223,8 @@ public class HexTile : MonoBehaviour
         MapManager.instance.hoveredTile = this;
         MapManager.instance.UpdatePreview();
 
-        if(MapManager.instance.selectedExplorer != null){
-            MapManager.instance.selectedExplorer.UpdatePreview();
+        if(ExplorerManager.instance.selectedExplorer != null){
+            ExplorerManager.instance.UpdatePreview();
         }
     }
 }
