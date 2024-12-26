@@ -38,7 +38,9 @@ public class HexTile : MonoBehaviour
             meshRenderer.material = hiddenMaterial;
         }
 
-        SpawnDecoration(type);
+        if(type != Type.Empty){
+            SpawnDecoration(type);
+        }
         
     }
 
@@ -64,7 +66,9 @@ public class HexTile : MonoBehaviour
             MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
             meshRenderer.material = hiddenMaterial;
-            decorations.SetActive(false);
+            if(type != Type.Empty){
+                decorations.SetActive(false);
+            }
         }
     }
 
@@ -74,7 +78,9 @@ public class HexTile : MonoBehaviour
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
-        decorations.SetActive(true);
+        if(type != Type.Empty){
+            decorations.SetActive(true);
+        }
     }
 
     public void SetType(Type newType){

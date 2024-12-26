@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour, ISavable
         if (Input.GetMouseButtonUp(1)){
             hasRotationStartPosition = false;
         }
-
+        
         if (RaycastChecker.Check()) return;
 
         if(Input.mouseScrollDelta.y != 0){

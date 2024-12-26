@@ -53,6 +53,14 @@ public class ExplorerManager : MonoBehaviour, ISavable
     }
 
     public void UpdatePreview(){
+       DeletePreview();
+
+        if(selectedExplorer != null && MapManager.instance.mode == MapManager.Mode.Explore){
+            BuildPreviewConnection(MapManager.instance.CoordinatesToTile(selectedExplorer.coordinates));
+        }
+    }
+
+    public void DeletePreview(){
         for (int i = previewPath.Count - 1; i >= 0; i--)
         {
             Destroy(previewPath[i]);

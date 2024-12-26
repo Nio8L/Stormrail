@@ -55,11 +55,7 @@ public class MapManager : MonoBehaviour, ISavable
         if(Input.GetMouseButton(1)){
             mode = Mode.None;
             Pathfinder.instance.ResetTiles();
-            UpdatePreview();
-        }
-
-        if(mode == Mode.Build && Pathfinder.instance.tile1 != null){
-            BuildPreviewConnection(Pathfinder.instance.tile1);
+            DeletePreview();
         }
     }
 
@@ -179,10 +175,14 @@ public class MapManager : MonoBehaviour, ISavable
 
     public void BuildRailConnection(HexTile tile1, HexTile tile2){
         List<HexTile> path = Pathfinder.instance.Pathfind(tile1, tile2);
-        for(int i = 0; i < path.Count - 1; i++){
-            BuildRail(path[i], path[i + 1]);
+        
+        if(path != null){
+            for(int i = 0; i < path.Count - 1; i++){
+                BuildRail(path[i], path[i + 1]);
+            }
         }
-        UpdatePreview();
+        
+        DeletePreview();
     }
 
     public void BuildRail(HexTile tile1, HexTile tile2){
@@ -223,6 +223,14 @@ public class MapManager : MonoBehaviour, ISavable
     }
 
     public void UpdatePreview(){
+        DeletePreview();
+
+        if(mode == Mode.Build && Pathfinder.instance.tile1 != null){
+            BuildPreviewConnection(Pathfinder.instance.tile1);
+        }
+    }
+
+    public void DeletePreview(){
         for (int i = previewRails.Count - 1; i >= 0; i--)
         {
             Destroy(previewRails[i]);
