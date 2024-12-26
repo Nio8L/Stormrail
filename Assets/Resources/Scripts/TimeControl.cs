@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimeControl : MonoBehaviour
+public class TimeControl : MonoBehaviour, ISavable
 {
     [Header("Time settings")]
     public float fastTime = 3;
@@ -27,10 +27,6 @@ public class TimeControl : MonoBehaviour
     public TextMeshProUGUI dateText;
 
     float lastTime;
-    
-    private void Start() {
-        NormalSpeed();
-    }
 
     private void Update() {
         time += Time.deltaTime;
@@ -110,5 +106,26 @@ public class TimeControl : MonoBehaviour
         }else{
             SlowDown();
         }
+    }
+
+    public int GetPriority()
+    {
+        return 0;
+    }
+
+    public void LoadData(GameData data)
+    {
+        lastTime = data.time.speed;
+        day = data.time.day;
+        time = data.time.time;
+
+        dateText.text = day.ToString();
+
+        PauseTime();
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.time = new(this);
     }
 }

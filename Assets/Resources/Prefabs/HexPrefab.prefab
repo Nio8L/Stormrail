@@ -179,7 +179,8 @@ MonoBehaviour:
   hexStructure: {fileID: 1520276586783198287}
   decorations: {fileID: 0}
   decorationIndex: 0
-  type: 1
+  city: {fileID: 0}
+  type: 0
   Neighbors: []
   walkable: 1
   angles: 
