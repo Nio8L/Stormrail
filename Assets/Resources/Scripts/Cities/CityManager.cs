@@ -55,6 +55,8 @@ public class CityManager : MonoBehaviour, ISavable
                 
                 industry.skillTree = Resources.Load<GameObject>(currentIndustry.skillTree.skillTreePath);
 
+                industry.Initialize(newCity);
+
                 // Load all unlocked skills
                 foreach(SkillSerilaized skill in currentIndustry.unlockedSkills){
                     Skill newSkill = Resources.Load<Skill>(skill.skillPath);
@@ -69,11 +71,7 @@ public class CityManager : MonoBehaviour, ISavable
                 }
                 industry.skillPoints = currentIndustry.skillPoints;
 
-                industry.Initialize(newCity);
-
-                for(int j = 0; j < DataBase.instance.allItems.Count; j++){
-                    industry.itemOutputPerWorker[DataBase.instance.allItems[j]] = currentIndustry.outputPerWorker[j];
-                }
+                
                 
                 newCity.workersPerIndustry.Add(industry, city.workerAmount[i]); 
             }
@@ -117,11 +115,6 @@ public class CityManager : MonoBehaviour, ISavable
             {
                 List<string> itemNames = new();
                 List<float> outputPerWorker = new();
-                foreach (Item item in industry.itemOutputPerWorker.Keys)
-                {
-                    itemNames.Add(item.itemName);
-                    outputPerWorker.Add(industry.itemOutputPerWorker[item]);
-                }
                 
                 List<string> unlockedSkillPaths = new();
                 foreach (Skill skill in industry.unlockedSkills)

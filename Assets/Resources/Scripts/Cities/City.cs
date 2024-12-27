@@ -149,8 +149,9 @@ public class City : MonoBehaviour
             
             // If the current industry is unupgraded continue
             if (industry.level == 0) continue;
-
-            productionThisSecond += industry.itemOutputPerWorker[itemToCheck] * workersPerIndustry[industry];
+            for (int j = 0; j < industry.activeSkills.Count; j++){
+                productionThisSecond += industry.activeSkills[j].productionPerSecond[itemToCheck] * workersPerIndustry[industry];
+            }
         }
 
         // Calculate the happiness modifier

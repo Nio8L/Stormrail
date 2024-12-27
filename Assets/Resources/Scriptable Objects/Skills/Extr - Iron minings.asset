@@ -15,14 +15,13 @@ MonoBehaviour:
   skillName: Iron mining
   skillDescription: This city will setup iron mines which produce a small amount
     of iron ore. Works better in cities surrounded by mountains
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: 7774c37c9d24bab49ae2887cd58448a7, type: 3}
   upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: ab40ff3c7ba99384cb1c8643e00fda74, type: 2}
   perWorker:
   - 2
   hungerDrainModifier: 1
-  setTo: 0
   boostedByTiles: 02000000
   boostAmount:
   - 1

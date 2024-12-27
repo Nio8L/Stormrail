@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
-  m_Name: Extr - MechanisedStoneQuarries
+  m_Name: Food - Hunters
   m_EditorClassIdentifier: 
-  skillName: Mechanised stone quarries
-  skillDescription: By introducing simple machines like cranes and pullies into your
-    quarries their stone output will increase substantially.
-  skillIcon: {fileID: 21300000, guid: ef9640b3eff2b8e40b40d0909b01f584, type: 3}
+  skillName: Hunters
+  skillDescription: This city will send out hunters to nearby forest, fields and
+    mountains to gather food.
+  skillIcon: {fileID: 21300000, guid: 05888ed344e22f94cb304f6a5e1dafb7, type: 3}
   upgradesFrom: {fileID: 0}
   items:
-  - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
+  - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
   perWorker:
-  - 4
+  - 2
   hungerDrainModifier: 1
-  boostedByTiles: 02000000
+  boostedByTiles: 000000000100000002000000
   boostAmount:
+  - 0.5
   - 1.5
+  - 0.5
   lookRadius: 1

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a74c7f031ce48488e7be732c87eb12, type: 3}
+  m_Name: Ref - OptimisedBrickProduction
+  m_EditorClassIdentifier: 
+  skillName: Optimised brick production
+  skillDescription: An upgrade to your stone cutters reduced waste and allows for
+    the creation of more bricks for less resources.
+  skillIcon: {fileID: 21300000, guid: 6f49300fe5ebdc649a9c2f2327ea3b93, type: 3}
+  upgradesFrom: {fileID: 11400000, guid: 84d96ad2a7923e34eb3e49ea983b4f6d, type: 2}
+  items:
+  - {fileID: 11400000, guid: 9b49326f4a0913848910d0ca054a8687, type: 2}
+  perWorker:
+  - 3
+  hungerDrainModifier: 1
+  itemsToConsume:
+  - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
+  consumptionPerWorker:
+  - 6

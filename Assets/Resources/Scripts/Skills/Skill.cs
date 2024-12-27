@@ -10,9 +10,8 @@ public class Skill: ScriptableObject
     public Sprite skillIcon;
     protected Industry industry;
     public Skill upgradesFrom;
+    public Dictionary<Item, float> productionPerSecond = new();
     public virtual void OnUnlock(Industry _industry){
-        OnLoad(_industry);
-
         // If this skill is an uprade find and remove the old upgrade
         if (upgradesFrom != null){
             for (int i = 0; i < industry.activeSkills.Count; i++){
@@ -29,11 +28,15 @@ public class Skill: ScriptableObject
 
     }
 
-    public void OnLoad(Industry _industry){
+    public virtual void OnLoad(Industry _industry){
         industry = _industry;
+        productionPerSecond.Clear();
+        foreach (Item item in DataBase.instance.allItems){
+            productionPerSecond.Add(item, 0);
+        }
     }
 
     public virtual void ReverseEffect(){
-
+        
     }
 }

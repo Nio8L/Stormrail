@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
   m_Name: Food - FundPersonalFarms
   m_EditorClassIdentifier: 
-  skillName: Fund Personal Gardens
+  skillName: City gardens
   skillDescription: Allows your citizen to open up their own gardens, increasing
     the production of food per worker.
   skillIcon: {fileID: 21300000, guid: 05888ed344e22f94cb304f6a5e1dafb7, type: 3}
+  upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
   perWorker:
   - 5
   hungerDrainModifier: 1
-  setTo: 0

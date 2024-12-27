@@ -9,15 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae8c0957c4f4d047b5fa704e3af6819, type: 3}
-  m_Name: Food - GatherFood
+  m_Script: {fileID: 11500000, guid: 6d9e4c1a66d7f144b90f4857e77cd9ae, type: 3}
+  m_Name: Food - Wheat farms
   m_EditorClassIdentifier: 
-  skillName: Fund small farms
-  skillDescription: Allows you citizen to produce food by working in the food industry.
+  skillName: Wheat farms
+  skillDescription: Create wheat farms in nearby fields. Fields in a 2 tile radius
+    around the city increase food production
   skillIcon: {fileID: 21300000, guid: 11d31cdf41899ec4aaf11541ca5322c1, type: 3}
+  upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
   perWorker:
-  - 4
+  - 1.5
   hungerDrainModifier: 1
-  setTo: 1
+  boostedByTiles: 00000000
+  boostAmount:
+  - 0.5
+  lookRadius: 2

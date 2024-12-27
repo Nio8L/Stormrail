@@ -16,11 +16,7 @@ public class EnvironmentStatAugmentor : GenericStatAugmentor
         tile = MapManager.instance.CityToTile(_industry.city);
         float boost = GetEnvironmentBoost(tile);
         for (int i = 0; i < items.Count; i++){
-            if (!setTo){
-                industry.itemOutputPerWorker[items[i]] += perWorker[i] * boost;
-            }else{
-                industry.itemOutputPerWorker[items[i]] = perWorker[i] * boost;
-            }
+            productionPerSecond[items[i]] = perWorker[i] * boost;
         }   
         _industry.city.hungerDrainModifier *= hungerDrainModifier;
 
@@ -39,11 +35,7 @@ public class EnvironmentStatAugmentor : GenericStatAugmentor
     public override void ReverseEffect()
     {
         for (int i = 0; i < items.Count; i++){
-            if (!setTo){
-                industry.itemOutputPerWorker[items[i]] -= perWorker[i] * lastBoost;
-            }else{
-                industry.itemOutputPerWorker[items[i]] = 0;
-            }
+            productionPerSecond[items[i]] = 0;
         }
     }
 
@@ -55,7 +47,6 @@ public class EnvironmentStatAugmentor : GenericStatAugmentor
                 totalBoost += boostAmount[boostedByTiles.IndexOf(type)];
             }
         }
-        Debug.Log("Boost: " + totalBoost + " city: " + industry.city);
         return totalBoost;
     }
 }

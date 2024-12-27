@@ -41,7 +41,23 @@ public class IndustryWindow : MonoBehaviour
             IndustryLevelCost industryLevelCost = levelArray.industryLevels[i];
             GameObject newItemLabel = Instantiate(prefabCostBox, costBoxHolder);
             newItemLabel.transform.GetChild(0).GetComponent<Image>().sprite = industryLevelCost.item.itemIcon;
-            newItemLabel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = industryLevelCost.cost.ToString();
+            TextMeshProUGUI labelText = newItemLabel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            labelText.text = industryLevelCost.cost.ToString();
+        }
+    }
+
+    void Update(){
+        // Update cost box colors
+        IndustryLevelArray levelArray = DataBase.instance.industryLevelCosts[industry.level];
+        for (int i = 0; i < levelArray.industryLevels.Count; i++){
+            IndustryLevelCost industryLevelCost = levelArray.industryLevels[i];
+            TextMeshProUGUI labelText = costBoxHolder.GetChild(i).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+            if (industry.city.CheckInventoryFor(industryLevelCost.item, industryLevelCost.cost)){
+                labelText.color = Color.white;
+            }else{
+                labelText.color = Color.red;
+            }
         }
     }
 }

@@ -15,14 +15,13 @@ MonoBehaviour:
   skillName: Stone quarries
   skillDescription: Your people will start extracting blocks of stone. Works better
     in cities surrounded by mountains.
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: ef9640b3eff2b8e40b40d0909b01f584, type: 3}
   upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 9024d1fe83f221f47a3ba0d62751761f, type: 2}
   perWorker:
   - 4
   hungerDrainModifier: 1
-  setTo: 0
   boostedByTiles: 02000000
   boostAmount:
   - 1.5

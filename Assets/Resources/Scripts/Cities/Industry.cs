@@ -10,7 +10,6 @@ public class Industry : ScriptableObject
 {
     public string industryName;
     public int level;
-    public Dictionary<Item, float> itemOutputPerWorker = new Dictionary<Item, float>();
     public GameObject skillTree;
     public int skillPoints = 0;
     public City city;
@@ -19,9 +18,6 @@ public class Industry : ScriptableObject
 
     public void Initialize(City _city){
         city = _city;
-        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
-            itemOutputPerWorker.Add(DataBase.instance.allItems[i], 0);
-        }
     }
     public void LevelUp(){
         List<Item> items = new();

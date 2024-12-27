@@ -8,16 +8,11 @@ public class GenericStatAugmentor : Skill
     public List<Item> items;
     public List<float> perWorker;
     public float hungerDrainModifier;
-    public bool setTo; // Used to set stats to a value instead of adding them
     public override void OnUnlock(Industry _industry)
     {
         base.OnUnlock(_industry);
         for (int i = 0; i < items.Count; i++){
-            if (!setTo){
-                industry.itemOutputPerWorker[items[i]] += perWorker[i];
-            }else{
-                industry.itemOutputPerWorker[items[i]] = perWorker[i];
-            }
+            productionPerSecond[items[i]] = perWorker[i];
         }   
         _industry.city.hungerDrainModifier *= hungerDrainModifier;
     }
@@ -31,11 +26,12 @@ public class GenericStatAugmentor : Skill
     {
         base.ReverseEffect();
         for (int i = 0; i < items.Count; i++){
-            if (!setTo){
-                industry.itemOutputPerWorker[items[i]] -= perWorker[i];
-            }else{
-                industry.itemOutputPerWorker[items[i]] = 0;
-            }
+            productionPerSecond[items[i]] = 0;
         }
+    }
+
+    public override void OnLoad(Industry _industry){
+        base.OnLoad(_industry);
+        OnUnlock(_industry);
     }
 }

@@ -56,6 +56,7 @@ public class SkillTreeMenu : MonoBehaviour
 
         currentSkillButton.unlocked = true;
 
+        selectedSkill.OnLoad(currentIndustry);
         selectedSkill.OnUnlock(currentIndustry);
 
         skillPointsAmountBox.text = currentIndustry.skillPoints.ToString();

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69d77dfe1ec54d4799e0112698c505a, type: 3}
   m_Name: Ref - CreateExplorer
   m_EditorClassIdentifier: 
-  skillName: CreateExplorer
+  skillName: Create explorer
   skillDescription: Create an explorer team that can be used to gather information
     about your surroundings and can construct rails.
   skillIcon: {fileID: 21300000, guid: 05888ed344e22f94cb304f6a5e1dafb7, type: 3}

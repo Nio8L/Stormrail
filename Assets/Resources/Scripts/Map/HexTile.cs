@@ -132,7 +132,7 @@ public class HexTile : MonoBehaviour
         if(newType == Type.City){
             city = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<City>();
             CityManager.instance.cities.Add(city);
-            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, (coordinates.x + coordinates.y) * 10);
+            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, (coordinates.x + coordinates.y) * 3);
             city.OnFirstCreate();
 
             // Decorations

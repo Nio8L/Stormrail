@@ -158,10 +158,6 @@ public class SkillTreeSerialized{
 public class IndustrySerialized{
     public string industryName;
     public int level;
-
-    public List<string> itemName;
-    public List<float> outputPerWorker;
-
     public SkillTreeSerialized skillTree;
     public List<SkillSerilaized> unlockedSkills;
     public List<SkillSerilaized> activeSkills;
@@ -169,8 +165,6 @@ public class IndustrySerialized{
 
     public IndustrySerialized(){
         level = 0;
-        itemName = new();
-        outputPerWorker = new();
         skillTree = new();
         unlockedSkills = new();
         activeSkills = new();
@@ -180,8 +174,6 @@ public class IndustrySerialized{
     public IndustrySerialized(string industryName, int level, List<string> itemName, List<float> outputPerWorker, string skillTreePath, List<string> unlockedSkillPaths, List<string> activeSkillPaths, int skillPoints){
         this.industryName = industryName;
         this.level = level;
-        this.itemName = itemName;
-        this.outputPerWorker = outputPerWorker;
 
         skillTree = new(skillTreePath);
         unlockedSkills = new();

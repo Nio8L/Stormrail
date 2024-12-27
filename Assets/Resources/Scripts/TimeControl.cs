@@ -18,6 +18,7 @@ public class TimeControl : MonoBehaviour, ISavable
     [Header("Colors")]
     public Color unselectedColor;
     public Color selectedColor;
+    public Gradient lightColor;
 
     [Header("Date")]
     public int day;
@@ -25,7 +26,9 @@ public class TimeControl : MonoBehaviour, ISavable
     [Header("Time Bar")]
     public RectTransform timeBar;
     public TextMeshProUGUI dateText;
-
+    [Header("Sun")]
+    public GameObject sun;
+    public Light sunLight;
     float lastTime;
 
     private void Update() {
@@ -56,6 +59,10 @@ public class TimeControl : MonoBehaviour, ISavable
             time = 0;
             dateText.text = day.ToString();
         }
+
+        sun.transform.rotation = Quaternion.Euler(Mathf.Lerp(0, 360, time/DataBase.instance.dayLenghtInSeconds) - 180, 0, 0);
+
+        sunLight.color = lightColor.Evaluate(time/DataBase.instance.dayLenghtInSeconds);
     }
 
     public void SpeedUp(){
