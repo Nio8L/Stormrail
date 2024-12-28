@@ -2337,6 +2337,150 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1707203975}
     - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.atime2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime0
+      value: 3277
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime1
+      value: 11469
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime2
+      value: 18022
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime3
+      value: 24576
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime4
+      value: 44236
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime5
+      value: 47513
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime6
+      value: 62258
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.ctime7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key0.b
+      value: 0.14901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key0.g
+      value: 0.050980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key0.r
+      value: 0.06666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key1.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key1.g
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key1.r
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key2.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key2.b
+      value: 0.47668213
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key2.g
+      value: 0.703436
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key2.r
+      value: 0.9811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key3.b
+      value: 0.9460167
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key3.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key3.r
+      value: 0.514151
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key4.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key4.g
+      value: 0.8135112
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key4.r
+      value: 0.30704877
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key5.b
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key5.g
+      value: 0.15864186
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key5.r
+      value: 0.17536823
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key6.b
+      value: 0.1509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key6.g
+      value: 0.05197579
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key6.r
+      value: 0.066114016
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key7.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key7.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.key7.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
       propertyPath: lightColor.ctime0
       value: 0
       objectReference: {fileID: 0}
@@ -2447,6 +2591,14 @@ PrefabInstance:
     - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
       propertyPath: lightColor.key6.r
       value: 0.45490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.m_NumAlphaKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
+      propertyPath: skyColor.m_NumColorKeys
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9030375270580633043, guid: d8d6787da3129e84a82930f8aa999666, type: 3}
       propertyPath: lightColor.m_NumColorKeys

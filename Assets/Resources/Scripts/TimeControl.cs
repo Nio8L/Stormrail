@@ -19,6 +19,7 @@ public class TimeControl : MonoBehaviour, ISavable
     public Color unselectedColor;
     public Color selectedColor;
     public Gradient lightColor;
+    public Gradient skyColor;
 
     [Header("Date")]
     public int day;
@@ -63,6 +64,7 @@ public class TimeControl : MonoBehaviour, ISavable
         sun.transform.rotation = Quaternion.Euler(Mathf.Lerp(0, 360, time/DataBase.instance.dayLenghtInSeconds) - 180, 0, 0);
 
         sunLight.color = lightColor.Evaluate(time/DataBase.instance.dayLenghtInSeconds);
+        Camera.main.backgroundColor = skyColor.Evaluate(time/DataBase.instance.dayLenghtInSeconds);
     }
 
     public void SpeedUp(){

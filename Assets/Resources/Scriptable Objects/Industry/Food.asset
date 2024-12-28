@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Food
   m_EditorClassIdentifier: 
   industryName: Food production
+  industryIcon: {fileID: 21300000, guid: 7cd8da1f1a70dd8428b53a66ae5ae9cc, type: 3}
   level: 0
   skillTree: {fileID: 943767580168244703, guid: 7132ad724df9a2b49ae9140b726231ed, type: 3}
   skillPoints: 0
+  city: {fileID: 0}
   unlockedSkills: []
+  activeSkills: []

@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Extraction
   m_EditorClassIdentifier: 
   industryName: Extraction industry
+  industryIcon: {fileID: 21300000, guid: 42641eb6e03390b4f80d37b1e9cdcc6e, type: 3}
   level: 0
   skillTree: {fileID: 943767580168244703, guid: 47711a0a603668e44a5d7786c5aa80b0, type: 3}
+  skillPoints: 0
+  city: {fileID: 0}
   unlockedSkills: []
+  activeSkills: []

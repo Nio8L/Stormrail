@@ -17,6 +17,8 @@ public class IndustryWindow : MonoBehaviour
     public RectTransform levelBarBox;
     public Transform costBoxHolder;
     public GameObject prefabCostBox;
+    public Image skillTreeButton;
+    public GameObject skillPointGlow;
 
     public void UpdateIndustry(Industry newIndustry){
         industry = newIndustry;
@@ -58,6 +60,12 @@ public class IndustryWindow : MonoBehaviour
             }else{
                 labelText.color = Color.red;
             }
+        }
+
+        if (industry.skillPoints > 0){
+            skillPointGlow.SetActive(true);
+        }else{
+            skillPointGlow.SetActive(false);
         }
     }
 }

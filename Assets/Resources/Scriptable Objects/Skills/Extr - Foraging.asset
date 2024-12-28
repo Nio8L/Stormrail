@@ -15,7 +15,7 @@ MonoBehaviour:
   skillName: Foraging
   skillDescription: Your people will go into the surrounding forest to gather food,
     wood and stone in small amounts.
-  skillIcon: {fileID: 21300000, guid: a9d3774d454da5d499df24fd5615f582, type: 3}
+  skillIcon: {fileID: 21300000, guid: 659ef2f2d1f49c8439b83d5018bdccf3, type: 3}
   upgradesFrom: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
@@ -26,7 +26,6 @@ MonoBehaviour:
   - 0.5
   - 0.2
   hungerDrainModifier: 1
-  setTo: 0
   boostedByTiles: 000000000100000002000000
   boostAmount:
   - 0.1
