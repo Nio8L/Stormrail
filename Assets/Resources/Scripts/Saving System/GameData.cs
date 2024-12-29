@@ -96,12 +96,12 @@ public class Map{
     public Vector2Serialized mapSize;
     public ArrayWrapper[] tiles;
 
-    public Map(int size){
-        mapSize = new Vector2Serialized(size, size);
-        tiles = new ArrayWrapper[size];
+    public Map(int sizeX, int sizeY){
+        mapSize = new Vector2Serialized(sizeX, sizeY);
+        tiles = new ArrayWrapper[sizeX];
 
-        for(int i = 0; i < size; i++){
-            tiles[i] = new(size);
+        for(int i = 0; i < sizeX; i++){
+            tiles[i] = new(sizeY);
         }
     }
 }
@@ -417,7 +417,7 @@ public class GameData
 
     public GameData(){
         camera = new();
-        map = new(0);
+        map = new(0, 0);
         time = new();
 
         cities = new();

@@ -32,7 +32,7 @@ public class HexTile : MonoBehaviour
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;
 
-        if(!revealed){
+        if(!revealed && !MapLoader.instance.loadingEditor){
             MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
             meshRenderer.material = hiddenMaterial;
@@ -68,6 +68,9 @@ public class HexTile : MonoBehaviour
             decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
         }
 
+        // Editor reveal bypass
+        if (MapLoader.instance.loadingEditor) return;
+
         if(!revealed){
             MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
@@ -79,6 +82,9 @@ public class HexTile : MonoBehaviour
     }
 
     public void Reveal(){
+        // Editor reveal bypass
+        if (MapLoader.instance.loadingEditor) return;
+
         revealed = true;
 
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
@@ -161,18 +167,18 @@ public class HexTile : MonoBehaviour
 
         }
 
-        if(!revealed){
+        if(!revealed && (MapLoader.instance == null || !MapLoader.instance.loadingEditor)){
             decorations.SetActive(false);
         }
     }
 
     private void OnMouseDown() {
-        //Debug.Log(coordinates);
-        //Reveal();
+
         if (RaycastChecker.Check()) return;
 
         if(MapManager.instance.mode != MapManager.Mode.Build){ 
-            if (revealed)
+
+            if (MapLoader.instance != null && MapLoader.instance.loadingEditor)
             {
                 if(type == Type.City){
                     SetTypeDecoration(Type.Empty);
@@ -186,9 +192,6 @@ public class HexTile : MonoBehaviour
             Pathfinder.instance.TryToConnect(this);
         }
 
-        //Debug.Log(walkable);
-
-        //GetNeighbors();
     }
 
     public void GetNeighbors(){

@@ -33,6 +33,8 @@ public class TimeControl : MonoBehaviour, ISavable
     float lastTime;
 
     private void Update() {
+        if (MapLoader.instance != null && MapLoader.instance.loadingEditor) return;
+
         time += Time.deltaTime;
         if(Input.GetKeyUp(KeyCode.Tab)){
             NextTime();
@@ -52,6 +54,10 @@ public class TimeControl : MonoBehaviour, ISavable
             }
         }
 
+        UpdateVisuals();
+    }
+
+    public void UpdateVisuals(){
         float barWidth = Mathf.Lerp(0, 1, time/DataBase.instance.dayLenghtInSeconds);
         timeBar.localScale = new Vector3(barWidth, 1, 1);
 
@@ -128,8 +134,11 @@ public class TimeControl : MonoBehaviour, ISavable
         day = data.time.day;
         time = data.time.time;
 
+        if (MapLoader.instance != null && MapLoader.instance.loadingEditor) time = DataBase.instance.dayLenghtInSeconds/2;
+
         dateText.text = day.ToString();
 
+        UpdateVisuals();
         PauseTime();
     }
 

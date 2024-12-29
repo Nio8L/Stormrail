@@ -21,6 +21,11 @@ public class SaveManager : MonoBehaviour
         }
         
         instance = this;
+
+        // Map loader
+        if (MapLoader.instance != null){
+            fileName = MapLoader.instance.mapName + ".json";
+        }
     }
 
     private void Start() {

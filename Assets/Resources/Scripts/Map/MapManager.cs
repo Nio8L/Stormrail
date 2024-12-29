@@ -43,6 +43,12 @@ public class MapManager : MonoBehaviour, ISavable
         }
         
         instance = this;
+        
+        // Map loader
+        if (MapLoader.instance != null && MapLoader.instance.loadingEditor){
+            gridSize = MapLoader.instance.mapSize;
+        }
+
 
         tiles = new HexTile[gridSize.x, gridSize.y];
     }
@@ -244,6 +250,9 @@ public class MapManager : MonoBehaviour, ISavable
         if(data.map.mapSize.x == 0){
             LayoutGrid();
             return;
+        }else{
+            gridSize.x = data.map.mapSize.x;
+            gridSize.y = data.map.mapSize.y;
         }
         
         HexTile[,] hexTiles = new HexTile[data.map.mapSize.x, data.map.mapSize.y];
@@ -271,7 +280,7 @@ public class MapManager : MonoBehaviour, ISavable
 
     public void SaveData(GameData data)
     {
-        data.map = new(gridSize.x);
+        data.map = new(gridSize.x, gridSize.y);
 
         for(int x = 0; x < data.map.mapSize.x; x++){
             for(int y = 0; y < data.map.mapSize.y; y++){
