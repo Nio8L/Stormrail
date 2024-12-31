@@ -215,7 +215,7 @@ public class CitySerialized{
     public List<string> connections;
 
     public float eventTimer;
-    public bool eventActive;
+    public string activeEvent;
 
     public CitySerialized(){
         cityName = "New Sofia Default";
@@ -239,7 +239,7 @@ public class CitySerialized{
         connections = new();
 
         eventTimer = 0;
-        eventActive = false;
+        activeEvent = "";
     }
 }
 

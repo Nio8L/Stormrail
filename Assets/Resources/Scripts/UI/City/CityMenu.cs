@@ -13,8 +13,8 @@ public class CityMenu : MonoBehaviour
     public EventSystem eventSystem;
     int currentTabIndex;
     public List<GameObject> tabs;
-    public TextMeshProUGUI nameText;
     public TextMeshProUGUI populationText;
+    public TMP_InputField nameBox;
 
     bool ignoreClose = false;
 
@@ -34,7 +34,7 @@ public class CityMenu : MonoBehaviour
         EventManager.OpenCity?.Invoke(currentCity);
 
         // Setup city menu
-        nameText.text = cityToOpen.cityName;
+        nameBox.text = cityToOpen.cityName;
         populationText.text = cityToOpen.population.ToString();
         
         instance.gameObject.SetActive(true);
@@ -113,6 +113,15 @@ public class CityMenu : MonoBehaviour
              CloseMenu();
         }else{
             ignoreClose = false;
+        }
+    }
+
+    public void RenameCity(){
+        if (nameBox.text == ""){
+            nameBox.text = currentCity.cityName;
+        }else{
+            currentCity.cityName = nameBox.text;
+            currentCity.transform.GetChild(0).GetChild(0).GetComponent<TextMeshPro>().text = nameBox.text;
         }
     }
 }

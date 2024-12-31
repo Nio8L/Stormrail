@@ -15,6 +15,7 @@ MonoBehaviour:
   eventName: Resource stashes
   eventDescription: Your citizen have found hidden resource stashes in old warehouses
     and have decided to give a part of what they found back to the people.
+  subFolder: High happiness
   options:
   - optionName: Take precise machanisms
     optionDescription: Gain 1 precise mechanism
@@ -29,6 +30,9 @@ MonoBehaviour:
     - 1
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0
   - optionName: Take steel and bricks
     optionDescription: Gain 90 steel and 75 bricks
@@ -45,6 +49,9 @@ MonoBehaviour:
     - 75
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0
   - optionName: Take raw resources
     optionDescription: Gain 115 wood, 90 coal, 80 iron ore and 50 stone.
@@ -65,4 +72,7 @@ MonoBehaviour:
     - 50
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0

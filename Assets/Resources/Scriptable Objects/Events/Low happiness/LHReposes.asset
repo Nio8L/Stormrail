@@ -15,6 +15,7 @@ MonoBehaviour:
   eventName: Reposes
   eventDescription: 'Your people are deeply unhappy with your leadership. To build
     back their trust you will need additional resources. '
+  subFolder: Low happiness
   options:
   - optionName: Steal from the poor
     optionDescription: Gain an assortment of resources
@@ -37,6 +38,9 @@ MonoBehaviour:
     - 2
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 1
   - optionName: Motivate workers
     optionDescription: Give your workers 0.5kg of food per person
@@ -51,6 +55,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
     amountToConsume:
     - 1
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 1
   - optionName: Rumage old warehouses
     optionDescription: Gain some raw resources
@@ -71,4 +78,7 @@ MonoBehaviour:
     - 75
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0
