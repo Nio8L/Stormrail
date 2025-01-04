@@ -41,9 +41,17 @@ public class MainMenu : MonoBehaviour
     }
 
     public void ButtonCreateNewMap(){
-        Vector2Int sizeVector = new Vector2Int(int.Parse(mapEditorXSizeField.text),int.Parse(mapEditorYSizeField.text));
+        // Get map size
+        Vector2Int sizeVector;
+        if (mapEditorXSizeField.text == "" && mapEditorYSizeField.text == ""){
+            sizeVector = new Vector2Int(10, 10);
+        }else{
+            sizeVector = new Vector2Int(int.Parse(mapEditorXSizeField.text),int.Parse(mapEditorYSizeField.text));
+        }
+        // Get map name
         string mapName = mapEditorNameField.text;
 
+        // Load editor
         MapLoader.LoadEditor(mapName, sizeVector);
         SceneManager.LoadScene("Map Editor");
     }

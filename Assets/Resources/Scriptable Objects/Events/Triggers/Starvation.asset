@@ -17,6 +17,7 @@ MonoBehaviour:
     or deliver food from another city.
 
 '
+  subFolder: Triggers
   options:
   - optionName: Something must be done
     optionDescription: This city will have decreased happiness until you have food
@@ -31,4 +32,6 @@ MonoBehaviour:
     itemsToConsume: []
     amountToConsume: []
     happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0

@@ -9,6 +9,7 @@ public class Decision : ScriptableObject
     public string eventName;
     [TextArea]
     public string eventDescription;
+    public string subFolder;
     public List<Option> options = new List<Option>();
 
 }
@@ -22,6 +23,8 @@ public class Option{
     public List<Item> itemsToConsume;
     public List<float> amountToConsume;
     public List<string> happinessSourcesToRemove = new();
+    public int populationChange;
+    public bool lostPopulationCountAsDead;
 
     public bool amountMultipliedByPopulation;
     public bool CheckResourceRequirements(City affectedCity){
@@ -61,6 +64,8 @@ public class Option{
             HappinessSource happinessSource = new HappinessSource(happinessSourcesToRemove[i], 0, 0, false);
             affectedCity.RemoveHappinessSource(happinessSource);
         }
+        // Change population
+        if (populationChange != 0) affectedCity.ChangePopulation(populationChange, lostPopulationCountAsDead);
     }
 }
 

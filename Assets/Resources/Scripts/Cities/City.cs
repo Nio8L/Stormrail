@@ -30,7 +30,7 @@ public class City : MonoBehaviour
     public EventPool eventPoolLowHappiness;
     public EventPool eventPoolHighHappiness;
     [Header("Events")]
-    public bool eventActive;
+    public string activeEvent;
     public Decision starvationEvent;
     [Header("Prefabs")]
     public GameObject prefabEventBubble;
@@ -231,7 +231,7 @@ public class City : MonoBehaviour
 
     public void SpawnRandomEventTimer(){
         // Count down and spawn a random event once in a while
-        if (eventActive) return;
+        if (activeEvent != "") return;
 
         eventTimer-= Time.deltaTime;
         if (eventTimer <= 0f){
@@ -283,12 +283,53 @@ public class City : MonoBehaviour
     }
     public void SpawnEvent(Decision eventToSpawn){
         // Spawn a certain event ot top of the city
+        if (eventToSpawn == null) return;
+
+        string eventName = eventToSpawn.name;
         eventToSpawn = Instantiate(eventToSpawn);
-        eventActive = true;
+        eventToSpawn.name = eventName;
+        activeEvent = eventToSpawn.subFolder + "/" + eventToSpawn.name;
 
         Vector3 bubblePosition = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         DecisionBubble decisionBubble = Instantiate(prefabEventBubble, bubblePosition, Quaternion.identity).GetComponent<DecisionBubble>();
         decisionBubble.decision = eventToSpawn;
         decisionBubble.linkedCity = this;
+    }
+
+    public void SpawnEvent(string eventName){
+        // Event name format must be: event sub folder name + even name. Ex: Low happiness/LHSlums
+        if (eventName == "") return;
+
+        Decision eventToSpawn = Resources.Load<Decision>("Scriptable Objects/Events/" + eventName);
+        SpawnEvent(eventToSpawn);
+    }
+
+    public void SetPopulation(int amount){
+        // Sets this city's population to amount
+        int diff = amount - population;
+        ChangePopulation(diff, false);
+    }
+    public void ChangePopulation(int amount, bool death){
+        // Modifies this cities population by amount and updates worker numbers
+        population += amount;
+
+        if (amount < 0){
+            int diff = population - workers;
+            if (diff < 0){
+                workers -= diff;
+                for (int i = 0; i < workersPerIndustry.Count; i++){
+                    KeyValuePair<Industry, int> keyValuePair = workersPerIndustry.ElementAt(i);
+                    if (keyValuePair.Value >= diff){
+                        workersPerIndustry[keyValuePair.Key] -= diff;
+                        break;
+                    }else if (keyValuePair.Value < diff){
+                        diff -= keyValuePair.Value;
+                        workersPerIndustry[keyValuePair.Key] = 0;
+                    }
+                }
+            }
+
+            if (population  < 0) population = 0;
+        }
     }
 }

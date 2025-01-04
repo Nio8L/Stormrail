@@ -15,6 +15,7 @@ MonoBehaviour:
   eventName: Riots in the streets
   eventDescription: Your people have gone to the streets to protest your handling
     of the city's resources. They demand compensation and improved conditions.
+  subFolder: Low happiness
   options:
   - optionName: Give them what they want
     optionDescription: Give them 1kg of food per person
@@ -29,6 +30,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
     amountToConsume:
     - 1
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 1
   - optionName: Ignore their demands
     optionDescription: The people will continue rioting.
@@ -41,4 +45,7 @@ MonoBehaviour:
     amountToGain: []
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0

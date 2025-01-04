@@ -32,7 +32,7 @@ public class HexTile : MonoBehaviour
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;
 
-        if(!revealed && !MapLoader.instance.loadingEditor){
+        if(!revealed && (MapLoader.instance == null || MapLoader.instance.loadingEditor)){
             MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
             meshRenderer.material = hiddenMaterial;
@@ -69,7 +69,7 @@ public class HexTile : MonoBehaviour
         }
 
         // Editor reveal bypass
-        if (MapLoader.instance.loadingEditor) return;
+        if (MapLoader.instance != null && MapLoader.instance.loadingEditor) return;
 
         if(!revealed){
             MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
@@ -83,7 +83,7 @@ public class HexTile : MonoBehaviour
 
     public void Reveal(){
         // Editor reveal bypass
-        if (MapLoader.instance.loadingEditor) return;
+        if (MapLoader.instance != null && MapLoader.instance.loadingEditor) return;
 
         revealed = true;
 

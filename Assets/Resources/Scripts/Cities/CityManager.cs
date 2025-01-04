@@ -33,7 +33,7 @@ public class CityManager : MonoBehaviour, ISavable
 
             // Event Saving
             newCity.eventTimer = city.eventTimer;
-            newCity.eventActive = city.eventActive;
+            newCity.activeEvent = city.activeEvent;
 
             newCity.coordinates = new Vector2Int(city.coordinates.x, city.coordinates.y);
 
@@ -77,6 +77,8 @@ public class CityManager : MonoBehaviour, ISavable
             }
 
             cities.Add(newCity);
+
+            newCity.SpawnEvent(newCity.activeEvent);
         }
     }
 
@@ -96,7 +98,7 @@ public class CityManager : MonoBehaviour, ISavable
 
             // Event Saving
             newCity.eventTimer = city.eventTimer;
-            newCity.eventActive = city.eventActive;
+            newCity.activeEvent = city.activeEvent;
 
             newCity.coordinates = new(city.coordinates.x, city.coordinates.y);
 

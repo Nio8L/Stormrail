@@ -16,6 +16,7 @@ MonoBehaviour:
   eventDescription: The homes of your people are quickly falling apart and the districts
     of the city are turning into slums. The people demand the resources to build
     proper housing.
+  subFolder: Low happiness
   options:
   - optionName: Give them the necessary resources
     optionDescription: Give 2kg of wood and 3kg of bricks per person in the city.
@@ -34,6 +35,8 @@ MonoBehaviour:
     - 3
     happinessSourcesToRemove:
     - Slums
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 1
   - optionName: Repair their homes
     optionDescription: Spend 1.5kg of wood per person
@@ -50,6 +53,8 @@ MonoBehaviour:
     - 1.5
     happinessSourcesToRemove:
     - Slums
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 1
   - optionName: Ignore their demands
     optionDescription: Your people will be mad.
@@ -63,4 +68,6 @@ MonoBehaviour:
     itemsToConsume: []
     amountToConsume: []
     happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0

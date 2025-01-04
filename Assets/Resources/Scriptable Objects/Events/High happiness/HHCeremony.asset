@@ -16,6 +16,7 @@ MonoBehaviour:
   eventDescription: Your people have decided that they are holding an event in honor
     of the people lost to the Great storm. They want you to support them in any way
     you can.
+  subFolder: High happiness
   options:
   - optionName: Donation
     optionDescription: Give 100kg of food to the people
@@ -30,6 +31,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0f2efe081d133b1458d006f0acd7ce60, type: 2}
     amountToConsume:
     - 100
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0
   - optionName: Give a speech
     optionDescription: Give your people a small happiness boost
@@ -42,4 +46,7 @@ MonoBehaviour:
     amountToGain: []
     itemsToConsume: []
     amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 0
+    lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 0
