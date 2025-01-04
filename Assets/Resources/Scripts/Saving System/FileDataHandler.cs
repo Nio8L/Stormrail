@@ -30,9 +30,28 @@ public class FileDataHandler
             }
             catch (Exception e)
             {
-               Debug.LogError("Error occure when trying to load: " + e);
+               Debug.LogError("Error occured when trying to load: " + e);
             }
         }
+
+        return loadedData;
+    }
+
+    public GameData LoadStarterMap(){
+        GameData loadedData = null;
+        
+        try
+        {
+            string dataToLoad = "";
+            TextAsset dataText = Resources.Load<TextAsset>("Saves/starter");
+            dataToLoad = dataText.text;
+            loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+        }
+        catch (Exception e)
+        {
+           Debug.LogError("Error occured when trying to load: " + e);
+        }
+        
 
         return loadedData;
     }

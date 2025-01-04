@@ -43,6 +43,7 @@ public class SaveManager : MonoBehaviour
 
         if(gameData == null){
             NewGame();
+            gameData = dataHandler.LoadStarterMap();
         }
 
         foreach (ISavable savable in savableObjects)

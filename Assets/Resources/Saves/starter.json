@@ -1,0 +1,2410 @@
+{
+    "camera": {
+        "cameraTransform": {
+            "position": {
+                "x": 0.0,
+                "y": 80.99999237060547,
+                "z": -80.99999237060547
+            },
+            "rotation": {
+                "x": 45.00001525878906,
+                "y": 33.800411224365237,
+                "z": 0.0
+            }
+        },
+        "cameraRigTransform": {
+            "position": {
+                "x": 5.006597518920898,
+                "y": -0.00004116392301511951,
+                "z": -17.793901443481447
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 33.8004150390625,
+                "z": 0.0
+            }
+        }
+    },
+    "map": {
+        "mapSize": {
+            "x": 8,
+            "y": 20
+        },
+        "tiles": [
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 1
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 2
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 6
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 7
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 9
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 11
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 12
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 13
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 14
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 15
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 16
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 17
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 18
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 0,
+                            "y": 19
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "type": 3,
+                        "angles": [
+                            0
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 2
+                        },
+                        "type": 0,
+                        "angles": [
+                            180,
+                            0
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 3
+                        },
+                        "type": 0,
+                        "angles": [
+                            180,
+                            0
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 4
+                        },
+                        "type": 0,
+                        "angles": [
+                            180,
+                            -60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 6
+                        },
+                        "type": 0,
+                        "angles": [
+                            -120,
+                            0
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 7
+                        },
+                        "type": 0,
+                        "angles": [
+                            180,
+                            0
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 8
+                        },
+                        "type": 0,
+                        "angles": [
+                            180,
+                            -60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 9
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 11
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 12
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 13
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 14
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 15
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 17
+                        },
+                        "type": 3,
+                        "angles": [
+                            -120
+                        ],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 18
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 1,
+                            "y": 19
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 0
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 3
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 4
+                        },
+                        "type": 0,
+                        "angles": [
+                            120,
+                            0
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 5
+                        },
+                        "type": 0,
+                        "angles": [
+                            -120,
+                            60,
+                            180
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 6
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 8
+                        },
+                        "type": 0,
+                        "angles": [
+                            120,
+                            -60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 9
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 10
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 11
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 12
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 13
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 14
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 15
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [
+                            60,
+                            -120
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 17
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 18
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 2,
+                            "y": 19
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 0
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 1
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 3
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 4
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 5
+                        },
+                        "type": 0,
+                        "angles": [
+                            -120,
+                            60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 6
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 9
+                        },
+                        "type": 0,
+                        "angles": [
+                            120,
+                            -60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 10
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 11
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 12
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 13
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 14
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 15
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [
+                            60,
+                            -120
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 17
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 18
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 3,
+                            "y": 19
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 0
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 1
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 2
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 3
+                        },
+                        "type": 0,
+                        "angles": [
+                            -120,
+                            0
+                        ],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 4
+                        },
+                        "type": 0,
+                        "angles": [
+                            180,
+                            60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 6
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 7
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 9
+                        },
+                        "type": 0,
+                        "angles": [
+                            120,
+                            -60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 10
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 11
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 12
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 13
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 14
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 15
+                        },
+                        "type": 0,
+                        "angles": [
+                            60,
+                            -60
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 17
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 18
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 4,
+                            "y": 19
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 0
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 1
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 2
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 3
+                        },
+                        "type": 3,
+                        "angles": [
+                            60
+                        ],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 4
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 5
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 6
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 7
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 9
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 10
+                        },
+                        "type": 3,
+                        "angles": [
+                            0,
+                            120
+                        ],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 11
+                        },
+                        "type": 0,
+                        "angles": [
+                            0,
+                            180
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 12
+                        },
+                        "type": 0,
+                        "angles": [
+                            -60,
+                            180
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 13
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 14
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 15
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [
+                            120,
+                            -120
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 17
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 18
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 5,
+                            "y": 19
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 0
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 1
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 3
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 4
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 6
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 7
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 9
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 11
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 12
+                        },
+                        "type": 0,
+                        "angles": [
+                            0,
+                            120
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 13
+                        },
+                        "type": 0,
+                        "angles": [
+                            -60,
+                            180
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 14
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 15
+                        },
+                        "type": 0,
+                        "angles": [
+                            60,
+                            -120
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 17
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 18
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 6,
+                            "y": 19
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    }
+                ]
+            },
+            {
+                "array": [
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 0
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 1
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 2
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 3
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 4
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 5
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 6
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 7
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 8
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 9
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 10
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 11
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 1,
+                        "revealed": true
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 12
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 2,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 13
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 14
+                        },
+                        "type": 0,
+                        "angles": [
+                            0,
+                            120
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 15
+                        },
+                        "type": 0,
+                        "angles": [
+                            60,
+                            180
+                        ],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 16
+                        },
+                        "type": 0,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 17
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 18
+                        },
+                        "type": 1,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": false
+                    },
+                    {
+                        "coordinates": {
+                            "x": 7,
+                            "y": 19
+                        },
+                        "type": 2,
+                        "angles": [],
+                        "decorationIndex": 0,
+                        "revealed": true
+                    }
+                ]
+            }
+        ]
+    },
+    "time": {
+        "speed": 0.0,
+        "day": 20,
+        "time": 24.180103302001954
+    },
+    "cities": [
+        {
+            "cityName": "5, 3",
+            "population": 24,
+            "workers": 0,
+            "coordinates": {
+                "x": 5,
+                "y": 3
+            },
+            "itemName": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "itemAmount": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                20.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "happinessSources": [
+                {
+                    "sourceName": "Base city happiness",
+                    "happinessModifier": 0.15000000596046449,
+                    "daysLeft": 1000.0,
+                    "infiniteDuration": true
+                },
+                {
+                    "sourceName": "Starvation",
+                    "happinessModifier": -0.30000001192092898,
+                    "daysLeft": 1000.0,
+                    "infiniteDuration": true
+                }
+            ],
+            "industries": [
+                {
+                    "industryName": "Extraction industry",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeExtraction"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Food production",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeFood"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Resource refinement",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeRefinament"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                }
+            ],
+            "workerAmount": [
+                0,
+                0,
+                0
+            ],
+            "hungerDrainModifier": 1.0,
+            "hungerTimer": 96.05008697509766,
+            "starving": true,
+            "connections": [],
+            "eventTimer": 228.72166442871095,
+            "eventActive": true
+        },
+        {
+            "cityName": "5, 10",
+            "population": 45,
+            "workers": 45,
+            "coordinates": {
+                "x": 5,
+                "y": 10
+            },
+            "itemName": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "itemAmount": [
+                569.4979858398438,
+                0.0,
+                0.0,
+                5400.0,
+                656.7223510742188,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "happinessSources": [
+                {
+                    "sourceName": "Base city happiness",
+                    "happinessModifier": 0.15000000596046449,
+                    "daysLeft": 1000.0,
+                    "infiniteDuration": true
+                },
+                {
+                    "sourceName": "Slums",
+                    "happinessModifier": -0.07500000298023224,
+                    "daysLeft": 0.0,
+                    "infiniteDuration": true
+                }
+            ],
+            "industries": [
+                {
+                    "industryName": "Extraction industry",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeExtraction"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Food production",
+                    "level": 1,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeFood"
+                    },
+                    "unlockedSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Food - Hunters"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Food - Wheat farms"
+                        }
+                    ],
+                    "activeSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Food - Hunters"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Food - Wheat farms"
+                        }
+                    ],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Resource refinement",
+                    "level": 1,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeRefinament"
+                    },
+                    "unlockedSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - CreateExplorer"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - TrainYard"
+                        }
+                    ],
+                    "activeSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - CreateExplorer"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - TrainYard"
+                        }
+                    ],
+                    "skillPoints": 0
+                }
+            ],
+            "workerAmount": [
+                0,
+                45,
+                0
+            ],
+            "hungerDrainModifier": 1.0,
+            "hungerTimer": 0.0,
+            "starving": false,
+            "connections": [],
+            "eventTimer": 192.18826293945313,
+            "eventActive": true
+        },
+        {
+            "cityName": "1, 17",
+            "population": 54,
+            "workers": 54,
+            "coordinates": {
+                "x": 1,
+                "y": 17
+            },
+            "itemName": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "itemAmount": [
+                3265.7548828125,
+                5248.96484375,
+                5094.46484375,
+                7134.779296875,
+                63.66326141357422,
+                109.46988677978516,
+                132.60906982421876,
+                0.0
+            ],
+            "happinessSources": [
+                {
+                    "sourceName": "Base city happiness",
+                    "happinessModifier": 0.15000000596046449,
+                    "daysLeft": 1000.0,
+                    "infiniteDuration": true
+                },
+                {
+                    "sourceName": "Slums",
+                    "happinessModifier": -0.07500000298023224,
+                    "daysLeft": 0.0,
+                    "infiniteDuration": true
+                },
+                {
+                    "sourceName": "Food rations",
+                    "happinessModifier": 0.02500000037252903,
+                    "daysLeft": 2.4309229850769045,
+                    "infiniteDuration": false
+                }
+            ],
+            "industries": [
+                {
+                    "industryName": "Extraction industry",
+                    "level": 3,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeExtraction"
+                    },
+                    "unlockedSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Lumber industry"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Stone quarry"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Iron minings"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Coal mining"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Deforestation"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - MechanisedStoneQuarries"
+                        }
+                    ],
+                    "activeSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Lumber industry"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Stone quarry"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Iron minings"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Coal mining"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - Deforestation"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Extr - MechanisedStoneQuarries"
+                        }
+                    ],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Food production",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeFood"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Resource refinement",
+                    "level": 3,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeRefinament"
+                    },
+                    "unlockedSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - SteelProduction"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - CreateExplorer"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - TrainYard"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - ExpandTrainYard"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - SteelMillImprovements"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - BrickProduction"
+                        }
+                    ],
+                    "activeSkills": [
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - CreateExplorer"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - TrainYard"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - ExpandTrainYard"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - SteelMillImprovements"
+                        },
+                        {
+                            "skillPath": "Scriptable Objects/Skills/Ref - BrickProduction"
+                        }
+                    ],
+                    "skillPoints": 0
+                }
+            ],
+            "workerAmount": [
+                27,
+                0,
+                27
+            ],
+            "hungerDrainModifier": 1.0,
+            "hungerTimer": -0.0007012840360403061,
+            "starving": false,
+            "connections": [],
+            "eventTimer": 207.60134887695313,
+            "eventActive": false
+        },
+        {
+            "cityName": "1, 1",
+            "population": 6,
+            "workers": 0,
+            "coordinates": {
+                "x": 1,
+                "y": 1
+            },
+            "itemName": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "itemAmount": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                20.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "happinessSources": [
+                {
+                    "sourceName": "Base city happiness",
+                    "happinessModifier": 0.15000000596046449,
+                    "daysLeft": 1000.0,
+                    "infiniteDuration": true
+                },
+                {
+                    "sourceName": "Starvation",
+                    "happinessModifier": -0.30000001192092898,
+                    "daysLeft": 1000.0,
+                    "infiniteDuration": true
+                }
+            ],
+            "industries": [
+                {
+                    "industryName": "Extraction industry",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeExtraction"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Food production",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeFood"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                },
+                {
+                    "industryName": "Resource refinement",
+                    "level": 0,
+                    "skillTree": {
+                        "skillTreePath": "Prefabs/Skills/SkillTrees/SkillTreeRefinament"
+                    },
+                    "unlockedSkills": [],
+                    "activeSkills": [],
+                    "skillPoints": 0
+                }
+            ],
+            "workerAmount": [
+                0,
+                0,
+                0
+            ],
+            "hungerDrainModifier": 1.0,
+            "hungerTimer": 96.05008697509766,
+            "starving": true,
+            "connections": [],
+            "eventTimer": 65.41720581054688,
+            "eventActive": true
+        }
+    ],
+    "explorers": [
+        {
+            "revealRadius": 0,
+            "speed": 1,
+            "cameFrom": {
+                "x": 1,
+                "y": 13
+            },
+            "goingTo": {
+                "x": 1,
+                "y": 13
+            }
+        },
+        {
+            "revealRadius": 0,
+            "speed": 1,
+            "cameFrom": {
+                "x": 5,
+                "y": 3
+            },
+            "goingTo": {
+                "x": 5,
+                "y": 3
+            }
+        }
+    ],
+    "routes": [
+        {
+            "name": "Food",
+            "stops": [
+                {
+                    "city": "5, 10",
+                    "name": "5, 10",
+                    "conditions": [
+                        {
+                            "load": true,
+                            "item": "Food",
+                            "amount": 100
+                        }
+                    ]
+                },
+                {
+                    "city": "1, 17",
+                    "name": "1, 17",
+                    "conditions": [
+                        {
+                            "load": false,
+                            "item": "Food",
+                            "amount": 100
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Rock n' Stone",
+            "stops": [
+                {
+                    "city": "1, 17",
+                    "name": "1, 17",
+                    "conditions": [
+                        {
+                            "load": true,
+                            "item": "Wood",
+                            "amount": 300
+                        },
+                        {
+                            "load": true,
+                            "item": "Stone",
+                            "amount": 300
+                        }
+                    ]
+                },
+                {
+                    "city": "5, 10",
+                    "name": "5, 10",
+                    "conditions": [
+                        {
+                            "load": false,
+                            "item": "Wood",
+                            "amount": 300
+                        },
+                        {
+                            "load": false,
+                            "item": "Stone",
+                            "amount": 300
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "trains": [
+        {
+            "name": "1, 17 train",
+            "route": "Food",
+            "stop": "5, 10",
+            "speed": 1.0,
+            "currentIndex": 10,
+            "cameFrom": {
+                "x": 4,
+                "y": 15
+            },
+            "goingTo": {
+                "x": 3,
+                "y": 16
+            },
+            "items": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "amounts": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "name": "1, 17 train 2",
+            "route": "Rock n' Stone",
+            "stop": "1, 17",
+            "speed": 1.0,
+            "currentIndex": 10,
+            "cameFrom": {
+                "x": 6,
+                "y": 12
+            },
+            "goingTo": {
+                "x": 5,
+                "y": 12
+            },
+            "items": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "amounts": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "name": "5, 10 train",
+            "route": "",
+            "stop": "",
+            "speed": 1.0,
+            "currentIndex": 0,
+            "cameFrom": {
+                "x": 0,
+                "y": 0
+            },
+            "goingTo": {
+                "x": 0,
+                "y": 0
+            },
+            "items": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "amounts": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
+    ]
+}
