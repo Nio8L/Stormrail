@@ -191,6 +191,15 @@ public class TrainManager : MonoBehaviour, ISavable
         return null;
     }
 
+
+    public void InstantiateTrain(TrainSerialized train){
+        GameObject newTrain = Instantiate(trainPrefab);
+        Locomotive locomotive = newTrain.GetComponent<Locomotive>();
+        locomotive.trainObject = newTrain;
+        locomotive.LoadTrain(train);
+        locomotives.Add(locomotive);
+    }
+
     public void LoadData(GameData data)
     {
         for(int i = 0; i < data.routes.Count; i++){
@@ -232,16 +241,9 @@ public class TrainManager : MonoBehaviour, ISavable
         }
     }
 
-    public void InstantiateTrain(TrainSerialized train){
-        GameObject newTrain = Instantiate(trainPrefab);
-        Locomotive locomotive = newTrain.GetComponent<Locomotive>();
-        locomotive.trainObject = newTrain;
-        locomotive.LoadTrain(train);
-        locomotives.Add(locomotive);
-    }
-
     public void SaveData(GameData data)
     {
+        
         data.routes = new();
 
         for(int i = 0; i < routes.Count; i++){

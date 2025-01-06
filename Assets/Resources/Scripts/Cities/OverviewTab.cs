@@ -37,9 +37,17 @@ public class OverviewTab : MonoBehaviour
             for (int look = select+1; look < sources.Count; look++){
                 float lHappiness = sources[look].happinessModifier;
                 if (lHappiness > 0 && sHappiness < lHappiness){
-                    (sources[look], sources[select]) = (sources[select], sources[look]);
+                    HappinessSource source = sources[select];
+                    sources[select] = sources[look];
+                    sources[select] = source;
                 }else if (lHappiness < 0 && sHappiness < 0 && sHappiness > lHappiness){
-                    (sources[look], sources[select]) = (sources[select], sources[look]);
+                    HappinessSource source = sources[select];
+                    sources[select] = sources[look];
+                    sources[select] = source;
+                }else if (lHappiness > 0 && sHappiness < 0){
+                    HappinessSource source = sources[select];
+                    sources[select] = sources[look];
+                    sources[select] = source;
                 }
             }
         }

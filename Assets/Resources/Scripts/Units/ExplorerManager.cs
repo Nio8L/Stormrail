@@ -70,8 +70,6 @@ public class ExplorerManager : MonoBehaviour, ISavable
     }
 
     public void SpawnExplorer(){
-        Debug.Log("new explorer no coords");
-
         Vector3 spawnPosition = MapManager.instance.GetPositionForHexFromCoordinate(new (0, 0));
         GameObject newExplorer = Instantiate(explorerPrefab, spawnPosition, Quaternion.identity);
 
@@ -79,8 +77,6 @@ public class ExplorerManager : MonoBehaviour, ISavable
         explorers.Add(explorerScript);
     }
     public void SpawnExplorer(HexTile spawnTile){
-        Debug.Log("new explorer");
-
         Vector3 spawnPosition = new(spawnTile.transform.position.x, 1, spawnTile.transform.position.z);
         GameObject newExplorer = Instantiate(explorerPrefab, spawnPosition, Quaternion.identity);
 
