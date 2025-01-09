@@ -8,6 +8,8 @@ public class MapLoader : MonoBehaviour
     public string mapName;
     public Vector2Int mapSize;
     public bool loadingEditor;
+    public bool startingNewGame;
+    public bool loadStarter;
 
     void Awake(){
         if (instance != null) Destroy(instance);
@@ -23,5 +25,12 @@ public class MapLoader : MonoBehaviour
     public static void LoadGame(string _mapName){
         instance.mapName = _mapName;
         instance.loadingEditor = false;
+        instance.startingNewGame = false;
+    }
+
+    public static void LoadMap(string _mapName){
+        instance.mapName = _mapName;
+        instance.loadingEditor = false;
+        instance.startingNewGame = true;
     }
 }

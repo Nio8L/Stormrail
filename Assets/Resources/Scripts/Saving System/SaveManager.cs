@@ -25,7 +25,10 @@ public class SaveManager : MonoBehaviour
 
         // Map loader
         if (MapLoader.instance != null){
-            fileName = MapLoader.instance.mapName + ".json";
+            fileName = MapLoader.instance.mapName;
+            if (MapLoader.instance.loadingEditor){
+                fileName += ".map";
+            }
         }
     }
 
@@ -40,13 +43,13 @@ public class SaveManager : MonoBehaviour
     }
 
     public void LoadGame(){
-        gameData = dataHandler.Load();
+        if (!MapLoader.instance.loadStarter) gameData = dataHandler.Load();
 
         if(gameData == null){
             NewGame();
-
-            if (!MapLoader.instance.loadingEditor)
+            if(MapLoader.instance.loadStarter){
                 gameData = dataHandler.LoadStarterMap();
+            }
         }
 
         foreach (ISavable savable in savableObjects)
@@ -56,6 +59,13 @@ public class SaveManager : MonoBehaviour
     }
 
     public void SaveGame(){
+        if (MapLoader.instance != null){
+            if (!MapLoader.instance.loadingEditor){
+                fileName = fileName.Replace(".map", ".json");
+            }
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        }
+
         foreach (ISavable savable in savableObjects)
         {
             savable.SaveData(gameData);
