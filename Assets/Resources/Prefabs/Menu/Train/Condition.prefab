@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 8534601792189040212}
   - component: {fileID: 8486005094932046283}
   - component: {fileID: 705527899507443004}
+  - component: {fileID: 6017040347248716217}
   m_Layer: 5
   m_Name: Action
   m_TagString: Untagged
@@ -291,6 +292,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6017040347248716217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408066439261177901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1 &1785242583367542260
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +924,7 @@ GameObject:
   - component: {fileID: 7492342978441115817}
   - component: {fileID: 6510945427181592477}
   - component: {fileID: 3306153495893241523}
+  - component: {fileID: 5345785212471030248}
   m_Layer: 5
   m_Name: ItemDropdown
   m_TagString: Untagged
@@ -1056,6 +1073,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &5345785212471030248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206984604041465293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1 &3632029277090179728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1136,7 @@ GameObject:
   - component: {fileID: 563470308097771480}
   - component: {fileID: 8335846944244032664}
   - component: {fileID: 7389753960129241883}
+  - component: {fileID: 4702971626356554322}
   m_Layer: 5
   m_Name: DeleteButton
   m_TagString: Untagged
@@ -1198,6 +1231,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4702971626356554322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640950874513383054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1 &3979292391803157828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1495,7 @@ GameObject:
   - component: {fileID: 3629327706260180120}
   - component: {fileID: 861811771111888702}
   - component: {fileID: 4426275487057177315}
+  - component: {fileID: 3688526020985501860}
   m_Layer: 5
   m_Name: Amount
   m_TagString: Untagged
@@ -1622,6 +1671,21 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &3688526020985501860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265464892843759087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1 &5731357523391000518
 GameObject:
   m_ObjectHideFlags: 0

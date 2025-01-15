@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4367002709724516371}
   - component: {fileID: 8946301667591680105}
   - component: {fileID: 6115319657276871533}
+  - component: {fileID: 6111747982279767268}
   m_Layer: 5
   m_Name: WorkerBar
   m_TagString: Untagged
@@ -135,6 +136,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6111747982279767268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179232663315184399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1001 &2650920291444538391
 PrefabInstance:
   m_ObjectHideFlags: 0

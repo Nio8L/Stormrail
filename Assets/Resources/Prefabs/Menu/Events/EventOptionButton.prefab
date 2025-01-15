@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 2626244006374018770}
   - component: {fileID: 8913554674059959415}
   - component: {fileID: 5028852753299609357}
+  - component: {fileID: 896960807437729823}
   m_Layer: 5
   m_Name: EventOptionButton
   m_TagString: Untagged
@@ -328,3 +329,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   index: 0
+--- !u!114 &896960807437729823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2773443782190386894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1

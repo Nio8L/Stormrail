@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 8639342668662129658}
   - component: {fileID: 3201461369928244097}
   - component: {fileID: 4281900120726355325}
+  - component: {fileID: 2379973339794477567}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -240,6 +241,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2379973339794477567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024069299527176710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1 &2314451380536485280
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,10 +401,10 @@ RectTransform:
   - {fileID: 8162282780538098691}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516399545310117343
 MonoBehaviour:
@@ -415,6 +431,7 @@ GameObject:
   - component: {fileID: 7218821238836597798}
   - component: {fileID: 1038358898204137314}
   - component: {fileID: 817095934215195268}
+  - component: {fileID: 5202241868357876408}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -509,6 +526,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5202241868357876408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531256870171854526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1
 --- !u!1 &7545513932695288629
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6456453393242832699}
   - component: {fileID: 4841910078373209048}
   - component: {fileID: 1825079638748510931}
+  - component: {fileID: 9165677749370395928}
   m_Layer: 5
   m_Name: Skill
   m_TagString: Untagged
@@ -94,3 +95,18 @@ MonoBehaviour:
   branches: []
   unlocked: 0
   lineRenderer: {fileID: 1441142260093298581, guid: 6861e90ce40a5c24ba01407f3440e941, type: 3}
+--- !u!114 &9165677749370395928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589494957241046506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ff103e2bdaa404ab441c718fe3a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTime: 0.1
+  time: 0
+  growScale: 1.1

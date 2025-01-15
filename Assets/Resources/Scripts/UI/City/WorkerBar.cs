@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Industry industry;
     public IndustryWindow industryWindow;
@@ -23,6 +23,17 @@ public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         pointerIn = false;
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left){
+            ChangeWorkerCount(1);
+        }else if (eventData.button == PointerEventData.InputButton.Right){
+            ChangeWorkerCount(-1);
+        }else{
+            ChangeWorkerCount(-CityMenu.instance.currentCity.workersPerIndustry[industry]);
+        }
+    }
+
     void Update(){
         if (pointerIn){
             // Find if the player is scrolling
@@ -30,19 +41,23 @@ public class WorkerBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             if (scroll != 0){
                 // Multiply the scroll so 1 drag up or down is 1 worker
                 scroll *= 10f;
-                if (CityMenu.instance.currentCity.workers + Mathf.RoundToInt(scroll) <= CityMenu.instance.currentCity.population){
-                    workers += Mathf.RoundToInt(scroll);
-
-                    int leftover = 0;
-                    if (workers < 0){leftover = Mathf.Abs(workers); workers = 0;}
-
-                    CityMenu.instance.currentCity.workersPerIndustry[industry] = workers;
-                    CityMenu.instance.currentCity.workers += Mathf.RoundToInt(scroll) + leftover;
-
-                    UpdateVisuals();
-                }
+                ChangeWorkerCount(Mathf.RoundToInt(scroll));
             }
         }
+    }
+
+    void ChangeWorkerCount(int amount){
+        if (CityMenu.instance.currentCity.workers + amount <= CityMenu.instance.currentCity.population){
+                workers += amount;
+
+                int leftover = 0;
+                if (workers < 0){leftover = Mathf.Abs(workers); workers = 0;}
+
+                CityMenu.instance.currentCity.workersPerIndustry[industry] = workers;
+                CityMenu.instance.currentCity.workers += amount + leftover;
+
+                UpdateVisuals();
+            }
     }
 
     int GetLimit(int limit){
