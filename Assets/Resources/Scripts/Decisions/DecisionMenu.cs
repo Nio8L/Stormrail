@@ -32,6 +32,10 @@ public class DecisionMenu : MonoBehaviour
         instance.nameBox.text = eventToOpen.eventName;
         instance.descriptionBox.text = eventToOpen.eventDescription;
 
+        ShowDecisionMenuButton.instance.gameObject.SetActive(true);
+
+        TimeControl.instance.PauseTime();
+
         // Clear old option
         for (int i = instance.buttonHolder.childCount-1; i >= 0; i--){
             Destroy(instance.buttonHolder.GetChild(i).gameObject);
@@ -63,6 +67,9 @@ public class DecisionMenu : MonoBehaviour
     }
 
     public static void CloseMenu(){
+        instance.currentEvent = null;
         instance.gameObject.SetActive(false);
+
+        ShowDecisionMenuButton.instance.gameObject.SetActive(false);
     }
 }

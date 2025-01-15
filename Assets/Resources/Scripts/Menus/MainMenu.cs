@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
         loadWindow.SetActive(false);
 
         for (int i = 0; i < mapHolder.transform.childCount; i++){
-            Destroy(mapHolder.transform.GetChild(i));
+            Destroy(mapHolder.transform.GetChild(i).gameObject);
         }
 
         GameObject saveBox = Instantiate(prefabSaveBox, mapHolder.transform);
@@ -84,7 +84,7 @@ public class MainMenu : MonoBehaviour
         loadWindow.SetActive(true);
 
         for (int i = 0; i < saveHolder.transform.childCount; i++){
-            Destroy(saveHolder.transform.GetChild(i));
+            Destroy(saveHolder.transform.GetChild(i).gameObject);
         }
 
         foreach (string file in Directory.EnumerateFiles(Application.persistentDataPath, "*.json"))

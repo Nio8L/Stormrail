@@ -39,8 +39,6 @@ public class City : MonoBehaviour
 
 
     void Start(){
-        transform.position = MapManager.instance.tiles[coordinates.x, coordinates.y].transform.position;
-        transform.position += new Vector3(0, 0.75f, 0);
         MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.City);
 
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){

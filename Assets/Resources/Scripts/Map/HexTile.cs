@@ -32,7 +32,7 @@ public class HexTile : MonoBehaviour
     public void Initialize(Vector2Int coordinates){
         this.coordinates = coordinates;
 
-        if(!revealed && (MapLoader.instance == null || MapLoader.instance.loadingEditor)){
+        if(!revealed && (MapLoader.instance == null || !MapLoader.instance.loadingEditor)){
             MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
             meshRenderer.material = hiddenMaterial;

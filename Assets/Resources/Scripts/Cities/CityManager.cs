@@ -37,6 +37,9 @@ public class CityManager : MonoBehaviour, ISavable
 
             newCity.coordinates = new Vector2Int(city.coordinates.x, city.coordinates.y);
 
+            newCityObject.transform.position = MapManager.instance.tiles[city.coordinates.x, city.coordinates.y].transform.position;
+            newCityObject.transform.position += new Vector3(0, 0.75f, 0);
+
             foreach (HappinessSource source in city.happinessSources)
             {
                 newCity.AddHappinessSource(source);

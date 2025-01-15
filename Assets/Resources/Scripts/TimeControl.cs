@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class TimeControl : MonoBehaviour, ISavable
 {
+    public static TimeControl instance;
+    
     [Header("Time settings")]
     public float fastTime = 3;
     public float normalTime = 2;
@@ -32,6 +34,9 @@ public class TimeControl : MonoBehaviour, ISavable
     public Light sunLight;
     float lastTime;
 
+    void Awake(){
+        instance = this;
+    }
     private void Update() {
         if (MapLoader.instance != null && MapLoader.instance.loadingEditor) return;
 
@@ -74,6 +79,8 @@ public class TimeControl : MonoBehaviour, ISavable
     }
 
     public void SpeedUp(){
+        if (DecisionMenu.instance.currentEvent != null) return;
+
         Time.timeScale = fastTime;
         lastTime = fastTime;
         
@@ -84,6 +91,8 @@ public class TimeControl : MonoBehaviour, ISavable
     }
 
     public void NormalSpeed(){
+        if (DecisionMenu.instance.currentEvent != null) return;
+
         Time.timeScale = normalTime;
         lastTime = normalTime;
 
@@ -95,6 +104,8 @@ public class TimeControl : MonoBehaviour, ISavable
     }
 
     public void SlowDown(){
+        if (DecisionMenu.instance.currentEvent != null) return;
+        
         Time.timeScale = slowTime;
         lastTime = slowTime;
 
@@ -114,6 +125,8 @@ public class TimeControl : MonoBehaviour, ISavable
     }
 
     public void NextTime(){
+        if (DecisionMenu.instance.currentEvent != null) return;
+        
         if(Time.timeScale == 1){
             NormalSpeed();
         }else if(Time.timeScale == 2){
