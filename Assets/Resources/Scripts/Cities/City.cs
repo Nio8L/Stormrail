@@ -25,6 +25,8 @@ public class City : MonoBehaviour
     public float hungerTimer;
     public float eventTimer;
     public bool starvation = false;
+    public float starvationDeathResetTimer;
+    public float deathPenalty = 1;
     
     [Header("Event pools")]
     public EventPool eventPoolLowHappiness;
@@ -32,6 +34,7 @@ public class City : MonoBehaviour
     [Header("Events")]
     public string activeEvent;
     public Decision starvationEvent;
+    public Decision deathFromHungerEvent;
     [Header("Prefabs")]
     public GameObject prefabEventBubble;
     
@@ -76,6 +79,15 @@ public class City : MonoBehaviour
 
         inventory[DataBase.instance.allItems[4]] = 20;
         inventory[DataBase.instance.allItems[0]] = 10;
+
+        // Reveal city
+        HexTile thisTile = MapManager.instance.CityToTile(this);
+        thisTile.Reveal();
+
+        List<HexTile> surroundingTiles = thisTile.GetNeighbors(1);
+        foreach (HexTile tile in surroundingTiles){
+            tile.Reveal();
+        }
     }
 
     void Update(){
@@ -88,6 +100,9 @@ public class City : MonoBehaviour
         HungerDrain();
         UpdateHappinessSourceTimers();
         SpawnRandomEventTimer();
+        UpdateDeathPenalty();
+
+        if (population <= 0) DestroyCity();
     }
 
     void ConsumeResourcesFromIndustries(){
@@ -153,7 +168,7 @@ public class City : MonoBehaviour
         }
 
         // Calculate the happiness modifier
-        float modifier = 0.8f + 2*lockedHappiness/5;
+        float modifier = 0.8f + 2*lockedHappiness/5 * deathPenalty;
 
         // Calculate the final production
         productionThisSecond *= modifier/DataBase.instance.dayLenghtInSeconds;
@@ -165,7 +180,7 @@ public class City : MonoBehaviour
         // Calculates consumption per second
 
         // Calculate the happiness modifier
-        float modifier = 0.8f + 2*lockedHappiness/5;
+        float modifier = 0.8f + 2*lockedHappiness/5 * deathPenalty;
 
         return amountPerSecond * modifier * workers / DataBase.instance.dayLenghtInSeconds;
     }
@@ -192,10 +207,15 @@ public class City : MonoBehaviour
     }
     public void RemoveHappinessSource(HappinessSource sourceToRemove){
         // Removes a happiness source as well as it's modifier
+        RemoveHappinessSource(sourceToRemove.sourceName);
+    }
+
+    public void RemoveHappinessSource(string sourceName){
+        // Removes a happiness source as well as it's modifier
         for (int i = 0; i < happinessSources.Count; i++){
-            if (happinessSources[i].sourceName == sourceToRemove.sourceName){
+            if (happinessSources[i].sourceName == sourceName){
+                overallHappiness -= happinessSources[i].happinessModifier;
                 happinessSources.RemoveAt(i);
-                overallHappiness -= sourceToRemove.happinessModifier;
                 break;
             }
         }
@@ -244,13 +264,28 @@ public class City : MonoBehaviour
         // Consume food
         consumingThisFrame[DataBase.instance.allItems[0]] += hungerDrain;
 
-        if (inventory[DataBase.instance.allItems[0]] < hungerDrain && hungerTimer < DataBase.instance.dayLenghtInSeconds * 2){
+        if (inventory[DataBase.instance.allItems[0]] < hungerDrain){
             // No food
-            hungerTimer += Time.deltaTime;
+            if (hungerTimer < DataBase.instance.dayLenghtInSeconds * 2){
+                hungerTimer += Time.deltaTime;
+            }
+
+            if (hungerTimer >= DataBase.instance.dayLenghtInSeconds * 2){
+                // Starving
+                starvationDeathResetTimer += Time.deltaTime;
+                if (starvationDeathResetTimer >= DataBase.instance.dayLenghtInSeconds * 1){
+                    starvationDeathResetTimer = 0f;
+                    SpawnEvent(deathFromHungerEvent);
+                }
+            }
         }else{
             // Some food
             if (hungerTimer > 0f){
                 hungerTimer -= Time.deltaTime/2;
+            }
+
+            if (starvationDeathResetTimer > 0f){
+                starvationDeathResetTimer -= Time.deltaTime*2;
             }
         }
 
@@ -311,6 +346,11 @@ public class City : MonoBehaviour
         // Modifies this cities population by amount and updates worker numbers
         population += amount;
 
+        if (CityMenu.instance.currentCity == this){
+            CityMenu.instance.populationText.text = population.ToString();
+        }
+
+        // Update population
         if (amount < 0){
             int diff = population - workers;
             if (diff < 0){
@@ -328,6 +368,34 @@ public class City : MonoBehaviour
             }
 
             if (population  < 0) population = 0;
+        }
+
+        // Death case
+        if (death && amount < 0){
+            deathPenalty += amount * 0.05f;
+        }
+    }
+
+    void UpdateDeathPenalty(){
+        // Update the death penalty and add the necessary happiness source
+        if (deathPenalty < 1) deathPenalty += 0.1f * Time.deltaTime / DataBase.instance.dayLenghtInSeconds;
+
+        RemoveHappinessSource("Recent losses");
+        RemoveHappinessSource("Mass deaths");
+        RemoveHappinessSource("Collapsing city");
+        if (deathPenalty < 0.05f){
+            // Game over
+            HappinessSource deaths = new HappinessSource("Game over buddy", -2f, 1000f, true);
+            AddHappinessSource(deaths);
+        }else if (deathPenalty < 0.35f){
+            HappinessSource deaths = new HappinessSource("Collapsing city", -0.65f, 1000f, true);
+            AddHappinessSource(deaths);
+        }else if (deathPenalty < 0.7f){
+            HappinessSource deaths = new HappinessSource("Mass deaths", -0.30f, 1000f, true);
+            AddHappinessSource(deaths);
+        }else if (deathPenalty < 1f){
+            HappinessSource deaths = new HappinessSource("Recent losses", -0.10f, 1000f, true);
+            AddHappinessSource(deaths);
         }
     }
 }
