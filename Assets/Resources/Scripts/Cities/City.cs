@@ -37,6 +37,8 @@ public class City : MonoBehaviour
     public Decision deathFromHungerEvent;
     [Header("Prefabs")]
     public GameObject prefabEventBubble;
+    [Header("Object")]
+    public DecisionBubble decisionBubble;
     
     
 
@@ -324,17 +326,21 @@ public class City : MonoBehaviour
         activeEvent = eventToSpawn.subFolder + "/" + eventToSpawn.name;
 
         Vector3 bubblePosition = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
-        DecisionBubble decisionBubble = Instantiate(prefabEventBubble, bubblePosition, Quaternion.identity).GetComponent<DecisionBubble>();
+        decisionBubble = Instantiate(prefabEventBubble, bubblePosition, Quaternion.identity).GetComponent<DecisionBubble>();
         decisionBubble.decision = eventToSpawn;
         decisionBubble.linkedCity = this;
     }
 
     public void SpawnEvent(string eventName){
-        // Event name format must be: event sub folder name + even name. Ex: Low happiness/LHSlums
+        // Event name format must be: event sub folder name + event name. Ex: Low happiness/LHSlums
         if (eventName == "") return;
 
         Decision eventToSpawn = Resources.Load<Decision>("Scriptable Objects/Events/" + eventName);
         SpawnEvent(eventToSpawn);
+    }
+
+    public void SetEventBubbleTimer(float time){
+        decisionBubble.timeLeft = time;
     }
 
     public void SetPopulation(int amount){

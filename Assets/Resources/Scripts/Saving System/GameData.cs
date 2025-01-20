@@ -211,11 +211,14 @@ public class CitySerialized{
     public float hungerDrainModifier;
     public float hungerTimer;
     public bool starving;
+    public float starvationDeathResetTimer;
+    public float deathPenalty;
 
     public List<string> connections;
 
     public float eventTimer;
     public string activeEvent;
+    public float eventBubbleTimer;
 
     public CitySerialized(){
         cityName = "New Sofia Default";
