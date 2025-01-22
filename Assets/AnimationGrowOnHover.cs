@@ -10,6 +10,7 @@ public class AnimationGrowOnHover : MonoBehaviour, IPointerEnterHandler, IPointe
     public float growScale = 1.1f;
 
     bool pointerOver;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         pointerOver = true;
@@ -20,18 +21,24 @@ public class AnimationGrowOnHover : MonoBehaviour, IPointerEnterHandler, IPointe
         pointerOver = false;
     }
 
+    public void ScaleDown(){
+        pointerOver = false;
+        time = 0;
+        transform.localScale = Vector3.one;
+    }
+
     void Update(){
         if (pointerOver){
             if (time >= growTime){
                 time = growTime;
             }else{
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
             }
         }else{
             if (time <= 0){
                 time = 0;
             }else{
-                time -= Time.deltaTime;
+                time -= Time.unscaledDeltaTime;
             }
         }
 

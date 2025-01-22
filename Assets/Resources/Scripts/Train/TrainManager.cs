@@ -212,7 +212,7 @@ public class TrainManager : MonoBehaviour, ISavable
             for(int j = 0; j < routeSerialized.stops.Count; j++){
                 StopSerialized stopSerialized = routeSerialized.stops[j];
                 Stop stopToLoad = new();
-                stopToLoad.city = CityManager.instance.GetCityByName(stopSerialized.city);
+                stopToLoad.city = CityManager.instance.GetCity(stopSerialized.city);
                 stopToLoad.name = stopSerialized.name;
                 
                 List<Condition> conditionsToLoad = new();
