@@ -56,21 +56,14 @@ public class MainMenu : MonoBehaviour
             Destroy(mapHolder.transform.GetChild(i).gameObject);
         }
 
-        GameObject saveBox = Instantiate(prefabSaveBox, mapHolder.transform);
-        SaveBox box = saveBox.GetComponent<SaveBox>();
-        box.path = "starter.json";
-        box.loadStarter = true;
-        saveBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Starter";
-
-
         foreach (string file in Directory.EnumerateFiles(Application.persistentDataPath, "*.map"))
         {
             string fileName = file.Replace(Application.persistentDataPath, "");
             fileName = fileName.Substring(1);
             fileName = fileName.Replace(".map", "");
 
-            saveBox = Instantiate(prefabSaveBox, mapHolder.transform);
-            box = saveBox.GetComponent<SaveBox>();
+            GameObject saveBox = Instantiate(prefabSaveBox, mapHolder.transform);
+            SaveBox box = saveBox.GetComponent<SaveBox>();
             box.path = file;
             box.map = true;
             saveBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = fileName;
@@ -113,5 +106,10 @@ public class MainMenu : MonoBehaviour
         // Load editor
         MapLoader.LoadEditor(mapName, sizeVector);
         SceneManager.LoadScene("Map Editor");
+    }
+
+    public void ButtonPlayScenario(){
+        MapLoader.instance.loadStarter = true;
+        instance.LoadMap("starter.json");
     }
 }
