@@ -84,6 +84,19 @@ public class ExplorerManager : MonoBehaviour, ISavable
         explorers.Add(explorerScript);
     }
 
+    public List<Explorer> GetExplorer(City city){
+        List<Explorer> found = new();
+        
+        foreach (Explorer explorer in explorers)
+        {
+            if(explorer.coordinates == city.coordinates && !explorer.move){
+                found.Add(explorer);
+            }
+        }
+
+        return found;
+    }
+
     public int GetPriority()
     {
         return 3;
@@ -100,10 +113,15 @@ public class ExplorerManager : MonoBehaviour, ISavable
             HexTile targetTile = MapManager.instance.CoordinatesToTile(targetCoordinates);
 
             SpawnExplorer(startTile);
+            explorers[^1].unitName = explorerSerialized.name;
             explorers[^1].coordinates = startTile.coordinates;
             explorers[^1].speed = explorerSerialized.speed;
             explorers[^1].revealRadius = explorerSerialized.revealRadius;
             explorers[^1].NewPath(targetTile);
+
+            if(explorers[^1].unitName == null){
+                explorers[^1].unitName = "Explorer group " + explorers.Count;
+            }
         }
     }
 

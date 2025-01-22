@@ -351,6 +351,7 @@ public class ConditionSerialized{
 
 [Serializable]
 public class ExplorerSerialized{
+    public string name;
     public int revealRadius;
     public int speed;
     public Vector2Serialized cameFrom;
@@ -362,6 +363,7 @@ public class ExplorerSerialized{
     }
 
     public ExplorerSerialized(Explorer explorer){
+        name = explorer.unitName;
         revealRadius = explorer.revealRadius;
         speed = explorer.speed;
 

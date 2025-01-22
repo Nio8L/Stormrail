@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Explorer : MonoBehaviour
 {
+    public string unitName;
     public Vector2Int coordinates;
     public int speed;
     public int revealRadius;
@@ -15,10 +16,12 @@ public class Explorer : MonoBehaviour
     [Header("Movement")]
     float moveTimer = 0;
     public int currentIndex = 0;
-    bool move = false;
+    public bool move = false;
+
+    [Header("Supplies")]
+    public int foodSupply = 0;
 
     private void Start() {
-        //ExplorerManager.instance.explorers.Add(this);
         transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(coordinates.x, -coordinates.y));
     }
 
@@ -47,6 +50,8 @@ public class Explorer : MonoBehaviour
 
             if(currentIndex == currentPath.Count - 1){
                 move = false;
+
+                UpdateUnitTab();
             }else{
                 currentIndex++;
                 target = currentPath[currentIndex].transform.position;
@@ -84,6 +89,22 @@ public class Explorer : MonoBehaviour
     public void NewPath(HexTile target){
         currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target);
         FirstMove();
+    }
+
+    //Handles updating the unit tab, in case the explorer is entering a city 
+    //and the city menu is looking at that city
+    public void UpdateUnitTab(){
+        //Check if the end of the path is a city
+        if(CityManager.instance.GetCityByTile(currentPath[currentIndex]) != null){
+            //Check if the city menu is displaying that city
+            if(CityMenu.instance.currentCity == CityManager.instance.GetCityByTile(currentPath[currentIndex])){
+                //Check if the unit tab is open
+                if(CityMenu.instance.tabs[^1].activeSelf){
+                    //Refresh the unit tab
+                    CityMenu.instance.tabs[^1].GetComponent<UnitTab>().Refresh();
+                }
+            }
+        }
     }
 
     private void OnMouseDown() {
