@@ -141,7 +141,17 @@ public class CityManager : MonoBehaviour, ISavable
         }
     }
 
-    public City GetCityByTile(HexTile tile){
+    public City GetCity(Vector2Int coordinates){
+         foreach (City city in cities)
+        {
+            if(city.coordinates == coordinates){
+                return city;
+            }
+        }
+        return null;
+    }
+    
+    public City GetCity(HexTile tile){
         foreach (City city in cities)
         {
             if(city.coordinates == tile.coordinates){
@@ -151,7 +161,7 @@ public class CityManager : MonoBehaviour, ISavable
         return null;
     }
 
-    public City GetCityByName(string name){
+    public City GetCity(string name){
         foreach (City city in cities)
         {
             if(city.cityName == name){

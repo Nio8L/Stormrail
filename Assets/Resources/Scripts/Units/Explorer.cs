@@ -20,9 +20,14 @@ public class Explorer : MonoBehaviour
 
     [Header("Supplies")]
     public int foodSupply = 0;
+    public City supplierCity;
+    bool returning = false;
 
     private void Start() {
         transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(coordinates.x, -coordinates.y));
+        if(CityManager.instance.GetCity(coordinates)){
+            supplierCity = CityManager.instance.GetCity(coordinates);
+        }
     }
 
     private void Update() {
@@ -51,12 +56,25 @@ public class Explorer : MonoBehaviour
             if(currentIndex == currentPath.Count - 1){
                 move = false;
 
+                if(CityManager.instance.GetCity(currentPath[currentIndex]) != null){
+                    supplierCity = CityManager.instance.GetCity(currentPath[currentIndex]);
+                    returning = false;
+                }else{
+                    returning = true;
+                    currentPath.Reverse();
+                    FirstMove();
+                }
+
                 UpdateUnitTab();
             }else{
                 currentIndex++;
                 target = currentPath[currentIndex].transform.position;
                 target.y = 1;
                 moveTimer = 0;
+                
+                if(!returning){
+                    foodSupply--;
+                }
             }
         }
         
@@ -87,7 +105,7 @@ public class Explorer : MonoBehaviour
     }
 
     public void NewPath(HexTile target){
-        currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target);
+        currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target, foodSupply);
         FirstMove();
     }
 
@@ -95,9 +113,9 @@ public class Explorer : MonoBehaviour
     //and the city menu is looking at that city
     public void UpdateUnitTab(){
         //Check if the end of the path is a city
-        if(CityManager.instance.GetCityByTile(currentPath[currentIndex]) != null){
+        if(CityManager.instance.GetCity(currentPath[currentIndex]) != null){
             //Check if the city menu is displaying that city
-            if(CityMenu.instance.currentCity == CityManager.instance.GetCityByTile(currentPath[currentIndex])){
+            if(CityMenu.instance.currentCity == CityManager.instance.GetCity(currentPath[currentIndex])){
                 //Check if the unit tab is open
                 if(CityMenu.instance.tabs[^1].activeSelf){
                     //Refresh the unit tab

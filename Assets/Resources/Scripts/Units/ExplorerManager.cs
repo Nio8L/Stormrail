@@ -42,7 +42,7 @@ public class ExplorerManager : MonoBehaviour, ISavable
     }
 
     public void BuildPreviewConnection(HexTile tile){        
-        List<HexTile> path = Pathfinder.instance.PathfindAll(tile, MapManager.instance.hoveredTile);
+        List<HexTile> path = Pathfinder.instance.PathfindAll(tile, MapManager.instance.hoveredTile, selectedExplorer.foodSupply);
         
         if(path == null) return;
 
