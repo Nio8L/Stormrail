@@ -27,6 +27,7 @@ public class City : MonoBehaviour
     public bool starvation = false;
     public float starvationDeathResetTimer;
     public float deathPenalty = 1;
+    int lastDeathPenalty;
     
     [Header("Event pools")]
     public EventPool eventPoolLowHappiness;
@@ -386,22 +387,41 @@ public class City : MonoBehaviour
         // Update the death penalty and add the necessary happiness source
         if (deathPenalty < 1) deathPenalty += 0.1f * Time.deltaTime / DataBase.instance.dayLenghtInSeconds;
 
-        RemoveHappinessSource("Recent losses");
-        RemoveHappinessSource("Mass deaths");
-        RemoveHappinessSource("Collapsing city");
+        
         if (deathPenalty < 0.05f){
             // Game over
+            if (lastDeathPenalty == 0) return;
+            RemoveDeathHappinessSources();
+            lastDeathPenalty = 0;
             HappinessSource deaths = new HappinessSource("Game over buddy", -2f, 1000f, true);
             AddHappinessSource(deaths);
         }else if (deathPenalty < 0.35f){
+            // High penalty
+            if (lastDeathPenalty == 1) return;
+            RemoveDeathHappinessSources();
+            lastDeathPenalty = 1;
             HappinessSource deaths = new HappinessSource("Collapsing city", -0.65f, 1000f, true);
             AddHappinessSource(deaths);
         }else if (deathPenalty < 0.7f){
+            // Mid penalty
+            if (lastDeathPenalty == 2) return;
+            RemoveDeathHappinessSources();
+            lastDeathPenalty = 2;
             HappinessSource deaths = new HappinessSource("Mass deaths", -0.30f, 1000f, true);
             AddHappinessSource(deaths);
         }else if (deathPenalty < 1f){
+            // Low penalty
+            if (lastDeathPenalty == 3) return;
+            RemoveDeathHappinessSources();
+            lastDeathPenalty = 3;
             HappinessSource deaths = new HappinessSource("Recent losses", -0.10f, 1000f, true);
             AddHappinessSource(deaths);
         }
+    }
+
+    void RemoveDeathHappinessSources(){
+        RemoveHappinessSource("Recent losses");
+        RemoveHappinessSource("Mass deaths");
+        RemoveHappinessSource("Collapsing city");
     }
 }
