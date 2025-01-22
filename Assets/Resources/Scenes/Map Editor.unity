@@ -3217,7 +3217,7 @@ MonoBehaviour:
   hexPrefab: {fileID: 4232830378493009381, guid: cd2433e01e018cb4bad1818ab988aee7, type: 3}
   hoveredTile: {fileID: 0}
   materials:
-  - {fileID: 2100000, guid: de1ee25bcaa360743b14891692acb41f, type: 2}
+  - {fileID: 2100000, guid: 17ccb71f0a744ec4a9bb1af55156bd1b, type: 2}
   - {fileID: 2100000, guid: 591169dfa9b6f8f4ab304649906bc130, type: 2}
   - {fileID: 2100000, guid: 839edeb2248562643a671d3e39f9f603, type: 2}
   - {fileID: 2100000, guid: 10032640ad21eee41a57967657e3611b, type: 2}

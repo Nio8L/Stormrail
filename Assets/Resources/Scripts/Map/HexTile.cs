@@ -82,9 +82,6 @@ public class HexTile : MonoBehaviour
     }
 
     public void Reveal(){
-        // Editor reveal bypass
-        if (MapLoader.instance != null && MapLoader.instance.loadingEditor) return;
-
         revealed = true;
 
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();

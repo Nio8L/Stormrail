@@ -28,6 +28,8 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.population = city.population;
             newCity.workers = city.workers;
             newCity.starvation = city.starving;
+            newCity.starvationDeathResetTimer = city.starvationDeathResetTimer;
+            newCity.deathPenalty = city.deathPenalty;
             newCity.hungerTimer = city.hungerTimer;
             newCity.hungerDrainModifier = city.hungerDrainModifier;
 
@@ -81,7 +83,10 @@ public class CityManager : MonoBehaviour, ISavable
 
             cities.Add(newCity);
 
-            newCity.SpawnEvent(newCity.activeEvent);
+            if (newCity.activeEvent != ""){
+                newCity.SpawnEvent(newCity.activeEvent);
+                newCity.SetEventBubbleTimer(city.eventBubbleTimer);
+            }
         }
     }
 
@@ -96,12 +101,15 @@ public class CityManager : MonoBehaviour, ISavable
             newCity.population = city.population;
             newCity.workers = city.workers;
             newCity.starving = city.starvation;
+            newCity.starvationDeathResetTimer = city.starvationDeathResetTimer;
+            newCity.deathPenalty = city.deathPenalty;
             newCity.hungerTimer = city.hungerTimer;
             newCity.hungerDrainModifier = city.hungerDrainModifier;
 
             // Event Saving
             newCity.eventTimer = city.eventTimer;
             newCity.activeEvent = city.activeEvent;
+            if (newCity.activeEvent != "") newCity.eventBubbleTimer = city.decisionBubble.timeLeft;
 
             newCity.coordinates = new(city.coordinates.x, city.coordinates.y);
 

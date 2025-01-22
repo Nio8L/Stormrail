@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de1ee25bcaa360743b14891692acb41f, type: 2}
+  - {fileID: 2100000, guid: 17ccb71f0a744ec4a9bb1af55156bd1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coordinates: {x: 0, y: 0}
   revealed: 0
-  hiddenMaterial: {fileID: 2100000, guid: 96979e4d79f4e9745a085fa3efca9460, type: 2}
+  hiddenMaterial: {fileID: 2100000, guid: 537b85d4ed385834c9ebeb5c1b75114e, type: 2}
   hexStructure: {fileID: 1520276586783198287}
   decorations: {fileID: 0}
   decorationIndex: 0

@@ -231,8 +231,9 @@ MonoBehaviour:
   starvation: 0
   eventPoolLowHappiness: {fileID: 11400000, guid: 88ae23ba8bf186c45a74a86591730d64, type: 2}
   eventPoolHighHappiness: {fileID: 11400000, guid: 1ee198fc077cf744aa11564f38ed72c9, type: 2}
-  eventActive: 0
+  activeEvent: 
   starvationEvent: {fileID: 11400000, guid: 47c24843789acf14ab3127fe34274599, type: 2}
+  deathFromHungerEvent: {fileID: 11400000, guid: 8e57ebaaa0b2fab4a931467702283e17, type: 2}
   prefabEventBubble: {fileID: 624890835831090984, guid: 2fc8ad07d82e50542a5f0dc30ca66bf7, type: 3}
 --- !u!114 &3150826664548313572
 MonoBehaviour:
