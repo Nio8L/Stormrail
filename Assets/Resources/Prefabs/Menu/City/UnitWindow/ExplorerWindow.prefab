@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 1260990183791342134}
   - component: {fileID: -2767596265320568925}
   m_Layer: 5
-  m_Name: UnitWindow
+  m_Name: ExplorerWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef902f9cfcc60f4478a74b5000653f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodBarPrefab: {fileID: 365367368601258778, guid: fa1bb2eae4376ea4d80442a8f4a0ac0a, type: 3}
+  barObject: {fileID: 365367368601258778, guid: fa1bb2eae4376ea4d80442a8f4a0ac0a, type: 3}
   foodBarHolder: {fileID: 4762929068101352840}
   nameplate: {fileID: 8218683553572034738}
   explorer: {fileID: 0}

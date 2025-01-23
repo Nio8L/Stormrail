@@ -249,5 +249,9 @@ public class HexTile : MonoBehaviour
         if(ExplorerManager.instance.selectedExplorer != null){
             ExplorerManager.instance.UpdatePreview();
         }
+
+        if(BuilderManager.instance.selectedBuilder != null){
+            BuilderManager.instance.UpdatePreview();
+        }
     }
 }

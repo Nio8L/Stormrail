@@ -34,7 +34,8 @@ public class MapManager : MonoBehaviour, ISavable
     public enum Mode{
         None,
         Build,
-        Explore
+        Explore,
+        Construct
     }
 
     private void Awake() {

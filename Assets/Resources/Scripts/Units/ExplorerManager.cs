@@ -84,7 +84,7 @@ public class ExplorerManager : MonoBehaviour, ISavable
         explorers.Add(explorerScript);
     }
 
-    public List<Explorer> GetExplorer(City city){
+    public List<Explorer> GetExplorersInCity(City city){
         List<Explorer> found = new();
         
         foreach (Explorer explorer in explorers)

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1170936519273641548}
   - component: {fileID: 4283513620547665498}
   - component: {fileID: 5701074737015042813}
-  - component: {fileID: 2459535680935953435}
+  - component: {fileID: 4759460826420885149}
   m_Layer: 0
-  m_Name: Explorer
+  m_Name: Builder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd18eb2b6c87ae498ad9641181d5c00, type: 2}
+  - {fileID: 2100000, guid: 48c20e91d9613dc4e888c8b810b32805, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2459535680935953435
+--- !u!114 &4759460826420885149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,16 +117,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1993408856684357452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74750d260ae0b094ea48d1b8edabc7d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 348cedad4edc4564d8b8a4e3f054d074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: 
   coordinates: {x: 0, y: 0}
   speed: 1
-  revealRadius: 0
   currentPath: []
   target: {x: 0, y: 0, z: 0}
   currentIndex: 0
   move: 0
   foodSupply: 0
+  steelSupply: 0
   supplierCity: {fileID: 0}
