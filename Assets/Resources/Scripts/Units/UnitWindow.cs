@@ -19,17 +19,29 @@ public class UnitWindow : MonoBehaviour{
     }
 
     public void AddFood(){
-        if(explorer.foodSupply < 5){
-            Instantiate(barObject, foodBarHolder.transform);
-            explorer.foodSupply++;
+        if(explorer.supplierCity.inventory[DataBase.instance.GetItem("Food")] <= 0){
+            return;
         }
+
+        if(explorer.foodSupply == 5){
+            return;
+        }
+        
+        Instantiate(barObject, foodBarHolder.transform);
+        explorer.foodSupply++;
+        explorer.supplierCity.ConsumeResource(DataBase.instance.GetItem("Food"), 1);
+        
     }
 
     public void RemoveFood(){
-        if(explorer.foodSupply > 0){
-            Destroy(foodBarHolder.transform.GetChild(foodBarHolder.transform.childCount - 1).gameObject);
-            explorer.foodSupply--;
+        if(explorer.foodSupply <= 0){
+            return;
         }
+        
+        Destroy(foodBarHolder.transform.GetChild(foodBarHolder.transform.childCount - 1).gameObject);
+        explorer.foodSupply--;
+        explorer.supplierCity.GainResource(DataBase.instance.GetItem("Food"), 1);
+        
     }
 
 }

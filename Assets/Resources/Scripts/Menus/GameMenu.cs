@@ -19,6 +19,7 @@ public class GameMenu : MonoBehaviour
     }
 
     public void MainMenu(){
+        SaveManager.instance.SaveGame();
         SceneManager.LoadScene("Main Menu");
     }
 }
