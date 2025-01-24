@@ -117,6 +117,7 @@ public class ExplorerManager : MonoBehaviour, ISavable
             explorers[^1].coordinates = startTile.coordinates;
             explorers[^1].speed = explorerSerialized.speed;
             explorers[^1].revealRadius = explorerSerialized.revealRadius;
+            explorers[^1].foodSupply = explorerSerialized.foodSupply;
             explorers[^1].NewPath(targetTile);
 
             if(explorers[^1].unitName == null){

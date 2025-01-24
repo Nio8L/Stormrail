@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuilderManager : MonoBehaviour
+public class BuilderManager : MonoBehaviour, ISavable
 {
     public static BuilderManager instance;
 
@@ -98,4 +98,43 @@ public class BuilderManager : MonoBehaviour
         return found;
     }
 
+    public int GetPriority()
+    {
+        return 3;
+    }
+
+    public void LoadData(GameData data)
+    {
+        foreach (BuilderSerialized builderSerialized in data.builders)
+        {
+            Vector2Int startCoordinates = new(builderSerialized.cameFrom.x, builderSerialized.cameFrom.y);            
+            Vector2Int targetCoordinates = new(builderSerialized.goingTo.x, builderSerialized.goingTo.y);
+
+            HexTile startTile = MapManager.instance.CoordinatesToTile(startCoordinates);
+            HexTile targetTile = MapManager.instance.CoordinatesToTile(targetCoordinates);
+
+            SpawnBuilder(startTile);
+            builders[^1].unitName = builderSerialized.name;
+            builders[^1].coordinates = startTile.coordinates;
+            builders[^1].speed = builderSerialized.speed;
+            builders[^1].foodSupply = builderSerialized.foodSupply;
+            builders[^1].steelSupply = builderSerialized.steelSupply;
+            builders[^1].NewPath(targetTile);
+
+            if(builders[^1].unitName == null){
+                builders[^1].unitName = "Explorer group " + builders.Count;
+            }
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.builders = new();
+
+        foreach (Builder builder in builders)
+        {
+            BuilderSerialized builderToSave = new(builder);
+            data.builders.Add(builderToSave);            
+        }
+    }
 }
