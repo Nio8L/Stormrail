@@ -78,7 +78,6 @@ public class CityMenu : MonoBehaviour
 
             tab.SetActive(false);
         }
-
         if (tabs[0].activeSelf) tabs[0].GetComponent<OverviewTab>().UpdateInformation();
     }
 
