@@ -126,7 +126,7 @@ public class MainMenu : MonoBehaviour
 
     public void ButtonPlayScenario(){
         MapLoader.instance.loadStarter = true;
-        instance.LoadMap("starter.json");
+        instance.LoadMap("Scenario.map");
     }
 
     void LoadScene(){
