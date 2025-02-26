@@ -2186,7 +2186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4753cc19bbb5eda428592fb89e9a4c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitWindowPrefab: {fileID: 5465007575938450282, guid: c4913a98d6b47374e9ffa15381d2f1d9, type: 3}
+  explorerWindowPrefab: {fileID: 5465007575938450282, guid: c4913a98d6b47374e9ffa15381d2f1d9, type: 3}
+  builderWindowPrefab: {fileID: 5465007575938450282, guid: 801ef5bf5b68d6546b91489345f33820, type: 3}
   unitWindowHolder: {fileID: 6284950760988040515}
   unitWindows: []
 --- !u!1 &6483101346084245696

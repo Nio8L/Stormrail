@@ -357,18 +357,23 @@ public class ExplorerSerialized{
     public string name;
     public int revealRadius;
     public int speed;
+
+    public int foodSupply;
+
     public Vector2Serialized cameFrom;
     public Vector2Serialized goingTo;
 
     public ExplorerSerialized(){
         revealRadius = 0;
         speed = 1;
+        foodSupply = 0;
     }
 
     public ExplorerSerialized(Explorer explorer){
         name = explorer.unitName;
         revealRadius = explorer.revealRadius;
         speed = explorer.speed;
+        foodSupply = explorer.foodSupply;
 
         if(explorer.currentPath.Count == 0){
             cameFrom = new(explorer.coordinates);
@@ -378,6 +383,40 @@ public class ExplorerSerialized{
             goingTo = new(explorer.currentPath[^1]);
         }
 
+    }
+}
+
+[Serializable]
+public class BuilderSerialized{
+    public string name;
+    public int speed;
+
+    public int foodSupply;
+    public int steelSupply;
+
+    public Vector2Serialized cameFrom;
+    public Vector2Serialized goingTo;
+
+    public BuilderSerialized(){
+        speed = 1;
+        foodSupply = 0;
+        steelSupply = 0;
+    }
+
+    public BuilderSerialized(Builder builder){
+        name = builder.unitName;
+        speed = builder.speed;
+
+        foodSupply = builder.foodSupply;
+        steelSupply = builder.steelSupply;
+
+        if(builder.currentPath.Count == 0){
+            cameFrom = new(builder.coordinates);
+            goingTo = new(builder.coordinates);
+        }else{
+            cameFrom = new(builder.currentPath[builder.currentIndex]);
+            goingTo = new(builder.currentPath[^1]);
+        }
     }
 }
 
@@ -415,6 +454,7 @@ public class GameData
 
     public List<CitySerialized> cities;
     public List<ExplorerSerialized> explorers;
+    public List<BuilderSerialized> builders;
 
     public List<RouteSerialized> routes;
     public List<TrainSerialized> trains;
@@ -427,6 +467,7 @@ public class GameData
 
         cities = new();
         explorers = new();
+        builders = new();
         
         routes = new();
         trains = new();

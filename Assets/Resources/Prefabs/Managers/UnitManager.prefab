@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4450652389931720047}
   - component: {fileID: 2723182627689691618}
+  - component: {fileID: 8049215848878580818}
   m_Layer: 0
   m_Name: UnitManager
   m_TagString: Untagged
@@ -49,3 +50,22 @@ MonoBehaviour:
   explorerPrefab: {fileID: 1993408856684357452, guid: ebaf3501ef687e047ae3f311b79d1e6e, type: 3}
   pathPreview: {fileID: 2977944447383639479, guid: 27dc216fdba976d41a43c4396f1fc46c, type: 3}
   previewPath: []
+  spawnExplorer: 0
+--- !u!114 &8049215848878580818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303438531382864586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9014398936351f842bf8cb03b2eab02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  builders: []
+  selectedBuilder: {fileID: 0}
+  builderPrefab: {fileID: 1993408856684357452, guid: 0c9341e8799cd304ea87ee6d7554c89b, type: 3}
+  pathPreview: {fileID: 2977944447383639479, guid: 27dc216fdba976d41a43c4396f1fc46c, type: 3}
+  previewPath: []
+  spawnBuilder: 0
