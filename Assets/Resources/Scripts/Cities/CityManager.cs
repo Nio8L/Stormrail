@@ -6,8 +6,9 @@ public class CityManager : MonoBehaviour, ISavable
 {
     public static CityManager instance;
     public List<City> cities;
-
+    public List<Station> stations;
     public GameObject cityPrefab;
+    public GameObject stationPrefab;
 
     public Vector2Int coord1;
     public Vector2Int coord2;

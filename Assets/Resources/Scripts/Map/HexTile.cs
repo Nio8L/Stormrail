@@ -20,7 +20,8 @@ public class HexTile : MonoBehaviour
         Empty,
         Forest,
         Mountain,
-        City
+        City,
+        Station
     }
     public Type type;
 
@@ -66,6 +67,9 @@ public class HexTile : MonoBehaviour
         }else if(type == Type.City){
             GameObject prefabCity = MapManager.instance.decorationsCity[decorationIndex];
             decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
+        }else if(type == Type.Station){
+            GameObject prefabStation = MapManager.instance.decorationsStation[decorationIndex];
+            decorations = Instantiate(prefabStation, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
         }
 
         // Editor reveal bypass
@@ -94,12 +98,13 @@ public class HexTile : MonoBehaviour
 
     public void SetType(Type newType){
         type = newType;
+        Debug.Log("type is: " + type);
 
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
-        if(type != Type.Empty && type != Type.City){
+        if(type != Type.Empty && type != Type.City && type != Type.Station){
             walkable = false;
         }else{
             walkable = true;
@@ -109,8 +114,9 @@ public class HexTile : MonoBehaviour
 
     public void SetTypeDecoration(Type newType){
         type = newType;
+        Debug.Log("deco type is: " + type);
 
-        if(type != Type.Empty && type != Type.City){
+        if(type != Type.Empty && type != Type.City && type != Type.Station){
             walkable = false;
         }else{
             walkable = true;
@@ -124,11 +130,11 @@ public class HexTile : MonoBehaviour
             Destroy(decorations);
             if (city != null){
                 city.DestroyCity();
+                city = null;
             }
         }
 
         SpawnDecoration(newType);
-        
     }
 
     public void SpawnDecoration(Type newType){
@@ -151,18 +157,18 @@ public class HexTile : MonoBehaviour
             decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsForest.Count);
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
             decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
-        }else if(newType == Type.City){
-            city = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<City>();
-            CityManager.instance.cities.Add(city);
-            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, coordinates.x + coordinates.y);
-            city.OnFirstCreate();
+        }else if(newType == Type.Station){
+            Station station = Instantiate(CityManager.instance.stationPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<Station>();
+            CityManager.instance.stations.Add(station);
+            station.Initialize(coordinates, coordinates.x + ", "  + coordinates.y);
 
             // Decorations
-            decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsCity.Count);
-            GameObject prefabCity = MapManager.instance.decorationsCity[decorationIndex];
+            decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsStation.Count);
+            GameObject prefabCity = MapManager.instance.decorationsStation[decorationIndex];
             decorations = Instantiate(prefabCity, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
 
         }
+        
 
         if(!revealed && (MapLoader.instance == null || !MapLoader.instance.loadingEditor)){
             decorations.SetActive(false);
@@ -177,13 +183,14 @@ public class HexTile : MonoBehaviour
 
             if (MapLoader.instance != null && MapLoader.instance.loadingEditor)
             {
-                if(type == Type.City){
+                if(type == Type.Station){
                     SetTypeDecoration(Type.Empty);
                 }else{
+                    Debug.Log(type+1);
                     SetTypeDecoration(type + 1);
                 }
             }else{
-                Reveal();
+                //Reveal();
             }
         }else{
             Pathfinder.instance.TryToConnect(this);

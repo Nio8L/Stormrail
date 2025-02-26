@@ -310,11 +310,109 @@ PrefabInstance:
       propertyPath: railPrefab
       value: 
       objectReference: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
+    - target: {fileID: 7946841531256381835, guid: f56831ca2a7a67b489dfce776aa77e2f, type: 3}
+      propertyPath: stationPrefab
+      value: 
+      objectReference: {fileID: 4649675451395029054, guid: 1b12d55255b84cc4cb02e29adc47d075, type: 3}
+    - target: {fileID: 7946841531256381835, guid: f56831ca2a7a67b489dfce776aa77e2f, type: 3}
+      propertyPath: cities.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f56831ca2a7a67b489dfce776aa77e2f, type: 3}
+--- !u!1 &743982908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743982909}
+  - component: {fileID: 743982912}
+  - component: {fileID: 743982911}
+  - component: {fileID: 743982910}
+  m_Layer: 5
+  m_Name: ScreenCover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &743982909
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743982908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1766243745}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &743982910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743982908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b008f0c77d6e4f49bd723ab6a60268a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationTime: 0.2
+  cameraViewPercent: 0.8
+--- !u!114 &743982911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743982908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &743982912
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743982908}
+  m_CullTransparentMesh: 1
 --- !u!1001 &903566683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2189,6 +2287,7 @@ RectTransform:
   - {fileID: 1343317269}
   - {fileID: 1703341322}
   - {fileID: 1917935099}
+  - {fileID: 743982909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2336,6 +2435,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 591169dfa9b6f8f4ab304649906bc130, type: 2}
   - {fileID: 2100000, guid: 839edeb2248562643a671d3e39f9f603, type: 2}
   - {fileID: 2100000, guid: 10032640ad21eee41a57967657e3611b, type: 2}
+  - {fileID: 2100000, guid: 10032640ad21eee41a57967657e3611b, type: 2}
   railPrefab: {fileID: 2977944447383639479, guid: 26598dc5ce32d2c4f9de85653b698c17, type: 3}
   railPreview: {fileID: 2977944447383639479, guid: 27dc216fdba976d41a43c4396f1fc46c, type: 3}
   previewRails: []
@@ -2349,6 +2449,8 @@ MonoBehaviour:
   decorationsCity:
   - {fileID: 3633235650694398503, guid: 577eec887379517449628c24001dd1b3, type: 3}
   - {fileID: 3803462307769574542, guid: c81c706b6f6df7241bab297a1fa69d35, type: 3}
+  decorationsStation:
+  - {fileID: 8435049708625372206, guid: ecdcfab8b9a79754db13aa04931fcda2, type: 3}
   mode: 0
 --- !u!4 &1969212213
 Transform:

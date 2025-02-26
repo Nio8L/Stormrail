@@ -4,15 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
-public class City : MonoBehaviour
+public class City : Station
 {
-    public string cityName;
     public int lastOpenTab = 0;
-    [Header("Inventory and industry")]
-    public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
     public Dictionary<Item, float> consumingThisFrame = new Dictionary<Item, float>();
     public Dictionary<Industry, int> workersPerIndustry = new Dictionary<Industry, int>();
-    public Vector2Int coordinates;
     [Header("Happiness sources")]
     public List<HappinessSource> happinessSources = new List<HappinessSource>();
     HappinessSource starvingSource;
@@ -40,37 +36,26 @@ public class City : MonoBehaviour
     public GameObject prefabEventBubble;
     [Header("Object")]
     public DecisionBubble decisionBubble;
-    
-    
 
-
-    void Start(){
+    new void Start(){
+        base.Start();
         MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.City);
 
         for (int i = 0; i < DataBase.instance.allItems.Count; i++){
             consumingThisFrame.Add(DataBase.instance.allItems[i], 0);
         }
 
-        /*foreach (City connection in connections)
-        {
-            CityManager.instance.BuildRailConnection(this, connection);
-        }*/
-
         starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
-        for (int i = 0; i < DataBase.instance.allItems.Count; i++){
-            inventory.Add(DataBase.instance.allItems[i], 0);
-        }
+        Initialize(coordinates, cityName);
         for (int i = 0; i < DataBase.instance.allIndustries.Count; i++){
             Industry newIndustry = Instantiate(DataBase.instance.allIndustries[i]);
             newIndustry.Initialize(this);
             workersPerIndustry.Add(newIndustry, 0);
         }
-        
-        this.coordinates = coordinates;
-        this.cityName = cityName;
+
         this.population = population;
 
         HappinessSource baseHappiness = new HappinessSource("Base city happiness", 0.15f, 1000f, true);

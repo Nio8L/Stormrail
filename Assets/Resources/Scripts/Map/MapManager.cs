@@ -27,6 +27,7 @@ public class MapManager : MonoBehaviour, ISavable
     public List<GameObject> decorationsForest;
     public List<GameObject> decorationsMountain;
     public List<GameObject> decorationsCity;
+    public List<GameObject> decorationsStation;
 
     [Header("Mode")]
     public Mode mode = Mode.None;

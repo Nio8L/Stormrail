@@ -21,16 +21,22 @@ public class MapLoader : MonoBehaviour
         instance.mapName = _mapName;
         instance.mapSize = _mapSize;
         instance.loadingEditor = true;
+
+        ScreenCover.instance.TurnAnimationOn();
     }
     public static void LoadGame(string _mapName){
         instance.mapName = _mapName;
         instance.loadingEditor = false;
         instance.startingNewGame = false;
+
+        ScreenCover.instance.TurnAnimationOn();
     }
 
     public static void LoadMap(string _mapName){
         instance.mapName = _mapName;
         instance.loadingEditor = false;
         instance.startingNewGame = true;
+
+        ScreenCover.instance.TurnAnimationOn();
     }
 }

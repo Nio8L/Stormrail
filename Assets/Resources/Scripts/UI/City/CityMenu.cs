@@ -120,7 +120,7 @@ public class CityMenu : MonoBehaviour
             nameBox.text = currentCity.cityName;
         }else{
             currentCity.cityName = nameBox.text;
-            currentCity.transform.GetChild(0).GetChild(0).GetComponent<TextMeshPro>().text = nameBox.text;
+            currentCity.transform.GetChild(0).GetChild(1).GetComponent<TextMeshPro>().text = nameBox.text;
         }
     }
 }
