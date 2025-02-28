@@ -9,6 +9,8 @@ public class TrainSkill : Skill
     public override void OnUnlock(Industry _industry)
     {
         Train newTrain = new Train(_industry.city.cityName + " train" + nameSuffix);
-        TrainManager.instance.InstantiateTrain(new(newTrain));
+        TrainSerialized train = new(newTrain);
+        train.cameFrom = new(_industry.city.coordinates);
+        TrainManager.instance.InstantiateTrain(train, _industry.city);
     }
 }
