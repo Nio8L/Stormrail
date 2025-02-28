@@ -157,7 +157,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7388283887415217319}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6762452
+  m_Size: 0.6992337
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pernik
+  m_text: Weather station
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 27.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1038,6 +1038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStation: {fileID: 0}
+  steelCounter: {fileID: 5075379082076582074}
+  bricksCounter: {fileID: 4649775949548846051}
 --- !u!1 &7752244425338099343
 GameObject:
   m_ObjectHideFlags: 0

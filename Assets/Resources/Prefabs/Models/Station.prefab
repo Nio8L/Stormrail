@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3612649845349439627}
   - component: {fileID: 1364390016535711432}
+  - component: {fileID: 8031319705997965076}
   m_Layer: 0
   m_Name: Station
   m_TagString: Untagged
@@ -433,3 +434,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cityName: 
   coordinates: {x: 0, y: 0}
+--- !u!114 &8031319705997965076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649675451395029054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09395c753bc7c264c9331edd16328035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neededSteel: 1500
+  neededBricks: 2000
+  steel: {fileID: 11400000, guid: ac15366747f49fc4db478def7d135186, type: 2}
+  bricks: {fileID: 11400000, guid: 9b49326f4a0913848910d0ca054a8687, type: 2}

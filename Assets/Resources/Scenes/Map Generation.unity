@@ -2457,10 +2457,12 @@ RectTransform:
   - {fileID: 903566684}
   - {fileID: 1726872608}
   - {fileID: 1343317269}
-  - {fileID: 1703341322}
   - {fileID: 1917935099}
-  - {fileID: 743982909}
   - {fileID: 2009538654026288571}
+  - {fileID: 107073957}
+  - {fileID: 18934764}
+  - {fileID: 1703341322}
+  - {fileID: 743982909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2622,7 +2624,6 @@ MonoBehaviour:
   - {fileID: 3803462307769574542, guid: c81c706b6f6df7241bab297a1fa69d35, type: 3}
   decorationsStation:
   - {fileID: 8435049708625372206, guid: ecdcfab8b9a79754db13aa04931fcda2, type: 3}
-  mode: 0
 --- !u!4 &1969212213
 Transform:
   m_ObjectHideFlags: 0

@@ -3,8 +3,8 @@
         "cameraTransform": {
             "position": {
                 "x": 0.0,
-                "y": 27.99999237060547,
-                "z": -27.99999237060547
+                "y": 49.99999237060547,
+                "z": -49.99999237060547
             },
             "rotation": {
                 "x": 45.00001525878906,
@@ -14,9 +14,9 @@
         },
         "cameraRigTransform": {
             "position": {
-                "x": 8.797313690185547,
-                "y": 0.000015886605979176238,
-                "z": -3.5659971237182619
+                "x": 5.542194366455078,
+                "y": 0.000009825281267694663,
+                "z": -6.600991249084473
             },
             "rotation": {
                 "x": 0.0,
@@ -192,7 +192,7 @@
                             "x": 1,
                             "y": 5
                         },
-                        "type": 0,
+                        "type": 4,
                         "angles": [],
                         "decorationIndex": 0,
                         "revealed": false
@@ -1076,7 +1076,7 @@
     "time": {
         "speed": 0.0,
         "day": 0,
-        "time": 24.008769989013673
+        "time": 24.013442993164064
     },
     "cities": [
         {
@@ -1098,7 +1098,7 @@
                 "Precise Mechanisms"
             ],
             "itemAmount": [
-                9.38290786743164,
+                8.554780960083008,
                 0.0,
                 0.0,
                 0.0,
@@ -1158,9 +1158,38 @@
             "starvationDeathResetTimer": 0.0,
             "deathPenalty": 1.0,
             "connections": [],
-            "eventTimer": 208.2704315185547,
+            "eventTimer": 207.8563690185547,
             "activeEvent": "",
             "eventBubbleTimer": 0.0
+        }
+    ],
+    "stations": [
+        {
+            "stationName": "Weather station",
+            "coordinates": {
+                "x": 1,
+                "y": 5
+            },
+            "itemName": [
+                "Food",
+                "Coal",
+                "Iron Ore",
+                "Stone",
+                "Wood",
+                "Steel",
+                "Bricks",
+                "Precise Mechanisms"
+            ],
+            "itemAmount": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
         }
     ],
     "explorers": [],

@@ -32,17 +32,18 @@ public class CityMenu : MonoBehaviour
 
         if (StationMenu.instance.currentStation != null) StationMenu.instance.CloseMenu();
 
-        currentCity = cityToOpen;
-        EventManager.OpenCity?.Invoke(currentCity);
-
         // Setup city menu
         nameBox.text = cityToOpen.cityName;
         populationText.text = cityToOpen.population.ToString();
-        
+        currentCity = cityToOpen;
+
         instance.gameObject.SetActive(true);
+        // Setup tabs
+        EventManager.OpenCity?.Invoke(currentCity);
         
         // Open the overview tab by default
         OpenTab(tabs[cityToOpen.lastOpenTab]);
+        
         // Update overview information
         tabs[0].GetComponent<OverviewTab>().UpdateInformation();
 

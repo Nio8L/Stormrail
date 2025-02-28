@@ -111,10 +111,14 @@ public class BuilderManager : MonoBehaviour, ISavable
     }
 
     public void BuildCity(HexTile tile1, HexTile tile2){
-        GameObject newCityObject = Instantiate(CityManager.instance.cityPrefab, Vector3.zero, Quaternion.identity);
+        GameObject newCityObject = Instantiate(CityManager.instance.cityPrefab, tile1.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
         City newCity = newCityObject.GetComponent<City>();
         newCity.Initialize(tile1.coordinates, "New Settlement", 10);
         newCity.OnFirstCreate();
+
+        tile1.decorationIndex = UnityEngine.Random.Range(0, MapManager.instance.decorationsCity.Count);
+        GameObject prefabCity = MapManager.instance.decorationsCity[tile1.decorationIndex];
+        tile1.decorations = Instantiate(prefabCity, tile1.transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
 
         CityManager.instance.cities.Add(newCity);
     }
