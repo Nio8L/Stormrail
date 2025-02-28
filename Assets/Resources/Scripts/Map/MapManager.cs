@@ -20,23 +20,11 @@ public class MapManager : MonoBehaviour, ISavable
 
     [Header("Rails")]
     public GameObject railPrefab;
-    public GameObject railPreview;
-    public List<GameObject> previewRails;
 
     [Header("Other")]
     public List<GameObject> decorationsForest;
     public List<GameObject> decorationsMountain;
     public List<GameObject> decorationsCity;
-
-    [Header("Mode")]
-    public Mode mode = Mode.None;
-
-    public enum Mode{
-        None,
-        Build,
-        Explore,
-        Construct
-    }
 
     private void Awake() {
         if(instance != null){
@@ -56,14 +44,6 @@ public class MapManager : MonoBehaviour, ISavable
 
     private void Start() {
         //LayoutGrid();
-    }
-
-    private void Update() {
-        if(Input.GetMouseButton(1)){
-            mode = Mode.None;
-            Pathfinder.instance.ResetTiles();
-            DeletePreview();
-        }
     }
 
     public void LayoutGrid(){
@@ -178,72 +158,6 @@ public class MapManager : MonoBehaviour, ISavable
 
     public HexTile CoordinatesToTile(Vector2Int coordinates){
         return tiles[coordinates.x, coordinates.y];
-    }
-
-    public void BuildRailConnection(HexTile tile1, HexTile tile2){
-        List<HexTile> path = Pathfinder.instance.Pathfind(tile1, tile2);
-        
-        if(path != null){
-            for(int i = 0; i < path.Count - 1; i++){
-                BuildRail(path[i], path[i + 1]);
-            }
-        }
-        
-        DeletePreview();
-    }
-
-    public void BuildRail(HexTile tile1, HexTile tile2){
-        int angle = GetAngle(tile1, tile2);
-        int opposite = FixAngle(angle - 180);
-        if(tile1.angles.Contains(opposite)){
-            return;
-        }
-        if(tile2.angles.Contains(angle)){
-            return;
-        }
-        Instantiate(railPrefab, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
-        Instantiate(railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
-        tile1.angles.Add(opposite);
-        tile2.angles.Add(angle);
-    }
-
-    public void BuildPreviewRail(HexTile tile1, HexTile tile2){
-        int angle = GetAngle(tile1, tile2);
-        int opposite = FixAngle(angle - 180);
-
-        GameObject rail1 = Instantiate(railPreview, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
-        GameObject rail2 = Instantiate(railPreview, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
-
-        previewRails.Add(rail1);
-        previewRails.Add(rail2);
-    }
-
-    public void BuildPreviewConnection(HexTile tile){        
-        List<HexTile> path = Pathfinder.instance.Pathfind(tile, hoveredTile);
-        
-        if(path == null) return;
-
-        for (int i = 0; i < path.Count - 1; i++)
-        {
-            BuildPreviewRail(path[i], path[i + 1]);
-        }
-    }
-
-    public void UpdatePreview(){
-        DeletePreview();
-
-        if(mode == Mode.Build && Pathfinder.instance.tile1 != null){
-            BuildPreviewConnection(Pathfinder.instance.tile1);
-        }
-    }
-
-    public void DeletePreview(){
-        for (int i = previewRails.Count - 1; i >= 0; i--)
-        {
-            Destroy(previewRails[i]);
-        }
-
-        previewRails = new();
     }
 
     public void LoadData(GameData data)

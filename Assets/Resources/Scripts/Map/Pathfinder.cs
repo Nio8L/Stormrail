@@ -8,8 +8,26 @@ public class Pathfinder : MonoBehaviour
     public HexTile tile1;
     public HexTile tile2;
 
+    [Header("Preview")]
+    public GameObject previewObject;
+    public List<GameObject> previewPath;
+    public HexTile start;
+    public bool previewing = false;
+
     private void Awake() {
         instance = this;
+    }
+
+    private void Update() {
+        if(previewing){
+            UpdatePreview();
+        }
+
+        if(Input.GetMouseButton(1)){
+            previewing = false;
+            start = null;
+            DeletePreview();
+        }
     }
 
     public void TryToConnect(HexTile tile){
@@ -18,7 +36,7 @@ public class Pathfinder : MonoBehaviour
         }else{
             tile2 = tile;
             
-            MapManager.instance.BuildRailConnection(tile1, tile2);
+           // BuilderManager.instance.CreateRailProject(Pathfind(tile1, tile2));
             
             ResetTiles();
         }
@@ -170,4 +188,47 @@ public class Pathfinder : MonoBehaviour
         return null;
     }
 
+
+    public void BuildPreviewRail(HexTile tile1, HexTile tile2){
+        int angle = MapManager.instance.GetAngle(tile1, tile2);
+        int opposite = MapManager.FixAngle(angle - 180);
+
+        GameObject rail1 = Instantiate(previewObject, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
+        GameObject rail2 = Instantiate(previewObject, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
+
+        previewPath.Add(rail1);
+        previewPath.Add(rail2);
+    }
+
+    public void BuildPreviewConnection(HexTile tile){        
+        List<HexTile> path = PathfindAll(tile, MapManager.instance.hoveredTile);
+        
+        if(path == null) return;
+
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            BuildPreviewRail(path[i], path[i + 1]);
+        }
+    }
+
+    public void UpdatePreview(){
+        DeletePreview();
+
+        BuildPreviewConnection(start);
+        
+    }
+
+    public void DeletePreview(){
+        for (int i = previewPath.Count - 1; i >= 0; i--)
+        {
+            Destroy(previewPath[i]);
+        }
+
+        previewPath = new();
+    }
+
+    public void StopPreview(){
+        DeletePreview();
+        previewing = false;
+    }
 }

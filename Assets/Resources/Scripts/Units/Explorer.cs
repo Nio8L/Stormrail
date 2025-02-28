@@ -37,10 +37,10 @@ public class Explorer : MonoBehaviour
         }
 
         if(Input.GetMouseButtonUp(0)){
-            if(ExplorerManager.instance.selectedExplorer == this && MapManager.instance.mode == MapManager.Mode.Explore){
+            if(ExplorerManager.instance.selectedExplorer == this && CursorManager.instance.CheckMode(CursorManager.Mode.Explore)){
                 if(MapManager.instance.hoveredTile != MapManager.instance.CoordinatesToTile(coordinates)){
                     NewPath(MapManager.instance.hoveredTile);
-                    MapManager.instance.mode = MapManager.Mode.None;
+                    CursorManager.instance.SetMode(CursorManager.Mode.Neutral);
                     ExplorerManager.instance.DeletePreview();
                 }
             }
@@ -126,7 +126,7 @@ public class Explorer : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        MapManager.instance.mode = MapManager.Mode.Explore;
+        CursorManager.instance.SetMode(CursorManager.Mode.Explore);
         ExplorerManager.instance.selectedExplorer = this;
     }
 

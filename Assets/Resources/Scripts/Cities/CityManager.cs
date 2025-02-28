@@ -9,9 +9,6 @@ public class CityManager : MonoBehaviour, ISavable
 
     public GameObject cityPrefab;
 
-    public Vector2Int coord1;
-    public Vector2Int coord2;
-
     private void Awake() {
         instance = this;
     }
