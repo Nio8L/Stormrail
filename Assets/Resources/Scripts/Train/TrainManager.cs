@@ -48,31 +48,31 @@ public class Train{
         currentIndex = 0;
     }
 
-    public void CompleteCondition(City city, Condition condition){ 
+    public void CompleteCondition(Station station, Condition condition){ 
         if(condition.load){
-            if(city.inventory[condition.item] < condition.amount){         
-                inventory[condition.item] += city.inventory[condition.item];
-                city.ConsumeResource(condition.item, city.inventory[condition.item]);
+            if(station.inventory[condition.item] < condition.amount){         
+                inventory[condition.item] += station.inventory[condition.item];
+                station.ConsumeResource(condition.item, station.inventory[condition.item]);
             }else{
                 inventory[condition.item] += condition.amount;
-                city.inventory[condition.item] -= condition.amount;
-                city.ConsumeResource(condition.item, condition.amount);
+                station.inventory[condition.item] -= condition.amount;
+                station.ConsumeResource(condition.item, condition.amount);
             }
         }else{
             if(inventory[condition.item] < condition.amount){
-                city.GainResource(condition.item, inventory[condition.item]);
+                station.GainResource(condition.item, inventory[condition.item]);
                 inventory[condition.item] -= inventory[condition.item];
             }else{
-                city.GainResource(condition.item, condition.amount);
+                station.GainResource(condition.item, condition.amount);
                 inventory[condition.item] -= condition.amount;
             }
         }
     }
 
-    public void CompleteAllConditions(City city, Stop stop){
+    public void CompleteAllConditions(Station station, Stop stop){
         foreach (Condition condition in stop.conditions)
         {
-            CompleteCondition(city, condition);
+            CompleteCondition(station, condition);
         }
     }
 }
@@ -103,18 +103,18 @@ public class Route{
 
 [System.Serializable]
 public class Stop{
-    public City city;
+    public Station station;
     public string name;
     public List<Condition> conditions;
 
     public Stop(){
-        city = null;
+        station = null;
         name = "";
         conditions = new();
     }
 
     public Stop(string stopName){
-        city = null;
+        station = null;
         name = stopName;
         conditions = new();
     }
@@ -212,7 +212,7 @@ public class TrainManager : MonoBehaviour, ISavable
             for(int j = 0; j < routeSerialized.stops.Count; j++){
                 StopSerialized stopSerialized = routeSerialized.stops[j];
                 Stop stopToLoad = new();
-                stopToLoad.city = CityManager.instance.GetCity(stopSerialized.city);
+                stopToLoad.station = CityManager.instance.GetCity(stopSerialized.city);
                 stopToLoad.name = stopSerialized.name;
                 
                 List<Condition> conditionsToLoad = new();

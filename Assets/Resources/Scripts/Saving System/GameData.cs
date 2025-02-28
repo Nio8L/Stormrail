@@ -247,6 +247,24 @@ public class CitySerialized{
 }
 
 [Serializable]
+public class StationSerialized{
+    public string stationName;
+    public Vector2Serialized coordinates;
+
+    public List<string> itemName;
+    public List<float> itemAmount;
+
+    public StationSerialized(){
+        stationName = "Default";
+
+        coordinates = new(0, 0);
+
+        itemName = new();
+        itemAmount = new();
+    }
+}
+
+[Serializable]
 public class TrainSerialized{
     public string name;
     public string route;
@@ -322,7 +340,7 @@ public class StopSerialized{
     }
 
     public StopSerialized(Stop stop){
-        city = stop.city.cityName;
+        city = stop.station.cityName;
         name = stop.name;
         conditions = new();
         foreach (Condition condition in stop.conditions)
@@ -453,6 +471,7 @@ public class GameData
     public TimeSerialized time;
 
     public List<CitySerialized> cities;
+    public List<StationSerialized> stations;
     public List<ExplorerSerialized> explorers;
     public List<BuilderSerialized> builders;
 
@@ -466,6 +485,7 @@ public class GameData
         time = new();
 
         cities = new();
+        stations = new();
         explorers = new();
         builders = new();
         

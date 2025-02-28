@@ -16,6 +16,8 @@ public class HexTile : MonoBehaviour
 
     public City city;
 
+    public Station station;
+
     public enum Type{
         Empty,
         Forest,
@@ -98,7 +100,6 @@ public class HexTile : MonoBehaviour
 
     public void SetType(Type newType){
         type = newType;
-        Debug.Log("type is: " + type);
 
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
@@ -114,7 +115,6 @@ public class HexTile : MonoBehaviour
 
     public void SetTypeDecoration(Type newType){
         type = newType;
-        Debug.Log("deco type is: " + type);
 
         if(type != Type.Empty && type != Type.City && type != Type.Station){
             walkable = false;
@@ -131,6 +131,9 @@ public class HexTile : MonoBehaviour
             if (city != null){
                 city.DestroyCity();
                 city = null;
+            }else if (station != null){
+                station.DestroyStation();
+                station = null;             
             }
         }
 
@@ -158,7 +161,7 @@ public class HexTile : MonoBehaviour
             GameObject prefabForest = MapManager.instance.decorationsForest[decorationIndex];
             decorations = Instantiate(prefabForest, transform.position + new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0));
         }else if(newType == Type.Station){
-            Station station = Instantiate(CityManager.instance.stationPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<Station>();
+            station = Instantiate(CityManager.instance.stationPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<Station>();
             CityManager.instance.stations.Add(station);
             station.Initialize(coordinates, coordinates.x + ", "  + coordinates.y);
 

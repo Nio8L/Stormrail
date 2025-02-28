@@ -14,7 +14,7 @@ public class EconomyTab : MonoBehaviour
     public static EconomyTab instance;
     public GameObject content;
     public List<ItemDisplay> itemDisplays;
-    public City currentCity;
+    public Station currentStation;
     void Awake(){
         instance = this;
     }
@@ -22,26 +22,29 @@ public class EconomyTab : MonoBehaviour
     private void OnEnable() {
         EventManager.OpenCity += SwitchingCity;
 
-        SwitchingCity(CityMenu.instance.currentCity);
+        if (CityMenu.instance != null && CityMenu.instance.currentCity != null)
+            SwitchingCity(CityMenu.instance.currentCity);
+        else if (StationMenu.instance != null && StationMenu.instance.currentStation != null)
+            SwitchingCity(StationMenu.instance.currentStation);
     }
 
     private void OnDisable() {
         EventManager.OpenCity -= SwitchingCity;
     }
 
-    public void SwitchingCity(City newCity){
-        currentCity = newCity;
+    public void SwitchingCity(Station newStation){
+        currentStation = newStation;
 
-        for (int i = 0; i < currentCity.inventory.Count; i++){
-            KeyValuePair<Item, float> pair = currentCity.inventory.ElementAt(i);
+        for (int i = 0; i < currentStation.inventory.Count; i++){
+            KeyValuePair<Item, float> pair = currentStation.inventory.ElementAt(i);
             itemDisplays[i].Initialize(pair.Key);
         }
     }
 
     void Update(){
-        if (currentCity == null) return;
-        for (int i = 0; i < currentCity.inventory.Count; i++){
-            KeyValuePair<Item, float> pair = currentCity.inventory.ElementAt(i);
+        if (currentStation == null) return;
+        for (int i = 0; i < currentStation.inventory.Count; i++){
+            KeyValuePair<Item, float> pair = currentStation.inventory.ElementAt(i);
             // Set the amount of the display
             itemDisplays[i].amountTextBox.text = Mathf.RoundToInt(pair.Value) + "kg";
         }

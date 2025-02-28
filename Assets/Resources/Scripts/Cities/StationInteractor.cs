@@ -15,7 +15,9 @@ public class StationInteractor : MonoBehaviour
             RaycastHit[] hits = Physics.RaycastAll(ray);
             foreach (RaycastHit hit in hits){
                 if (hit.collider.CompareTag("CityTag")){
-                    CityMenu.instance.OpenMenu(hit.collider.GetComponent<CityTag>().cityToFollow);
+                    CityMenu.instance.OpenMenu(hit.collider.GetComponent<CityTag>().stationToFollow.GetCity());
+                }else if (hit.collider.CompareTag("StationTag")){
+                    StationMenu.instance.OpenMenu(hit.collider.GetComponent<CityTag>().stationToFollow);
                 }else if (hit.collider.CompareTag("EventBubble")){
                     DecisionBubble bubble = hit.collider.GetComponent<DecisionBubble>();
 

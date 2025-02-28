@@ -27,6 +27,13 @@ public class StopPlateUI : MonoBehaviour
             }
         }
 
+        for(int i = 0; i < CityManager.instance.stations.Count; i++){
+            options.Add(CityManager.instance.stations[i].cityName);
+            if(CityManager.instance.stations[i].cityName == cityName){
+                cityIndex = i + 1;
+            }
+        }
+
         cityList.AddOptions(options);
         cityList.value = cityIndex;
         cityName = cityList.options[cityList.value].text;
@@ -66,7 +73,7 @@ public class StopPlateUI : MonoBehaviour
             if(i == index){
                 TrainMenu.instance.selectedRoute.stops[i].name = cityList.options[cityList.value].text;
                 cityName = cityList.options[cityList.value].text;
-                TrainMenu.instance.selectedRoute.stops[i].city = CityManager.instance.GetCity(cityName);
+                TrainMenu.instance.selectedRoute.stops[i].station = CityManager.instance.GetCity(cityName);
             }
         }
     }

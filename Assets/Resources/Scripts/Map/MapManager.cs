@@ -173,8 +173,8 @@ public class MapManager : MonoBehaviour, ISavable
         return angle;
     }
 
-    public HexTile CityToTile(City city){
-        return tiles[city.coordinates.x, city.coordinates.y];
+    public HexTile StationToTile(Station station){
+        return tiles[station.coordinates.x, station.coordinates.y];
     }
 
     public HexTile CoordinatesToTile(Vector2Int coordinates){

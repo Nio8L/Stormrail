@@ -30,6 +30,8 @@ public class CityMenu : MonoBehaviour
             else CloseCurrentCity();
         }
 
+        if (StationMenu.instance.currentStation != null) StationMenu.instance.CloseMenu();
+
         currentCity = cityToOpen;
         EventManager.OpenCity?.Invoke(currentCity);
 

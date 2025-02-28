@@ -89,11 +89,32 @@ public class CityManager : MonoBehaviour, ISavable
                 newCity.SetEventBubbleTimer(city.eventBubbleTimer);
             }
         }
+    
+        foreach (StationSerialized station in data.stations){
+            GameObject newStationObject = Instantiate(stationPrefab, Vector3.zero, Quaternion.identity);
+            
+            Station newStation = newStationObject.GetComponent<Station>();
+
+            newStation.cityName = station.stationName;
+
+            newStation.coordinates = new Vector2Int(station.coordinates.x, station.coordinates.y);
+
+            newStationObject.transform.position = MapManager.instance.tiles[station.coordinates.x, station.coordinates.y].transform.position;
+            newStationObject.transform.position += new Vector3(0, 0.75f, 0);
+
+            for(int i = 0; i < DataBase.instance.allItems.Count; i++){
+                newStation.inventory.Add(DataBase.instance.allItems[i], station.itemAmount[i]);
+            }
+
+            stations.Add(newStation);
+        }
     }
 
     public void SaveData(GameData data)
     {
         data.cities = new();
+
+        data.stations = new();
 
         foreach (City city in cities)
         {   
@@ -148,6 +169,20 @@ public class CityManager : MonoBehaviour, ISavable
             }
             data.cities.Add(newCity);
         }
+    
+        foreach (Station station in stations){
+            StationSerialized serialized = new StationSerialized();
+            serialized.stationName = station.cityName;
+
+            serialized.coordinates = new(station.coordinates.x, station.coordinates.y);
+
+            foreach (Item item in station.inventory.Keys)
+            {
+                serialized.itemName.Add(item.itemName);
+                serialized.itemAmount.Add(station.inventory[item]);
+            }
+            data.stations.Add(serialized);
+        }
     }
 
     public City GetCity(Vector2Int coordinates){
@@ -170,8 +205,15 @@ public class CityManager : MonoBehaviour, ISavable
         return null;
     }
 
-    public City GetCity(string name){
+    public Station GetCity(string name){
         foreach (City city in cities)
+        {
+            if(city.cityName == name){
+                return city;
+            }
+        }
+
+        foreach (Station city in stations)
         {
             if(city.cityName == name){
                 return city;

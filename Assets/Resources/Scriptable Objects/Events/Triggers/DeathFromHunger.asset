@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DeathFromHunger
   m_EditorClassIdentifier: 
   eventName: Death from hunger
-  eventDescription: Five people died from starvation and the people blame you! In
-    their words you have done nothing to provide the city with food.
+  eventDescription: Five people have starved to death and you are to blame! You must
+    secure a food source before we lose everyone!
   subFolder: Triggers
   options:
   - optionName: Mistakes have been made...

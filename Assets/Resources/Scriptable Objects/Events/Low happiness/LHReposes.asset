@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a91d014cae17241b2ab3c07a9bb2c8, type: 3}
   m_Name: LHReposes
   m_EditorClassIdentifier: 
-  eventName: Reposes
-  eventDescription: 'Your people are deeply unhappy with your leadership. To build
-    back their trust you will need additional resources. '
+  eventName: Insufficient resources
+  eventDescription: The lack of resources in this city must be resolved! Consider
+    feeding your people more so they work harder, or if you can't afford it... steal
+    all they have...
   subFolder: Low happiness
   options:
   - optionName: Steal from the poor
@@ -42,7 +43,7 @@ MonoBehaviour:
     populationChange: 0
     lostPopulationCountAsDead: 0
     amountMultipliedByPopulation: 1
-  - optionName: Motivate workers
+  - optionName: Extra rations
     optionDescription: Give your workers 0.5kg of food per person
     happinessSourceToAdd:
       sourceName: Food rations

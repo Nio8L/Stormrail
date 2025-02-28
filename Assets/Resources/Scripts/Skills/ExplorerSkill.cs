@@ -7,6 +7,6 @@ public class ExplorerSkill : Skill
 {
     public override void OnUnlock(Industry _industry)
     {
-        ExplorerManager.instance.SpawnExplorer(MapManager.instance.CityToTile(_industry.city));
+        ExplorerManager.instance.SpawnExplorer(MapManager.instance.StationToTile(_industry.city));
     }
 }

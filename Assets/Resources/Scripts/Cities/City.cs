@@ -37,7 +37,7 @@ public class City : Station
     [Header("Object")]
     public DecisionBubble decisionBubble;
 
-    new void Start(){
+    protected override void Start(){
         base.Start();
         MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.City);
 
@@ -46,6 +46,16 @@ public class City : Station
         }
 
         starvingSource = new HappinessSource("Starvation", -0.3f, 1000, true);
+
+        // Reveal city
+        if (!MapLoader.instance.loadingEditor){
+            HexTile thisTile = MapManager.instance.StationToTile(this);
+            thisTile.Reveal();
+            List<HexTile> surroundingTiles = thisTile.GetNeighbors(1);
+            foreach (HexTile tile in surroundingTiles){
+                tile.Reveal();
+            }
+        }
     }
 
     public void Initialize(Vector2Int coordinates, string cityName, int population){
@@ -67,15 +77,6 @@ public class City : Station
 
         inventory[DataBase.instance.allItems[4]] = 20;
         inventory[DataBase.instance.allItems[0]] = 10;
-
-        // Reveal city
-        HexTile thisTile = MapManager.instance.CityToTile(this);
-        thisTile.Reveal();
-
-        List<HexTile> surroundingTiles = thisTile.GetNeighbors(1);
-        foreach (HexTile tile in surroundingTiles){
-            tile.Reveal();
-        }
     }
 
     void Update(){
@@ -102,11 +103,6 @@ public class City : Station
             ConsumeResource(itemPair.Key, itemPair.Value);
             consumingThisFrame[itemPair.Key] = 0;
         }
-    }
-    public void ConsumeResource(Item itemToConsume, float amount){
-        // Consume a given resource
-        inventory[itemToConsume] -= amount;
-        if (inventory[itemToConsume] < 0) inventory[itemToConsume] = 0; 
     }
     public bool CheckInventoryFor(List<Item> itemsToCheck, List<float> neededAmounts){
         // Check if there is enough of a list of items
@@ -135,10 +131,6 @@ public class City : Station
             float amountToGain = CalculateProduction(itemToCheck) * Time.deltaTime;
             GainResource(itemToCheck, amountToGain);
         }
-    }
-    public void GainResource(Item itemToGain, float amount){
-        // Gain a single resource
-        inventory[itemToGain] += amount;
     }
 
     public float CalculateProduction(Item itemToCheck){
@@ -408,5 +400,9 @@ public class City : Station
         RemoveHappinessSource("Recent losses");
         RemoveHappinessSource("Mass deaths");
         RemoveHappinessSource("Collapsing city");
+    }
+
+    public override City GetCity(){
+        return this;
     }
 }

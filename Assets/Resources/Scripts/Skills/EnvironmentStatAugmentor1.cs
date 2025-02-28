@@ -13,7 +13,7 @@ public class EnvironmentStatAugmentor : GenericStatAugmentor
     public override void OnUnlock(Industry _industry)
     {
         base.OnUnlock(_industry);
-        tile = MapManager.instance.CityToTile(_industry.city);
+        tile = MapManager.instance.StationToTile(_industry.city);
         float boost = GetEnvironmentBoost(tile);
         for (int i = 0; i < items.Count; i++){
             productionPerSecond[items[i]] = perWorker[i] * boost;
@@ -40,7 +40,7 @@ public class EnvironmentStatAugmentor : GenericStatAugmentor
     }
 
     float GetEnvironmentBoost(HexTile tile){
-        float totalBoost = 0;
+        float totalBoost = 1;
         List<HexTile.Type> types = tile.GetNeighborsType(lookRadius);
         foreach(HexTile.Type type in types){
             if (boostedByTiles.Contains(type)){

@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class CityTag : MonoBehaviour
 {
-    public City cityToFollow;
+    public Station stationToFollow;
     GameObject objectToLookAt;
     public TextMeshPro cityNameBox;
 
     void Start(){
-        cityNameBox.text = cityToFollow.cityName;
+        cityNameBox.text = stationToFollow.cityName;
         objectToLookAt = Camera.main.gameObject;
     }
     void Update(){
-        Vector3 newPosition = new Vector3(cityToFollow.transform.position.x, cityToFollow.transform.position.y + 1f, cityToFollow.transform.position.z);
+        Vector3 newPosition = new Vector3(stationToFollow.transform.position.x, stationToFollow.transform.position.y + 1f, stationToFollow.transform.position.z);
         transform.position = newPosition;
 
         transform.LookAt(objectToLookAt.transform);

@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded1259d81406ba41b1044fd1eb7d6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cityToFollow: {fileID: 2707575410025525009}
+  stationToFollow: {fileID: 2707575410025525009}
   cityNameBox: {fileID: 852684731909762406}
 --- !u!65 &3182366902646262626
 BoxCollider:
@@ -433,8 +433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cityName: City
-  lastOpenTab: 0
   coordinates: {x: 0, y: 0}
+  lastOpenTab: 0
   happinessSources: []
   population: 0
   workers: 0

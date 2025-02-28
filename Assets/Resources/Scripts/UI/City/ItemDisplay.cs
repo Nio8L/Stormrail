@@ -32,7 +32,11 @@ public class ItemDisplay : MonoBehaviour, IPointerClickHandler
         // Set the name of the display
         nameTextBox.text = itemToTrack.itemName;
         // Set the amount of the display
-        amountTextBox.text = Mathf.RoundToInt(CityMenu.instance.currentCity.inventory[itemToTrack]) + "kg";
+        if (CityMenu.instance.currentCity != null){
+            amountTextBox.text = Mathf.RoundToInt(CityMenu.instance.currentCity.inventory[itemToTrack]) + "kg";
+        }else if (StationMenu.instance.currentStation != null){
+            amountTextBox.text = Mathf.RoundToInt(StationMenu.instance.currentStation.inventory[itemToTrack]) + "kg";
+        }
     }
 
     private void OnEnable() {

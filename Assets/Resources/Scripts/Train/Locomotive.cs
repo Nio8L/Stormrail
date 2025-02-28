@@ -29,7 +29,7 @@ public class Locomotive : MonoBehaviour
     public void FirstMove(){
         if (train.currentRoute.name == "") return;
         train.currentStop = train.currentRoute.stops[0];
-        currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.city, train.currentRoute.NextStop(train.currentStop).city);
+        currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.station, train.currentRoute.NextStop(train.currentStop).station);
     
         if(currentPath != null && currentPath.Count > 1){
             trainObject.transform.position = currentPath[train.currentIndex].transform.position;
@@ -74,7 +74,7 @@ public class Locomotive : MonoBehaviour
                 NextStop();
             }else if(train.currentIndex + 1 >= currentPath.Count){
                 train.currentStop = train.currentRoute.NextStop(train.currentStop);
-                train.CompleteAllConditions(train.currentStop.city, train.currentStop);
+                train.CompleteAllConditions(train.currentStop.station, train.currentStop);
                 NextStop();
             }else{
                 train.cameFrom.x = currentPath[train.currentIndex].coordinates.x;
@@ -98,12 +98,12 @@ public class Locomotive : MonoBehaviour
     }
 
     public void NextStop(){
-        currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.city, train.currentRoute.NextStop(train.currentStop).city);
+        currentPath = Pathfinder.instance.PathfindOnRails(train.currentStop.station, train.currentRoute.NextStop(train.currentStop).station);
 
         train.currentIndex = 0;
-        if (train.currentStop.city == train.currentRoute.NextStop(train.currentStop).city){
+        if (train.currentStop.station == train.currentRoute.NextStop(train.currentStop).station){
             train.currentStop = train.currentRoute.NextStop(train.currentStop);
-            train.CompleteAllConditions(train.currentStop.city, train.currentStop);
+            train.CompleteAllConditions(train.currentStop.station, train.currentStop);
             NextStop();
             return;
         }

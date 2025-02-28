@@ -9,7 +9,7 @@ public class Station : MonoBehaviour
     public Vector2Int coordinates;
     [Header("Inventory and industry")]
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
-    protected void Start()
+    protected virtual void Start()
     {
         MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.Station);
     }
@@ -21,5 +21,26 @@ public class Station : MonoBehaviour
 
         this.coordinates = coordinates;
         this.cityName = cityName;
+    }
+
+    public virtual City GetCity(){
+        return null;
+    }
+
+    internal void DestroyStation()
+    {
+        CityManager.instance.stations.Remove(this);
+        Destroy(gameObject);
+    }
+
+    public void ConsumeResource(Item itemToConsume, float amount){
+        // Consume a given resource
+        inventory[itemToConsume] -= amount;
+        if (inventory[itemToConsume] < 0) inventory[itemToConsume] = 0; 
+    }
+
+    public void GainResource(Item itemToGain, float amount){
+        // Gain a single resource
+        inventory[itemToGain] += amount;
     }
 }

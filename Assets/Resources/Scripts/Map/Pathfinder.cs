@@ -98,9 +98,9 @@ public class Pathfinder : MonoBehaviour
         return null;
     }
 
-    public List<HexTile> PathfindOnRails(City city1, City city2){
-        HexTile start = MapManager.instance.CityToTile(city1);
-        HexTile end = MapManager.instance.CityToTile(city2);
+    public List<HexTile> PathfindOnRails(Station city1, Station city2){
+        HexTile start = MapManager.instance.StationToTile(city1);
+        HexTile end = MapManager.instance.StationToTile(city2);
         return PathfindOnRails(start, end);
     }
 
