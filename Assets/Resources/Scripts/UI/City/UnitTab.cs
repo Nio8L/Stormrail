@@ -15,21 +15,7 @@ public class UnitTab : MonoBehaviour
 
     public void Refresh(){
         DeleteAllWindows();
-        AddExplorerWindows();
         AddBuilderWindows();
-    }
-
-    public void AddExplorerWindows(){
-        List<Explorer> explorersInCity = ExplorerManager.instance.GetExplorersInCity(CityMenu.instance.currentCity);
-
-        foreach (Explorer explorer in explorersInCity)
-        {
-            GameObject newUnitWindow = Instantiate(explorerWindowPrefab, unitWindowHolder.transform);
-            UnitWindow unitWindow = newUnitWindow.GetComponent<UnitWindow>();
-            
-            unitWindow.explorer = explorer;
-            unitWindows.Add(newUnitWindow);
-        }
     }
 
     public void AddBuilderWindows(){

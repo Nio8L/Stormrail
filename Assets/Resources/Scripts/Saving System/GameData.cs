@@ -391,7 +391,6 @@ public class ExplorerSerialized{
         name = explorer.unitName;
         revealRadius = explorer.revealRadius;
         speed = explorer.speed;
-        foodSupply = explorer.foodSupply;
 
         if(explorer.currentPath.Count == 0){
             cameFrom = new(explorer.coordinates);
@@ -407,7 +406,7 @@ public class ExplorerSerialized{
 [Serializable]
 public class BuilderSerialized{
     public string name;
-    public int speed;
+    public float speed;
 
     public int foodSupply;
     public int steelSupply;

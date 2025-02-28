@@ -69,7 +69,7 @@ public class BuilderManager : MonoBehaviour, ISavable
 
     private void Update() {
         if(spawnBuilder){
-            SpawnBuilder();
+            SpawnBuilder(MapManager.instance.StationToTile(CityManager.instance.cities[0]));
             spawnBuilder = false;
         }
 
@@ -161,6 +161,7 @@ public class BuilderManager : MonoBehaviour, ISavable
         GameObject newBuilder = Instantiate(builderPrefab, spawnPosition, Quaternion.identity);
 
         Builder builderScript = newBuilder.GetComponent<Builder>();
+        builderScript.coordinates = spawnTile.coordinates;
         builders.Add(builderScript);
     }
 

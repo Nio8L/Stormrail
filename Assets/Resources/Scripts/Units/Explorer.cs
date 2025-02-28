@@ -18,16 +18,8 @@ public class Explorer : MonoBehaviour
     public int currentIndex = 0;
     public bool move = false;
 
-    [Header("Supplies")]
-    public int foodSupply = 0;
-    public City supplierCity;
-    bool returning = false;
-
     private void Start() {
         transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(coordinates.x, -coordinates.y));
-        if(CityManager.instance.GetCity(coordinates)){
-            supplierCity = CityManager.instance.GetCity(coordinates);
-        }
     }
 
     private void Update() {
@@ -56,25 +48,12 @@ public class Explorer : MonoBehaviour
             if(currentIndex == currentPath.Count - 1){
                 move = false;
 
-                if(CityManager.instance.GetCity(currentPath[currentIndex]) != null){
-                    supplierCity = CityManager.instance.GetCity(currentPath[currentIndex]);
-                    returning = false;
-                }else{
-                    returning = true;
-                    currentPath.Reverse();
-                    FirstMove();
-                }
-
                 UpdateUnitTab();
             }else{
                 currentIndex++;
                 target = currentPath[currentIndex].transform.position;
                 target.y = 1;
                 moveTimer = 0;
-                
-                if(!returning){
-                    foodSupply--;
-                }
             }
         }
         
@@ -105,7 +84,7 @@ public class Explorer : MonoBehaviour
     }
 
     public void NewPath(HexTile target){
-        currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target, foodSupply);
+        currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target);
         FirstMove();
     }
 

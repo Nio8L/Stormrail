@@ -7,7 +7,7 @@ public class Builder : MonoBehaviour
 {
     public string unitName;
     public Vector2Int coordinates;
-    public int speed;
+    public float speed;
 
     public Project currentProject;
 
