@@ -406,7 +406,7 @@ public class ExplorerSerialized{
 [Serializable]
 public class BuilderSerialized{
     public string name;
-    public int speed;
+    public float speed;
 
     public int foodSupply;
     public int steelSupply;

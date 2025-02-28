@@ -122,7 +122,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: 
   coordinates: {x: 0, y: 0}
-  speed: 1
+  speed: 0.01
+  currentProject:
+    name: 
+    blueprints: []
+    occupiedTiles: []
+    startingCoordinates: {x: 0, y: 0}
   currentPath: []
   target: {x: 0, y: 0, z: 0}
   currentIndex: 0
