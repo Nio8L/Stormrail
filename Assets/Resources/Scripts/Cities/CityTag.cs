@@ -14,6 +14,11 @@ public class CityTag : MonoBehaviour
         objectToLookAt = Camera.main.gameObject;
     }
     void Update(){
+        if (!MapManager.instance.StationToTile(stationToFollow).revealed && !MapLoader.instance.loadingEditor){
+            gameObject.SetActive(false);
+            return;
+        }
+
         Vector3 newPosition = new Vector3(stationToFollow.transform.position.x, stationToFollow.transform.position.y + 1f, stationToFollow.transform.position.z);
         transform.position = newPosition;
 

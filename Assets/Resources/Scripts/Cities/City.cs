@@ -79,10 +79,11 @@ public class City : Station
         inventory[DataBase.instance.allItems[0]] = 10;
     }
 
-    void Update(){
-        // Calculate happiness locked in a range between 0 and 1
+    protected override void Update(){
+        // Clamp happiness in a range between 0 and 1
         lockedHappiness = Mathf.Clamp01(overallHappiness);
         
+        // City actions
         ConsumeResourcesFromIndustries();
         GainResourcesFromIndustries();
         UpdateSkills();
@@ -91,6 +92,7 @@ public class City : Station
         SpawnRandomEventTimer();
         UpdateDeathPenalty();
 
+        // Check if this city should be destroyed
         if (population <= 0) DestroyCity();
     }
 
@@ -166,6 +168,8 @@ public class City : Station
     }
 
     public void DestroyCity(){
+        if (!MapLoader.instance.loadingEditor)
+            MapManager.instance.StationToTile(this).SetTypeDecoration(HexTile.Type.Empty);
         CityManager.instance.cities.Remove(this);
         Destroy(gameObject);
     }
@@ -338,11 +342,11 @@ public class City : Station
         if (amount < 0){
             int diff = population - workers;
             if (diff < 0){
-                workers -= diff;
+                workers += diff;
                 for (int i = 0; i < workersPerIndustry.Count; i++){
                     KeyValuePair<Industry, int> keyValuePair = workersPerIndustry.ElementAt(i);
                     if (keyValuePair.Value >= diff){
-                        workersPerIndustry[keyValuePair.Key] -= diff;
+                        workersPerIndustry[keyValuePair.Key] += diff;
                         break;
                     }else if (keyValuePair.Value < diff){
                         diff -= keyValuePair.Value;
@@ -370,7 +374,7 @@ public class City : Station
             if (lastDeathPenalty == 0) return;
             RemoveDeathHappinessSources();
             lastDeathPenalty = 0;
-            HappinessSource deaths = new HappinessSource("Game over buddy", -2f, 1000f, true);
+            HappinessSource deaths = new HappinessSource("Anarchy", -2f, 1000f, true);
             AddHappinessSource(deaths);
         }else if (deathPenalty < 0.35f){
             // High penalty

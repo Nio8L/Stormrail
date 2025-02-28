@@ -11,7 +11,7 @@ public class Station : MonoBehaviour
     public Dictionary<Item, float> inventory = new Dictionary<Item, float>();
     protected virtual void Start()
     {
-        MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.Station);
+        //MapManager.instance.tiles[coordinates.x, coordinates.y].SetType(HexTile.Type.Station);
     }
 
     public void Initialize(Vector2Int coordinates, string cityName){
@@ -42,5 +42,9 @@ public class Station : MonoBehaviour
     public void GainResource(Item itemToGain, float amount){
         // Gain a single resource
         inventory[itemToGain] += amount;
+    }
+
+    protected virtual void Update(){
+        if (MapManager.instance.StationToTile(this).revealed) transform.GetChild(0).gameObject.SetActive(true);
     }
 }

@@ -89,7 +89,7 @@ public class HexTile : MonoBehaviour
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
-        if(type != Type.Empty){
+        if(type != Type.Empty && decorations != null){
             decorations.SetActive(true);
         }
     }
@@ -116,6 +116,7 @@ public class HexTile : MonoBehaviour
 
         if (decorations != null){
             Destroy(decorations);
+            decorations = null;
             if (city != null){
                 city.DestroyCity();
                 city = null;
@@ -132,7 +133,7 @@ public class HexTile : MonoBehaviour
         if(newType == Type.City){
             city = Instantiate(CityManager.instance.cityPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<City>();
             CityManager.instance.cities.Add(city);
-            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, (coordinates.x + coordinates.y) * 3);
+            city.Initialize(coordinates, coordinates.x + ", "  + coordinates.y, 50);
             city.OnFirstCreate();
 
             // Decorations
@@ -167,7 +168,7 @@ public class HexTile : MonoBehaviour
     }
 
     public void SetWalkable(){
-        if(type != Type.Empty && type != Type.City || !revealed){
+        if(type != Type.Empty && type != Type.City && type != Type.Station || !revealed){
             walkable = false;
         }else{
             walkable = true;
@@ -232,7 +233,7 @@ public class HexTile : MonoBehaviour
 
             if (MapLoader.instance != null && MapLoader.instance.loadingEditor)
             {
-                if(type == Type.City){
+                if(type == Type.Station){
                     SetTypeDecoration(Type.Empty);
                 }else{
                     SetTypeDecoration(type + 1);
