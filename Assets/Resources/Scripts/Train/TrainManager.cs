@@ -32,15 +32,6 @@ public class Train{
         currentIndex = 0;   
     }
 
-    public Train(Route newRoute){
-        name = "";
-        currentRoute = newRoute;
-        speed = 1;
-        currentStop = currentRoute.stops[0];
-        
-        currentIndex = 0;   
-    }
-
     public void SetRoute(Route newRoute){
         currentRoute = newRoute;
         currentStop = currentRoute.stops[0];
@@ -194,6 +185,16 @@ public class TrainManager : MonoBehaviour, ISavable
 
     public void InstantiateTrain(TrainSerialized train){
         GameObject newTrain = Instantiate(trainPrefab);
+        newTrain.transform.position = new Vector3(newTrain.transform.position.x, 0.3f, newTrain.transform.position.z);
+        Locomotive locomotive = newTrain.GetComponent<Locomotive>();
+        locomotive.trainObject = newTrain;
+        locomotive.LoadTrain(train);
+        locomotives.Add(locomotive);
+    }
+
+    public void InstantiateTrain(TrainSerialized train, Station city){  
+        GameObject newTrain = Instantiate(trainPrefab, city.transform.position, Quaternion.identity);
+        newTrain.transform.position = new Vector3(newTrain.transform.position.x, 0.3f, newTrain.transform.position.z);
         Locomotive locomotive = newTrain.GetComponent<Locomotive>();
         locomotive.trainObject = newTrain;
         locomotive.LoadTrain(train);

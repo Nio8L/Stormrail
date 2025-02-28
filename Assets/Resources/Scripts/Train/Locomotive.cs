@@ -37,6 +37,7 @@ public class Locomotive : MonoBehaviour
         }
     }
     public void LoadTrain(TrainSerialized trainSerialized){
+        Debug.Log(trainSerialized.cameFrom.x + " "  + trainSerialized.cameFrom.y);
         TrainManager.instance.trains.Add(train);
         train.name = trainSerialized.name;
         for(int i = 0; i < trainSerialized.items.Count; i++){
@@ -44,6 +45,10 @@ public class Locomotive : MonoBehaviour
             train.inventory[item] = trainSerialized.amounts[i];
         }
 
+        startCoordinates = new(trainSerialized.cameFrom.x, -trainSerialized.cameFrom.y);
+        targetCoordinates = new(trainSerialized.cameFrom.x, -trainSerialized.cameFrom.y);
+        start = MapManager.instance.GetPositionForHexFromCoordinate(startCoordinates);
+        target = MapManager.instance.GetPositionForHexFromCoordinate(targetCoordinates);
         if(TrainManager.instance.GetRoute(trainSerialized.route) == null) return;
         
         //train = new(TrainManager.instance.GetRoute(trainSerialized.route));
@@ -53,10 +58,8 @@ public class Locomotive : MonoBehaviour
 
         train.currentIndex = trainSerialized.currentIndex;
         
-        startCoordinates = new(trainSerialized.cameFrom.x, -trainSerialized.cameFrom.y);
         targetCoordinates = new(trainSerialized.goingTo.x, -trainSerialized.goingTo.y);
     
-        start = MapManager.instance.GetPositionForHexFromCoordinate(startCoordinates);
         target = MapManager.instance.GetPositionForHexFromCoordinate(targetCoordinates);
     }
 

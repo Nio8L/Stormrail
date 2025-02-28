@@ -81,6 +81,7 @@ public class ExplorerManager : MonoBehaviour, ISavable
         GameObject newExplorer = Instantiate(explorerPrefab, spawnPosition, Quaternion.identity);
 
         Explorer explorerScript = newExplorer.GetComponent<Explorer>();
+        explorerScript.coordinates = spawnTile.coordinates;
         explorers.Add(explorerScript);
     }
 
