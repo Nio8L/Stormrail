@@ -153,10 +153,6 @@ public class TrainMenu : MonoBehaviour
         selectedRoute.name = routeName.text;
     }
 
-    public void BuildMode(){
-        MapManager.instance.mode = MapManager.Mode.Build;
-    }
-
     public void OpenRouteTab(){
         routeMenuObject.SetActive(true);
         trainMenuObject.SetActive(false);

@@ -41,11 +41,7 @@ public class HexTile : MonoBehaviour
             meshRenderer.material = hiddenMaterial;
         }
 
-        if(type != Type.Empty && type != Type.City){
-            walkable = false;
-        }else{
-            walkable = true;
-        }
+        SetWalkable();
 
         if(type != Type.Empty){
             SpawnDecoration(type);
@@ -105,22 +101,14 @@ public class HexTile : MonoBehaviour
 
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
-        if(type != Type.Empty && type != Type.City && type != Type.Station){
-            walkable = false;
-        }else{
-            walkable = true;
-        }
+        SetWalkable();
             
     }
 
     public void SetTypeDecoration(Type newType){
         type = newType;
 
-        if(type != Type.Empty && type != Type.City && type != Type.Station){
-            walkable = false;
-        }else{
-            walkable = true;
-        }
+        SetWalkable();
 
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
 
@@ -178,27 +166,12 @@ public class HexTile : MonoBehaviour
         }
     }
 
-    private void OnMouseDown() {
-
-        if (RaycastChecker.Check()) return;
-
-        if(MapManager.instance.mode != MapManager.Mode.Build){ 
-
-            if (MapLoader.instance != null && MapLoader.instance.loadingEditor)
-            {
-                if(type == Type.Station){
-                    SetTypeDecoration(Type.Empty);
-                }else{
-                    Debug.Log(type+1);
-                    SetTypeDecoration(type + 1);
-                }
-            }else{
-                //Reveal();
-            }
+    public void SetWalkable(){
+        if(type != Type.Empty && type != Type.City || !revealed){
+            walkable = false;
         }else{
-            Pathfinder.instance.TryToConnect(this);
+            walkable = true;
         }
-
     }
 
     public void GetNeighbors(){
@@ -252,16 +225,51 @@ public class HexTile : MonoBehaviour
         return new Vector2Int(q, r);
     }
 
+    private void OnMouseUp() {
+        if (RaycastChecker.Check()) return;
+
+        if(!CursorManager.instance.CheckMode(CursorManager.Mode.Build)){ 
+
+            if (MapLoader.instance != null && MapLoader.instance.loadingEditor)
+            {
+                if(type == Type.City){
+                    SetTypeDecoration(Type.Empty);
+                }else{
+                    SetTypeDecoration(type + 1);
+                }
+            }
+        }else{
+            if(BuilderManager.instance.construction == BuilderManager.Construction.Rail){
+                if(Pathfinder.instance.previewing){
+                    BuilderManager.instance.CreateRailProject(Pathfinder.instance.PathfindAll(Pathfinder.instance.start, this));
+                    Pathfinder.instance.StopPreview();
+                }else{
+                    //Pathfinder.instance.TryToConnect(this);
+                    Pathfinder.instance.start = this;
+                    Pathfinder.instance.previewing = true;
+                }
+            }
+
+            if(BuilderManager.instance.construction == BuilderManager.Construction.City){
+                if(CityManager.instance.GetCity(this) == null){
+                    BuilderManager.instance.CreateCityProject(this);
+                }
+            }
+        }
+
+    }
+
     private void OnMouseEnter() {
         MapManager.instance.hoveredTile = this;
-        MapManager.instance.UpdatePreview();
 
         if(ExplorerManager.instance.selectedExplorer != null){
             ExplorerManager.instance.UpdatePreview();
         }
 
-        if(BuilderManager.instance.selectedBuilder != null){
-            BuilderManager.instance.UpdatePreview();
+        
+
+        if(CursorManager.instance.CheckMode(CursorManager.Mode.Build)){
+            //BuilderManager.instance.UpdatePreview();
         }
     }
 }

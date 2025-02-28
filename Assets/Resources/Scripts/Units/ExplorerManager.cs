@@ -55,7 +55,7 @@ public class ExplorerManager : MonoBehaviour, ISavable
     public void UpdatePreview(){
        DeletePreview();
 
-        if(selectedExplorer != null && MapManager.instance.mode == MapManager.Mode.Explore){
+        if(selectedExplorer != null && CursorManager.instance.CheckMode(CursorManager.Mode.Explore)){
             BuildPreviewConnection(MapManager.instance.CoordinatesToTile(selectedExplorer.coordinates));
         }
     }

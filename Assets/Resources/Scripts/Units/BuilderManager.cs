@@ -1,6 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class Project{
+    public string name;
+    public List<GameObject> blueprints;
+    public List<HexTile> occupiedTiles;
+    public Vector2Int startingCoordinates;
+
+    public BuilderManager.BuildDelegate buildMethod;
+
+    public Project(){
+        name = "";
+        blueprints = new();
+        occupiedTiles = new();
+        startingCoordinates = new(0, 0);
+    }
+
+    public Project(string name, List<GameObject> blueprints, List<HexTile> occupiedTiles){
+        this.name = name;
+        this.blueprints = blueprints;
+        this.occupiedTiles = occupiedTiles;
+        startingCoordinates = occupiedTiles[0].coordinates;
+    }
+
+    public Project(List<GameObject> blueprints, List<HexTile> occupiedTiles, BuilderManager.BuildDelegate buildDelegate){
+        name = "New project " + (BuilderManager.instance.projects.Count + 1);
+        this.blueprints = blueprints;
+        this.occupiedTiles = occupiedTiles;
+        startingCoordinates = occupiedTiles[0].coordinates;
+        //startingCoordinates = MapManager.instance.GetCoordinatesFromPosition(blueprints[0].transform.position);
+        buildMethod = buildDelegate;
+    }
+}
 
 public class BuilderManager : MonoBehaviour, ISavable
 {
@@ -12,15 +46,29 @@ public class BuilderManager : MonoBehaviour, ISavable
     public Builder selectedBuilder; 
     public GameObject builderPrefab;
 
-    [Header("Path preview")]
-    public GameObject pathPreview;
-    public List<GameObject> previewPath;
+    [Header("Preview")]
+    public GameObject cityPreviewPrefab;
+    public GameObject cityPreview;
 
     [Header("Debug")]
     public bool spawnBuilder = false;
 
+    [Header("Projects")]
+    public List<Project> projects;
+    public Construction construction;
+    public delegate void BuildDelegate(HexTile tile1, HexTile tile2);
+
+    public enum Construction{
+        Rail,
+        City
+    }
+
     private void Awake() {
         instance = this;
+    }
+
+    private void Start() {
+        spawnBuilder = true;
     }
 
     private void Update() {
@@ -28,45 +76,76 @@ public class BuilderManager : MonoBehaviour, ISavable
             SpawnBuilder();
             spawnBuilder = false;
         }
+
+        if(CursorManager.instance.CheckMode(CursorManager.Mode.Build) && construction == Construction.City){
+            if(cityPreview != null){
+                cityPreview.transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(MapManager.instance.hoveredTile.coordinates.x, -MapManager.instance.hoveredTile.coordinates.y));
+            }else{
+                cityPreview = Instantiate(cityPreviewPrefab);
+            }
+        }else{
+            if(cityPreview != null){
+                Destroy(cityPreview);
+            }
+        }
     }
 
-    public void BuildPreviewRail(HexTile tile1, HexTile tile2){
-        int angle = MapManager.instance.GetAngle(tile1, tile2);
-        int opposite = MapManager.FixAngle(angle - 180);
-
-        GameObject rail1 = Instantiate(pathPreview, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
-        GameObject rail2 = Instantiate(pathPreview, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
-
-        previewPath.Add(rail1);
-        previewPath.Add(rail2);
+    public void BuildMode(){
+        CursorManager.instance.SetMode(CursorManager.Mode.Build);
     }
 
-    public void BuildPreviewConnection(HexTile tile){        
-        List<HexTile> path = Pathfinder.instance.PathfindAll(tile, MapManager.instance.hoveredTile, selectedBuilder.foodSupply);
-        
+    public void SetConstruct(int construction){
+        this.construction = (Construction)construction;
+    }
+
+    public void CreateCityProject(HexTile tile){
+        List<GameObject> blueprints = new();
+        List<HexTile> occupiedTiles = new()
+        {
+            tile
+        };
+
+        blueprints.Add(Instantiate(cityPreviewPrefab, tile.transform.position, Quaternion.identity));
+
+        projects.Add(new(blueprints, occupiedTiles, BuildCity));
+    }
+
+    public void BuildCity(HexTile tile1, HexTile tile2){
+        GameObject newCityObject = Instantiate(CityManager.instance.cityPrefab, Vector3.zero, Quaternion.identity);
+        City newCity = newCityObject.GetComponent<City>();
+        newCity.Initialize(tile1.coordinates, "New Settlement", 10);
+        newCity.OnFirstCreate();
+
+        CityManager.instance.cities.Add(newCity);
+    }
+
+    public void CreateRailProject(List<HexTile> path){
         if(path == null) return;
 
-        for (int i = 0; i < path.Count - 1; i++)
+        List<GameObject> blueprints = Pathfinder.instance.previewPath;
+        List<GameObject> newBlueprints = new();
+        foreach (GameObject blueprint in blueprints)
         {
-            BuildPreviewRail(path[i], path[i + 1]);
+            newBlueprints.Add(Instantiate(blueprint));
         }
+        projects.Add(new(newBlueprints, path, BuildRail));
     }
 
-    public void UpdatePreview(){
-       DeletePreview();
-
-        if(selectedBuilder != null && MapManager.instance.mode == MapManager.Mode.Construct){
-            BuildPreviewConnection(MapManager.instance.CoordinatesToTile(selectedBuilder.coordinates));
+    public void BuildRail(HexTile tile1, HexTile tile2){
+        if(tile1 == tile2) return;
+        
+        int angle = MapManager.instance.GetAngle(tile1, tile2);
+        int opposite = MapManager.FixAngle(angle - 180);
+        if(tile1.angles.Contains(opposite)){
+            return;
         }
-    }
-
-    public void DeletePreview(){
-        for (int i = previewPath.Count - 1; i >= 0; i--)
-        {
-            Destroy(previewPath[i]);
+        if(tile2.angles.Contains(angle)){
+            return;
         }
-
-        previewPath = new();
+        Instantiate(MapManager.instance.railPrefab, tile1.transform.position, Quaternion.Euler(0, opposite, 0));
+        Instantiate(MapManager.instance.railPrefab, tile2.transform.position,  Quaternion.Euler(0, angle, 0));
+        tile1.angles.Add(opposite);
+        tile2.angles.Add(angle);
     }
     
     public void SpawnBuilder(){
@@ -97,6 +176,8 @@ public class BuilderManager : MonoBehaviour, ISavable
 
         return found;
     }
+
+   
 
     public int GetPriority()
     {

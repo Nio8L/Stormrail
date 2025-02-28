@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Builder : MonoBehaviour
@@ -7,6 +8,8 @@ public class Builder : MonoBehaviour
     public string unitName;
     public Vector2Int coordinates;
     public int speed;
+
+    public Project currentProject;
 
     [Header("Pathfinding")]
     public List<HexTile> currentPath;
@@ -21,27 +24,25 @@ public class Builder : MonoBehaviour
     public int foodSupply = 0;
     public int steelSupply = 0;
     public City supplierCity;
-    bool returning = false;
 
     private void Start() {
         transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(coordinates.x, -coordinates.y));
-        if(CityManager.instance.GetCity(coordinates)){
+        /*if(CityManager.instance.GetCity(coordinates)){
             supplierCity = CityManager.instance.GetCity(coordinates);
-        }
+        }*/
     }
 
     private void Update() {
         if(Input.GetMouseButton(1) && BuilderManager.instance.selectedBuilder == this){
             BuilderManager.instance.selectedBuilder = null;
-            BuilderManager.instance.DeletePreview();
+            ProjectMenu.instance.CloseMenu();
         }
 
         if(Input.GetMouseButtonUp(0)){
-            if(BuilderManager.instance.selectedBuilder == this && MapManager.instance.mode == MapManager.Mode.Construct){
-                if(MapManager.instance.hoveredTile != MapManager.instance.CoordinatesToTile(coordinates)){
+            if(BuilderManager.instance.selectedBuilder == this){
+                if(MapManager.instance.hoveredTile != MapManager.instance.CoordinatesToTile(coordinates) && currentProject.blueprints.Count == 0){
                     NewPath(MapManager.instance.hoveredTile);
-                    MapManager.instance.mode = MapManager.Mode.None;
-                    BuilderManager.instance.DeletePreview();
+                    CursorManager.instance.SetMode(CursorManager.Mode.Neutral);
                 }
             }
         }
@@ -54,26 +55,53 @@ public class Builder : MonoBehaviour
             if(currentIndex == currentPath.Count - 1){
                 move = false;
 
-                if(CityManager.instance.GetCity(currentPath[currentIndex]) != null){
-                    supplierCity = CityManager.instance.GetCity(currentPath[currentIndex]);
-                    returning = false;
-                }else{
-                    returning = true;
-                    currentPath.Reverse();
-                    FirstMove();
+                //int blueprintCount = currentProject.blueprints.Count;
+                if(currentProject.blueprints.Count > 0){
+                    HexTile tile1 = currentProject.occupiedTiles[0];
+                    HexTile tile2 = tile1;
+                    if(currentProject.blueprints.Count >= 2){
+                        tile2 = currentProject.occupiedTiles[1];
+                    }
+
+                    currentProject.buildMethod(tile1, tile2);
+                    
+                    Destroy(currentProject.blueprints[0]);
+                    currentProject.blueprints.RemoveAt(0);
+                    
+                    if(currentProject.blueprints.Any()){
+                        Destroy(currentProject.blueprints[0]);
+                        currentProject.blueprints.RemoveAt(0);
+                    }
+                    
+                    currentProject.occupiedTiles.RemoveAt(0);
+
+                    NewPath(tile2);
+
+                    if(currentProject.blueprints.Count == 0){
+                        BuilderManager.instance.projects.Remove(currentProject);
+                        ProjectMenu.instance.LoadProjects();
+                    }
                 }
 
-                UpdateUnitTab();
+               /* if(CityManager.instance.GetCity(currentPath[currentIndex]) != null){
+                    //supplierCity = CityManager.instance.GetCity(currentPath[currentIndex]);
+                    //returning = false;
+                }else{
+                    //returning = true;
+                    currentPath.Reverse();
+                    FirstMove();
+                }*/
+
+                //UpdateUnitTab();
             }else{
                 currentIndex++;
                 target = currentPath[currentIndex].transform.position;
                 target.y = 1;
                 moveTimer = 0;
                 
-                if(!returning){
+               /* if(!returning){
                     foodSupply--;
-                    BuildRoad();
-                }
+                }*/
             }
         }
         
@@ -93,15 +121,14 @@ public class Builder : MonoBehaviour
     }
 
     public void NewPath(HexTile target){
-        currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target, foodSupply);
+        currentPath = Pathfinder.instance.PathfindAll(MapManager.instance.CoordinatesToTile(coordinates), target);
         FirstMove();
     }
 
-    public void BuildRoad(){
-        if(steelSupply > 0){
-            steelSupply--;
-            MapManager.instance.BuildRail(currentPath[currentIndex - 1], currentPath[currentIndex]);
-        }
+    public void StartProject(Project project){
+        currentProject = project;
+
+        NewPath(MapManager.instance.CoordinatesToTile(currentProject.startingCoordinates));
     }
 
     //Handles updating the unit tab, in case the builder is entering a city 
@@ -121,8 +148,8 @@ public class Builder : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        MapManager.instance.mode = MapManager.Mode.Construct;
         BuilderManager.instance.selectedBuilder = this;
+        ProjectMenu.instance.OpenMenu();
     }
 
     private void OnMouseEnter() {
