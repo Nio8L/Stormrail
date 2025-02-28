@@ -19,16 +19,31 @@ public class MainMenu : MonoBehaviour
     public TMP_InputField mapEditorNameField;
     public TMP_InputField mapEditorXSizeField;
     public TMP_InputField mapEditorYSizeField;
+    string sceneToLoad;
+    float loadTime = 0.25f;
+    float timeLeft;
     void Awake(){
         instance = this;
     }
+
+    void Update()
+    {
+        if (timeLeft > 0){
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0){
+                LoadScene();
+            }
+        }
+    }
     public void LoadGame(string path){
         MapLoader.LoadGame(path);
-        SceneManager.LoadScene("Map Generation");
+        sceneToLoad = "Map Generation";
+        timeLeft = loadTime;
     }
     public void LoadMap(string path){
         MapLoader.LoadMap(path);
-        SceneManager.LoadScene("Map Generation");
+        sceneToLoad = "Map Generation";
+        timeLeft = loadTime;
     }
     public void ButtonOpenMapEditor(){ 
         mainMenuWindow.SetActive(false);
@@ -105,11 +120,16 @@ public class MainMenu : MonoBehaviour
 
         // Load editor
         MapLoader.LoadEditor(mapName, sizeVector);
-        SceneManager.LoadScene("Map Editor");
+        sceneToLoad = "Map Editor";
+        timeLeft = loadTime;
     }
 
     public void ButtonPlayScenario(){
         MapLoader.instance.loadStarter = true;
-        instance.LoadMap("starter.json");
+        instance.LoadMap("Scenario.map");
+    }
+
+    void LoadScene(){
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

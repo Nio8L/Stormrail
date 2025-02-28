@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cities: []
   cityPrefab: {fileID: 4246544388105287251, guid: dc61214f6cddeeb4ab63960f2abfe811, type: 3}
+  stationPrefab: {fileID: 4649675451395029054, guid: 1b12d55255b84cc4cb02e29adc47d075, type: 3}
+  coord1: {x: 0, y: 0}
+  coord2: {x: 0, y: 0}
 --- !u!114 &2335746054536044279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,3 +75,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 485687df30f76d047b5c6d6ddc692f2d, type: 2}
   - {fileID: 11400000, guid: c1f74908291dd5744ae34b694e14857e, type: 2}
   - {fileID: 11400000, guid: 4c385a575d658444c8ff8fd5037a60db, type: 2}
+  industryLevelCosts: []
+  dayLenghtInSeconds: 0
+  baseFoodConsumedPerDayPerPerson: 0

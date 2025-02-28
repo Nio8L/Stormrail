@@ -43,7 +43,7 @@ public class FileDataHandler
         try
         {
             string dataToLoad = "";
-            TextAsset dataText = Resources.Load<TextAsset>("Saves/starter");
+            TextAsset dataText = Resources.Load<TextAsset>("Saves/Scenario");
             dataToLoad = dataText.text;
             loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
         }

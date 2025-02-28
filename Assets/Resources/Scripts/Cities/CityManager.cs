@@ -6,8 +6,9 @@ public class CityManager : MonoBehaviour, ISavable
 {
     public static CityManager instance;
     public List<City> cities;
-
+    public List<Station> stations;
     public GameObject cityPrefab;
+    public GameObject stationPrefab;
 
     private void Awake() {
         instance = this;
