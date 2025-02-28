@@ -67,10 +67,6 @@ public class BuilderManager : MonoBehaviour, ISavable
         instance = this;
     }
 
-    private void Start() {
-        spawnBuilder = true;
-    }
-
     private void Update() {
         if(spawnBuilder){
             SpawnBuilder();
