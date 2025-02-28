@@ -391,7 +391,6 @@ public class ExplorerSerialized{
         name = explorer.unitName;
         revealRadius = explorer.revealRadius;
         speed = explorer.speed;
-        foodSupply = explorer.foodSupply;
 
         if(explorer.currentPath.Count == 0){
             cameFrom = new(explorer.coordinates);
