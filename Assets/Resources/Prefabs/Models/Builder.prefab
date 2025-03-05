@@ -404,7 +404,7 @@ PrefabInstance:
     - target: {fileID: -4157524182732408741, guid: 126c95072935fbf4d86ceba136af16a0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1bd18eb2b6c87ae498ad9641181d5c00, type: 2}
+      objectReference: {fileID: 2100000, guid: e2549174c2e31994f9e1fb365ec9df43, type: 2}
     - target: {fileID: 919132149155446097, guid: 126c95072935fbf4d86ceba136af16a0, type: 3}
       propertyPath: m_Name
       value: Pawn
