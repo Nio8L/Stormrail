@@ -33,7 +33,7 @@ public class Industry : ScriptableObject
                 city.ConsumeResource(items[i], amounts[i]);
             }
             level++;
-            skillPoints += 2;
+            skillPoints += 3;
         }
     }
 }

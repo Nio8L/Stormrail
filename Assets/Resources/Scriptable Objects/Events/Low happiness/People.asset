@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a91d014cae17241b2ab3c07a9bb2c8, type: 3}
+  m_Name: People
+  m_EditorClassIdentifier: 
+  eventName: Refuges
+  eventDescription: Some refuges from a far away city have arrived. They have been
+    wandering the forests for weeks before ending up here. They are saying that a
+    huge storm wiped their village out and they are asking you to settle down here.
+  subFolder: Low happiness
+  options:
+  - optionName: Welcome only the healthy ones
+    optionDescription: Gain 10 population
+    happinessSourceToAdd:
+      sourceName: 
+      happinessModifier: 0
+      daysLeft: 0
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume: []
+    amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 10
+    lostPopulationCountAsDead: 0
+    amountMultipliedByPopulation: 0
+  - optionName: Welcome everyone
+    optionDescription: Gain 25 population, your people will be unhappy
+    happinessSourceToAdd:
+      sourceName: Sickness
+      happinessModifier: -0.2
+      daysLeft: 5
+      infiniteDuration: 0
+    itemReward: []
+    amountToGain: []
+    itemsToConsume: []
+    amountToConsume: []
+    happinessSourcesToRemove: []
+    populationChange: 25
+    lostPopulationCountAsDead: 0
+    amountMultipliedByPopulation: 0

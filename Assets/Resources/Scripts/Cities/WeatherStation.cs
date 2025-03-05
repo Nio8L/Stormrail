@@ -12,6 +12,8 @@ public class WeatherStation : MonoBehaviour
 
     Station station;
 
+    bool win = false;
+
     public void Awake()
     {
         station = GetComponent<Station>();
@@ -19,8 +21,9 @@ public class WeatherStation : MonoBehaviour
 
     void Update()
     {
-        if (station.inventory[steel] >= neededSteel && station.inventory[bricks] >= neededBricks){
-            Debug.Log("Win");
+        if (!win && station.inventory[steel] >= neededSteel && station.inventory[bricks] >= neededBricks){
+            win = true;
+            FindObjectOfType<CameraController>().LockOn(GetComponent<Followable>());
         }
     }
 }

@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuWindow;
     public GameObject playWindow;
     public GameObject loadWindow;
+    public GameObject tutorialWindow;
     public GameObject saveHolder;
     public GameObject mapHolder;
     public GameObject prefabSaveBox;
@@ -50,6 +51,7 @@ public class MainMenu : MonoBehaviour
         playWindow.SetActive(false);
         mapEditorWindow.SetActive(true);
         loadWindow.SetActive(false);
+        tutorialWindow.SetActive(false);
     }
     public void ButtonQuit(){
         Application.Quit();
@@ -60,6 +62,15 @@ public class MainMenu : MonoBehaviour
         playWindow.SetActive(false);
         mapEditorWindow.SetActive(false);
         loadWindow.SetActive(false);
+        tutorialWindow.SetActive(false);
+    }
+
+    public void ButtonOpenTutorialMenu(){
+        mainMenuWindow.SetActive(false);
+        playWindow.SetActive(false);
+        mapEditorWindow.SetActive(false);
+        loadWindow.SetActive(false);
+        tutorialWindow.SetActive(true);
     }
     public void ButtonOpenPlayMenu(){
         mainMenuWindow.SetActive(false);
@@ -90,6 +101,7 @@ public class MainMenu : MonoBehaviour
         playWindow.SetActive(false);
         mapEditorWindow.SetActive(false);
         loadWindow.SetActive(true);
+        tutorialWindow.SetActive(false);
 
         for (int i = 0; i < saveHolder.transform.childCount; i++){
             Destroy(saveHolder.transform.GetChild(i).gameObject);
