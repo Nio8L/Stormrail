@@ -52,7 +52,7 @@ public class Explorer : MonoBehaviour
             }else{
                 currentIndex++;
                 target = currentPath[currentIndex].transform.position;
-                target.y = 1;
+                target.y = 0.5f;
                 moveTimer = 0;
             }
         }

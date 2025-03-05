@@ -69,7 +69,7 @@ public class TimeControl : MonoBehaviour, ISavable
         if (time > DataBase.instance.dayLenghtInSeconds){
             day++;
             time = 0;
-            dateText.text = day.ToString();
+            dateText.text = "Day: " + day.ToString();
         }
 
         sun.transform.rotation = Quaternion.Euler(Mathf.Lerp(0, 360, time/DataBase.instance.dayLenghtInSeconds) - 180, 0, 0);
@@ -149,7 +149,7 @@ public class TimeControl : MonoBehaviour, ISavable
 
         if (MapLoader.instance != null && MapLoader.instance.loadingEditor) time = DataBase.instance.dayLenghtInSeconds/2;
 
-        dateText.text = day.ToString();
+        dateText.text = "Day: " + day.ToString();
 
         UpdateVisuals();
         PauseTime();

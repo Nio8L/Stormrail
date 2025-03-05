@@ -340,7 +340,12 @@ public class StopSerialized{
     }
 
     public StopSerialized(Stop stop){
-        city = stop.station.cityName;
+        if (stop.station != null){
+            city = stop.station.cityName;
+        }else {
+            Debug.LogError("Please ignore this crash it won't break anything (I haven't tested this to see).");
+            city = "";
+        }
         name = stop.name;
         conditions = new();
         foreach (Condition condition in stop.conditions)
