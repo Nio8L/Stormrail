@@ -40,6 +40,7 @@ public class Train{
     }
 
     public void CompleteCondition(Station station, Condition condition){ 
+        Debug.Log("complete "  + condition.amount);
         if(condition.load){
             if(station.inventory[condition.item] < condition.amount){         
                 inventory[condition.item] += station.inventory[condition.item];
@@ -61,6 +62,7 @@ public class Train{
     }
 
     public void CompleteAllConditions(Station station, Stop stop){
+       Debug.Log("complete all");
         foreach (Condition condition in stop.conditions)
         {
             CompleteCondition(station, condition);

@@ -379,7 +379,7 @@ public class ConditionSerialized{
 public class ExplorerSerialized{
     public string name;
     public int revealRadius;
-    public int speed;
+    public float speed;
 
     public int foodSupply;
 
