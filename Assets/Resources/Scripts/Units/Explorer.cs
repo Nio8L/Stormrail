@@ -6,7 +6,7 @@ public class Explorer : MonoBehaviour
 {
     public string unitName;
     public Vector2Int coordinates;
-    public int speed;
+    public float speed;
     public int revealRadius;
 
     [Header("Pathfinding")]

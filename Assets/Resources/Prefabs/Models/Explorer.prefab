@@ -122,11 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: 
   coordinates: {x: 0, y: 0}
-  speed: 1
-  revealRadius: 0
+  speed: 0.01
+  revealRadius: 1
   currentPath: []
   target: {x: 0, y: 0, z: 0}
   currentIndex: 0
   move: 0
-  foodSupply: 0
-  supplierCity: {fileID: 0}
