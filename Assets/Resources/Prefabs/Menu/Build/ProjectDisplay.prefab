@@ -333,7 +333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9d3774d454da5d499df24fd5615f582, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2da1018534051d4084d2fb65ddaa44a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -545,4 +545,5 @@ MonoBehaviour:
   project:
     name: 
     blueprints: []
+    occupiedTiles: []
     startingCoordinates: {x: 0, y: 0}

@@ -343,7 +343,7 @@ public class StopSerialized{
         if (stop.station != null){
             city = stop.station.cityName;
         }else {
-            Debug.LogError("Please ignore this crash it won't break anything (I haven't tested this to see).");
+            Debug.LogError("Please ignore this crash it won't break anything (I haven't tested this yet but trust me bro).");
             city = "";
         }
         name = stop.name;
