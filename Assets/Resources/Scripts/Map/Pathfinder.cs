@@ -80,6 +80,41 @@ public class Pathfinder : MonoBehaviour
         return null;
     }
 
+    public List<HexTile> PathfindRevealed(HexTile start, HexTile end){
+        if(!start.revealed) return null;
+        
+        Queue<HexTile> frontier = new();
+        frontier.Enqueue(start);
+
+        Dictionary<HexTile, HexTile> cameFrom = new();
+        cameFrom.Add(start, null);
+        while (frontier.Any())
+        {
+            HexTile current = frontier.Dequeue();
+
+            if(current == end){
+                List<HexTile> path = new();
+                while (current != start)
+                {
+                    path.Add(current);
+                    current = cameFrom[current];
+                }
+                path.Add(start);
+                path.Reverse();
+                return path;
+            }
+
+            foreach (HexTile neighbor in current.Neighbors)
+            {
+                if(!cameFrom.ContainsKey(neighbor) && neighbor.walkable && neighbor.revealed){
+                    frontier.Enqueue(neighbor);
+                    cameFrom[neighbor] = current;
+                }
+            }
+        }
+        return null;
+    }
+
     public List<HexTile> PathfindOnRails(HexTile start, HexTile end){
         Queue<HexTile> frontier = new();
         frontier.Enqueue(start);
@@ -201,7 +236,7 @@ public class Pathfinder : MonoBehaviour
     }
 
     public void BuildPreviewConnection(HexTile tile){        
-        List<HexTile> path = PathfindAll(tile, MapManager.instance.hoveredTile);
+        List<HexTile> path = PathfindRevealed(tile, MapManager.instance.hoveredTile);
         
         if(path == null) return;
 

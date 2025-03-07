@@ -38,15 +38,6 @@ public class Builder : MonoBehaviour
             ProjectMenu.instance.CloseMenu();
         }
 
-        if(Input.GetMouseButtonUp(0)){
-            if(BuilderManager.instance.selectedBuilder == this){
-                if(MapManager.instance.hoveredTile != MapManager.instance.CoordinatesToTile(coordinates) && currentProject.blueprints.Count == 0){
-                    NewPath(MapManager.instance.hoveredTile);
-                    CursorManager.instance.SetMode(CursorManager.Mode.Neutral);
-                }
-            }
-        }
-
         if(!move) return;
 
         if(Vector3.Distance(transform.position, target) < 0.01){

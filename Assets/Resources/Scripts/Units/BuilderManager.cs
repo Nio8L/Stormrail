@@ -74,16 +74,19 @@ public class BuilderManager : MonoBehaviour, ISavable
         }
 
         if(CursorManager.instance.CheckMode(CursorManager.Mode.Build) && construction == Construction.City){
-            if(cityPreview != null){
-                cityPreview.transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(MapManager.instance.hoveredTile.coordinates.x, -MapManager.instance.hoveredTile.coordinates.y));
+            if (MapManager.instance.hoveredTile.revealed && MapManager.instance.hoveredTile.type == HexTile.Type.Empty)
+            {
+                if(cityPreview != null){
+                    cityPreview.transform.position = MapManager.instance.GetPositionForHexFromCoordinate(new Vector2Int(MapManager.instance.hoveredTile.coordinates.x, -MapManager.instance.hoveredTile.coordinates.y));
+                }else{
+                    cityPreview = Instantiate(cityPreviewPrefab);
+                }
             }else{
-                cityPreview = Instantiate(cityPreviewPrefab);
+                if(cityPreview != null){
+                    Destroy(cityPreview);
+                }
             }
-        }else{
-            if(cityPreview != null){
-                Destroy(cityPreview);
             }
-        }
     }
 
     public void BuildMode(){

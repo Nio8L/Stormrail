@@ -152,6 +152,7 @@ public class TimeControl : MonoBehaviour, ISavable
         dateText.text = "Day: " + day.ToString();
 
         UpdateVisuals();
+        Time.timeScale = 1;
         PauseTime();
     }
 

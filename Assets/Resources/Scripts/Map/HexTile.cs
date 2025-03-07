@@ -89,6 +89,8 @@ public class HexTile : MonoBehaviour
         MeshRenderer meshRenderer = hexStructure.GetComponent<MeshRenderer>();
         meshRenderer.material = MapManager.instance.materials[(int)type];
 
+        SetWalkable();
+
         if(type != Type.Empty && decorations != null){
             decorations.SetActive(true);
         }
@@ -197,8 +199,8 @@ public class HexTile : MonoBehaviour
         return neighbors;
     }
 
-    public List<HexTile.Type> GetNeighborsType(int radius){
-        List<HexTile.Type> types = new ();
+    public List<Type> GetNeighborsType(int radius){
+        List<Type> types = new ();
         List<HexTile> neighbors = GetNeighbors(radius);
 
         foreach(HexTile tile in neighbors){
@@ -251,7 +253,7 @@ public class HexTile : MonoBehaviour
                 }
             }
 
-            if(BuilderManager.instance.construction == BuilderManager.Construction.City){
+            if(BuilderManager.instance.construction == BuilderManager.Construction.City && revealed){
                 if(CityManager.instance.GetCity(this) == null){
                     BuilderManager.instance.CreateCityProject(this);
                 }

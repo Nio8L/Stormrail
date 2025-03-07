@@ -14,8 +14,8 @@ public class UnitTab : MonoBehaviour
     }
 
     public void Refresh(){
-        DeleteAllWindows();
-        AddBuilderWindows();
+        //DeleteAllWindows();
+        //AddBuilderWindows();
     }
 
     public void AddBuilderWindows(){
