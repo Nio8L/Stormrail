@@ -244,7 +244,7 @@ public class HexTile : MonoBehaviour
         }else{
             if(BuilderManager.instance.construction == BuilderManager.Construction.Rail){
                 if(Pathfinder.instance.previewing){
-                    BuilderManager.instance.CreateRailProject(Pathfinder.instance.PathfindAll(Pathfinder.instance.start, this));
+                    BuilderManager.instance.CreateRailProject(Pathfinder.instance.PathfindRevealed(Pathfinder.instance.start, this));
                     Pathfinder.instance.StopPreview();
                 }else{
                     //Pathfinder.instance.TryToConnect(this);
